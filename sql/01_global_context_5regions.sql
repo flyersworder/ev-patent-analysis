@@ -46,6 +46,12 @@ WITH cpc_mapping AS (
       WHEN symbol LIKE 'H04N7/18%' THEN 'Infotainment & Connectivity'
       WHEN symbol LIKE 'G08G%' THEN 'Infotainment & Connectivity'
 
+      -- Modular Design & Customization (physical customization, flexible manufacturing)
+      WHEN symbol LIKE 'B60N%' THEN 'Modular Design & Customization'  -- Seats/interior arrangements
+      WHEN symbol LIKE 'B60J%' THEN 'Modular Design & Customization'  -- Windows, doors, roofs
+      WHEN symbol LIKE 'B62D29%' THEN 'Modular Design & Customization'  -- Chassis/body structure
+      WHEN symbol LIKE 'B62D65%' THEN 'Modular Design & Customization'  -- Manufacturing/assembly
+
       ELSE NULL
     END AS application_area
   FROM `patents-public-data.cpc.definition`

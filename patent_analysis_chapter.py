@@ -692,6 +692,32 @@ def _(mo):
     - XPeng SEPA 2.0: 70% cost reduction in ADAS, 85% in infotainment
     - Focus on volume and affordability over premium pricing
 
+    ### Physical Customization: Patent Evidence Supporting the Consumer Electronics Approach
+
+    Beyond software and digital experiences, China's consumer electronics strategy extends to physical vehicle customization—a defining characteristic of modern consumer products like smartphones. Exploratory patent analysis of modular design and customization domains (CPC codes B60N seats/interiors, B60J windows/doors, B62D29 chassis/body structure) reveals striking patterns supporting this thesis.
+
+    **China's Strategic Growth in Modular Design Patents**:
+
+    Among five major regions (US, China, EU, Japan, South Korea), China's modular design patent share evolved dramatically:
+    - **2014**: 1.8% (214 patents) - negligible presence
+    - **2018**: 4.4% (433 patents) - emerging focus
+    - **2022**: 5.1% (480 patents) - sustained growth
+    - **2023**: 8.3% (476 patents) - **quadrupled from 2014**
+
+    China is the **only major region showing growth** in this domain. Competitors experienced decline or stagnation:
+    - **EU**: 43.3% → 34.3% (-9pp decline, from 5,222 to 1,960 patents)
+    - **US**: 24.4% → 27.9% (modest gain, but absolute decline from 2,946 to 1,591 patents)
+    - **Japan**: 18.2% → 13.9% (-4.3pp decline, collapsed from 2,193 to 795 patents)
+    - **Korea**: 12.3% → 15.5% (share gain, but absolute stagnation around 1,500-1,960 patents)
+
+    **Interpretation**: This pattern mirrors China's smartphone-industry playbook. Just as Xiaomi, Oppo, and Huawei offer extensive color options, material choices, and accessory ecosystems, Chinese EV makers (NIO, BYD, XPeng) emphasize configurability. NIO's modular interior systems, BYD's 19 model variants in 6 years, and industry-wide emphasis on build-to-order customization all reflect consumer electronics DNA.
+
+    China's **122% absolute growth** (214 → 476 patents) while incumbents decline signals strategic intent: treating EVs as mass-customizable products rather than standardized industrial goods. This contrasts sharply with traditional automotive approaches emphasizing platform standardization and limited variation (the "Ford Model T" paradigm).
+
+    **Important Caveat**: The overall category declined 53% across all regions (12,055 patents in 2014 → 5,708 in 2023), suggesting either technological maturation or—more likely—that key manufacturing innovations are protected as trade secrets rather than patents. China's modular design patents remain modest in absolute terms (476) compared to core technologies like batteries (2,567 in 2024). The CPC codes capture broad vehicle design elements (seats, windows, chassis) extending beyond EV-specific customization.
+
+    Nonetheless, China's countercyclical growth—patenting more while others patent less—provides tangible evidence for the "EVs as consumer electronics" thesis. Where traditional automakers reduce investment in physical modularity (viewing it as mature technology), Chinese firms increase patenting activity, treating configurability as strategic differentiation. This pattern, combined with battery dominance and infotainment focus, reveals a comprehensive consumer electronics approach spanning hardware, software, and manufacturing flexibility.
+
     ### Strategic Implications: Different Race, Different Rules
 
     **Traditional Auto Model (EU/US)**:
