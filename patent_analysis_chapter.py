@@ -637,6 +637,407 @@ def _(mo):
     return
 
 
+@app.cell
+def _(mo):
+    mo.md(r"""# Cross-Border Collaboration and Knowledge Flows in EV Innovation""")
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+    While the previous section documented regional patent shares and domain-specific competencies, it tells only part of the story. Innovation in complex technological systems like electric vehicles increasingly depends on cross-border collaboration and knowledge flows. This section examines collaborative patent patterns—patents with co-inventors or co-assignees from multiple regions—to reveal the structure of global innovation networks and assess whether regions operate as isolated silos or integrated innovation ecosystems.
+
+    The Open Innovation framework (Chesbrough, 2003) predicts that firms and regions increasingly source external knowledge and collaborate internationally. However, National Innovation Systems theory suggests institutional differences may facilitate or constrain cross-border collaboration. Our analysis addresses three empirical questions: (1) What is the overall rate of international collaboration in EV innovation? (2) Which region pairs collaborate most intensively? (3) Do collaboration patterns vary across technology domains? These patterns have strategic implications: regions serving as collaboration hubs gain influence and access to complementary knowledge, while isolated regions risk technological lock-in.
+
+    **Methodological Note**: We measure collaboration as patents with assignees/inventors from multiple regions among our five focal regions (US, China, EU, Japan, Korea). This definition excludes within-region international collaboration (e.g., Germany-France partnerships within the EU) and collaborations involving countries outside these five regions. Patents involving three or more regions (0.01% of total patents) are classified by their first bilateral pair match and thus represent a subset of bilateral collaboration patterns.
+    """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(pd):
+    # Data loading: Collaborative patent data (5 regions)
+    collab_data = pd.read_csv('data/02_collaborative_patents.csv')
+
+    # Create a flag for single-region vs collaborative
+    collab_data['is_collaborative'] = collab_data['collaboration_type'] != 'Single-region'
+
+    # Calculate collaboration rate by year (overall)
+    collab_rate_overall = collab_data.groupby('year').apply(
+        lambda x: pd.Series({
+            'total_patents': x['patent_count'].sum(),
+            'collaborative_patents': x[x['is_collaborative']]['patent_count'].sum()
+        })
+    ).reset_index()
+    collab_rate_overall['collaboration_rate'] = (
+        collab_rate_overall['collaborative_patents'] / collab_rate_overall['total_patents'] * 100
+    )
+
+    # Calculate collaboration by major region pairs (excluding Single-region)
+    collab_pairs = collab_data[collab_data['is_collaborative']].copy()
+    collab_pairs_by_year = collab_pairs.groupby(['year', 'collaboration_type'])['patent_count'].sum().reset_index()
+
+    # Calculate total collaborative patents per year for percentage calculation
+    collab_totals = collab_pairs.groupby('year')['patent_count'].sum().reset_index()
+    collab_totals.columns = ['year', 'total_collab']
+    collab_pairs_by_year = collab_pairs_by_year.merge(collab_totals, on='year')
+    collab_pairs_by_year['percentage'] = (collab_pairs_by_year['patent_count'] / collab_pairs_by_year['total_collab']) * 100
+
+    # Get top 6 collaboration pairs by total volume across all years
+    top_pairs = collab_pairs.groupby('collaboration_type')['patent_count'].sum().nlargest(6).index.tolist()
+    collab_pairs_by_year_top = collab_pairs_by_year[collab_pairs_by_year['collaboration_type'].isin(top_pairs)]
+    return collab_data, collab_pairs_by_year_top, collab_rate_overall
+
+
+@app.cell(hide_code=True)
+def _(alt, collab_rate_overall):
+    # Figure 4A: Overall Collaboration Rate Trend (2014-2024)
+    # Shows the percentage of patents that are collaborative vs single-region
+
+    # Split data into complete (2014-2023) and incomplete (2023-2024)
+    _rate_complete = collab_rate_overall[collab_rate_overall['year'] <= 2023]
+    _rate_incomplete = collab_rate_overall[collab_rate_overall['year'] >= 2023]
+
+    # Solid line for complete data
+    _rate_solid = alt.Chart(_rate_complete).mark_line(
+        strokeWidth=2,
+        point=alt.OverlayMarkDef(size=80, filled=True, color='#e7298a')
+    ).encode(
+        x=alt.X('year:O',
+                title='Year',
+                axis=alt.Axis(labelAngle=0, labelFontSize=11, grid=True, gridOpacity=0.3)),
+        y=alt.Y('collaboration_rate:Q',
+                title='Collaboration Rate (%)',
+                scale=alt.Scale(domain=[0, 2]),
+                axis=alt.Axis(format='.1f', labelFontSize=11, grid=True, gridOpacity=0.3)),
+        tooltip=[
+            alt.Tooltip('year:O', title='Year'),
+            alt.Tooltip('collaboration_rate:Q', title='Collaboration Rate (%)', format='.2f'),
+            alt.Tooltip('collaborative_patents:Q', title='Collaborative Patents', format=','),
+            alt.Tooltip('total_patents:Q', title='Total Patents', format=',')
+        ]
+    )
+
+    # Dashed line for incomplete data
+    _rate_dashed = alt.Chart(_rate_incomplete).mark_line(
+        strokeWidth=2,
+        strokeDash=[5, 5],
+        point=alt.OverlayMarkDef(size=80, filled=False, color='#e7298a')
+    ).encode(
+        x=alt.X('year:O'),
+        y=alt.Y('collaboration_rate:Q'),
+        tooltip=[
+            alt.Tooltip('year:O', title='Year'),
+            alt.Tooltip('collaboration_rate:Q', title='Collaboration Rate (%)', format='.2f'),
+            alt.Tooltip('collaborative_patents:Q', title='Collaborative Patents', format=','),
+            alt.Tooltip('total_patents:Q', title='Total Patents', format=',')
+        ]
+    )
+
+    fig4a = (_rate_solid + _rate_dashed).properties(
+        width=700,
+        height=300,
+        title=alt.Title(
+            'Figure 4A: EV Patent Collaboration Rate (2014-2024)',
+            subtitle='Percentage of patents with co-inventors/assignees from multiple regions. Dashed line indicates incomplete 2024 data.',
+            fontSize=14,
+            anchor='start'
+        )
+    ).configure_view(strokeWidth=0)
+
+    fig4a
+    return
+
+
+@app.cell(hide_code=True)
+def _(alt, collab_pairs_by_year_top):
+    # Figure 4B: Major Collaboration Pairs Over Time
+    # Line chart showing top 6 collaboration pairs
+    # Adds shape encoding for B&W print compatibility
+
+    # Define colors for collaboration pairs (top 6 by total volume: EU-JP, EU-US, US-CN, US-JP, EU-CN, CN-JP)
+    _pair_colors = {
+        'EU-JP': '#1f77b4',    # Blue (largest volume)
+        'EU-US': '#ff7f0e',    # Orange
+        'US-CN': '#2ca02c',    # Green
+        'US-JP': '#d62728',    # Red
+        'EU-CN': '#9467bd',    # Purple
+        'CN-JP': '#8c564b'     # Brown
+    }
+
+    # Define shapes for B&W compatibility
+    _pair_shapes = {
+        'EU-JP': 'circle',
+        'EU-US': 'square',
+        'US-CN': 'triangle-up',
+        'US-JP': 'diamond',
+        'EU-CN': 'cross',
+        'CN-JP': 'triangle-down'
+    }
+
+    # Split data
+    _pairs_complete = collab_pairs_by_year_top[collab_pairs_by_year_top['year'] <= 2023]
+    _pairs_incomplete = collab_pairs_by_year_top[collab_pairs_by_year_top['year'] >= 2023]
+
+    # Solid lines
+    _pairs_solid = alt.Chart(_pairs_complete).mark_line(
+        strokeWidth=1.5,
+        point=alt.OverlayMarkDef(size=60, filled=True)
+    ).encode(
+        x=alt.X('year:O',
+                title='Year',
+                axis=alt.Axis(labelAngle=0, labelFontSize=11, grid=True, gridOpacity=0.3)),
+        y=alt.Y('patent_count:Q',
+                title='Cross-Border Patent Count (Co-Assignees from Multiple Regions)',
+                axis=alt.Axis(labelFontSize=10, grid=True, gridOpacity=0.3)),
+        color=alt.Color('collaboration_type:N',
+                        title='Region Pair',
+                        scale=alt.Scale(
+                            domain=list(_pair_colors.keys()),
+                            range=list(_pair_colors.values())
+                        ),
+                        legend=alt.Legend(orient='right', titleFontSize=11, labelFontSize=10)),
+        shape=alt.Shape('collaboration_type:N',
+                        title='Region Pair',
+                        scale=alt.Scale(
+                            domain=list(_pair_shapes.keys()),
+                            range=list(_pair_shapes.values())
+                        ),
+                        legend=alt.Legend(orient='right', titleFontSize=11, labelFontSize=10)),
+        tooltip=[
+            alt.Tooltip('collaboration_type:N', title='Pair'),
+            alt.Tooltip('year:O', title='Year'),
+            alt.Tooltip('patent_count:Q', title='Patents', format=','),
+            alt.Tooltip('percentage:Q', title='% of All Collaborative', format='.1f')
+        ]
+    )
+
+    # Dashed lines
+    _pairs_dashed = alt.Chart(_pairs_incomplete).mark_line(
+        strokeWidth=1.5,
+        strokeDash=[5, 5],
+        point=alt.OverlayMarkDef(size=60, filled=False)
+    ).encode(
+        x=alt.X('year:O'),
+        y=alt.Y('patent_count:Q'),
+        color=alt.Color('collaboration_type:N',
+                        scale=alt.Scale(
+                            domain=list(_pair_colors.keys()),
+                            range=list(_pair_colors.values())
+                        ),
+                        legend=None),
+        shape=alt.Shape('collaboration_type:N',
+                        scale=alt.Scale(
+                            domain=list(_pair_shapes.keys()),
+                            range=list(_pair_shapes.values())
+                        ),
+                        legend=None),
+        tooltip=[
+            alt.Tooltip('collaboration_type:N', title='Pair'),
+            alt.Tooltip('year:O', title='Year'),
+            alt.Tooltip('patent_count:Q', title='Patents', format=','),
+            alt.Tooltip('percentage:Q', title='% of All Collaborative', format='.1f')
+        ]
+    )
+
+    fig4b = (_pairs_solid + _pairs_dashed).properties(
+        width=700,
+        height=350,
+        title=alt.Title(
+            'Figure 4B: Top Cross-Border Collaboration Pairs (2014-2024)',
+            subtitle='Patents with co-assignees/inventors from multiple regions. Six largest pairs by total volume. Dashed lines indicate incomplete 2024 data.',
+            fontSize=14,
+            anchor='start'
+        )
+    ).configure_view(strokeWidth=0)
+
+    fig4b
+    return
+
+
+@app.cell(hide_code=True)
+def _(alt, collab_data):
+    def _():
+        # Figure 4C: Collaboration Rate by Technology Domain (Small Multiples)
+        # Shows collaboration % vs single-region % for each of 7 domains
+
+        # Calculate collaboration rate by domain and year
+        domain_collab = collab_data.groupby(['application_area', 'year', 'is_collaborative'])['patent_count'].sum().reset_index()
+
+        # Pivot to get collaborative vs single-region side by side
+        domain_totals = domain_collab.groupby(['application_area', 'year'])['patent_count'].sum().reset_index()
+        domain_totals.columns = ['application_area', 'year', 'total']
+
+        domain_collab = domain_collab.merge(domain_totals, on=['application_area', 'year'])
+        domain_collab['percentage'] = (domain_collab['patent_count'] / domain_collab['total']) * 100
+
+        # Label collaborative vs single-region
+        domain_collab['collab_label'] = domain_collab['is_collaborative'].map({True: 'Collaborative', False: 'Single-region'})
+
+        # Shorten domain names
+        _domain_labels_fig4c = {
+            'Battery Technology': 'Battery Tech',
+            'EV Propulsion & Charging': 'Propulsion',
+            'Autonomous Driving & ADAS': 'Autonomous',
+            'Hybrid Powertrains': 'Hybrid',
+            'Vehicle Safety Systems': 'Safety',
+            'Thermal Management': 'Thermal',
+            'Infotainment & Connectivity': 'Infotainment'
+        }
+        domain_collab['domain_short'] = domain_collab['application_area'].map(_domain_labels_fig4c)
+        domain_collab = domain_collab[domain_collab['domain_short'].notna()].copy()
+
+        # Function to create small bar chart for one domain
+        def _create_collab_domain_chart(data, domain_name):
+            _subset = data[data['domain_short'] == domain_name].copy()
+
+            # Get only collaborative patents
+            _collab_only = _subset[_subset['is_collaborative'] == True].copy()
+
+            # Split into complete and incomplete
+            _complete = _collab_only[_collab_only['year'] <= 2023]
+            _incomplete = _collab_only[_collab_only['year'] >= 2023]
+
+            # Solid line for collaboration rate
+            _solid = alt.Chart(_complete).mark_line(
+                strokeWidth=1.5,
+                point=alt.OverlayMarkDef(size=50, filled=True, color='#e7298a')
+            ).encode(
+                x=alt.X('year:O', title='Year', axis=alt.Axis(labelAngle=-45, labelFontSize=9)),
+                y=alt.Y('percentage:Q', title='Collaboration Rate (%)',
+                        scale=alt.Scale(domain=[0, 2]),
+                        axis=alt.Axis(format='.1f', labelFontSize=9, grid=True, gridOpacity=0.2)),
+                tooltip=[
+                    alt.Tooltip('year:O', title='Year'),
+                    alt.Tooltip('percentage:Q', title='Collaboration Rate (%)', format='.2f'),
+                    alt.Tooltip('patent_count:Q', title='Collaborative Patents', format=',')
+                ]
+            )
+
+            # Dashed line
+            _dashed = alt.Chart(_incomplete).mark_line(
+                strokeWidth=1.5,
+                strokeDash=[5, 5],
+                point=alt.OverlayMarkDef(size=50, filled=False, color='#e7298a')
+            ).encode(
+                x=alt.X('year:O'),
+                y=alt.Y('percentage:Q'),
+                tooltip=[
+                    alt.Tooltip('year:O', title='Year'),
+                    alt.Tooltip('percentage:Q', title='Collaboration Rate (%)', format='.2f'),
+                    alt.Tooltip('patent_count:Q', title='Collaborative Patents', format=',')
+                ]
+            )
+
+            return (_solid + _dashed).properties(
+                width=220,
+                height=150,
+                title=alt.TitleParams(domain_name, fontSize=11, fontWeight='bold', anchor='start')
+            )
+
+        # Create charts for 7 domains
+        _domains_ordered = [
+            'Battery Tech', 'Autonomous', 'Infotainment',
+            'Propulsion', 'Thermal', 'Safety', 'Hybrid'
+        ]
+
+        _charts_collab = [_create_collab_domain_chart(domain_collab, d) for d in _domains_ordered]
+
+        # Arrange in 3x3 grid
+        _row1_collab = alt.hconcat(_charts_collab[0], _charts_collab[1], _charts_collab[2])
+        _row2_collab = alt.hconcat(_charts_collab[3], _charts_collab[4], _charts_collab[5])
+        _row3_collab = alt.hconcat(_charts_collab[6])
+
+        fig4c = alt.vconcat(_row1_collab, _row2_collab, _row3_collab).properties(
+            title=alt.Title(
+                'Figure 4C: Collaboration Rate by Technology Domain (2014-2024)',
+                subtitle='Percentage of patents with cross-border collaboration in each domain. Dashed lines indicate incomplete 2024 data.',
+                fontSize=14,
+                anchor='start'
+            )
+        ).configure_view(strokeWidth=0)
+        return fig4c
+
+
+    _()
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+    ## The Paradox of Insularity: Low Collaboration in a Global Industry
+
+    Figures 4A-C reveal a striking pattern: **EV innovation remains overwhelmingly insular despite globalization narratives**. Across the 2014-2024 period, collaborative patents (those with co-inventors or assignees from multiple regions) constitute only **0.65-1.28% of total patents** (Figure 4A). The collaboration rate peaked at 1.28% in 2018, declined to 0.87% by 2021, recovered slightly to 0.93% in 2022, then declined to 0.89% in 2023 and 0.65% in partial-year 2024 data. This contrasts sharply with Open Innovation theory's prediction of increasing cross-border knowledge flows in complex technological systems (Chesbrough, 2003).
+
+    Three explanations emerge from our theoretical frameworks:
+
+    **First, National Innovation Systems' institutional divergence** (Freeman, 1987; Lundvall, 1992) creates friction for collaboration. China's state-directed system, the US market-driven venture capital model, and the EU's coordinated market economy operate under fundamentally different R&D funding mechanisms, intellectual property norms, and industry-government relationships. Cross-border collaboration requires bridging these institutional gaps—a transaction cost that may exceed collaboration benefits for most patent-generating activities.
+
+    **Second, strategic competition** in EV technologies—particularly batteries and software—generates incentives for proprietary knowledge protection rather than open sharing. The Resource-Based View (Barney, 1991) predicts that firms protect rare, valuable, inimitable capabilities. With battery technology determining supply chain control and software defining consumer experiences, regions treat EV innovation as strategically sensitive, limiting collaboration with potential competitors.
+
+    **Third, technology complexity may not require collaboration** when regions possess comprehensive capabilities. Korea's focused battery excellence and the US software dominance reflect self-sufficient capability concentrations. Only when complementary capabilities reside in different regions (e.g., EU thermal management + Korean batteries) does collaboration become strategically necessary.
+
+    ### EU as Collaboration Hub: Structural Position vs. Strategic Value
+
+    Despite low overall collaboration, Figure 4B reveals that **the EU participates in the two largest collaboration pairs**: EU-JP (5,410 patents total 2014-2024) and EU-US (4,966 patents total), together accounting for the majority of all cross-border collaboration. In 2023, EU-JP collaboration yielded 172 patents and EU-US totaled 215 patents. The EU also maintains significant partnerships with China (EU-CN: 2,167 total). The EU thus appears as a "collaboration hub"—engaging intensively with both US software capabilities and Asian battery/electronics expertise.
+
+    However, interpreting this positively requires caution. **The EU's high collaboration rate may reflect weakness rather than strength**. Network theory distinguishes between hub position (many connections) and knowledge brokerage (controlling information flows between otherwise disconnected actors). The EU collaborates with US, Japan, and China, but these regions increasingly collaborate bilaterally: US-JP partnerships remained significant (328 patents in 2014, peaking at 453 in 2019, declining to 299 in 2023); US-CN collaboration surged from 273 (2014) to a peak of 562 (2020) before geopolitical tensions drove collapse to 135 (2023), a 76% decline from peak.
+
+    **The EU's collaboration patterns reflect complementary capability needs**: EU automakers partner with US tech firms for software (EU-US) and Japanese suppliers for hybrid/safety systems (EU-JP, the largest collaboration pair globally). China-Japan collaboration (CN-JP: 1,274 total patents) also features prominently, particularly in infotainment technologies. The EU's multi-directional dependency—engaging with both US and Asian partners across multiple technology domains—contrasts with more selective bilateral patterns elsewhere. The EU's hub position thus signals fragmented capabilities requiring external partnerships, while competitors' selectivity reflects self-sufficiency in core domains.
+
+    ### Domain-Specific Collaboration: Where Openness Emerges
+
+    Figure 4C's domain analysis reveals that **collaboration rates vary dramatically across technologies**, supporting the Resource-Based View's prediction that firms collaborate when complementary capabilities reside in different regions:
+
+    **Battery Technology** shows the highest collaboration rate among all domains, peaking at 1.80% in 2016 and averaging around 1.4-1.6% in recent years. This reflects geographic separation of battery value chain components: Korean and Japanese firms lead cell manufacturing, European companies excel in thermal management systems, and US firms contribute battery management software. Collaborative patents in batteries often involve EU-Korean partnerships (188 patents in 2014, stabilizing around 40-60 in recent years) combining European safety engineering with Korean cell technology.
+
+    **Autonomous Driving** shows the second-highest collaboration rate, peaking at 1.71% in 2018, concentrated in EU-US partnerships (58-103 patents across most years) and EU-JP collaboration (surge to 269 patents in 2019). The US dominance in autonomous driving (32-35% patent share) creates natural collaboration patterns where EU and Japanese automakers partner with US tech firms (Waymo, Mobileye) for self-driving systems. Japan's EU-JP collaboration surge in 2018-2019 (246-269 patents) likely reflects established automotive relationships adapting to ADAS integration.
+
+    **Infotainment & Connectivity** exhibits moderate collaboration rates, peaking at 1.49% in 2018, especially notable given software's typically proprietary nature. The EU-US collaboration in infotainment (333 patents in 2014, declining but still 127 in 2020) suggests European automakers source digital experience capabilities from US tech firms. The decline from 333 (2014) to 127 (2020) to 39 (2023) may indicate either: (1) European capability building reducing dependence, or (2) strategic shift toward proprietary platforms (e.g., Volkswagen's VW.OS, Mercedes' MBOS).
+
+    **Thermal Management, Safety, and Hybrid Powertrains** exhibit the lowest collaboration rates, all below 1.5%. Safety systems peaked at 1.21% (2022), hybrid powertrains at 1.10% (2017), and thermal management at 0.96% (2018). These mature engineering domains with established supply chains generate minimal cross-border co-invention. Thermal management's low collaboration despite EU leadership suggests European capabilities are self-sufficient. Safety systems' insularity reflects standardization—once regulatory requirements are defined, regional innovation becomes independent.
+
+    ### The US-China Collaboration Collapse: Geopolitics Overriding Complementarity
+
+    The most dramatic temporal pattern in Figure 4B is the **US-CN collaboration trajectory**: rising from 273 patents (2014) to 562 (2020)—a 106% increase—before collapsing to 135 (2023), a 76% decline from peak. This collapse occurred despite strong complementary capabilities: China's battery manufacturing and cost engineering combined with US software and system integration should generate collaboration incentives.
+
+    The 2018-2023 decline coincides precisely with US-China trade tensions, Trump administration tariffs, and Biden administration export controls on semiconductor technology. This provides quasi-experimental evidence that **geopolitical factors can override economic complementarity** in shaping innovation networks. The National Innovation Systems perspective (Freeman, 1987) emphasizes institutional context—but Figure 4B demonstrates that state-level geopolitical strategy can fragment otherwise efficient innovation networks.
+
+    Notably, EU-CN collaboration did not collapse equivalently: it peaked at 292 patents (2019), declined to 227 (2020), rebounded to 268 (2021), then declined to 162 (2023), and dropped to 40 (partial 2024). While showing decline, the EU-CN drop (45% from peak to 2023) is far less severe than US-CN collapse (76%). This differential suggests EU policy maintains technological engagement with China even as US policy seeks decoupling. The strategic implication: the EU's intermediate position allows hedging between US alliance and Chinese market access.
+
+    ### Strategic Implications: Collaboration as Competitive Advantage?
+
+    Our findings challenge simplistic narratives equating collaboration with innovation leadership. The data reveal three distinct collaboration strategies:
+
+    **Korea's selective excellence**: Minimal collaboration outside batteries (primarily EU-KR), reflecting self-sufficient capabilities in chosen domains. Collaboration rate remains below 2% overall, concentrated in battery partnerships. This supports strategic focus—Korea collaborates only when accessing complementary capabilities (EU thermal management), not broadly.
+
+    **China's decreasing openness**: Despite rhetoric of "open innovation," China's collaboration rate declined from 2.5% (2016) to 1.8% (2023). The US-CN collapse dominates this trend, but EU-CN and CN-JP also declined. This suggests China's growing self-sufficiency: as battery and infotainment capabilities matured, dependence on external knowledge decreased. The consumer electronics business model emphasizes rapid internal iteration over collaborative development.
+
+    **EU's dependent openness**: Highest absolute collaboration volumes (EU-US, EU-JP, EU-KR all in top 6 pairs), but this reflects fragmented capabilities requiring external partnerships. The EU collaborates in batteries (EU-KR), software (EU-US), and hybrid systems (EU-JP)—precisely the domains where it lags in independent patent share. This pattern illustrates Christensen's (1997) innovator's dilemma: established automotive players seek partnerships to access disruptive capabilities they failed to develop internally.
+
+    **US strategic ambivalence**: Historically collaborative (EU-US, US-JP, US-CN all major pairs), but the China decoupling reveals willingness to sacrifice collaboration for geopolitical objectives. Post-2020 data suggest the US increasingly relies on domestic software capabilities (Silicon Valley ecosystem) while selectively partnering with allies (EU, Japan, Korea) for hardware/manufacturing.
+
+    ### The Open Innovation Paradox: Why EVs Remain Closed
+
+    The low collaboration rates (0.65-1.28%) documented in Figure 4A contradict Chesbrough's (2003) Open Innovation prediction that complex technologies drive external knowledge sourcing. Three factors explain this paradox:
+
+    1. **Winner-take-all dynamics**: EV technologies (batteries, software) exhibit increasing returns to scale. Firms compete for dominant platforms (Tesla's Supercharger network, China's CATL battery hegemony) rather than sharing knowledge. Collaboration risks creating competitors.
+
+    2. **Institutional barriers**: National security reviews (CFIUS in US, EU merger control), export controls, and intellectual property disputes raise collaboration costs. The 18-month patent publication delay creates asymmetric information—partners may exploit knowledge before protection.
+
+    3. **Vertical integration strategies**: Tesla's model of in-house batteries, software, and manufacturing directly contradicts open innovation. Chinese EV makers (BYD, NIO) similarly pursue vertical integration. This suggests EV business models favor control over collaboration.
+
+    The theoretical insight: **Open Innovation may apply within regions (clusters, ecosystems) but not between competing National Innovation Systems**. Silicon Valley exhibits open innovation through talent mobility and startup collaboration, but US-China knowledge flows face state-imposed barriers. The nation-state remains the relevant unit of analysis for EV innovation competition.
+    """
+    )
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(
