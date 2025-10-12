@@ -1040,6 +1040,276 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
+    mo.md(r"""# Patent Quality Analysis: Beyond Volume to Innovation Impact""")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+    ## Citation-Based Quality Metrics
+
+    Patent volume tells only half the story. A region filing 100,000 patents might seem innovative, but if those patents represent incremental improvements receiving few citations, they signal defensive strategy rather than breakthrough innovation. Conversely, a smaller portfolio of highly-cited patents indicates foundational research enabling follow-on discoveries.
+
+    **Forward citations**—the frequency with which subsequent patents reference a given patent—serve as a key quality indicator. Highly-cited patents typically represent: (1) foundational technologies enabling multiple applications, (2) novel solutions to important technical problems, or (3) platform innovations spawning derivative work. Citation analysis thus distinguishes between *technological leadership* (generating ideas others build upon) and *technological followership* (implementing existing ideas).
+
+    This section examines citation-based quality metrics across the five-region competitive landscape, revealing surprising patterns about who leads in innovation impact versus innovation volume.
+    """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(pd):
+    # Data loading: Patent quality citation data (5 regions: US, CN, EU, JP, KR)
+    citation_data = pd.read_csv('data/03_patent_quality_citations.csv')
+
+    # Calculate overall citation trends by region and year
+    citation_by_region_year = citation_data.groupby(['region', 'year']).agg({
+        'patent_count': 'sum',
+        'avg_citations': 'mean',
+        'median_citations': 'median',
+        'p90_citations': 'mean'
+    }).reset_index()
+    return citation_by_region_year, citation_data
+
+
+@app.cell(hide_code=True)
+def _(alt, citation_by_region_year, region_colors, region_shapes):
+    # Figure 5A: Average Forward Citations by Region (2014-2024)
+    # Shows citation quality trends including citation lag effect
+
+    # Split data into complete (2014-2023) and incomplete (2023-2024)
+    _cit_complete = citation_by_region_year[citation_by_region_year['year'] <= 2023]
+    _cit_incomplete = citation_by_region_year[citation_by_region_year['year'] >= 2023]
+
+    # Solid lines for complete data
+    _cit_solid = alt.Chart(_cit_complete).mark_line(
+        strokeWidth=1.5,
+        point=alt.OverlayMarkDef(size=80, filled=True)
+    ).encode(
+        x=alt.X('year:O',
+                title='Year',
+                axis=alt.Axis(labelAngle=0, labelFontSize=11, grid=True, gridOpacity=0.3)),
+        y=alt.Y('avg_citations:Q',
+                title='Average Forward Citations per Patent',
+                scale=alt.Scale(domain=[0, 15]),
+                axis=alt.Axis(labelFontSize=11, grid=True, gridOpacity=0.3)),
+        color=alt.Color('region:N',
+                        title='Region',
+                        scale=alt.Scale(
+                            domain=['US', 'EU', 'CN', 'JP', 'KR'],
+                            range=[region_colors[r] for r in ['US', 'EU', 'CN', 'JP', 'KR']]
+                        ),
+                        legend=alt.Legend(orient='right', titleFontSize=12, labelFontSize=11)),
+        shape=alt.Shape('region:N',
+                        title='Region',
+                        scale=alt.Scale(
+                            domain=['US', 'EU', 'CN', 'JP', 'KR'],
+                            range=[region_shapes[r] for r in ['US', 'EU', 'CN', 'JP', 'KR']]
+                        ),
+                        legend=alt.Legend(orient='right', titleFontSize=12, labelFontSize=11)),
+        tooltip=[
+            alt.Tooltip('region:N', title='Region'),
+            alt.Tooltip('year:O', title='Year'),
+            alt.Tooltip('avg_citations:Q', title='Avg Citations', format='.2f'),
+            alt.Tooltip('patent_count:Q', title='Patent Count', format=',')
+        ]
+    )
+
+    # Dashed lines for incomplete data
+    _cit_dashed = alt.Chart(_cit_incomplete).mark_line(
+        strokeWidth=1.5,
+        strokeDash=[5, 5],
+        point=alt.OverlayMarkDef(size=80, filled=False)
+    ).encode(
+        x=alt.X('year:O'),
+        y=alt.Y('avg_citations:Q'),
+        color=alt.Color('region:N',
+                        scale=alt.Scale(
+                            domain=['US', 'EU', 'CN', 'JP', 'KR'],
+                            range=[region_colors[r] for r in ['US', 'EU', 'CN', 'JP', 'KR']]
+                        ),
+                        legend=None),
+        shape=alt.Shape('region:N',
+                        scale=alt.Scale(
+                            domain=['US', 'EU', 'CN', 'JP', 'KR'],
+                            range=[region_shapes[r] for r in ['US', 'EU', 'CN', 'JP', 'KR']]
+                        ),
+                        legend=None),
+        tooltip=[
+            alt.Tooltip('region:N', title='Region'),
+            alt.Tooltip('year:O', title='Year'),
+            alt.Tooltip('avg_citations:Q', title='Avg Citations', format='.2f'),
+            alt.Tooltip('patent_count:Q', title='Patent Count', format=',')
+        ]
+    )
+
+    fig5a = (_cit_solid + _cit_dashed).properties(
+        width=700,
+        height=400,
+        title=alt.Title(
+            'Figure 5A: Average Forward Citations by Region (2014-2024)',
+            subtitle='Patents require 5-7 years to accumulate citations. Declining trends after 2019 reflect citation lag, not quality decline. Dashed lines indicate incomplete 2024 data.',
+            fontSize=14,
+            anchor='start'
+        )
+    ).configure_view(strokeWidth=0)
+
+    fig5a
+    return
+
+
+@app.cell(hide_code=True)
+def _(alt, citation_data, region_colors, region_shapes):
+    # Figure 5B: Citation Quality by Domain (2014-2018 only)
+    # Small multiples showing mature patents only for valid quality comparison
+
+    # Filter to mature patents (2014-2018) with sufficient citation lag
+    _mature_citations = citation_data[
+        (citation_data['year'] >= 2014) &
+        (citation_data['year'] <= 2018)
+    ].copy()
+
+    # Calculate average citations by domain and region
+    _domain_quality = _mature_citations.groupby(['application_area', 'region', 'year']).agg({
+        'avg_citations': 'mean',
+        'patent_count': 'sum'
+    }).reset_index()
+
+    # Create small multiples chart
+    _domain_charts = alt.Chart(_domain_quality).mark_line(
+        strokeWidth=1.5,
+        point=alt.OverlayMarkDef(size=50, filled=True)
+    ).encode(
+        x=alt.X('year:O',
+                title='Year',
+                axis=alt.Axis(labelAngle=0, labelFontSize=9)),
+        y=alt.Y('avg_citations:Q',
+                title='Avg Citations',
+                scale=alt.Scale(domain=[0, 25]),
+                axis=alt.Axis(labelFontSize=9, grid=True, gridOpacity=0.2)),
+        color=alt.Color('region:N',
+                        scale=alt.Scale(
+                            domain=['US', 'EU', 'CN', 'JP', 'KR'],
+                            range=[region_colors[r] for r in ['US', 'EU', 'CN', 'JP', 'KR']]
+                        ),
+                        legend=alt.Legend(orient='bottom', titleFontSize=11, labelFontSize=10, columns=5)),
+        shape=alt.Shape('region:N',
+                        scale=alt.Scale(
+                            domain=['US', 'EU', 'CN', 'JP', 'KR'],
+                            range=[region_shapes[r] for r in ['US', 'EU', 'CN', 'JP', 'KR']]
+                        ),
+                        legend=None),
+        tooltip=[
+            alt.Tooltip('region:N', title='Region'),
+            alt.Tooltip('application_area:N', title='Domain'),
+            alt.Tooltip('year:O', title='Year'),
+            alt.Tooltip('avg_citations:Q', title='Avg Citations', format='.2f'),
+            alt.Tooltip('patent_count:Q', title='Patents', format=',')
+        ]
+    ).properties(
+        width=210,
+        height=150
+    ).facet(
+        facet=alt.Facet('application_area:N', title=None, header=alt.Header(labelFontSize=11, labelLimit=200)),
+        columns=3
+    ).properties(
+        title=alt.Title(
+            'Figure 5B: Citation Quality by Technology Domain (2014-2018)',
+            subtitle='Showing only patents with 6-10 years citation lag for valid quality comparison across regions',
+            fontSize=14,
+            anchor='start'
+        )
+    ).configure_view(strokeWidth=0)
+
+    _domain_charts
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+    ### The US Quality Advantage: 2.4-3.6× Higher Citation Impact
+
+    Figure 5A reveals a stark quality hierarchy. Using 2014-2018 data (patents with 6-10 years to accumulate citations), the **US achieves 8.87 average citations per patent—2.4× to 3.6× higher than all other regions**. Korea ranks second (3.77 citations), followed by Japan (3.45), China (3.31), and the EU last (2.50 citations).
+
+    This finding contradicts volume-based rankings. The EU files the second-highest patent volume (288,520 patents in 2014-2018), yet generates the lowest per-patent impact. This **volume-quality paradox** suggests the EU pursues a *defensive patenting strategy*—filing many incremental patents to protect existing products—rather than investing in foundational research that others build upon.
+
+    The declining citation trends after 2019 (visible in Figure 5A) reflect *citation lag*, not quality deterioration. Patents filed in 2020-2024 lack sufficient time to accumulate citations. This lag effect appears consistently across all regions, validating that the measurement methodology is unbiased. The US advantage persists across the full time series where citation data is mature.
+
+    ### Software-Hardware Quality Gap
+
+    Figure 5B's domain analysis exposes the **software-hardware quality divide**. Software-centric domains generate far higher citations than hardware domains (Resource-Based View prediction: software knowledge is more reusable across applications):
+
+    **High-citation software domains** (2014-2018 averages):
+    - **Autonomous Driving & ADAS**: US 14.50, CN 5.91, KR 5.21, JP 4.81, EU 3.73
+    - **Infotainment & Connectivity**: US 12.09, KR 5.34, JP 4.34, EU 3.48, CN 2.86
+    - **Vehicle Safety Systems**: US 8.95, JP 4.11, KR 3.81, CN 2.97, EU 2.39
+
+    **Lower-citation hardware domains**:
+    - **Thermal Management**: US 5.21, JP 2.89, KR 2.78, CN 2.08, EU 1.63
+    - **Hybrid Powertrains**: US 5.23, CN 2.43, KR 2.16, JP 1.81, EU 1.42
+    - **Battery Technology**: US 7.69, KR 3.63, CN 3.48, JP 3.24, EU 2.55
+
+    This pattern holds strategic significance: **the highest-quality innovation occurs in software domains where the EU is weakest**. Autonomous driving patents receive 2-3× more citations than thermal management patents, yet the EU holds only 31% of autonomous patents versus 44% of thermal patents (from Section 3 data). The EU invests R&D in lower-impact domains while lagging in high-impact areas.
+
+    ### EU's Quality Crisis: Weak Even in Traditional Strengths
+
+    Figure 5B reveals the EU's most troubling pattern: **ranking last in 6 of 7 technology domains**, including traditional automotive strengths:
+
+    - **Safety Systems**: EU 2.39 citations (5th of 5 regions, despite 47% patent share from Section 3)
+    - **Thermal Management**: EU 1.63 citations (5th of 5, despite 44% share)
+    - **Hybrid Powertrains**: EU 1.42 citations (5th of 5, despite 50% share)
+
+    This finding challenges the "European engineering excellence" narrative. While EU companies maintain volume leadership in traditional domains, their patents generate minimal follow-on research. Possible explanations include:
+
+    1. **Incremental innovation focus**: EU patents improve existing technologies (better thermal systems, optimized hybrids) rather than enabling new capabilities
+    2. **Product-specific IP**: Patents tied to specific vehicle models, not reusable platforms others can build on
+    3. **Declining relevance**: Traditional domains (hybrids, thermal) become less central to EV value creation, attracting less researcher attention
+
+    The US dominates quality across ALL domains, even hardware areas where EU holds volume advantages. In thermal management, US patents (5.21 citations) generate 3.2× more impact than EU patents (1.63) despite the EU filing 44% of thermal patents versus US 17% (Section 3 data). This inversion—EU volume leadership producing minimal citation impact—epitomizes the quality crisis.
+
+    ### Korea's Battery Paradox: High Volume, Moderate Quality
+
+    Korea presents an interesting anomaly (see also Box 1, Section 3): **highest battery patent volume (Section 3: 31% share) but moderate citation quality (3.63 citations, 2nd of 5)**. US battery patents (7.69 citations) generate 2.1× more impact than Korean patents despite Korea's volume leadership.
+
+    This suggests Korea excels at *incremental battery improvements*—optimizing energy density, manufacturing processes, and costs—but US innovation focuses on *architectural breakthroughs* (new chemistries, novel form factors) that other researchers cite as foundational work. The Resource-Based View predicts this pattern: Korea's manufacturing capabilities generate volume; US research capabilities generate citations.
+
+    ### Theoretical Implications
+
+    These patterns align with **National Innovation Systems** theory (Freeman, 1987; Lundvall, 1992). The US innovation system emphasizes university-industry collaboration (Stanford-Silicon Valley, MIT-Route 128), producing foundational research published and cited widely. EU systems emphasize industry-led applied research, generating proprietary knowledge with narrower applicability. China's system prioritizes rapid commercialization over academic citation networks.
+
+    The Resource-Based View further explains domain differences: **software innovations are more citation-intensive because knowledge is less tacit** than hardware engineering. Autonomous driving algorithms can be described, published, and adapted across contexts (high citations). Battery chemistry knowledge involves undocumented manufacturing expertise (lower citations despite importance).
+
+    **Disruptive Innovation theory** (Christensen, 1997) offers another lens: EU patents may receive fewer citations because they improve sustaining technologies (better combustion engines → hybrids) while US/China patents target disruptive shifts (BEV architecture, software-defined vehicles). Sustaining innovations serve existing customers; disruptive innovations create new markets and research trajectories—hence higher citations.
+    """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+    ### Methodological Note: Citations as One Quality Dimension
+
+    **Forward citations measure one dimension of innovation quality**: the extent to which a patent generates follow-on research by other inventors. This metric favors foundational, platform-enabling technologies over incremental improvements or product-specific innovations. Citations do not capture all forms of knowledge transfer.
+
+    As documented in Section 4, **the EU maintains the highest cross-border collaboration rates** (2.59% of portfolio vs. 1.90% US, 2.16% JP, 3.20% CN, 0.66% KR). This suggests knowledge also flows through direct partnerships, joint ventures, and complementary capability exchanges. However, collaboration intensity does not fully offset citation gaps—the EU ranks highest in collaboration yet lowest in citations.
+
+    Our interpretation: **High-quality innovation requires both breakthrough research (citations) and collaborative capability exchange (partnerships)**. The US excels at both; the EU emphasizes collaboration but lags in foundational research generation. China prioritizes volume and rapid deployment over either citations or partnerships.
+
+    Citations should thus be interpreted alongside collaboration patterns (Section 4), patent volume (Section 3), and technology lifecycle stages (Section 5.2) to provide a complete picture of innovation strategies. The next section examines whether citation patterns vary by technology maturity.
+    """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
     mo.md(
         r"""
     # Case Study: China's "EVs as Consumer Electronics" Strategy

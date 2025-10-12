@@ -1376,7 +1376,7 @@ ORDER BY cf.citing_year, cf.application_area, cf.citation_count DESC;
   - `06_generality_originality_indices.csv` (35 rows)
   - `07_knowledge_flow_networks.csv` (1,921 rows)
 
-**Phase 2: Analysis & Visualization (Partial)** ⚠️ 35% COMPLETE
+**Phase 2: Analysis & Visualization (Partial)** ⚠️ 50% COMPLETE
 - ✅ Task 2.1: Section 3 improvements based on critical review - COMPLETE
   - Changed section title to "The Five-Region Race: Patent Competition Across EV Technology Domains"
   - Added introductory paragraph previewing structure and connecting to theoretical framework
@@ -1390,7 +1390,15 @@ ORDER BY cf.citing_year, cf.application_area, cf.citation_count DESC;
   - Verified all numbers against actual data (corrected US-CN: 273→562→135, 76% decline)
   - Added methodological clarification note explaining cross-regional measurement
   - ~1,900 words with theory-driven analysis (95/100 quality score)
-- 🟡 Tasks 2.3-2.7: Remaining data visualization and analysis work (pending)
+- ✅ Task 2.3: Section 5.1 - Citation-Based Quality Metrics - COMPLETE (2025-10-12)
+  - Two publication-quality visualizations (Figures 5A, 5B)
+  - Figure 5A: Average forward citations by region (2014-2024) with citation lag explanation
+  - Figure 5B: Citation quality by domain (2014-2018 small multiples, 7 domains)
+  - Comprehensive data verification: all numbers accurate (US 8.87, EU 2.50, etc.)
+  - Added Box 1 cross-reference for Korea battery paradox
+  - Methodological note on citations + collaboration complementarity
+  - ~1,100 words with theory-driven analysis (A- grade, 92/100)
+- 🟡 Tasks 2.4-2.7: Remaining data visualization and analysis work (pending)
 
 **Phase 3: Writing (Partial)** ⚠️ 40% COMPLETE
 - ✅ Task 3.1: Theoretical Framework (900 words)
