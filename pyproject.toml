@@ -1,0 +1,15 @@
+[project]
+name = "ev-patent-analysis"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "marimo>=0.16.5",
+    "pandas>=2.3.3",
+    "plotly>=6.3.1",
+    "kaleido",
+    "altair>=5.0.0",
+    "altair-saver>=0.5.0",
+    "vl-convert-python>=1.0.0",
+]
