@@ -1921,7 +1921,7 @@ def _(mo):
 
     Ecosystem Compatibility Over Ecosystem Lock-In: Chinese and US strategies pursue proprietary ecosystems (Apple CarPlay exclusivity, Chinese vehicle-phone integration). The EU can differentiate through open interoperability standards, enabling consumer choice and avoiding anti-competitive concerns—positioning aligned with European regulatory philosophies.
 
-    The fundamental strategic insight: China has redefined EV competition along consumer electronics dimensions. The EU cannot win this redefined game with traditional automotive tools, but neither should it play by Chinese rules. Instead, the EU must offer a compelling third path—premium sustainable mobility combining engineering excellence with selective digitalization, durability with privacy, and quality with environmental responsibility. Whether European manufacturers can execute this differentiated strategy rapidly enough to stem market share erosion (Section 3's 42% → 28% decline) remains the critical open question.
+    The fundamental strategic insight: China has redefined EV competition along consumer electronics dimensions. The EU cannot win this redefined game with traditional automotive tools, but neither should it play by Chinese rules. Instead, the EU must offer a compelling third path—premium sustainable mobility combining engineering excellence with selective digitalization, durability with privacy, and quality with environmental responsibility. Whether European manufacturers can execute this differentiated strategy rapidly enough to stem market share erosion (Section 3's 26.3% → 17.3% decline among five major regions) remains the critical open question.
     """
     )
     return
@@ -1935,7 +1935,7 @@ def _(mo):
 
     # 8. EU Strategic Imperatives: Pathways Forward
 
-    The empirical evidence presented in Sections 3-7 paints a sobering portrait of European competitive erosion in EV innovation. From 2014 to 2024, the EU's patent share declined from 42% to 28%—a 14-percentage-point contraction affecting six of seven core technology domains (Section 3). Yet within this trajectory of decline lie insights for strategic renewal. This section translates empirical findings into actionable strategic imperatives, examining both immediate priorities and alternative futures the EU might navigate through 2030.
+    The empirical evidence presented in Sections 3-7 paints a sobering portrait of European competitive erosion in EV innovation. From 2014 to 2024, the EU's patent share declined from 26.3% to 17.3% (among five major regions)—a 9-percentage-point contraction affecting six of seven core technology domains (Section 3). Yet within this trajectory of decline lie insights for strategic renewal. This section translates empirical findings into actionable strategic imperatives, examining both immediate priorities and alternative futures the EU might navigate through 2030.
 
     ## 8.1 Strategic Imperative: Leveraging Asymmetric Advantages
 
