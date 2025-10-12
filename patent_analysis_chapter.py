@@ -1302,7 +1302,139 @@ def _(mo):
 
     Our interpretation: **High-quality innovation requires both breakthrough research (citations) and collaborative capability exchange (partnerships)**. The US excels at both; the EU emphasizes collaboration but lags in foundational research generation. China prioritizes volume and rapid deployment over either citations or partnerships.
 
-    Citations should thus be interpreted alongside collaboration patterns (Section 4), patent volume (Section 3), and technology lifecycle stages (Section 5.2) to provide a complete picture of innovation strategies. The next section examines whether citation patterns vary by technology maturity.
+    Citations should thus be interpreted alongside collaboration patterns (Section 4), patent volume (Section 3), and generality/originality indices (Section 5.2) to provide a complete picture of innovation strategies. The next section examines patent quality through the lens of knowledge breadth and diversity.
+    """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+    ## Generality & Originality Indices: Knowledge Breadth and Diversity
+
+    Forward citations (Section 5.1) measure how frequently other inventors reference a patent. **Generality and originality indices** provide complementary quality dimensions:
+
+    - **Generality Index**: Measures the breadth of a patent's technological impact—does it influence only its own narrow field, or does it enable innovation across diverse technology domains? (0-1 scale, higher = broader cross-domain influence)
+
+    - **Originality Index**: Measures the diversity of knowledge sources a patent draws upon—does it build on narrow prior art, or synthesize insights from multiple technology areas? (0-1 scale, higher = more diverse knowledge integration)
+
+    These **Hall-Jaffe-Trajtenberg indices** (Hall et al., 2001) distinguish foundational innovations (high generality/originality) from incremental improvements (low scores). A patent scoring 0.80+ on both metrics typically represents architectural breakthroughs enabling broad follow-on research; patents below 0.55 suggest domain-specific optimization.
+
+    **Methodological note**: These indices are calculated for patents integrated into citation networks (2014-2023), representing approximately 76% of all EV patents. Patents outside citation networks—very recent filings without citations, highly specialized patents citing nothing, or patents not yet discovered by other inventors—are excluded by design. This is standard practice in patent quality research, as indices require citation linkages to measure knowledge breadth and diversity.
+    """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(pd):
+    # Data loading: Generality & Originality Indices (5 regions × 7 domains = 35 rows)
+    generality_data = pd.read_csv('data/06_generality_originality_indices.csv')
+    return (generality_data,)
+
+
+@app.cell(hide_code=True)
+def _(alt, generality_data, region_colors, region_shapes):
+    # Figure 5C: Small multiples scatter plots (7 domains)
+    # Each panel shows generality vs. originality for 5 regions within one domain
+    # Size encodes patent volume
+
+    _scatter_data = generality_data.copy()
+
+    # Create scatter plot with size encoding for patent volume
+    _scatter_chart = alt.Chart(_scatter_data).mark_point(
+        filled=True,
+        opacity=0.8
+    ).encode(
+        x=alt.X('avg_generality:Q',
+                title='Generality Index',
+                scale=alt.Scale(domain=[0.45, 0.85]),
+                axis=alt.Axis(labelFontSize=9, grid=True, gridOpacity=0.2)),
+        y=alt.Y('avg_originality:Q',
+                title='Originality Index',
+                scale=alt.Scale(domain=[0.50, 0.90]),
+                axis=alt.Axis(labelFontSize=9, grid=True, gridOpacity=0.2)),
+        color=alt.Color('region:N',
+                       scale=alt.Scale(
+                           domain=['US', 'EU', 'CN', 'JP', 'KR'],
+                           range=[region_colors[r] for r in ['US', 'EU', 'CN', 'JP', 'KR']]
+                       ),
+                       legend=alt.Legend(orient='bottom', titleFontSize=11, labelFontSize=10, columns=5, title='Region')),
+        shape=alt.Shape('region:N',
+                       scale=alt.Scale(
+                           domain=['US', 'EU', 'CN', 'JP', 'KR'],
+                           range=[region_shapes[r] for r in ['US', 'EU', 'CN', 'JP', 'KR']]
+                       ),
+                       legend=None),
+        size=alt.Size('patent_count:Q',
+                     scale=alt.Scale(range=[80, 400]),
+                     legend=None),
+        tooltip=[
+            alt.Tooltip('region:N', title='Region'),
+            alt.Tooltip('application_area:N', title='Domain'),
+            alt.Tooltip('avg_generality:Q', title='Generality', format='.3f'),
+            alt.Tooltip('avg_originality:Q', title='Originality', format='.3f'),
+            alt.Tooltip('patent_count:Q', title='Patents', format=','),
+            alt.Tooltip('avg_citing_classes:Q', title='Citing Classes', format='.1f'),
+            alt.Tooltip('avg_cited_classes:Q', title='Cited Classes', format='.1f')
+        ]
+    ).properties(
+        width=210,
+        height=160
+    ).facet(
+        facet=alt.Facet('application_area:N', title=None,
+                       header=alt.Header(labelFontSize=11, labelLimit=200)),
+        columns=3
+    ).properties(
+        title=alt.Title(
+            'Figure 5C: Patent Quality - Generality vs. Originality by Technology Domain',
+            subtitle='Each panel shows one technology domain with 5 regions. Point size indicates patent volume. US consistently upper-right (foundational); Korea batteries lower-left (incremental).',
+            fontSize=14,
+            anchor='start'
+        )
+    ).configure_view(strokeWidth=0)
+
+    _scatter_chart
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+    ### Interpreting Generality and Originality Through Theoretical Lenses
+
+    Before examining regional patterns, we must clarify what these Hall-Jaffe-Trajtenberg indices actually measure. **Generality and originality capture cross-domain knowledge integration, not absolute technical quality**. A patent scoring 0.80 in generality draws prior art from diverse technology classes and enables follow-on innovation across multiple domains—characteristics predicted by **Resource-Based View** to emerge from knowledge-based (rather than manufacturing-based) competitive advantages. Conversely, patents scoring 0.50 remain confined to narrow technical domains, often reflecting what Christensen's **Disruptive Innovation** theory classifies as *sustaining innovations*: incremental improvements within established trajectories rather than architectural breakthroughs creating new innovation paths.
+
+    This distinction matters because low-generality patents can generate enormous commercial value through manufacturing excellence and process optimization—Korea's battery dominance demonstrates this. The metrics reveal *how* regions innovate (cross-domain integration vs. domain-specific optimization), not whether their innovations succeed commercially. **National Innovation Systems** theory (Freeman, 1987; Lundvall, 1992) predicts these differences: university-industry collaboration ecosystems produce high-generality research crossing disciplinary boundaries, while industry-led applied research systems generate domain-confined knowledge serving specific product markets.
+
+    We verified these patterns reflect real phenomena rather than measurement artifacts. US patents average 8.4-11.0 citing classes across technology domains—1.6-2.1× higher than EU's 4.5-6.0 range. We tested whether this gap stems from CPC classification bias (US patent examiners assigning more technology codes per patent). BigQuery analysis reveals US patents average 2.63 CPC codes versus EU's 2.41 (9% difference)—far too small to explain the 60-110% gap in citing classes. The cross-domain integration advantage is real.
+
+    ### Domain-Specific Specialization Patterns
+
+    Figure 5C's domain-by-domain analysis reveals regional specialization rather than simple hierarchy. Technology domains exhibit two distinct patterns. **Convergent technologies**—those where all regions achieve comparable scores—suggest globally-shared knowledge accumulated over decades. Hybrid powertrains exemplify this: regional scores cluster tightly (0.663-0.790 generality), with Korea (0.790), Japan (0.780), and China (0.770) matching or exceeding the US (0.763). This convergence reflects 20+ years of global hybrid development since the 1997 Toyota Prius, creating widely-diffused knowledge that Resource-Based View theory predicts becomes hard to sustain as competitive advantage. Notably, the EU ranks last (0.663) even in this mature domain, suggesting systematic difficulties translating engineering capabilities into cross-domain patent quality.
+
+    Vehicle safety systems show similar convergence, with Korea leading (0.757 generality) followed closely by the US (0.752). This pattern aligns with Korea's broader competitive positioning: while battery patents score lowest (0.488 generality), safety system patents demonstrate how sensor-based innovations can achieve cross-domain impact. National Innovation Systems theory explains this: Korea's electronics heritage (Samsung, LG) provides complementary assets for integrating sensors, displays, and control systems—domains where manufacturing capabilities enhance rather than constrain knowledge breadth.
+
+    Japan's leadership in infotainment (0.725 generality, highest among five regions) similarly reflects historical specialization. Despite US dominance in software, Japan ranks first by integrating consumer electronics heritage (Sony, Panasonic) with automotive systems. The US ranks third (0.677), suggesting Japan's decades of hardware-software-UX integration create patents drawing from diverse prior art classes. This finding challenges narratives positioning software expertise as universally superior—domain-specific knowledge accumulated over time can outperform cross-domain approaches when properly integrated.
+
+    **Divergent technologies** exhibit wider quality gaps, with the US maintaining substantial leads. Autonomous driving produces the dataset's highest scores: US patents achieve 0.801 generality and 0.855 originality, drawing from 18.7 diverse prior art classes. The gap to second-place Japan (0.757) is significant. National Innovation Systems theory explains this through university-industry collaboration: autonomous driving requires integrating computer vision, sensor fusion, machine learning, and control systems—precisely the interdisciplinary synthesis enabled by Stanford-Silicon Valley and MIT-Route 128 ecosystems. No other region possesses comparable institutional arrangements bridging multiple technical domains.
+
+    Thermal management presents a surprising pattern. The US leads decisively (0.717 generality) with 9.3 citing classes—more than double the EU's 4.5, despite Europe's century of automotive engineering excellence. This finding suggests US thermal innovations integrate sensors, software controls, and system-level optimization approaches that generate cross-domain patents, while EU innovations remain confined to traditional mechanical engineering domains. The Resource-Based View interprets this as US firms treating thermal management as a *systems integration* challenge requiring software capabilities, whereas EU firms approach it as a *component optimization* problem addressed through established engineering practices.
+
+    ### Regional Innovation Strategy Patterns
+
+    These domain-level patterns reveal distinct regional innovation strategies. The **US demonstrates consistent cross-domain integration** across all seven technology domains (weighted averages: 0.707 generality, 0.751 originality). The US leads in four domains and ranks top-three in all others, maintaining 8.4-11.0 citing classes regardless of technical area. This consistency suggests systematic institutional advantages rather than domain-specific expertise. National Innovation Systems theory attributes this to university-industry collaboration mechanisms: Stanford-Silicon Valley, MIT-Route 128, and similar ecosystems produce foundational research published in academic venues and cited across disciplinary boundaries. US autonomous driving patents (0.801/0.855) exemplify this, synthesizing computer vision, sensor fusion, machine learning, and control systems into innovations enabling applications far beyond vehicles.
+
+    **Japan and Korea pursue domain-specific excellence strategies** (JP: 0.674/0.689; KR: 0.624/0.654 weighted averages). Rather than competing across all domains, both regions leverage historical specializations. Japan leads infotainment (0.725) and ranks second in hybrid powertrains (0.780), directly building on consumer electronics capabilities developed over 40+ years (Sony, Panasonic, Sharp) and automotive expertise (Toyota, Honda, Nissan). Korea leads vehicle safety systems (0.757) and ranks second in hybrids (0.790), extending sensor and display manufacturing strengths into automotive applications. Resource-Based View explains this: both regions convert tangible manufacturing assets into knowledge advantages within specific domains, demonstrating that specialized excellence can outperform generalist approaches when properly focused.
+
+    However, Korea's battery paradox (Section 5.1) persists in generality metrics: 0.488/0.544 scores represent the dataset's absolute lowest despite Korea holding 31% global patent share. This confirms Korea excels at incremental battery optimization—improving energy density, reducing costs, refining manufacturing processes—generating enormous commercial value (LG Energy Solution, Samsung SDI, SK Innovation dominate global supply) without producing architectural innovations that others cite as foundational research. Disruptive Innovation theory offers insight: Korea's manufacturing-focused innovations serve existing markets through sustaining improvements, while foundational breakthroughs enabling new applications emerge from US research labs.
+
+    **China's pattern reveals strategic variance** (0.571/0.602 overall). While ranking last in weighted averages, China shows deliberate focus: autonomous driving patents (0.705) approach EU levels, suggesting heavy investment in software domains where rapid learning is possible. Infotainment patents (0.506) score among the lowest, indicating acceptance of weaker performance where long knowledge accumulation is required. Disruptive Innovation theory predicts this pattern succeeds commercially: low-generality patents optimized for specific applications (affordable mass-market EVs) can disrupt established markets without matching incumbents' cross-domain capabilities. China prioritizes speed-to-market and manufacturing scale over foundational research breadth.
+
+    The **EU faces what we term "the generalist dilemma"** (0.640/0.682). Figure 5C shows EU patents ranking 2nd-4th across all seven technology domains—solid performance everywhere, leadership nowhere. This middle-tier positioning (ahead of China/Korea, behind US/Japan) suggests a strategic challenge: the EU competes across all domains without choosing battles, spreading R&D resources thin. Contrast this with Japan's clear focus (consumer electronics-automotive fusion) or Korea's sensor/safety leadership. National Innovation Systems theory explains this through institutional fragmentation: the EU's 27 member states maintain separate research priorities and industrial policies, preventing the concentration of resources needed to achieve domain leadership. The EU demonstrates broad automotive engineering competence but lacks the focused specialization or cross-domain integration that creates competitive advantages in electric vehicle innovation.
     """
     )
     return
