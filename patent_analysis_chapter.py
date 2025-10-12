@@ -1444,6 +1444,328 @@ def _(mo):
 def _(mo):
     mo.md(
         r"""
+    ## Knowledge Flow Networks: Citation Patterns and Regional Openness
+
+    Patent citations reveal how knowledge diffuses across regional boundaries. When a patent from region X cites a patent from region Y, it signals knowledge transfer: inventors in X built upon Y's prior art. **Forward citations**—the frequency with which subsequent patents reference a given patent—not only measure quality (Section 5.1) but also map knowledge flows between regions.
+
+    This section analyzes citation flows using the knowledge flow networks dataset (1,921 rows covering 2014-2024, 5 regions, 7 technology domains). We examine three critical questions: Which regions remain insular versus open to external knowledge? Where do major knowledge flows concentrate? And how have geopolitical tensions disrupted knowledge exchange?
+    """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(pd):
+    # Load knowledge flow networks data
+    knowledge_flows_df = pd.read_csv('data/07_knowledge_flow_networks.csv')
+    return (knowledge_flows_df,)
+
+
+@app.cell(hide_code=True)
+def _(alt, knowledge_flows_df, region_colors, region_shapes):
+    # Figure 6A: Self-Citation Rates Over Time (5 Regions)
+
+    # Calculate citation-weighted self-citation rates
+    # Weight each domain by its citation volume (more citations = more weight)
+    _self_citations = knowledge_flows_df[knowledge_flows_df['flow_type'] == 'Self-citation'].groupby(['citing_region', 'year'])['citation_count'].sum().reset_index()
+    _self_citations.columns = ['citing_region', 'year', 'self_count']
+
+    _total_citations = knowledge_flows_df.groupby(['citing_region', 'year'])['citation_count'].sum().reset_index()
+    _total_citations.columns = ['citing_region', 'year', 'total_count']
+
+    _yearly_rates = _self_citations.merge(_total_citations, on=['citing_region', 'year'])
+    _yearly_rates['self_citation_pct'] = (_yearly_rates['self_count'] / _yearly_rates['total_count']) * 100
+    _yearly_rates['region'] = _yearly_rates['citing_region']  # Rename for consistency
+
+    # Split data into complete (2014-2023) and incomplete (2023-2024)
+    _rates_complete = _yearly_rates[_yearly_rates['year'] <= 2023]
+    _rates_incomplete = _yearly_rates[_yearly_rates['year'] >= 2023]
+
+    # Solid lines for complete data
+    _rates_solid = alt.Chart(_rates_complete).mark_line(
+        strokeWidth=1.5,
+        point=alt.OverlayMarkDef(size=80, filled=True)
+    ).encode(
+        x=alt.X('year:O',
+                title='Year',
+                axis=alt.Axis(labelAngle=0, labelFontSize=11, grid=True, gridOpacity=0.3)),
+        y=alt.Y('self_citation_pct:Q',
+                title='Self-Citation Rate (%)',
+                scale=alt.Scale(domain=[0, 70]),
+                axis=alt.Axis(labelFontSize=11, grid=True, gridOpacity=0.3)),
+        color=alt.Color('region:N',
+                       title='Region',
+                       scale=alt.Scale(
+                           domain=['US', 'EU', 'CN', 'JP', 'KR'],
+                           range=[region_colors[r] for r in ['US', 'EU', 'CN', 'JP', 'KR']]
+                       ),
+                       legend=alt.Legend(orient='right', titleFontSize=12, labelFontSize=11)),
+        shape=alt.Shape('region:N',
+                       title='Region',
+                       scale=alt.Scale(
+                           domain=['US', 'EU', 'CN', 'JP', 'KR'],
+                           range=[region_shapes[r] for r in ['US', 'EU', 'CN', 'JP', 'KR']]
+                       ),
+                       legend=alt.Legend(orient='right', titleFontSize=12, labelFontSize=11)),
+        tooltip=[
+            alt.Tooltip('region:N', title='Region'),
+            alt.Tooltip('year:O', title='Year'),
+            alt.Tooltip('self_citation_pct:Q', title='Self-Citation Rate (%)', format='.1f')
+        ]
+    )
+
+    # Dashed lines for incomplete data
+    _rates_dashed = alt.Chart(_rates_incomplete).mark_line(
+        strokeWidth=1.5,
+        strokeDash=[5, 5],
+        point=alt.OverlayMarkDef(size=80, filled=False)
+    ).encode(
+        x=alt.X('year:O'),
+        y=alt.Y('self_citation_pct:Q'),
+        color=alt.Color('region:N',
+                       scale=alt.Scale(
+                           domain=['US', 'EU', 'CN', 'JP', 'KR'],
+                           range=[region_colors[r] for r in ['US', 'EU', 'CN', 'JP', 'KR']]
+                       ),
+                       legend=None),
+        shape=alt.Shape('region:N',
+                       scale=alt.Scale(
+                           domain=['US', 'EU', 'CN', 'JP', 'KR'],
+                           range=[region_shapes[r] for r in ['US', 'EU', 'CN', 'JP', 'KR']]
+                       ),
+                       legend=None),
+        tooltip=[
+            alt.Tooltip('region:N', title='Region'),
+            alt.Tooltip('year:O', title='Year'),
+            alt.Tooltip('self_citation_pct:Q', title='Self-Citation Rate (%)', format='.1f')
+        ]
+    )
+
+    fig_6a = (_rates_solid + _rates_dashed).properties(
+        width=700,
+        height=400,
+        title=alt.TitleParams(
+            'Figure 6A: Self-Citation Rates by Region (2014-2024)',
+            subtitle='Lower values indicate greater openness to external knowledge sources. Dashed lines indicate incomplete 2024 data.',
+            fontSize=14,
+            anchor='start'
+        )
+    ).configure_view(strokeWidth=0)
+
+    fig_6a
+    return
+
+
+@app.cell(hide_code=True)
+def _(alt, knowledge_flows_df):
+    # Figure 6B: Major Knowledge Flows (2023)
+
+    # Filter to 2023 cross-regional flows only
+    flows_2023 = knowledge_flows_df[
+        (knowledge_flows_df['year'] == 2023) &
+        (knowledge_flows_df['flow_type'] == 'Cross-regional')
+    ].copy()
+
+    # Aggregate by citing-cited pair
+    flow_pairs = flows_2023.groupby(['citing_region', 'cited_region'])['citation_count'].sum().reset_index()
+
+    # Get top 10 flows
+    top_flows = flow_pairs.nlargest(10, 'citation_count')
+
+    # Create flow labels
+    top_flows['flow_label'] = top_flows['citing_region'] + ' → ' + top_flows['cited_region']
+    top_flows = top_flows.sort_values('citation_count', ascending=True)  # For horizontal bar chart
+
+    # Map regions to full names for clarity
+    region_map_short = {
+        'CN': 'CN',
+        'US': 'US',
+        'EU': 'EU',
+        'JP': 'JP',
+        'KR': 'KR'
+    }
+
+    fig_6b = alt.Chart(top_flows).mark_bar().encode(
+        y=alt.Y('flow_label:N',
+               title='Knowledge Flow',
+               sort='-x',
+               axis=alt.Axis(labelLimit=200)),
+        x=alt.X('citation_count:Q',
+               title='Number of Citations (2023)',
+               axis=alt.Axis(format=',.0f')),
+        color=alt.Color('citing_region:N',
+                       scale=alt.Scale(
+                           domain=['US', 'CN', 'EU', 'JP', 'KR'],
+                           range=['#1f77b4', '#d62728', '#2ca02c', '#ff7f0e', '#9467bd']
+                       ),
+                       legend=None),
+        tooltip=[
+            alt.Tooltip('flow_label:N', title='Flow'),
+            alt.Tooltip('citation_count:Q', title='Citations', format=',')
+        ]
+    ).properties(
+        width=700,
+        height=400,
+        title=alt.TitleParams(
+            'Figure 6B: Top 10 Cross-Regional Knowledge Flows (2023)',
+            subtitle='Bars colored by citing region (first part of flow)',
+            fontSize=14,
+            anchor='start'
+        )
+    ).configure_view(strokeWidth=0)
+
+    fig_6b
+    return
+
+
+@app.cell(hide_code=True)
+def _(alt, knowledge_flows_df, pd):
+    # Figure 6C: US-China Knowledge Flow Collapse (2014-2024)
+
+    # Extract US→CN flows
+    _us_cn = knowledge_flows_df[
+        (knowledge_flows_df['citing_region'] == 'US') &
+        (knowledge_flows_df['cited_region'] == 'CN')
+    ].groupby('year')['citation_count'].sum().reset_index()
+    _us_cn['flow'] = 'US → China'
+    _us_cn.rename(columns={'citation_count': 'citations'}, inplace=True)
+
+    # Extract CN→US flows
+    _cn_us = knowledge_flows_df[
+        (knowledge_flows_df['citing_region'] == 'CN') &
+        (knowledge_flows_df['cited_region'] == 'US')
+    ].groupby('year')['citation_count'].sum().reset_index()
+    _cn_us['flow'] = 'China → US'
+    _cn_us.rename(columns={'citation_count': 'citations'}, inplace=True)
+
+    # Combine
+    _us_cn_flows = pd.concat([_us_cn, _cn_us], ignore_index=True)
+
+    # Split data into complete (2014-2023) and incomplete (2023-2024)
+    _flows_complete = _us_cn_flows[_us_cn_flows['year'] <= 2023]
+    _flows_incomplete = _us_cn_flows[_us_cn_flows['year'] >= 2023]
+
+    # Solid lines for complete data
+    _flows_solid = alt.Chart(_flows_complete).mark_line(
+        strokeWidth=1.5,
+        point=alt.OverlayMarkDef(size=80, filled=True)
+    ).encode(
+        x=alt.X('year:O',
+               title='Year',
+               axis=alt.Axis(labelAngle=0, labelFontSize=11, grid=True, gridOpacity=0.3)),
+        y=alt.Y('citations:Q',
+               title='Number of Citations',
+               axis=alt.Axis(format=',', labelFontSize=11, grid=True, gridOpacity=0.3),
+               scale=alt.Scale(domain=[0, 9000])),
+        color=alt.Color('flow:N',
+                       title='Knowledge Flow',
+                       scale=alt.Scale(
+                           domain=['US → China', 'China → US'],
+                           range=['#1f77b4', '#d62728']
+                       ),
+                       legend=alt.Legend(orient='right', titleFontSize=12, labelFontSize=11)),
+        shape=alt.Shape('flow:N',
+                       title='Knowledge Flow',
+                       scale=alt.Scale(
+                           domain=['US → China', 'China → US'],
+                           range=['circle', 'square']
+                       ),
+                       legend=alt.Legend(orient='right', titleFontSize=12, labelFontSize=11)),
+        tooltip=[
+            alt.Tooltip('flow:N', title='Flow'),
+            alt.Tooltip('year:O', title='Year'),
+            alt.Tooltip('citations:Q', title='Citations', format=',')
+        ]
+    )
+
+    # Dashed lines for incomplete data
+    _flows_dashed = alt.Chart(_flows_incomplete).mark_line(
+        strokeWidth=1.5,
+        strokeDash=[5, 5],
+        point=alt.OverlayMarkDef(size=80, filled=False)
+    ).encode(
+        x=alt.X('year:O'),
+        y=alt.Y('citations:Q'),
+        color=alt.Color('flow:N',
+                       scale=alt.Scale(
+                           domain=['US → China', 'China → US'],
+                           range=['#1f77b4', '#d62728']
+                       ),
+                       legend=None),
+        shape=alt.Shape('flow:N',
+                       scale=alt.Scale(
+                           domain=['US → China', 'China → US'],
+                           range=['circle', 'square']
+                       ),
+                       legend=None),
+        tooltip=[
+            alt.Tooltip('flow:N', title='Flow'),
+            alt.Tooltip('year:O', title='Year'),
+            alt.Tooltip('citations:Q', title='Citations', format=',')
+        ]
+    )
+
+    fig_6c = (_flows_solid + _flows_dashed).properties(
+        width=700,
+        height=400,
+        title=alt.TitleParams(
+            'Figure 6C: US-China Bilateral Knowledge Flow Collapse (2014-2024)',
+            subtitle='Growth from 2014-2021, then collapse during geopolitical tensions. Dashed lines indicate incomplete 2024 data.',
+            fontSize=14,
+            anchor='start'
+        )
+    ).configure_view(strokeWidth=0)
+
+    fig_6c
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+    ### China's Surprising Openness: Lowest Self-Citation Rate
+
+    Figure 6A reveals a counterintuitive pattern: **China exhibits the lowest self-citation rate among all five regions**. Averaging across 2014-2024, Chinese EV patents cite their own region's prior art only **21.2% of the time**—less than half the rates observed in the European Union (43.7%), South Korea (50.1%), United States (50.7%), and Japan (51.5%). Japan emerges as the most insular innovator, with over half of all citations remaining within Japanese patents.
+
+    This finding contradicts narratives of Chinese technological isolation. National Innovation Systems theory (Freeman, 1987) would predict high self-citation in state-directed innovation systems emphasizing indigenous technology development. Yet China's patent citation patterns reveal extensive engagement with external knowledge. Resource-Based View explains this through capability gaps: Chinese firms cite US software patents and Japanese electronics research to compensate for weaker foundational R&D, actively absorbing global knowledge rather than relying solely on domestic sources.
+
+    Temporal dynamics add nuance. China's openness increased dramatically from 2014 (32.0% self-citation) to 2018 (19.2%), then reversed partially by 2024 (30.7%). This U-shaped trajectory suggests initial rapid learning from global leaders (2014-2018), followed by gradual strengthening of domestic knowledge bases (2019+) as Chinese firms accumulated their own patent portfolios. Meanwhile, the US demonstrates steady opening: self-citation declined from 63.6% (2014) to 44.7% (2022), indicating American inventors increasingly cite foreign innovations—particularly in battery technology where Asian leadership is undeniable (Section 5.1).
+
+    Korea's trajectory moves opposite: self-citation rose from 39.5% (2014) to 59.8% (2023), suggesting Korean battery and electronics firms increasingly reference their own extensive patent portfolios rather than external sources. This pattern aligns with Korea's dominance in battery patents (31% global share) documented in Section 3.
+
+    ### The EU-US Knowledge Axis: Dominant Bilateral Flow
+
+    Figure 6B maps the ten largest cross-regional knowledge flows in 2023. The **EU-US bilateral relationship dominates global knowledge exchange**: European patents cite US innovations 7,043 times, while US patents cite European research 6,096 times—totaling 13,139 citations. This bidirectional flow dwarfs all other pairs and reflects complementary strengths: US software/autonomous driving capabilities (60% patent share in infotainment, 55% in autonomous systems) combined with EU mechanical engineering and safety system expertise (Section 3 documentation).
+
+    The next-largest flows involve the US as knowledge source: US→Japan (4,958 citations), US→Korea (4,014), and US→China (2,903). This centrality validates US patents' high forward citation counts documented in Section 5.1: when US patents generate 8.87 average citations versus EU's 2.50, those citations originate disproportionately from Asian innovators building on American foundational research. The US functions as a knowledge exporter across multiple domains—particularly autonomous driving, infotainment, and software-heavy applications where US patents lead in both volume and quality (generality/originality indices 0.801/0.855).
+
+    The EU maintains significant ties to Japan (3,869 citations) and Korea (2,664 citations), supporting its role as "collaboration hub" identified in Section 4. However, EU-China knowledge flows remain modest: EU→CN totals 1,543 citations and CN→EU totals 1,502 citations in 2023, far below the EU's ties to Japan or Korea. This mirrors the 45% decline in EU-CN collaborative patents documented in Section 4. Open Innovation theory (Chesbrough, 2003) predicts knowledge flows follow collaboration patterns: regions with joint R&D projects cite each other more frequently. The weak EU-CN knowledge linkage, despite China's massive patent output (25% global share), suggests limited genuine technical exchange—possibly reflecting IP protection concerns or divergent technological standards.
+
+    ### The US-China Knowledge Flow Collapse: Geopolitics Overriding Complementarity
+
+    Figure 6C documents a dramatic reversal in US-China knowledge exchange that mirrors the collaboration collapse analyzed in Section 4. US patents citing Chinese innovations grew steadily from 629 (2014) to a peak of 8,068 (2021)—a 1,183% increase. Simultaneously, Chinese patents citing US innovations rose from 517 (2014) to 7,914 (2021). This bilateral flow constituted the fastest-growing knowledge linkage globally.
+
+    Then came the collapse. By 2023, **US→China citations fell 64% to 2,903**, while **China→US citations plummeted 70% to 2,409**. Partial-year 2024 data shows further decline to ~600 citations in each direction. This coincides precisely with US-China trade tensions (2018 tariffs), Trump administration technology restrictions, Biden administration semiconductor export controls (2022), and escalating concerns over technology transfer. The timing provides quasi-experimental evidence that **state-level geopolitical strategy can fragment knowledge networks** independent of technical complementarity.
+
+    From a theoretical perspective, this is puzzling. Resource-Based View predicts sustained knowledge flows when regions possess complementary capabilities: China's battery manufacturing scale and cost engineering should drive US citations, while US software and system integration expertise should attract Chinese citations. The technological logic supporting collaboration remains intact—yet knowledge flows collapsed. National Innovation Systems theory (Freeman, 1987; Lundvall, 1992) emphasizes institutional context, but Figure 6C demonstrates that geopolitical institutions can override innovation-system complementarity. Export controls, entity lists, and technology restrictions create barriers even when economic incentives favor exchange.
+
+    The strategic implications are profound. If the 2014-2021 knowledge flow growth had continued, US-China citations might have reached 12,000+ annually by 2024. Instead, they contracted to 2021 levels equivalent to 2017. This represents approximately 5 years of lost knowledge diffusion—a "missing generation" of cross-border learning. For the EU, this fragmentation creates both risk and opportunity: risk if forced to choose sides in a bifurcated technology ecosystem, opportunity if EU patents can serve as neutral knowledge bridges acceptable to both US and Chinese innovators.
+
+    ### Citation Lags and Knowledge Absorption Speed
+
+    An important methodological note: citation lags (time between cited and citing patent filing dates) increase naturally over time due to data structure. Recent patents (2020+) lack sufficient time to accumulate citations, creating the appearance of longer lags. Focusing on mature data (2014-2020), all regions exhibit similar absorption speeds: Japan 1.45 years, China 1.54 years, EU 1.56 years, Korea 1.63 years, US 1.66 years. The differences are modest (0.2 years), suggesting comparable knowledge diffusion timelines across regions. This contrasts with early expectations that state-directed Chinese innovation might exhibit faster or slower absorption—in practice, citation lags reflect universal R&D cycle times (~18 months) rather than institutional differences.
+
+    ---
+    """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
     # Case Study: China's "EVs as Consumer Electronics" Strategy
 
     ## The Smartphone-on-Wheels Paradigm Shift
