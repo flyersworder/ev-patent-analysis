@@ -9,12 +9,12 @@ def _(mo):
     mo.md(
         r"""
     ---
-    title: "The Great Electric Vehicle Innovation Race: A Patent Analysis of US, China, and EU Competition (2014-2024)"
-    author: "Qing Ye"
-    date: "2025-10-06"
+    title: "Europe's Innovation Paradox: Patent Quality and Regional Competition in the Global Electric Vehicle Race (2014-2024)"
+    author: "Qing Ye, Marina van Geenhuizen"
+    date: "2025-01-13"
     abstract: |
-      This chapter examines the competitive landscape of electric vehicle (EV) innovation through a comprehensive patent analysis spanning 2014-2024. By analyzing patent filings across seven core EV technology domains—Battery Technology, EV Propulsion & Charging, Autonomous Driving, Hybrid & Energy Management, Safety & ADAS, Thermal Management, and Infotainment & Connectivity—we uncover distinct strategic approaches among the United States, China, and the European Union. Our findings reveal a shifting power dynamic: while the EU commanded 42.2% of patent share in 2014, this declined to 33.5% by 2023 and 28.4% in 2024 (partial year). Meanwhile, China surged from 8.7% to 25.0%, demonstrating a dual strategy of battery dominance (42.1% share in 2024) and digital experience focus (24.2% in infotainment). The US maintained leadership at 44-49% share, particularly in autonomous driving (55%) and infotainment (60%). We argue that these patterns reflect fundamentally different visions: China treating EVs as consumer electronics with rapid iteration cycles, the US pursuing technology-driven disruption, and the EU leveraging traditional automotive engineering excellence. The chapter concludes with strategic recommendations for EU competitiveness, emphasizing the need to close software gaps while capitalizing on strengths in thermal management, safety systems, and sustainable manufacturing. All patent share calculations represent proportions among these three regions only, excluding other major automotive nations.
-    keywords: ["electric vehicles", "patent analysis", "innovation competition", "China EV strategy", "EU automotive policy", "battery technology", "autonomous driving"]
+      This chapter examines a troubling paradox in electric vehicle (EV) innovation: Europe produces the second-highest patent volume globally yet ranks last in innovation quality. Analyzing 385,000+ patents across five major regions (United States, China, European Union, South Korea, and Japan) and seven core EV technology domains from 2014 to 2024, we employ advanced metrics—forward citations, generality indices, and originality indices—to assess not just innovation quantity but technological impact. Our findings challenge conventional narratives. Europe's patent share declined from 42% to 28% in three-region comparison (US-China-EU), affecting six of seven technology domains, with sole growth in declining hybrid powertrains. European patents average 2.50 forward citations compared to 8.87 for the US, ranking last despite second-highest volume. This "generalist dilemma"—moderate capabilities across all domains but leadership in none—contrasts sharply with Korea's focused battery excellence (31-33% domain share, highest globally) despite smaller industrial base. China exhibits counterintuitive openness (21.2% self-citation rate, lowest among five regions) yet modest quality (2.80 average citations), pursuing strategic selectivity in batteries and consumer electronics-inspired business models. Cross-border collaboration remains minimal (0.65-1.28% of patents), with US-China knowledge flows collapsing 64-70% since 2021 despite technological complementarity. Grounded in Resource-Based View, National Innovation Systems, and Disruptive Innovation theory, we interpret these patterns as manifestations of distinct regional capabilities, institutional arrangements, and strategic responses to technological transition. The chapter concludes with strategic imperatives for Europe: anchoring in defensible domains (thermal management, safety systems), forging strategic alliances (EU-Korea batteries, EU-US software), differentiating on privacy and sustainability, and accepting strategic triage in unwinnable battles. Three scenarios for 2030 explore alternative futures and robust strategies across uncertainty.
+    keywords: ["electric vehicles", "patent analysis", "innovation quality", "forward citations", "generality index", "originality index", "National Innovation Systems", "disruptive innovation", "EU automotive policy", "knowledge flows", "cross-border collaboration", "battery technology", "autonomous driving", "Korea-China paradox"]
     ---
     """
     )
@@ -47,61 +47,95 @@ def _(mo):
         r"""
     # Introduction
 
-    ## Europe's Automotive Legacy at a Crossroads
+    ## The European Paradox
 
-    For more than a century, Europe has been synonymous with automotive excellence. From Karl Benz's 1885 Motorwagen to today's sophisticated vehicles from BMW, Mercedes-Benz, Volkswagen, and Renault, European engineering has defined what it means to build quality automobiles. The European automotive sector currently employs 14 million people, represents 7% of EU GDP, and generates a €400 billion annual trade surplus.
+    Europe produces the second-highest volume of electric vehicle patents globally—yet ranks dead last in innovation quality.
 
-    Yet this legacy now faces its most profound challenge since the invention of the automobile itself.
+    From 2014 to 2024, European inventors filed over 62,000 patents across seven core EV technology domains, trailing only the United States in absolute numbers. But when measured by forward citations—the gold standard for assessing patent impact and technological influence—European patents average just 2.50 citations, compared to 8.87 for US patents. This 3.5× quality gap reveals a troubling reality: European innovation generates high activity but low impact.
 
-    The transition to electric vehicles (EVs)—cars powered by batteries rather than internal combustion engines—represents not merely a change in powertrain technology, but a fundamental restructuring of automotive value creation. As vehicles evolve from mechanical machines into "computers on wheels," competitive advantage is shifting from traditional engineering domains toward software capabilities (autonomous driving, digital experiences) and battery technology.
+    This paradox extends deeper. Europe's patent share declined from 42% to 28% (2014-2024) in a three-region comparison with the US and China—a 14-percentage-point erosion affecting six of seven technology domains. Europe's sole growth domain? Hybrid powertrains, the very technology the industry is abandoning as it shifts toward pure electric vehicles. Meanwhile, Europe ranks second, third, or fourth across nearly all domains but leads in precisely none of the high-growth categories defining future competitiveness: autonomous driving, battery innovation, or infotainment systems.
 
-    This chapter presents a troubling reality: **Europe's patent share in core EV technologies declined from 42% in 2014 to just 28% in 2024, while China surged from 9% to 25% over the same period.** This 14-percentage-point erosion in innovation leadership signals a competitive crisis demanding urgent strategic response.
+    We term this the **"generalist dilemma"**: moderate capabilities everywhere, excellence nowhere.
 
-    ## Why Patents Matter
+    For a continent whose automotive sector employs 14 million people, represents 7% of EU GDP, and generates a €400 billion annual trade surplus, this pattern signals not cyclical weakness but structural crisis. The question is not whether European automotive leadership faces existential threat, but whether the window for strategic renewal remains open—and what actions might reverse these trajectories before they become irreversible.
 
-    Patents are leading indicators of future competitiveness. When companies file patents, they reveal where they're investing R&D resources and which capabilities they're developing for tomorrow's markets. Patent activity predicts market outcomes by 5-10 years: today's patents become tomorrow's products and competitive advantages. The region that leads in EV patents today will likely dominate EV markets in 2030-2035—when EVs are projected to represent 50-60% of global vehicle sales.
+    ## Why Patents Predict Market Futures
 
-    Consider Nokia in 2010: it dominated mobile phone sales but was losing the smartphone patent race to Apple and Samsung. By 2013, Nokia's phone business had collapsed. Patents revealed the strategic shift before it appeared in sales figures.
+    Patents are leading indicators of competitive positioning, revealing where regions invest R&D resources and develop capabilities for tomorrow's markets. Patent activity predicts market outcomes by 5-10 years: today's patents become tomorrow's products, manufacturing processes, and competitive advantages. The region that leads in EV patents today will likely dominate EV markets in 2030-2035, when electric vehicles are projected to represent 50-60% of global sales and the automotive industry completes its most profound technological transition since the internal combustion engine displaced horses.
 
-    ## Three Competing Visions for Electric Mobility
+    Consider Nokia's collapse: in 2010, Nokia dominated global mobile phone sales yet was hemorrhaging position in the smartphone patent race to Apple and Samsung. Within three years, Nokia's phone business had collapsed, acquired by Microsoft for a fraction of its former value. Patents revealed the strategic shift years before it appeared in sales figures or financial statements.
 
-    Our analysis examines innovation competition among three major economic regions, each pursuing distinct strategies:
+    The EV transition exhibits similar dynamics. Patent leadership in batteries, autonomous driving software, and infotainment systems will determine which regions capture value in the €5+ trillion global automotive market, where high-skilled engineering jobs locate for the next half-century, and whether Europe maintains technological sovereignty or becomes dependent on US software platforms and Chinese battery supply chains.
 
-    **The United States** treats EVs as technology platforms, emphasizing software and autonomy. Led by Tesla, Waymo, and Silicon Valley entrants, the US holds 44-47% of patent share, with dominance in autonomous driving (55%) and infotainment systems (60%).
+    ## The Five-Region Race: Distinct Strategies, Divergent Outcomes
 
-    **China** pursues a dual strategy treating EVs as both industrial policy priority and consumer electronics product. Through massive government support and a "smartphone playbook" emphasizing rapid iteration, China grew from 9% (2014) to 25% (2024) patent share, achieving dominance in battery technology (42%) and significant infotainment capabilities (24%).
+    This chapter analyzes innovation competition among five major regions, each pursuing fundamentally different strategies:
 
-    **The European Union** leverages traditional automotive engineering excellence but faces critical gaps in software-defined vehicle technologies. While maintaining leadership in thermal management (44%), safety systems (47%), and hybrid technologies (50%), Europe lags in autonomous driving (31%) and infotainment (16%)—the very technologies increasingly defining consumer purchase decisions.
+    **The United States** (27-29% patent share in five-region analysis) treats EVs as software platforms, concentrating resources in autonomous driving (32-35% domain share) and infotainment (35-38%). Led by Tesla, Waymo, and Silicon Valley entrants, US innovation emphasizes disruptive business models and AI-enabled capabilities. The US maintains the highest patent quality globally (8.87 average forward citations), with generality (0.801) and originality (0.855) indices indicating foundational, cross-domain innovation that draws from and contributes to diverse technology fields.
 
-    ## The Stakes
+    **China** (13-16% overall share) pursues strategic selectivity, concentrating on battery technology (accelerating from 16% to 21% domain share, 2020-2023) and consumer electronics-inspired infotainment. China's "smartphone playbook"—rapid iteration cycles, ecosystem integration, volume-based cost reduction—challenges traditional automotive business models. Paradoxically, despite narratives of technological insularity, China exhibits the lowest self-citation rate globally (21.2%), indicating the most internationally open innovation system among all five regions. However, citation quality remains modest (2.80 average), suggesting incremental optimization rather than foundational breakthroughs.
 
-    The outcome of the EV innovation race will determine: which regions capture value in the €5+ trillion global automotive market; where high-skilled engineering jobs locate; whether Europe depends on US software and Chinese batteries or maintains technological sovereignty; and whether European automotive excellence continues into the electric era or becomes a historical artifact of the internal combustion age.
+    **The European Union** (20-22% share) confronts comprehensive erosion: declining patent share in six of seven domains between 2014 and 2023, with only hybrid powertrains growing (+1.2 percentage points). Europe maintains residual strength in thermal management (33% domain share by 2023) and safety systems (32%), reflecting traditional automotive engineering heritage. Yet Europe ranks last in citation quality (2.50 average) and exhibits the "generalist dilemma"—moderate capabilities across all domains but leadership in none of the high-growth categories. This pattern exemplifies the innovator's dilemma: strengthening capabilities in declining technologies while losing ground in disruptive domains.
+
+    **South Korea** (20-22% share) demonstrates that focused excellence can generate peer-competitor status. Korea dominates battery innovation with 31-33% patent share—the highest among all five regions—reflecting Samsung SDI's, LG Energy Solution's, and SK Innovation's accumulated capabilities in lithium-ion chemistry and manufacturing. Korea's battery patent leadership contrasts sharply with China's battery manufacturing dominance (53% global EV battery installations), creating the "Korea-China battery paradox": Korea leads innovation, China leads production. This divergence between patent leadership and market share illustrates how different national innovation systems—Korea's chaebol-coordinated R&D versus China's state-subsidized manufacturing scale—generate distinct competitive advantages.
+
+    **Japan** (16-21% share) represents the incumbent's dilemma in stark form. Despite pioneering hybrid vehicles (Toyota Prius, 1997) and maintaining strong positions in hybrid powertrains (27-30% domain share), Japan struggles in software-intensive domains: autonomous driving (20-21%) and infotainment (15%). Japan's patent quality (3.45 average citations) and moderate generality/originality indices indicate solid but not transformative innovation—a pattern shared with the EU, reflecting traditional automotive incumbents' challenges during disruptive technological transitions.
 
     ## Research Questions and Contributions
 
-    This chapter addresses three central questions from a European policy perspective:
+    This chapter addresses four interrelated questions from a European policy perspective:
 
-    1. **Where does Europe stand?** How has patent share distribution evolved among the US, China, and EU from 2014 to 2024 across different EV technology domains?
+    1. **Where does Europe stand?** How have patent share, innovation quality (citations, generality, originality), and knowledge network positioning evolved across the five major competing regions from 2014 to 2024?
 
-    2. **What are competitors doing differently?** What distinct strategic approaches do the US and China demonstrate, and what can Europe learn from them?
+    2. **Why is Europe losing ground?** What institutional, strategic, and capability factors explain Europe's decline in six of seven technology domains and its last-place ranking in citation quality despite second-highest patent volume?
 
-    3. **What should Europe do?** What policy interventions and business strategies can revitalize European competitiveness in the EV innovation race?
+    3. **What drives competitors' success?** How do the US's software dominance, China's consumer electronics business model, and Korea's focused battery excellence succeed through fundamentally different approaches—and what constraints do they face?
 
-    We provide European policymakers and industry leaders with: comprehensive diagnosis of where Europe leads and lags across seven core EV technology domains; strategic context understanding China's "consumer electronics" approach that challenges traditional automotive business models; and actionable recommendations focusing on realistic pathways that leverage existing strengths while addressing critical gaps.
+    4. **What pathways remain open to Europe?** Given Europe's capability endowments, institutional structures, and competitors' positioning, what strategic imperatives and policy interventions offer realistic prospects for competitive renewal?
+
+    We provide European policymakers and industry leaders with:
+
+    - **Comprehensive competitive diagnosis**: Patent share, quality metrics (forward citations, generality, originality indices), cross-border collaboration rates, and knowledge flow networks across seven technology domains and 11 years
+
+    - **Theoretical interpretation**: Analysis grounded in Resource-Based View, National Innovation Systems, Disruptive Innovation theory, and Open Innovation frameworks, explaining how regional capabilities, institutional arrangements, and business models generate observed patent patterns
+
+    - **Strategic intelligence on competitors**: Deep examination of China's "EVs as consumer electronics" strategy, Korea's battery dominance despite smaller industrial base, and US software concentration—revealing their asymmetric advantages and structural vulnerabilities
+
+    - **Actionable strategic pathways**: Recommendations prioritizing defensible domains (thermal management, safety systems), strategic alliances (EU-Korea batteries, EU-US software), differentiation strategies (privacy, sustainability), and necessary strategic triage (abandoning unwinnable battles in infotainment)
 
     ## Methodology Overview
 
-    Our analysis draws from Google's Public Patent Dataset, examining over 270,000 patents filed between 2014 and 2024 by companies and inventors from the US, China, and 27 EU member states. We categorize patents into seven core EV technology domains: Battery Technology, EV Propulsion & Charging, Autonomous Driving & ADAS (Advanced Driver Assistance Systems), Hybrid Powertrains, Vehicle Safety Systems, Thermal Management, and Infotainment & Connectivity.
+    Our analysis integrates multiple analytical approaches to construct a comprehensive portrait of EV innovation competition:
 
-    **Critical methodological distinction**: We count patents by **assignee/inventor country** (where the innovating company is located), not by patent office location (where patents are filed). Chinese companies file 93.7% of their patents domestically, while US and EU companies file 45-60% internationally—traditional patent office statistics thus systematically misrepresent competitive positioning.
+    **Patent Data Foundation**: We analyze Google's Public Patent Dataset, examining 385,000+ patents filed 2014-2024 by inventors and assignees from the five major regions. Patents are categorized into seven core EV technology domains using Cooperative Patent Classification (CPC) codes: Battery Technology (H01M, H01G11), EV Propulsion & Charging (B60L, H02K, H02P, H02J7, H02M), Autonomous Driving (B60W, G05D1), Hybrid & Energy Management (B60K6, B60W20, F02D), Safety & ADAS (B60R, B60Q, G08G), Thermal Management (B60H, F28D), and Infotainment & Connectivity (B60K35, B60K37, H04W4, G07C5, H04N7/18).
 
-    **Scope note**: The primary analysis focuses on US-China-EU "trilateral competition." We also examine Japan and South Korea's roles—particularly Korea's battery dominance and Japan's hybrid leadership—in the global context section. All patent share percentages represent proportions among the regions discussed in each section. Complete methodology details are provided in Appendix A; a glossary of technical terms appears in Appendix B.
+    **Critical Methodological Distinction**: We count patents by **assignee/inventor country** (where the innovating organization is headquartered), not patent office location (where patents are filed). This distinction is crucial: Chinese companies file 93.7% of their patents domestically at the CNIPA (China National Intellectual Property Administration), while US and EU companies file 45-60% of patents internationally. Traditional patent office statistics thus systematically misrepresent competitive positioning. Our assignee-based approach captures "export-quality" innovation and automatically excludes Chinese utility models (which lack assignee data in public datasets).
+
+    **Advanced Quality Metrics**: Beyond patent counts, we measure innovation quality through three metrics. First, **forward citations**—how many times subsequent patents cite each patent—indicate technological influence and foundational importance. Second, **generality indices** (Herfindahl-based diversity of citing patents' technology classes) measure whether patents influence narrow specialist domains or broad cross-industry applications. Third, **originality indices** (diversity of cited patents' technology classes) measure whether patents synthesize knowledge from diverse sources or build incrementally within single domains.
+
+    **Collaboration and Knowledge Flows**: We analyze **cross-border collaborative patents** (multiple assignees from different regions) to measure knowledge integration across innovation systems. We examine **knowledge flow networks** through citation patterns, calculating self-citation rates (citations within the same region), cross-regional citation flows, and temporal lags between patents and their citations—revealing geopolitical dynamics including the US-China knowledge exchange collapse since 2021.
+
+    **Regional Scope**: While the three-region comparison (US-China-EU) anchors much analysis, we expand to five regions (adding Japan and Korea) for global context, particularly examining Korea's hidden battery dominance and Japan's hybrid holdout. All percentage calculations clearly state which regional denominator applies—three-region or five-region comparisons. Complete methodology details appear in Appendix A.
 
     ## Chapter Structure
 
-    Section 2 presents empirical findings revealing the shifting landscape of EV innovation. Section 3 examines Europe's competitive position, identifying strengths and weaknesses. Section 4 provides a case study of China's "EVs as consumer electronics" strategy. Section 5 presents strategic recommendations for European policymakers and industry leaders. Section 6 concludes with reflections on implementation and urgency.
+    Following this Introduction, **Section 2** presents the theoretical framework integrating Resource-Based View, Disruptive Innovation theory, National Innovation Systems, Open Innovation paradigms, and Business Model Innovation perspectives that inform our analysis.
 
-    The window for strategic repositioning remains open, but is closing rapidly. The next five years will determine whether European automotive leadership—built over more than a century—continues into the electric era.
+    **Section 3** examines the five-region patent race, analyzing aggregate trends and domain-specific patterns revealing distinct strategic approaches and Europe's comprehensive erosion across six of seven technology domains.
+
+    **Section 4** investigates cross-border collaboration, documenting the vanishingly low collaboration rates (0.65-1.28%) and the geopolitical collapse of US-China joint innovation.
+
+    **Section 5** analyzes patent quality through forward citations, generality, and originality indices, revealing Europe's last-place ranking despite second-highest volume and the software-hardware quality divide favoring US autonomous driving and infotainment patents.
+
+    **Section 6** maps knowledge flow networks via citation patterns, uncovering China's counterintuitive openness (21.2% self-citation), the EU-US dominant knowledge axis (13,139 citations in 2023), and the -64% to -70% US-China bilateral collapse since 2021.
+
+    **Section 7** provides a deep case study of China's "EVs as consumer electronics" strategy, examining how China's business model innovation—rapid iteration, ecosystem integration, volume-based cost reduction—challenges traditional automotive paradigms despite modest patent quality and selective domain focus.
+
+    **Section 8** translates empirical findings into strategic imperatives for Europe, identifying four priority actions (anchor in defensible domains, forge strategic alliances, differentiate on privacy/sustainability, accept strategic triage) and exploring three alternative futures for 2030 with robust strategies across scenarios.
+
+    **Section 9** concludes by synthesizing Europe's strategic positioning and the urgency of action. Appendices provide complete methodology documentation (Appendix A) and technical glossary (Appendix B).
+
+    The window for European strategic renewal remains open, but it narrows with each passing quarter. The next five years will determine whether Europe's automotive leadership—built over more than a century—continues into the electric era, or whether the EV transition marks the end of European automotive dominance and the beginning of dependence on US software platforms and Asian battery supply chains.
     """
     )
     return
@@ -2077,7 +2111,7 @@ def _(mo):
 
     ### Technical Implementation
 
-    Data was queried from Google BigQuery's `patents-public-data.patents.publications` table using SQL, joining with CPC classification definitions to categorize patents. The complete query implementation and source code are available in the project repository.
+    Data was queried from Google BigQuery's `patents-public-data.patents.publications` table using SQL, joining with CPC classification definitions to categorize patents. Complete SQL queries and analytical methods are available from the authors upon request.
     """
     )
     return
@@ -2171,21 +2205,139 @@ def _(mo):
 
     - **Filing date format**: Stored as integer YYYYMMDD, divided by 10000 to extract year
     - **EU member states**: All 27 current EU countries included (as of 2024)
-    - **Multiple assignees**: Patents with co-inventors from different regions counted for each region (realistic for collaborative R&D)
+    - **Regional assignment**: Each patent assigned to a single primary region based on first assignee's country code (no double-counting)
+    - **Collaborative patents**: Separate analysis identifies patents with multiple assignees from different regions (Section 4)
     - **Global filing capture**: Counts patents filed anywhere in world by companies from these regions, not just domestic filings
     - **No "Others" category**: Patents not matching specific categories excluded entirely to maintain focus on core EV technologies
 
+    ## Quality Metrics Methodology
+
+    Beyond patent counts, we assess innovation quality through three complementary metrics:
+
+    **Forward Citations (Section 5.1)**
+    - **Definition**: Number of times a patent is cited by subsequent patents as prior art
+    - **Interpretation**: Higher citations indicate foundational, influential innovations that shape subsequent research
+    - **Time window**: Analysis focuses on 2014-2018 patents (6-10 years citation accumulation) to avoid recency bias
+    - **Calculation**: Average citations per patent by region and technology domain
+    - **Source**: Google BigQuery `patents-public-data.patents.publications` citations table
+
+    **Generality Index (Section 5.2)**
+    - **Definition**: Herfindahl-based diversity measure of citing patents' technology classes
+    - **Formula**: `1 - Σ(share_of_citations_in_class_i)²` across all CPC classes citing the patent
+    - **Interpretation**: High generality (approaching 1.0) indicates patents influencing diverse technology fields; low generality (approaching 0) indicates narrow specialist impact
+    - **Theoretical basis**: Hall, Jaffe, & Trajtenberg (2001) - measures breadth of technological influence
+    - **Calculation**: Computed at region-domain level (5 regions × 7 domains = 35 observations)
+
+    **Originality Index (Section 5.2)**
+    - **Definition**: Herfindahl-based diversity measure of cited patents' technology classes (backward citations)
+    - **Formula**: `1 - Σ(share_of_citations_to_class_i)²` across all CPC classes cited by the patent
+    - **Interpretation**: High originality (approaching 1.0) indicates patents synthesizing knowledge from diverse sources; low originality (approaching 0) indicates incremental innovation within single domain
+    - **Theoretical basis**: Hall, Jaffe, & Trajtenberg (2001) - measures cross-domain knowledge integration
+    - **Calculation**: Computed at region-domain level (5 regions × 7 domains = 35 observations)
+
+    ## Cross-Border Collaboration Analysis (Section 4)
+
+    **Collaborative Patent Definition**: Patents with multiple assignees from different regions among the five analyzed (US, China, EU, Korea, Japan)
+
+    **Methodology**:
+    - Query identifies patents where `assignee_harmonized.country_code` includes multiple regions
+    - Collaboration rate = (collaborative patents / total patents) × 100%
+    - Bilateral pairs counted (e.g., EU-US, US-CN) to map collaboration networks
+    - **Important scope note**: Only cross-REGIONAL collaboration counted; within-region (e.g., Germany-France) and outside-region (e.g., US-India) collaborations excluded
+
+    **Findings**: Collaboration rates extremely low (0.65-1.28% across 2014-2024), contradicting open innovation predictions
+
+    ## Knowledge Flow Network Analysis (Section 6)
+
+    **Self-Citation Rates**:
+    - **Definition**: Percentage of citations where citing patent and cited patent share the same region
+    - **Calculation**: For each region, `(within-region citations / total citations by region) × 100%`
+    - **Interpretation**: High self-citation indicates insular innovation systems; low self-citation indicates openness to external knowledge
+
+    **Cross-Regional Citation Flows**:
+    - **Definition**: Citation counts from Region A patents to Region B patents (e.g., US→China, EU→US)
+    - **Visualization**: Top 10 bilateral flows mapped in Figure 6B (2023 data)
+    - **Geopolitical analysis**: Tracks US-China bilateral flows 2014-2024 to assess knowledge exchange collapse
+
+    **Citation Lags**:
+    - **Definition**: Time difference (in years) between cited patent filing date and citing patent filing date
+    - **Calculation**: Average lag by region for 2014-2020 cohort (mature data avoiding recency bias)
+    - **Interpretation**: Measures knowledge absorption speed; lags range 1.45-1.66 years (minimal variation)
+
     ## Data Limitations
 
-    1. **2024 incomplete**: Partial year data as of publication date
-    2. **Patent lag**: 18-month publication delay means recent filings may not yet appear
-    3. **Regional exclusions**: Japan, South Korea, and other automotive nations excluded to focus on trilateral competition
-    4. **Patent quality**: All patents weighted equally; citation analysis could refine
-    5. **Technology overlaps**: Some patents may fit multiple categories; CPC codes assigned hierarchically
+    1. **2024 incomplete**: Partial year data as of publication date (October 2024)
+    2. **Patent lag**: 18-month publication delay means recent filings may not yet appear in dataset
+    3. **Regional scope**: Analysis focuses on five major regions (US, China, EU, South Korea, Japan); other automotive nations (India, Taiwan, Canada) excluded
+    4. **Citation window bias**: Recent patents (2020+) have insufficient time to accumulate citations, creating recency bias in quality metrics
+    5. **Technology overlaps**: Some patents span multiple domains; CPC codes assigned hierarchically to primary category
+    6. **Quality vs. quantity**: Forward citations measure academic/technical influence, not necessarily commercial value or manufacturing feasibility
 
     ## Reproducibility
 
-    This analysis is fully reproducible using Google BigQuery's public patent dataset. The complete SQL query, data processing code, and visualization functions are provided in this notebook. Data was extracted on [insert date] and reflects patent publications available as of that date.
+    This analysis is fully reproducible using Google BigQuery's public patent dataset (`patents-public-data.patents.publications`). The complete SQL queries, data processing code, and analytical methods are available from the authors upon request. Primary data was extracted October 2024; citation and collaboration data extracted January 2025, reflecting patent publications available as of those dates.
+
+    ---
+    """
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+    # Appendix B: Technical Glossary
+
+    ## Innovation Quality Metrics
+
+    **Forward Citations**: The number of times a patent is cited by subsequent patents as prior art. Higher citation counts indicate foundational, influential innovations that shape follow-on research. Used as proxy for technological impact and quality.
+
+    **Generality Index**: A Herfindahl-based diversity measure ranging from 0 to 1, calculated as `1 - Σ(share_of_citations_in_class_i)²`. High values (approaching 1.0) indicate patents influencing diverse technology fields; low values indicate narrow specialist impact. Based on Hall, Jaffe, & Trajtenberg (2001).
+
+    **Originality Index**: A Herfindahl-based diversity measure ranging from 0 to 1, calculated as `1 - Σ(share_of_citations_to_class_i)²`. High values indicate patents synthesizing knowledge from diverse sources; low values indicate incremental innovation within single domains. Measures cross-domain knowledge integration.
+
+    **Self-Citation Rate**: Percentage of citations where citing patent and cited patent originate from the same region. High rates indicate insular innovation systems; low rates indicate openness to external knowledge.
+
+    ## Regional and Institutional Terms
+
+    **Assignee Country**: The country where a patent's assignee (typically the company or inventor owning the patent rights) is headquartered. This differs from patent office location and provides more accurate attribution of innovation to regions.
+
+    **Chaebol**: South Korean large family-controlled corporate conglomerates (e.g., Samsung, LG, SK Group). Characterized by centralized control, government coordination, and rapid capability-building across related industries.
+
+    **National Innovation System (NIS)**: The network of institutions, policies, and interactions within a country that generate, diffuse, and exploit technological knowledge. Includes firms, universities, government agencies, and financial institutions. Different countries exhibit distinct NIS architectures (e.g., US market-driven vs. China state-directed).
+
+    **Resource-Based View (RBV)**: Strategic management theory emphasizing that sustainable competitive advantage stems from valuable, rare, inimitable, and non-substitutable resources. Applied to regions, explains persistent technological specializations.
+
+    ## Technology Classifications
+
+    **CPC (Cooperative Patent Classification)**: Jointly developed classification system by European Patent Office (EPO) and United States Patent and Trademark Office (USPTO), organizing patents into hierarchical technology categories. Used to categorize patents into seven EV technology domains in this analysis.
+
+    **ADAS (Advanced Driver Assistance Systems)**: Technologies providing automation and assistance in driving tasks, including adaptive cruise control, lane keeping, collision avoidance, and autonomous navigation capabilities. Distinct from passive safety systems.
+
+    **BEV (Battery Electric Vehicle)**: Vehicles powered exclusively by electric batteries, without internal combustion engines. Contrasts with hybrid vehicles (combining electric and combustion powertrains) and fuel cell vehicles (using hydrogen).
+
+    **V2X (Vehicle-to-Everything)**: Communication technologies enabling vehicles to exchange information with other vehicles (V2V), infrastructure (V2I), networks (V2N), and pedestrians (V2P). Critical for autonomous driving coordination and traffic management.
+
+    ## Strategic Concepts
+
+    **Disruptive Innovation**: Christensen's (1997) theory describing how new entrants with initially inferior but simpler/cheaper technologies eventually displace established incumbents. Applied to EVs, explains challenges faced by traditional automakers (EU, Japan) versus tech entrants (Tesla, Chinese EV startups).
+
+    **Innovator's Dilemma**: The paradox where successful incumbents fail during technological transitions because existing capabilities, organizational structures, and customer relationships become liabilities rather than assets.
+
+    **Generalist Dilemma**: Term coined in this analysis describing the EU's pattern of moderate capabilities across all technology domains but leadership in none. Contrasts with focused excellence strategies (e.g., Korea's battery dominance).
+
+    **Strategic Triage**: The deliberate decision to abandon competitive battles in domains where asymmetric disadvantages make success unlikely, reallocating resources toward defensible positions. Applied to EU recommendation to exit infotainment competition.
+
+    ## Data and Methodology
+
+    **Citation Lag**: Time difference (in years) between a cited patent's filing date and its citing patent's filing date. Measures knowledge diffusion speed; typical lags range 1.5-1.7 years across regions.
+
+    **Collaboration Rate**: Percentage of patents with multiple assignees from different regions. Extremely low in EV innovation (0.65-1.28%), contradicting open innovation predictions.
+
+    **Patent Share**: Percentage of total patents attributed to a specific region, calculated as (region patents / total patents across compared regions) × 100%. Important: denominators vary (3-region vs. 5-region comparisons) depending on analytical context.
+
+    **Knowledge Flow**: Citation-based measure of knowledge transfer from one region to another. Calculated as number of times Region A patents cite Region B patents, revealing patterns of technological influence and dependence.
 
     ---
     """
