@@ -17,3 +17,6 @@ data/
 
 # Jupyter checkpoints
 .ipynb_checkpoints/
+
+# Skills
+.claude/skills/
