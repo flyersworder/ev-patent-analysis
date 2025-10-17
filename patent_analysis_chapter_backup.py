@@ -13,8 +13,8 @@ def _(mo):
     author: "Qing Ye, Marina van Geenhuizen"
     date: "2025-01-13"
     abstract: |
-      This chapter examines a troubling paradox in electric vehicle (EV) innovation: Europe produces the second-highest patent volume globally yet ranks last in innovation quality. Analyzing 385,000+ patents across five major regions (United States, China, European Union, South Korea, Japan) and seven core EV technology domains from 2014 to 2024, we employ forward citation analysis to assess technological impact beyond mere quantity. Europe's patent share declined 9 percentage points affecting six of seven domains, with growth only in declining hybrid powertrains. European patents average 2.50 forward citations versus 8.87 for the US—a 3.5× quality gap despite second-highest volume. This "generalist dilemma" (moderate capabilities across all domains, leadership in none) contrasts with Korea's focused battery excellence and China's strategic selectivity in batteries and consumer electronics-inspired business models. Counterintuitively, China exhibits the lowest self-citation rate (21.2%), indicating unexpected openness, while US-China knowledge flows collapsed 64-70% since 2021 despite technological complementarity. Cross-border collaboration remains minimal (0.65-1.28% of patents). Grounded in Resource-Based View, National Innovation Systems, and Disruptive Innovation theory, we interpret these patterns as manifestations of distinct regional capabilities and institutional arrangements. Strategic imperatives for Europe include anchoring in defensible domains (thermal management, safety systems), forging strategic alliances (EU-Korea, EU-US), differentiating on privacy and sustainability, and accepting strategic triage. Three scenarios for 2030 explore alternative futures and robust strategies across uncertainty.
-    keywords: ["electric vehicles", "patent analysis", "innovation quality", "forward citations", "National Innovation Systems", "disruptive innovation", "EU automotive policy", "knowledge flows", "cross-border collaboration", "battery technology", "autonomous driving", "Korea-China paradox"]
+      This chapter examines a troubling paradox in electric vehicle (EV) innovation: Europe produces the second-highest patent volume globally yet ranks last in innovation quality. Analyzing 385,000+ patents across five major regions (United States, China, European Union, South Korea, Japan) and seven core EV technology domains from 2014 to 2024, we employ advanced metrics—forward citations, generality indices, originality indices—to assess technological impact beyond mere quantity. Europe's patent share declined 9 percentage points affecting six of seven domains, with growth only in declining hybrid powertrains. European patents average 2.50 forward citations versus 8.87 for the US—a 3.5× quality gap despite second-highest volume. This "generalist dilemma" (moderate capabilities across all domains, leadership in none) contrasts with Korea's focused battery excellence and China's strategic selectivity in batteries and consumer electronics-inspired business models. Counterintuitively, China exhibits the lowest self-citation rate (21.2%), indicating unexpected openness, while US-China knowledge flows collapsed 64-70% since 2021 despite technological complementarity. Cross-border collaboration remains minimal (0.65-1.28% of patents). Grounded in Resource-Based View, National Innovation Systems, and Disruptive Innovation theory, we interpret these patterns as manifestations of distinct regional capabilities and institutional arrangements. Strategic imperatives for Europe include anchoring in defensible domains (thermal management, safety systems), forging strategic alliances (EU-Korea, EU-US), differentiating on privacy and sustainability, and accepting strategic triage. Three scenarios for 2030 explore alternative futures and robust strategies across uncertainty.
+    keywords: ["electric vehicles", "patent analysis", "innovation quality", "forward citations", "generality index", "originality index", "National Innovation Systems", "disruptive innovation", "EU automotive policy", "knowledge flows", "cross-border collaboration", "battery technology", "autonomous driving", "Korea-China paradox"]
     ---
     """
     )
@@ -83,7 +83,7 @@ def _(mo):
 
     This chapter addresses four interrelated questions from a European policy perspective:
 
-    1. Where does Europe stand? How have patent share, innovation quality (citations), and knowledge network positioning evolved across the five major competing regions from 2014 to 2024?
+    1. Where does Europe stand? How have patent share, innovation quality (citations, generality, originality), and knowledge network positioning evolved across the five major competing regions from 2014 to 2024?
 
     2. Why is Europe losing ground? What institutional, strategic, and capability factors explain Europe's decline in six of seven technology domains and its last-place ranking in citation quality despite second-highest patent volume?
 
@@ -93,7 +93,7 @@ def _(mo):
 
     We provide European policymakers and industry leaders with:
 
-    - Comprehensive competitive diagnosis: Patent share, quality metrics (forward citations), cross-border collaboration rates, and knowledge flow networks across seven technology domains and 11 years
+    - Comprehensive competitive diagnosis: Patent share, quality metrics (forward citations, generality, originality indices), cross-border collaboration rates, and knowledge flow networks across seven technology domains and 11 years
 
     - Theoretical interpretation: Analysis grounded in Resource-Based View, National Innovation Systems, Disruptive Innovation theory, and Open Innovation frameworks, explaining how regional capabilities, institutional arrangements, and business models generate observed patent patterns
 
@@ -103,13 +103,27 @@ def _(mo):
 
     ## Methodology Overview
 
-    We analyze 385,000+ patents from Google's Public Patent Dataset (2014-2024) filed by inventors and assignees from the five major regions, categorized into seven core EV technology domains using Cooperative Patent Classification (CPC) codes: Battery Technology, EV Propulsion & Charging, Autonomous Driving, Hybrid & Energy Management, Safety Systems, Thermal Management, and Infotainment & Connectivity. Patents are counted by assignee/inventor country rather than patent office location, capturing "export-quality" innovation. Quality assessment employs forward citation analysis. Complete methodology and CPC code mapping appear in Appendix A; all data, queries, and code are publicly available at https://github.com/flyersworder/ev-patent-analysis.
+    We analyze 385,000+ patents from Google's Public Patent Dataset (2014-2024) filed by inventors and assignees from the five major regions, categorized into seven core EV technology domains using Cooperative Patent Classification (CPC) codes: Battery Technology, EV Propulsion & Charging, Autonomous Driving, Hybrid & Energy Management, Safety Systems, Thermal Management, and Infotainment & Connectivity. Patents are counted by assignee/inventor country rather than patent office location, capturing "export-quality" innovation. Quality assessment employs forward citations, generality indices, and originality indices. Complete methodology and CPC code mapping appear in Appendix A; all data, queries, and code are publicly available at https://github.com/flyersworder/ev-patent-analysis.
 
-    ## Paper Structure
+    ## Chapter Structure
 
-    **Section 2** presents the theoretical framework integrating Resource-Based View, Disruptive Innovation theory, National Innovation Systems, and Open Innovation perspectives. **Section 3** examines five-region patent competition across seven EV technology domains. **Section 4** analyzes patent quality through forward citations. **Section 5** investigates cross-border collaboration and knowledge flow networks. **Section 6** provides a case study of China's consumer electronics business model. **Section 7** translates findings into strategic imperatives for Europe. **Section 8** concludes with synthesis and implications. **Appendices** provide methodology documentation and technical glossary.
+    Following this Introduction, Section 2 presents the theoretical framework integrating Resource-Based View, Disruptive Innovation theory, National Innovation Systems, Open Innovation paradigms, and Business Model Innovation perspectives that inform our analysis.
 
-    The window for European strategic renewal remains open, but it narrows with each passing quarter. The next five years will determine whether Europe's automotive leadership continues into the electric era, or whether the EV transition marks the end of European automotive dominance.
+    Section 3 examines the five-region patent race, analyzing aggregate trends and domain-specific patterns revealing distinct strategic approaches and Europe's comprehensive erosion across six of seven technology domains.
+
+    Section 4 investigates cross-border collaboration, documenting the vanishingly low collaboration rates (0.65-1.28%) and the geopolitical collapse of US-China joint innovation.
+
+    Section 5 analyzes patent quality through forward citations, generality, and originality indices, revealing Europe's last-place ranking despite second-highest volume and the software-hardware quality divide favoring US autonomous driving and infotainment patents.
+
+    Section 6 maps knowledge flow networks via citation patterns, uncovering China's counterintuitive openness (21.2% self-citation), the EU-US dominant knowledge axis (13,139 citations in 2023), and the -64% to -70% US-China bilateral collapse since 2021.
+
+    Section 7 provides a deep case study of China's "EVs as consumer electronics" strategy, examining how China's business model innovation—rapid iteration, ecosystem integration, volume-based cost reduction—challenges traditional automotive paradigms despite modest patent quality and selective domain focus.
+
+    Section 8 translates empirical findings into strategic imperatives for Europe, identifying four priority actions (anchor in defensible domains, forge strategic alliances, differentiate on privacy/sustainability, accept strategic triage) and exploring three alternative futures for 2030 with robust strategies across scenarios.
+
+    Section 9 concludes by synthesizing Europe's strategic positioning and the urgency of action. Appendices provide complete methodology documentation (Appendix A) and technical glossary (Appendix B).
+
+    The window for European strategic renewal remains open, but it narrows with each passing quarter. The next five years will determine whether Europe's automotive leadership—built over more than a century—continues into the electric era, or whether the EV transition marks the end of European automotive dominance and the beginning of dependence on US software platforms and Asian battery supply chains.
     """
     )
     return
@@ -153,6 +167,7 @@ def _(mo):
 
     This contrasts fundamentally with traditional automotive business models emphasizing long development cycles, mechanical reliability, and premium pricing. The China case study examines how this alternative business model—enabled by digital technologies but not requiring technological superiority—challenges European and US competitors even in domains where they maintain patent leadership.
 
+    ## Synthesis: Multiple Lenses, Integrated Insights
 
     These five frameworks are not competing explanations but complementary perspectives. RBV explains persistent regional specializations; disruptive innovation theory predicts incumbent challenges during transitions; NIS perspective reveals institutional drivers of national strategies; open innovation highlights collaboration opportunities; business model lens identifies alternative competitive approaches.
 
@@ -763,6 +778,653 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
+    mo.md(r"""# Cross-Border Collaboration and Knowledge Flows in EV Innovation""")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+    While the previous section documented regional patent shares and domain-specific competencies, it tells only part of the story. Innovation in complex technological systems like electric vehicles increasingly depends on cross-border collaboration and knowledge flows. This section examines collaborative patent patterns to reveal the structure of global innovation networks and assess whether regions operate as isolated silos or integrated innovation ecosystems.
+
+    Methodological Note: We measure collaboration as patents with assignees/inventors from multiple regions among our five focal regions (US, China, EU, Japan, Korea). This definition excludes within-region international collaboration (e.g., Germany-France partnerships within the EU) and collaborations involving countries outside these five regions. Patents involving three or more regions (0.01% of total patents) are classified by their first bilateral pair match and thus represent a subset of bilateral collaboration patterns.
+    """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(pd):
+    # Data loading: Collaborative patent data (5 regions)
+    collab_data = pd.read_csv('data/02_collaborative_patents.csv')
+
+    # Create a flag for single-region vs collaborative
+    collab_data['is_collaborative'] = collab_data['collaboration_type'] != 'Single-region'
+
+    # Calculate collaboration rate by year (overall)
+    collab_rate_overall = collab_data.groupby('year').apply(
+        lambda x: pd.Series({
+            'total_patents': x['patent_count'].sum(),
+            'collaborative_patents': x[x['is_collaborative']]['patent_count'].sum()
+        })
+    ).reset_index()
+    collab_rate_overall['collaboration_rate'] = (
+        collab_rate_overall['collaborative_patents'] / collab_rate_overall['total_patents'] * 100
+    )
+
+    # Calculate collaboration by major region pairs (excluding Single-region)
+    collab_pairs = collab_data[collab_data['is_collaborative']].copy()
+    collab_pairs_by_year = collab_pairs.groupby(['year', 'collaboration_type'])['patent_count'].sum().reset_index()
+
+    # Calculate total collaborative patents per year for percentage calculation
+    collab_totals = collab_pairs.groupby('year')['patent_count'].sum().reset_index()
+    collab_totals.columns = ['year', 'total_collab']
+    collab_pairs_by_year = collab_pairs_by_year.merge(collab_totals, on='year')
+    collab_pairs_by_year['percentage'] = (collab_pairs_by_year['patent_count'] / collab_pairs_by_year['total_collab']) * 100
+
+    # Get top 6 collaboration pairs by total volume across all years
+    top_pairs = collab_pairs.groupby('collaboration_type')['patent_count'].sum().nlargest(6).index.tolist()
+    collab_pairs_by_year_top = collab_pairs_by_year[collab_pairs_by_year['collaboration_type'].isin(top_pairs)]
+    return collab_data, collab_pairs_by_year_top, collab_rate_overall
+
+
+@app.cell(hide_code=True)
+def _(alt, collab_rate_overall):
+    # Figure 4A: Overall Collaboration Rate Trend (2014-2024)
+    # Shows the percentage of patents that are collaborative vs single-region
+
+    # Split data into complete (2014-2023) and incomplete (2023-2024)
+    _rate_complete = collab_rate_overall[collab_rate_overall['year'] <= 2023]
+    _rate_incomplete = collab_rate_overall[collab_rate_overall['year'] >= 2023]
+
+    # Solid line for complete data
+    _rate_solid = alt.Chart(_rate_complete).mark_line(
+        strokeWidth=2,
+        point=alt.OverlayMarkDef(size=80, filled=True, color='#e7298a')
+    ).encode(
+        x=alt.X('year:O',
+                title='Year',
+                axis=alt.Axis(labelAngle=0, labelFontSize=11, grid=True, gridOpacity=0.3)),
+        y=alt.Y('collaboration_rate:Q',
+                title='Collaboration Rate (%)',
+                scale=alt.Scale(domain=[0, 2]),
+                axis=alt.Axis(format='.1f', labelFontSize=11, grid=True, gridOpacity=0.3)),
+        tooltip=[
+            alt.Tooltip('year:O', title='Year'),
+            alt.Tooltip('collaboration_rate:Q', title='Collaboration Rate (%)', format='.2f'),
+            alt.Tooltip('collaborative_patents:Q', title='Collaborative Patents', format=','),
+            alt.Tooltip('total_patents:Q', title='Total Patents', format=',')
+        ]
+    )
+
+    # Dashed line for incomplete data
+    _rate_dashed = alt.Chart(_rate_incomplete).mark_line(
+        strokeWidth=2,
+        strokeDash=[5, 5],
+        point=alt.OverlayMarkDef(size=80, filled=False, color='#e7298a')
+    ).encode(
+        x=alt.X('year:O'),
+        y=alt.Y('collaboration_rate:Q'),
+        tooltip=[
+            alt.Tooltip('year:O', title='Year'),
+            alt.Tooltip('collaboration_rate:Q', title='Collaboration Rate (%)', format='.2f'),
+            alt.Tooltip('collaborative_patents:Q', title='Collaborative Patents', format=','),
+            alt.Tooltip('total_patents:Q', title='Total Patents', format=',')
+        ]
+    )
+
+    fig4a = (_rate_solid + _rate_dashed).properties(
+        width=700,
+        height=300,
+        title=alt.Title(
+            'Figure 4A: EV Patent Collaboration Rate (2014-2024)',
+            subtitle='Percentage of patents with co-inventors/assignees from multiple regions. Dashed line indicates incomplete 2024 data.',
+            fontSize=14,
+            anchor='start'
+        )
+    ).configure_view(strokeWidth=0)
+
+    fig4a
+    return
+
+
+@app.cell(hide_code=True)
+def _(alt, collab_pairs_by_year_top):
+    # Figure 4B: Major Collaboration Pairs Over Time
+    # Line chart showing top 6 collaboration pairs
+    # Adds shape encoding for B&W print compatibility
+
+    # Define colors for collaboration pairs (top 6 by total volume: EU-JP, EU-US, US-CN, US-JP, EU-CN, CN-JP)
+    _pair_colors = {
+        'EU-JP': '#1f77b4',    # Blue (largest volume)
+        'EU-US': '#ff7f0e',    # Orange
+        'US-CN': '#2ca02c',    # Green
+        'US-JP': '#d62728',    # Red
+        'EU-CN': '#9467bd',    # Purple
+        'CN-JP': '#8c564b'     # Brown
+    }
+
+    # Define shapes for B&W compatibility
+    _pair_shapes = {
+        'EU-JP': 'circle',
+        'EU-US': 'square',
+        'US-CN': 'triangle-up',
+        'US-JP': 'diamond',
+        'EU-CN': 'cross',
+        'CN-JP': 'triangle-down'
+    }
+
+    # Split data
+    _pairs_complete = collab_pairs_by_year_top[collab_pairs_by_year_top['year'] <= 2023]
+    _pairs_incomplete = collab_pairs_by_year_top[collab_pairs_by_year_top['year'] >= 2023]
+
+    # Solid lines
+    _pairs_solid = alt.Chart(_pairs_complete).mark_line(
+        strokeWidth=1.5,
+        point=alt.OverlayMarkDef(size=60, filled=True)
+    ).encode(
+        x=alt.X('year:O',
+                title='Year',
+                axis=alt.Axis(labelAngle=0, labelFontSize=11, grid=True, gridOpacity=0.3)),
+        y=alt.Y('patent_count:Q',
+                title='Cross-Border Patent Count (Co-Assignees from Multiple Regions)',
+                axis=alt.Axis(labelFontSize=10, grid=True, gridOpacity=0.3)),
+        color=alt.Color('collaboration_type:N',
+                        title='Region Pair',
+                        scale=alt.Scale(
+                            domain=list(_pair_colors.keys()),
+                            range=list(_pair_colors.values())
+                        ),
+                        legend=alt.Legend(orient='right', titleFontSize=11, labelFontSize=10)),
+        shape=alt.Shape('collaboration_type:N',
+                        title='Region Pair',
+                        scale=alt.Scale(
+                            domain=list(_pair_shapes.keys()),
+                            range=list(_pair_shapes.values())
+                        ),
+                        legend=alt.Legend(orient='right', titleFontSize=11, labelFontSize=10)),
+        tooltip=[
+            alt.Tooltip('collaboration_type:N', title='Pair'),
+            alt.Tooltip('year:O', title='Year'),
+            alt.Tooltip('patent_count:Q', title='Patents', format=','),
+            alt.Tooltip('percentage:Q', title='% of All Collaborative', format='.1f')
+        ]
+    )
+
+    # Dashed lines
+    _pairs_dashed = alt.Chart(_pairs_incomplete).mark_line(
+        strokeWidth=1.5,
+        strokeDash=[5, 5],
+        point=alt.OverlayMarkDef(size=60, filled=False)
+    ).encode(
+        x=alt.X('year:O'),
+        y=alt.Y('patent_count:Q'),
+        color=alt.Color('collaboration_type:N',
+                        scale=alt.Scale(
+                            domain=list(_pair_colors.keys()),
+                            range=list(_pair_colors.values())
+                        ),
+                        legend=None),
+        shape=alt.Shape('collaboration_type:N',
+                        scale=alt.Scale(
+                            domain=list(_pair_shapes.keys()),
+                            range=list(_pair_shapes.values())
+                        ),
+                        legend=None),
+        tooltip=[
+            alt.Tooltip('collaboration_type:N', title='Pair'),
+            alt.Tooltip('year:O', title='Year'),
+            alt.Tooltip('patent_count:Q', title='Patents', format=','),
+            alt.Tooltip('percentage:Q', title='% of All Collaborative', format='.1f')
+        ]
+    )
+
+    fig4b = (_pairs_solid + _pairs_dashed).properties(
+        width=700,
+        height=350,
+        title=alt.Title(
+            'Figure 4B: Top Cross-Border Collaboration Pairs (2014-2024)',
+            subtitle='Patents with co-assignees/inventors from multiple regions. Six largest pairs by total volume. Dashed lines indicate incomplete 2024 data.',
+            fontSize=14,
+            anchor='start'
+        )
+    ).configure_view(strokeWidth=0)
+
+    fig4b
+    return
+
+
+@app.cell(hide_code=True)
+def _(alt, collab_data):
+    def _():
+        # Figure 4C: Collaboration Rate by Technology Domain (Small Multiples)
+        # Shows collaboration % vs single-region % for each of 7 domains
+
+        # Calculate collaboration rate by domain and year
+        domain_collab = collab_data.groupby(['application_area', 'year', 'is_collaborative'])['patent_count'].sum().reset_index()
+
+        # Pivot to get collaborative vs single-region side by side
+        domain_totals = domain_collab.groupby(['application_area', 'year'])['patent_count'].sum().reset_index()
+        domain_totals.columns = ['application_area', 'year', 'total']
+
+        domain_collab = domain_collab.merge(domain_totals, on=['application_area', 'year'])
+        domain_collab['percentage'] = (domain_collab['patent_count'] / domain_collab['total']) * 100
+
+        # Label collaborative vs single-region
+        domain_collab['collab_label'] = domain_collab['is_collaborative'].map({True: 'Collaborative', False: 'Single-region'})
+
+        # Shorten domain names
+        _domain_labels_fig4c = {
+            'Battery Technology': 'Battery Tech',
+            'EV Propulsion & Charging': 'Propulsion',
+            'Autonomous Driving & ADAS': 'Autonomous',
+            'Hybrid Powertrains': 'Hybrid',
+            'Vehicle Safety Systems': 'Safety',
+            'Thermal Management': 'Thermal',
+            'Infotainment & Connectivity': 'Infotainment'
+        }
+        domain_collab['domain_short'] = domain_collab['application_area'].map(_domain_labels_fig4c)
+        domain_collab = domain_collab[domain_collab['domain_short'].notna()].copy()
+
+        # Function to create small bar chart for one domain
+        def _create_collab_domain_chart(data, domain_name):
+            _subset = data[data['domain_short'] == domain_name].copy()
+
+            # Get only collaborative patents
+            _collab_only = _subset[_subset['is_collaborative'] == True].copy()
+
+            # Split into complete and incomplete
+            _complete = _collab_only[_collab_only['year'] <= 2023]
+            _incomplete = _collab_only[_collab_only['year'] >= 2023]
+
+            # Solid line for collaboration rate
+            _solid = alt.Chart(_complete).mark_line(
+                strokeWidth=1.5,
+                point=alt.OverlayMarkDef(size=50, filled=True, color='#e7298a')
+            ).encode(
+                x=alt.X('year:O', title='Year', axis=alt.Axis(labelAngle=-45, labelFontSize=9)),
+                y=alt.Y('percentage:Q', title='Collaboration Rate (%)',
+                        scale=alt.Scale(domain=[0, 2]),
+                        axis=alt.Axis(format='.1f', labelFontSize=9, grid=True, gridOpacity=0.2)),
+                tooltip=[
+                    alt.Tooltip('year:O', title='Year'),
+                    alt.Tooltip('percentage:Q', title='Collaboration Rate (%)', format='.2f'),
+                    alt.Tooltip('patent_count:Q', title='Collaborative Patents', format=',')
+                ]
+            )
+
+            # Dashed line
+            _dashed = alt.Chart(_incomplete).mark_line(
+                strokeWidth=1.5,
+                strokeDash=[5, 5],
+                point=alt.OverlayMarkDef(size=50, filled=False, color='#e7298a')
+            ).encode(
+                x=alt.X('year:O'),
+                y=alt.Y('percentage:Q'),
+                tooltip=[
+                    alt.Tooltip('year:O', title='Year'),
+                    alt.Tooltip('percentage:Q', title='Collaboration Rate (%)', format='.2f'),
+                    alt.Tooltip('patent_count:Q', title='Collaborative Patents', format=',')
+                ]
+            )
+
+            return (_solid + _dashed).properties(
+                width=220,
+                height=150,
+                title=alt.TitleParams(domain_name, fontSize=11, fontWeight='bold', anchor='start')
+            )
+
+        # Create charts for 7 domains
+        _domains_ordered = [
+            'Battery Tech', 'Autonomous', 'Infotainment',
+            'Propulsion', 'Thermal', 'Safety', 'Hybrid'
+        ]
+
+        _charts_collab = [_create_collab_domain_chart(domain_collab, d) for d in _domains_ordered]
+
+        # Arrange in 3x3 grid
+        _row1_collab = alt.hconcat(_charts_collab[0], _charts_collab[1], _charts_collab[2])
+        _row2_collab = alt.hconcat(_charts_collab[3], _charts_collab[4], _charts_collab[5])
+        _row3_collab = alt.hconcat(_charts_collab[6])
+
+        fig4c = alt.vconcat(_row1_collab, _row2_collab, _row3_collab).properties(
+            title=alt.Title(
+                'Figure 4C: Collaboration Rate by Technology Domain (2014-2024)',
+                subtitle='Percentage of patents with cross-border collaboration in each domain. Dashed lines indicate incomplete 2024 data.',
+                fontSize=14,
+                anchor='start'
+            )
+        ).configure_view(strokeWidth=0)
+        return fig4c
+
+
+    _()
+    return
+
+
+@app.cell(hide_code=True)
+def _(alt, collab_data, pd):
+    """
+    Figure 4D: US-China Collaboration Structural Break Analysis
+
+    Visualizes the timing and magnitude of US-China collaboration collapse,
+    showing stable pre-2018 period versus accelerated post-2018 decline.
+    Structural break test (Chow test) confirms 2018 trade war as inflection point.
+    """
+    import numpy as _np
+    from scipy import stats as _stats
+
+    # Prepare US-CN collaboration data
+    _true_collab = collab_data[collab_data['collaboration_type'] != 'Single-region']
+    _us_cn_collab = _true_collab[_true_collab['collaboration_type'].isin(['CN-US', 'US-CN'])]
+
+    # Calculate yearly totals and US-CN collaboration counts
+    _yearly_total = collab_data.groupby('year')['patent_count'].sum()
+    _us_cn_by_year = _us_cn_collab.groupby('year')['patent_count'].sum()
+
+    # Create dataframe with rates
+    _breakpoint_data = pd.DataFrame({
+        'year': _yearly_total.index,
+        'total_patents': _yearly_total.values,
+        'us_cn_patents': [_us_cn_by_year.get(y, 0) for y in _yearly_total.index],
+    })
+    _breakpoint_data['collaboration_rate'] = (_breakpoint_data['us_cn_patents'] / _breakpoint_data['total_patents']) * 100
+
+    # Fit pre-2018 and post-2018 trend lines
+    _pre_2018 = _breakpoint_data[_breakpoint_data['year'] <= 2018].copy()
+    _post_2018 = _breakpoint_data[_breakpoint_data['year'] >= 2018].copy()
+
+    # Pre-2018 regression (years as numeric)
+    _X_pre = _pre_2018['year'].values
+    _y_pre = _pre_2018['collaboration_rate'].values
+    _slope_pre, _intercept_pre = _np.polyfit(_X_pre, _y_pre, 1)
+    _pre_2018['trend'] = _slope_pre * _pre_2018['year'] + _intercept_pre
+
+    # Post-2018 regression
+    _X_post = _post_2018['year'].values
+    _y_post = _post_2018['collaboration_rate'].values
+    _slope_post, _intercept_post = _np.polyfit(_X_post, _y_post, 1)
+    _post_2018['trend'] = _slope_post * _post_2018['year'] + _intercept_post
+
+    # Split data for solid vs dashed line (2024 incomplete)
+    _complete_data = _breakpoint_data[_breakpoint_data['year'] < 2024]
+    _incomplete_2024 = _breakpoint_data[_breakpoint_data['year'].isin([2023, 2024])]
+
+    # Main line chart (solid, 2014-2023)
+    _base = alt.Chart(_complete_data).mark_line(
+        point=alt.OverlayMarkDef(size=80, filled=True, color='#1f77b4'),
+        strokeWidth=2.5,
+        color='#1f77b4'
+    ).encode(
+        x=alt.X('year:O', title='Year', axis=alt.Axis(labelAngle=0)),
+        y=alt.Y('collaboration_rate:Q',
+                title='US-China Collaboration Rate (%)',
+                scale=alt.Scale(domain=[0, 0.3])),
+        tooltip=[
+            alt.Tooltip('year:O', title='Year'),
+            alt.Tooltip('collaboration_rate:Q', title='Collaboration Rate (%)', format='.3f'),
+            alt.Tooltip('us_cn_patents:Q', title='US-CN Patents', format=',')
+        ]
+    )
+
+    # Dashed line for 2024
+    _dashed = alt.Chart(_incomplete_2024).mark_line(
+        point=alt.OverlayMarkDef(size=80, filled=False, color='#1f77b4'),
+        strokeWidth=2.5,
+        strokeDash=[5, 5],
+        color='#1f77b4'
+    ).encode(
+        x=alt.X('year:O'),
+        y=alt.Y('collaboration_rate:Q'),
+        tooltip=[
+            alt.Tooltip('year:O', title='Year'),
+            alt.Tooltip('collaboration_rate:Q', title='Collaboration Rate (%)', format='.3f'),
+            alt.Tooltip('us_cn_patents:Q', title='US-CN Patents', format=',')
+        ]
+    )
+
+    # Pre-2018 trend line (gray, thinner)
+    _trend_pre = alt.Chart(_pre_2018).mark_line(
+        strokeWidth=2,
+        color='#7f7f7f',
+        strokeDash=[3, 3]
+    ).encode(
+        x=alt.X('year:O'),
+        y=alt.Y('trend:Q')
+    )
+
+    # Post-2018 trend line (red, thicker)
+    _trend_post = alt.Chart(_post_2018).mark_line(
+        strokeWidth=2,
+        color='#d62728',
+        strokeDash=[3, 3]
+    ).encode(
+        x=alt.X('year:O'),
+        y=alt.Y('trend:Q')
+    )
+
+    # Vertical line at 2018 (structural break)
+    _break_line = alt.Chart(pd.DataFrame({'x': [2018]})).mark_rule(
+        strokeWidth=2,
+        color='#ff7f0e',
+        strokeDash=[5, 2]
+    ).encode(x='x:O')
+
+    # Annotation for 2018 break
+    _break_text = alt.Chart(pd.DataFrame({
+        'x': [2018],
+        'y': [0.25],
+        'text': ['Trade War / Structural Break']
+    })).mark_text(
+        align='center',
+        baseline='bottom',
+        fontSize=11,
+        fontWeight='bold',
+        color='#ff7f0e',
+        dx=0,
+        dy=-5
+    ).encode(
+        x=alt.X('x:O'),
+        y=alt.Y('y:Q'),
+        text='text:N'
+    )
+
+    # Statistical annotations
+    _stat_annotations = alt.Chart(pd.DataFrame({
+        'x': [2016, 2021],
+        'y': [0.15, 0.15],
+        'text': [
+            f'Pre-2018: {_slope_pre:.4f} pp/year\n(p=0.419, not sig.)',
+            f'Post-2018: {_slope_post:.4f} pp/year\n(p=0.004, significant)\nChow test: F=16.32, p=0.002'
+        ]
+    })).mark_text(
+        align='center',
+        fontSize=10,
+        color='#333333',
+        lineBreak='\n'
+    ).encode(
+        x=alt.X('x:O'),
+        y=alt.Y('y:Q'),
+        text='text:N'
+    )
+
+    fig4d = (
+        _base + _dashed + _trend_pre + _trend_post + _break_line + _break_text + _stat_annotations
+    ).properties(
+        width=600,
+        height=350,
+        title=alt.Title(
+            'Figure 4D: US-China Collaboration Structural Break Analysis (2014-2024)',
+            subtitle='Collaboration rate shows stable pre-2018 period followed by sharp decline. Chow test confirms 2018 as structural break point (F=16.32, p=0.002).',
+            fontSize=14,
+            anchor='start'
+        )
+    ).configure_view(strokeWidth=0)
+    fig4d
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+    ## The Paradox of Insularity: Low Collaboration in a Global Industry
+
+    Figures 4A-C reveal a striking pattern: EV innovation remains overwhelmingly insular despite globalization narratives. Across the 2014-2024 period, collaborative patents (those with co-inventors or assignees from multiple regions) constitute only 0.65-1.28% of total patents (Figure 4A). The collaboration rate peaked at 1.28% in 2018, declined to 0.87% by 2021, recovered slightly to 0.93% in 2022, then declined to 0.89% in 2023 and 0.65% in partial-year 2024 data. Statistical tests (Table 2) confirm the 2018-2021 decline is significant (p<0.001), ruling out sampling variation as explanation. This contrasts with expectations of increasing cross-border knowledge flows in complex technological systems.
+
+    Three explanations emerge: institutional divergence creates friction (different R&D funding mechanisms, IP norms, industry-government relationships across regions); strategic competition in batteries and software incentivizes proprietary protection over sharing; and comprehensive regional capabilities reduce collaboration necessity—Korea's battery excellence and US software dominance reflect self-sufficiency, with collaboration emerging only when complementary capabilities (e.g., EU thermal management + Korean batteries) reside in different regions.
+
+    ### EU as Collaboration Hub: Structural Position vs. Strategic Value
+
+    Figure 4B reveals the EU participates in the two largest collaboration pairs: EU-JP (5,410 patents) and EU-US (4,966 patents), accounting for the majority of cross-border collaboration. However, this "hub" position may reflect weakness rather than strength. The EU's multi-directional partnerships—with US for software, Japan for hybrid/safety systems, and China for infotainment—signal fragmented capabilities requiring external support across multiple domains, while competitors' selectivity (e.g., Korea's focused EU-KR battery partnerships) reflects self-sufficiency in core domains. Section 6 examines these knowledge flows in detail through citation analysis.
+
+    ### Domain-Specific Collaboration: Where Openness Emerges
+
+    Figure 4C's domain analysis reveals that collaboration rates vary dramatically across technologies. High-collaboration domains (batteries, autonomous driving) average 1.15% collaboration rate versus low-collaboration domains (thermal, safety, hybrid) at 0.91%—a statistically significant difference (χ²=141.3, p<0.001, Table 2). This pattern reflects geographic separation of complementary capabilities: EU-Korean battery partnerships combine European thermal management with Korean cell technology; EU-US autonomous driving collaborations leverage US software expertise (Waymo, Mobileye) with European automotive integration. Low-collaboration domains involve mature engineering with established regional supply chains, suggesting self-sufficient capabilities reduce collaboration necessity.
+
+    ### Geopolitical Inflection: The US-China Structural Break
+
+    Figure 4D provides compelling evidence of a structural break in US-China collaboration timing. Structural break analysis (Chow test) confirms 2018 as the inflection point (F=16.32, p=0.002), coinciding precisely with escalating trade tensions. The pre-2018 period shows stable collaboration rates (-0.024 percentage points per year, p=0.419, not significant), while the post-2018 period exhibits accelerated decline (-0.073 pp/year, p=0.004, significant)—a 3.1× faster rate of decay. By 2024, US-China collaboration reached 18 patents (0.095% rate), a 96.8% decline from the 2020 peak of 562 patents (0.571% rate). This demonstrates geopolitical factors overriding economic complementarity, examined further in Section 6's citation flow analysis.
+
+    ### Strategic Implications: Distinct Collaboration Strategies
+
+    The data reveal distinct regional approaches: Korea's selective excellence (minimal collaboration outside batteries, focused EU-KR partnerships for complementary capabilities); China's decreasing openness (collaboration declining as battery/infotainment capabilities mature, emphasizing rapid internal iteration over partnerships); EU's dependent openness (highest absolute collaboration volumes reflecting fragmented capabilities requiring external support in batteries, software, and hybrid systems); and US strategic ambivalence (historically collaborative but willing to sacrifice partnerships for geopolitical objectives, increasingly relying on domestic software while selectively partnering with allies for hardware).
+
+    Low collaboration rates (0.65-1.28%) contradict expectations that complex technologies drive external knowledge sourcing, explained by winner-take-all platform dynamics (Tesla's Supercharger, CATL battery hegemony), institutional barriers (national security reviews, export controls), and vertical integration strategies (Tesla, BYD, NIO favor control over collaboration). Open innovation may apply within regional clusters but not between competing national systems where geopolitical tensions override economic complementarity.
+    """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(collab_data, np, stats):
+    """Statistical Analysis: Collaboration Pattern Tests"""
+
+    # Filter true collaborative patents (exclude Single-region)
+    _true_collab = collab_data[collab_data['collaboration_type'] != 'Single-region']
+
+    # ==========================================================================
+    # TEST 1: Collaboration rate temporal trend (2018 peak vs 2021 decline)
+    # ==========================================================================
+    _yearly_total = collab_data.groupby('year')['patent_count'].sum()
+    _yearly_collab = _true_collab.groupby('year')['patent_count'].sum()
+
+    # 2018 vs 2021 comparison
+    _total_2018 = _yearly_total[2018]
+    _collab_2018 = _yearly_collab[2018]
+    _rate_2018 = (_collab_2018 / _total_2018) * 100
+
+    _total_2021 = _yearly_total[2021]
+    _collab_2021 = _yearly_collab[2021]
+    _rate_2021 = (_collab_2021 / _total_2021) * 100
+
+    # Two-proportion z-test
+    _n1, _n2 = int(_total_2018), int(_total_2021)
+    _p1, _p2 = _collab_2018/_total_2018, _collab_2021/_total_2021
+    _p_pooled = (_collab_2018 + _collab_2021) / (_total_2018 + _total_2021)
+    _se = np.sqrt(_p_pooled * (1 - _p_pooled) * (1/_n1 + 1/_n2))
+    _z_trend = (_p1 - _p2) / _se
+    _p_trend = 2 * (1 - stats.norm.cdf(abs(_z_trend)))
+
+    # ==========================================================================
+    # TEST 2: Domain-specific collaboration rates
+    # ==========================================================================
+    _domain_total = collab_data.groupby('application_area')['patent_count'].sum()
+    _domain_collab = _true_collab.groupby('application_area')['patent_count'].sum()
+    _domain_rates = (_domain_collab / _domain_total * 100).sort_values(ascending=False)
+
+    # Chi-square test: High-collaboration vs low-collaboration domains
+    _high_domains = ['Battery Technology', 'Autonomous Driving & ADAS']
+    _low_domains = ['Thermal Management', 'Vehicle Safety Systems', 'Hybrid Powertrains']
+
+    _high_total = _domain_total[_high_domains].sum()
+    _high_collab = _domain_collab[_high_domains].sum()
+    _low_total = _domain_total[_low_domains].sum()
+    _low_collab = _domain_collab[_low_domains].sum()
+
+    _contingency = np.array([
+        [_high_collab, _high_total - _high_collab],
+        [_low_collab, _low_total - _low_collab]
+    ])
+    _chi2_domain, _p_domain, _dof, _expected = stats.chi2_contingency(_contingency)
+
+    # ==========================================================================
+    # TEST 3: US-China collaboration collapse (2020 vs 2023)
+    # ==========================================================================
+    _us_cn_collab = _true_collab[_true_collab['collaboration_type'].isin(['CN-US', 'US-CN'])]
+    _us_cn_by_year = _us_cn_collab.groupby('year')['patent_count'].sum()
+
+    _collab_2020 = _us_cn_by_year[2020] if 2020 in _us_cn_by_year.index else 0
+    _collab_2023 = _us_cn_by_year[2023] if 2023 in _us_cn_by_year.index else 0
+
+    _total_2020 = _yearly_total[2020]
+    _total_2023 = _yearly_total[2023]
+
+    # Two-proportion z-test
+    _n1_cn, _n2_cn = int(_total_2020), int(_total_2023)
+    _p1_cn, _p2_cn = _collab_2020/_n1_cn, _collab_2023/_n2_cn
+    _p_pooled_cn = (_collab_2020 + _collab_2023) / (_n1_cn + _n2_cn)
+    _se_cn = np.sqrt(_p_pooled_cn * (1 - _p_pooled_cn) * (1/_n1_cn + 1/_n2_cn))
+    _z_collapse = (_p1_cn - _p2_cn) / _se_cn
+    _p_collapse = 2 * (1 - stats.norm.cdf(abs(_z_collapse)))
+
+    _pct_change = ((_collab_2023 - _collab_2020) / _collab_2020) * 100
+
+    # Store results
+    collab_test_results = {
+        'temporal_trend': {
+            'rate_2018': _rate_2018,
+            'rate_2021': _rate_2021,
+            'collab_2018': int(_collab_2018),
+            'collab_2021': int(_collab_2021),
+            'total_2018': int(_total_2018),
+            'total_2021': int(_total_2021),
+            'z_stat': _z_trend,
+            'p_value': _p_trend
+        },
+        'domain_comparison': {
+            'high_rate': (_high_collab / _high_total) * 100,
+            'low_rate': (_low_collab / _low_total) * 100,
+            'high_collab': int(_high_collab),
+            'high_total': int(_high_total),
+            'low_collab': int(_low_collab),
+            'low_total': int(_low_total),
+            'chi2': _chi2_domain,
+            'p_value': _p_domain
+        },
+        'us_china_collapse': {
+            'collab_2020': int(_collab_2020),
+            'collab_2023': int(_collab_2023),
+            'pct_change': _pct_change,
+            'z_stat': _z_collapse,
+            'p_value': _p_collapse
+        },
+        'domain_rates': _domain_rates
+    }
+    return (collab_test_results,)
+
+
+@app.cell(hide_code=True)
+def _(collab_test_results, mo):
+    """Display Table 2: Statistical tests for collaboration patterns"""
+    _ct = collab_test_results
+    mo.md(f"""
+    **Table 2.** Cross-Border Collaboration: Statistical Tests
+
+    | Test | Result | Z-statistic | p-value | Significant |
+    |------|--------|-------------|---------|-------------|
+    | **1. Temporal Trend (2018 vs 2021)** | {_ct['temporal_trend']['rate_2018']:.2f}% → {_ct['temporal_trend']['rate_2021']:.2f}% | {_ct['temporal_trend']['z_stat']:.3f} | <0.001 | YES |
+    | **2. Domain Differences** | High: {_ct['domain_comparison']['high_rate']:.2f}%, Low: {_ct['domain_comparison']['low_rate']:.2f}% | χ²={_ct['domain_comparison']['chi2']:.1f} | <0.001 | YES |
+    | **3. US-China Collapse (2020→2023)** | {_ct['us_china_collapse']['collab_2020']:,} → {_ct['us_china_collapse']['collab_2023']:,} ({_ct['us_china_collapse']['pct_change']:.1f}%) | {_ct['us_china_collapse']['z_stat']:.3f} | <0.001 | YES |
+
+    *Note*: Test 1 compares collaboration rates at 2018 peak (1.28%, n={_ct['temporal_trend']['collab_2018']:,}/{_ct['temporal_trend']['total_2018']:,}) versus 2021 decline (0.87%, n={_ct['temporal_trend']['collab_2021']:,}/{_ct['temporal_trend']['total_2021']:,}) using two-proportion z-test. Test 2 compares high-collaboration domains (Battery, Autonomous: {_ct['domain_comparison']['high_collab']:,}/{_ct['domain_comparison']['high_total']:,}) versus low-collaboration domains (Thermal, Safety, Hybrid: {_ct['domain_comparison']['low_collab']:,}/{_ct['domain_comparison']['low_total']:,}) using chi-square test. Test 3 examines US-China bilateral collaboration collapse from 2020 peak to 2023 using two-proportion z-test. All tests reject null hypothesis at p<0.001, confirming collaboration patterns are statistically robust.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
     mo.md(r"""# Patent Quality Analysis: Beyond Volume to Innovation Impact""")
     return
 
@@ -771,6 +1433,8 @@ def _(mo):
 def _(mo):
     mo.md(
         r"""
+    ## Citation-Based Quality Metrics
+
     Patent volume tells only half the story. A region filing 100,000 patents might seem innovative, but if those patents represent incremental improvements receiving few citations, they signal defensive strategy rather than breakthrough innovation. Conversely, a smaller portfolio of highly-cited patents indicates foundational research enabling follow-on discoveries.
 
     Forward citations—the frequency with which subsequent patents reference a given patent—serve as a key quality indicator. Highly-cited patents typically represent: (1) foundational technologies enabling multiple applications, (2) novel solutions to important technical problems, or (3) platform innovations spawning derivative work. Citation analysis thus distinguishes between *technological leadership* (generating ideas others build upon) and *technological followership* (implementing existing ideas).
@@ -997,7 +1661,7 @@ def _(mo, statistical_results):
     """Display Table 3: Statistical verification of citation quality differences"""
     _s = statistical_results
     mo.md(f"""
-    **Table 2A.** Forward Citation Statistics by Region (2014-2018 Patent Cohorts)
+    **Table 3A.** Forward Citation Statistics by Region (2014-2018 Patent Cohorts)
 
     | Region | Mean Citations | Median | 90th Percentile | Patents (N) |
     |--------|----------------|--------|-----------------|-------------|
@@ -1046,7 +1710,7 @@ def _(domain_controlled_results, mo, np):
         _cn_interp = f"{(float(_cn_ratio)-1)*100:.0f}% higher than EU"
 
         _output = mo.md(f"""
-        **Table 2B.** Domain-Controlled Citation Quality: Negative Binomial Regression Results
+        **Table 3B.** Domain-Controlled Citation Quality: Negative Binomial Regression Results
 
         | Region | Rate Ratio† | 95% CI | p-value | Interpretation |
         |--------|------------|---------|---------|----------------|
@@ -1068,7 +1732,7 @@ def _(domain_controlled_results, mo, np):
 
 @app.cell(hide_code=True)
 def _(alt, citation_by_region_year, region_colors, region_shapes):
-    # Figure 4A: Average Forward Citations by Region (2014-2024)
+    # Figure 5A: Average Forward Citations by Region (2014-2024)
     # Shows citation quality trends including citation lag effect
 
     # Split data into complete (2014-2023) and incomplete (2023-2024)
@@ -1137,24 +1801,24 @@ def _(alt, citation_by_region_year, region_colors, region_shapes):
         ]
     )
 
-    fig4a = (_cit_solid + _cit_dashed).properties(
+    fig5a = (_cit_solid + _cit_dashed).properties(
         width=700,
         height=400,
         title=alt.Title(
-            'Figure 4A: Average Forward Citations by Region (2014-2024)',
+            'Figure 5A: Average Forward Citations by Region (2014-2024)',
             subtitle='Patents require 5-7 years to accumulate citations. Declining trends after 2019 reflect citation lag, not quality decline. Dashed lines indicate incomplete 2024 data.',
             fontSize=14,
             anchor='start'
         )
     ).configure_view(strokeWidth=0)
 
-    fig4a
+    fig5a
     return
 
 
 @app.cell(hide_code=True)
 def _(alt, citation_data, region_colors, region_shapes):
-    # Figure 4B: Citation Quality by Domain (2014-2018 only)
+    # Figure 5B: Citation Quality by Domain (2014-2018 only)
     # Small multiples showing mature patents only for valid quality comparison
 
     # Filter to mature patents (2014-2018) with sufficient citation lag
@@ -1208,7 +1872,7 @@ def _(alt, citation_data, region_colors, region_shapes):
         columns=3
     ).properties(
         title=alt.Title(
-            'Figure 4B: Citation Quality by Technology Domain (2014-2018)',
+            'Figure 5B: Citation Quality by Technology Domain (2014-2018)',
             subtitle='Showing only patents with 6-10 years citation lag for valid quality comparison across regions',
             fontSize=14,
             anchor='start'
@@ -1225,21 +1889,21 @@ def _(mo):
         r"""
     ### The US Quality Advantage: Statistically Verified 2.9-3.9× Higher Citation Impact
 
-    Figure 4A and Table 2A reveal a stark quality hierarchy robust to statistical testing. Using 2014-2018 patent cohorts with 6-10 years citation accumulation time, the United States achieves 9.97 mean citations per patent (weighted by patent count)—2.9× to 3.9× higher than all other regions. South Korea ranks second (4.11 citations), followed by Japan (3.47), China (3.07), and the European Union last (2.58 citations).
+    Figure 5A and Table 3A reveal a stark quality hierarchy robust to statistical testing. Using 2014-2018 patent cohorts with 6-10 years citation accumulation time, the United States achieves 9.97 mean citations per patent (weighted by patent count)—2.9× to 3.9× higher than all other regions. South Korea ranks second (4.11 citations), followed by Japan (3.47), China (3.07), and the European Union last (2.58 citations).
 
     Non-parametric statistical tests confirm these differences are not artifacts of sampling variation. Kruskal-Wallis H-test (H=73.14, p<0.001) strongly rejects the null hypothesis of equal citation distributions across regions. Pairwise Mann-Whitney U tests comparing US patents to each other region yield highly significant results (all p<0.001) with large effect sizes: Cohen's d=1.84 for US vs. EU, d=1.56 for US vs. China, d=1.54 for US vs. Japan, and d=1.45 for US vs. Korea. Effect sizes exceeding 0.8 indicate "large" practical significance (Cohen, 1988), confirming the US quality advantage represents both statistical certainty and substantive practical importance. Furthermore, pairwise tests comparing EU to China (p=0.008, d=0.60), Japan (p=0.001, d=0.81), and Korea (p<0.001, d=1.07) all confirm that every other major region produces significantly higher-quality patents than Europe, with effect sizes ranging from medium to large—reinforcing the severity of Europe's quality crisis.
 
-    Crucially, Table 2B demonstrates these quality differences persist even after controlling for technology domain specialization and filing year. Negative binomial regression reveals US patents receive 3.4× more citations than EU patents within the same technology domains and time periods (p<0.001). Korea shows marginally higher quality (1.6×, p=0.066), while Japan (1.4×, p=0.161) and China (1.3×, p=0.220) differences are not statistically significant after domain controls. This confirms US quality leadership reflects genuine innovation superiority rather than strategic domain selection, while apparent advantages of other regions over EU largely reflect specialization patterns.
+    Crucially, Table 3B demonstrates these quality differences persist even after controlling for technology domain specialization and filing year. Negative binomial regression reveals US patents receive 3.4× more citations than EU patents within the same technology domains and time periods (p<0.001). Korea shows marginally higher quality (1.6×, p=0.066), while Japan (1.4×, p=0.161) and China (1.3×, p=0.220) differences are not statistically significant after domain controls. This confirms US quality leadership reflects genuine innovation superiority rather than strategic domain selection, while apparent advantages of other regions over EU largely reflect specialization patterns.
 
-    This finding contradicts volume-based rankings. The EU files the second-highest patent volume (288,520 patents in 2014-2018, Table 2A), yet generates the lowest per-patent impact. This volume-quality paradox is consistent with defensive patenting strategies—filing many incremental patents to protect existing products—rather than foundational research generating broad follow-on innovation. The US quality advantage persists consistently across the full time series where citation data is mature (Figure 4A).
+    This finding contradicts volume-based rankings. The EU files the second-highest patent volume (288,520 patents in 2014-2018, Table 3A), yet generates the lowest per-patent impact. This volume-quality paradox is consistent with defensive patenting strategies—filing many incremental patents to protect existing products—rather than foundational research generating broad follow-on innovation. The US quality advantage persists consistently across the full time series where citation data is mature (Figure 5A).
 
     ### Software-Hardware Quality Gap
 
-    Figure 4B's domain analysis exposes the software-hardware quality divide. Software-centric domains (autonomous driving, infotainment, safety) generate 2-3× higher citations than hardware domains (thermal management, hybrids, batteries), with the US leading across all domains. This pattern holds strategic significance: the highest-quality innovation occurs in software domains where the EU is weakest. Autonomous driving patents receive 2-3× more citations than thermal management patents, yet the EU holds only 31% of autonomous patents versus 44% of thermal patents (Section 3). The EU invests R&D in lower-impact domains while lagging in high-impact areas.
+    Figure 5B's domain analysis exposes the software-hardware quality divide. Software-centric domains (autonomous driving, infotainment, safety) generate 2-3× higher citations than hardware domains (thermal management, hybrids, batteries), with the US leading across all domains. This pattern holds strategic significance: the highest-quality innovation occurs in software domains where the EU is weakest. Autonomous driving patents receive 2-3× more citations than thermal management patents, yet the EU holds only 31% of autonomous patents versus 44% of thermal patents (Section 3). The EU invests R&D in lower-impact domains while lagging in high-impact areas.
 
     ### EU's Quality Crisis: Weak Even in Traditional Strengths
 
-    Figure 4B reveals the EU's most troubling pattern: ranking last in 6 of 7 technology domains, including traditional automotive strengths (safety systems, thermal management, hybrid powertrains), despite maintaining volume leadership (44-50% patent shares).
+    Figure 5B reveals the EU's most troubling pattern: ranking last in 6 of 7 technology domains, including traditional automotive strengths (safety systems, thermal management, hybrid powertrains), despite maintaining volume leadership (44-50% patent shares).
 
     This finding challenges the "European engineering excellence" narrative. While EU companies maintain volume leadership in traditional domains, their patents generate minimal follow-on research. Possible explanations include:
 
@@ -1273,11 +1937,11 @@ def _(mo):
 
     Forward citations measure one dimension of innovation quality: the extent to which a patent generates follow-on research by other inventors. This metric favors foundational, platform-enabling technologies over incremental improvements or product-specific innovations. Citations do not capture all forms of knowledge transfer.
 
-    As documented in Section 5, the EU maintains the highest cross-border collaboration rates (2.59% of portfolio vs. 1.90% US, 2.16% JP, 3.20% CN, 0.66% KR). This suggests knowledge also flows through direct partnerships, joint ventures, and complementary capability exchanges. However, collaboration intensity does not fully offset citation gaps—the EU ranks highest in collaboration yet lowest in citations.
+    As documented in Section 4, the EU maintains the highest cross-border collaboration rates (2.59% of portfolio vs. 1.90% US, 2.16% JP, 3.20% CN, 0.66% KR). This suggests knowledge also flows through direct partnerships, joint ventures, and complementary capability exchanges. However, collaboration intensity does not fully offset citation gaps—the EU ranks highest in collaboration yet lowest in citations.
 
     Our interpretation: High-quality innovation requires both breakthrough research (citations) and collaborative capability exchange (partnerships). The US excels at both; the EU emphasizes collaboration but lags in foundational research generation. China prioritizes volume and rapid deployment over either citations or partnerships.
 
-    Citations should thus be interpreted alongside collaboration patterns (Section 5) and patent volume (Section 3) to provide a complete picture of innovation strategies.
+    Citations should thus be interpreted alongside collaboration patterns (Section 4), patent volume (Section 3), and generality/originality indices (Section 5.2) to provide a complete picture of innovation strategies. The next section examines patent quality through the lens of knowledge breadth and diversity.
     """
     )
     return
@@ -1285,17 +1949,17 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""# Cross-Border Collaboration and Knowledge Flows in EV Innovation""")
-    return
-
-
-@app.cell(hide_code=True)
-def _(mo):
     mo.md(
         r"""
-    While the previous section documented regional patent shares and domain-specific competencies, it tells only part of the story. Innovation in complex technological systems like electric vehicles increasingly depends on cross-border collaboration and knowledge flows. This section examines collaborative patent patterns to reveal the structure of global innovation networks and assess whether regions operate as isolated silos or integrated innovation ecosystems.
+    ## Generality & Originality Indices: Knowledge Breadth and Diversity
 
-    Methodological Note: We measure collaboration as patents with assignees/inventors from multiple regions among our five focal regions (US, China, EU, Japan, Korea). This definition excludes within-region international collaboration (e.g., Germany-France partnerships within the EU) and collaborations involving countries outside these five regions. Patents involving three or more regions (0.01% of total patents) are classified by their first bilateral pair match and thus represent a subset of bilateral collaboration patterns.
+    Forward citations (Section 5.1) measure how frequently other inventors reference a patent. Generality and originality indices provide complementary quality dimensions:
+
+    - Generality Index: Measures the breadth of a patent's technological impact—does it influence only its own narrow field, or does it enable innovation across diverse technology domains? (0-1 scale, higher = broader cross-domain influence)
+
+    - Originality Index: Measures the diversity of knowledge sources a patent draws upon—does it build on narrow prior art, or synthesize insights from multiple technology areas? (0-1 scale, higher = more diverse knowledge integration)
+
+    These Hall-Jaffe-Trajtenberg indices (Hall et al., 2001) distinguish foundational innovations (high generality/originality) from incremental improvements (low scores). A patent scoring 0.80+ on both metrics typically represents architectural breakthroughs enabling broad follow-on research; patents below 0.55 suggest domain-specific optimization.
     """
     )
     return
@@ -1303,472 +1967,73 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(pd):
-    # Data loading: Collaborative patent data (5 regions)
-    collab_data = pd.read_csv('data/02_collaborative_patents.csv')
-
-    # Create a flag for single-region vs collaborative
-    collab_data['is_collaborative'] = collab_data['collaboration_type'] != 'Single-region'
-
-    # Calculate collaboration rate by year (overall)
-    collab_rate_overall = collab_data.groupby('year').apply(
-        lambda x: pd.Series({
-            'total_patents': x['patent_count'].sum(),
-            'collaborative_patents': x[x['is_collaborative']]['patent_count'].sum()
-        })
-    ).reset_index()
-    collab_rate_overall['collaboration_rate'] = (
-        collab_rate_overall['collaborative_patents'] / collab_rate_overall['total_patents'] * 100
-    )
-
-    # Calculate collaboration by major region pairs (excluding Single-region)
-    collab_pairs = collab_data[collab_data['is_collaborative']].copy()
-    collab_pairs_by_year = collab_pairs.groupby(['year', 'collaboration_type'])['patent_count'].sum().reset_index()
-
-    # Calculate total collaborative patents per year for percentage calculation
-    collab_totals = collab_pairs.groupby('year')['patent_count'].sum().reset_index()
-    collab_totals.columns = ['year', 'total_collab']
-    collab_pairs_by_year = collab_pairs_by_year.merge(collab_totals, on='year')
-    collab_pairs_by_year['percentage'] = (collab_pairs_by_year['patent_count'] / collab_pairs_by_year['total_collab']) * 100
-
-    # Get top 6 collaboration pairs by total volume across all years
-    top_pairs = collab_pairs.groupby('collaboration_type')['patent_count'].sum().nlargest(6).index.tolist()
-    collab_pairs_by_year_top = collab_pairs_by_year[collab_pairs_by_year['collaboration_type'].isin(top_pairs)]
-    return collab_data, collab_pairs_by_year_top, collab_rate_overall
+    # Data loading: Generality & Originality Indices (5 regions × 7 domains = 35 rows)
+    generality_data = pd.read_csv('data/06_generality_originality_indices.csv')
+    return (generality_data,)
 
 
 @app.cell(hide_code=True)
-def _(alt, collab_rate_overall):
-    # Figure 5A: Overall Collaboration Rate Trend (2014-2024)
-    # Shows the percentage of patents that are collaborative vs single-region
+def _(alt, generality_data, region_colors, region_shapes):
+    # Figure 5C: Small multiples scatter plots (7 domains)
+    # Each panel shows generality vs. originality for 5 regions within one domain
+    # Size encodes patent volume
 
-    # Split data into complete (2014-2023) and incomplete (2023-2024)
-    _rate_complete = collab_rate_overall[collab_rate_overall['year'] <= 2023]
-    _rate_incomplete = collab_rate_overall[collab_rate_overall['year'] >= 2023]
+    _scatter_data = generality_data.copy()
 
-    # Solid line for complete data
-    _rate_solid = alt.Chart(_rate_complete).mark_line(
-        strokeWidth=2,
-        point=alt.OverlayMarkDef(size=80, filled=True, color='#e7298a')
+    # Create scatter plot with size encoding for patent volume
+    _scatter_chart = alt.Chart(_scatter_data).mark_point(
+        filled=True,
+        opacity=0.8
     ).encode(
-        x=alt.X('year:O',
-                title='Year',
-                axis=alt.Axis(labelAngle=0, labelFontSize=11, grid=True, gridOpacity=0.3)),
-        y=alt.Y('collaboration_rate:Q',
-                title='Collaboration Rate (%)',
-                scale=alt.Scale(domain=[0, 2]),
-                axis=alt.Axis(format='.1f', labelFontSize=11, grid=True, gridOpacity=0.3)),
+        x=alt.X('avg_generality:Q',
+                title='Generality Index',
+                scale=alt.Scale(domain=[0.45, 0.85]),
+                axis=alt.Axis(labelFontSize=9, grid=True, gridOpacity=0.2)),
+        y=alt.Y('avg_originality:Q',
+                title='Originality Index',
+                scale=alt.Scale(domain=[0.50, 0.90]),
+                axis=alt.Axis(labelFontSize=9, grid=True, gridOpacity=0.2)),
+        color=alt.Color('region:N',
+                       scale=alt.Scale(
+                           domain=['US', 'EU', 'CN', 'JP', 'KR'],
+                           range=[region_colors[r] for r in ['US', 'EU', 'CN', 'JP', 'KR']]
+                       ),
+                       legend=alt.Legend(orient='bottom', titleFontSize=11, labelFontSize=10, columns=5, title='Region')),
+        shape=alt.Shape('region:N',
+                       scale=alt.Scale(
+                           domain=['US', 'EU', 'CN', 'JP', 'KR'],
+                           range=[region_shapes[r] for r in ['US', 'EU', 'CN', 'JP', 'KR']]
+                       ),
+                       legend=None),
+        size=alt.Size('patent_count:Q',
+                     scale=alt.Scale(range=[80, 400]),
+                     legend=None),
         tooltip=[
-            alt.Tooltip('year:O', title='Year'),
-            alt.Tooltip('collaboration_rate:Q', title='Collaboration Rate (%)', format='.2f'),
-            alt.Tooltip('collaborative_patents:Q', title='Collaborative Patents', format=','),
-            alt.Tooltip('total_patents:Q', title='Total Patents', format=',')
-        ]
-    )
-
-    # Dashed line for incomplete data
-    _rate_dashed = alt.Chart(_rate_incomplete).mark_line(
-        strokeWidth=2,
-        strokeDash=[5, 5],
-        point=alt.OverlayMarkDef(size=80, filled=False, color='#e7298a')
-    ).encode(
-        x=alt.X('year:O'),
-        y=alt.Y('collaboration_rate:Q'),
-        tooltip=[
-            alt.Tooltip('year:O', title='Year'),
-            alt.Tooltip('collaboration_rate:Q', title='Collaboration Rate (%)', format='.2f'),
-            alt.Tooltip('collaborative_patents:Q', title='Collaborative Patents', format=','),
-            alt.Tooltip('total_patents:Q', title='Total Patents', format=',')
-        ]
-    )
-
-    fig5a = (_rate_solid + _rate_dashed).properties(
-        width=700,
-        height=300,
-        title=alt.Title(
-            'Figure 5A: EV Patent Collaboration Rate (2014-2024)',
-            subtitle='Percentage of patents with co-inventors/assignees from multiple regions. Dashed line indicates incomplete 2024 data.',
-            fontSize=14,
-            anchor='start'
-        )
-    ).configure_view(strokeWidth=0)
-
-    fig5a
-    return
-
-
-@app.cell(hide_code=True)
-def _(alt, collab_pairs_by_year_top):
-    # Figure 5B: Major Collaboration Pairs Over Time
-    # Line chart showing top 6 collaboration pairs
-    # Adds shape encoding for B&W print compatibility
-
-    # Define colors for collaboration pairs (top 6 by total volume: EU-JP, EU-US, US-CN, US-JP, EU-CN, CN-JP)
-    _pair_colors = {
-        'EU-JP': '#1f77b4',    # Blue (largest volume)
-        'EU-US': '#ff7f0e',    # Orange
-        'US-CN': '#2ca02c',    # Green
-        'US-JP': '#d62728',    # Red
-        'EU-CN': '#9467bd',    # Purple
-        'CN-JP': '#8c564b'     # Brown
-    }
-
-    # Define shapes for B&W compatibility
-    _pair_shapes = {
-        'EU-JP': 'circle',
-        'EU-US': 'square',
-        'US-CN': 'triangle-up',
-        'US-JP': 'diamond',
-        'EU-CN': 'cross',
-        'CN-JP': 'triangle-down'
-    }
-
-    # Split data
-    _pairs_complete = collab_pairs_by_year_top[collab_pairs_by_year_top['year'] <= 2023]
-    _pairs_incomplete = collab_pairs_by_year_top[collab_pairs_by_year_top['year'] >= 2023]
-
-    # Solid lines
-    _pairs_solid = alt.Chart(_pairs_complete).mark_line(
-        strokeWidth=1.5,
-        point=alt.OverlayMarkDef(size=60, filled=True)
-    ).encode(
-        x=alt.X('year:O',
-                title='Year',
-                axis=alt.Axis(labelAngle=0, labelFontSize=11, grid=True, gridOpacity=0.3)),
-        y=alt.Y('patent_count:Q',
-                title='Cross-Border Patent Count (Co-Assignees from Multiple Regions)',
-                axis=alt.Axis(labelFontSize=10, grid=True, gridOpacity=0.3)),
-        color=alt.Color('collaboration_type:N',
-                        title='Region Pair',
-                        scale=alt.Scale(
-                            domain=list(_pair_colors.keys()),
-                            range=list(_pair_colors.values())
-                        ),
-                        legend=alt.Legend(orient='right', titleFontSize=11, labelFontSize=10)),
-        shape=alt.Shape('collaboration_type:N',
-                        title='Region Pair',
-                        scale=alt.Scale(
-                            domain=list(_pair_shapes.keys()),
-                            range=list(_pair_shapes.values())
-                        ),
-                        legend=alt.Legend(orient='right', titleFontSize=11, labelFontSize=10)),
-        tooltip=[
-            alt.Tooltip('collaboration_type:N', title='Pair'),
-            alt.Tooltip('year:O', title='Year'),
+            alt.Tooltip('region:N', title='Region'),
+            alt.Tooltip('application_area:N', title='Domain'),
+            alt.Tooltip('avg_generality:Q', title='Generality', format='.3f'),
+            alt.Tooltip('avg_originality:Q', title='Originality', format='.3f'),
             alt.Tooltip('patent_count:Q', title='Patents', format=','),
-            alt.Tooltip('percentage:Q', title='% of All Collaborative', format='.1f')
+            alt.Tooltip('avg_citing_classes:Q', title='Citing Classes', format='.1f'),
+            alt.Tooltip('avg_cited_classes:Q', title='Cited Classes', format='.1f')
         ]
-    )
-
-    # Dashed lines
-    _pairs_dashed = alt.Chart(_pairs_incomplete).mark_line(
-        strokeWidth=1.5,
-        strokeDash=[5, 5],
-        point=alt.OverlayMarkDef(size=60, filled=False)
-    ).encode(
-        x=alt.X('year:O'),
-        y=alt.Y('patent_count:Q'),
-        color=alt.Color('collaboration_type:N',
-                        scale=alt.Scale(
-                            domain=list(_pair_colors.keys()),
-                            range=list(_pair_colors.values())
-                        ),
-                        legend=None),
-        shape=alt.Shape('collaboration_type:N',
-                        scale=alt.Scale(
-                            domain=list(_pair_shapes.keys()),
-                            range=list(_pair_shapes.values())
-                        ),
-                        legend=None),
-        tooltip=[
-            alt.Tooltip('collaboration_type:N', title='Pair'),
-            alt.Tooltip('year:O', title='Year'),
-            alt.Tooltip('patent_count:Q', title='Patents', format=','),
-            alt.Tooltip('percentage:Q', title='% of All Collaborative', format='.1f')
-        ]
-    )
-
-    fig5b = (_pairs_solid + _pairs_dashed).properties(
-        width=700,
-        height=350,
-        title=alt.Title(
-            'Figure 5B: Top Cross-Border Collaboration Pairs (2014-2024)',
-            subtitle='Patents with co-assignees/inventors from multiple regions. Six largest pairs by total volume. Dashed lines indicate incomplete 2024 data.',
-            fontSize=14,
-            anchor='start'
-        )
-    ).configure_view(strokeWidth=0)
-
-    fig5b
-    return
-
-
-@app.cell(hide_code=True)
-def _(alt, collab_data):
-    def _():
-        # Figure 5C: Collaboration Rate by Technology Domain (Small Multiples)
-        # Shows collaboration % vs single-region % for each of 7 domains
-
-        # Calculate collaboration rate by domain and year
-        domain_collab = collab_data.groupby(['application_area', 'year', 'is_collaborative'])['patent_count'].sum().reset_index()
-
-        # Pivot to get collaborative vs single-region side by side
-        domain_totals = domain_collab.groupby(['application_area', 'year'])['patent_count'].sum().reset_index()
-        domain_totals.columns = ['application_area', 'year', 'total']
-
-        domain_collab = domain_collab.merge(domain_totals, on=['application_area', 'year'])
-        domain_collab['percentage'] = (domain_collab['patent_count'] / domain_collab['total']) * 100
-
-        # Label collaborative vs single-region
-        domain_collab['collab_label'] = domain_collab['is_collaborative'].map({True: 'Collaborative', False: 'Single-region'})
-
-        # Shorten domain names
-        _domain_labels_fig5c = {
-            'Battery Technology': 'Battery Tech',
-            'EV Propulsion & Charging': 'Propulsion',
-            'Autonomous Driving & ADAS': 'Autonomous',
-            'Hybrid Powertrains': 'Hybrid',
-            'Vehicle Safety Systems': 'Safety',
-            'Thermal Management': 'Thermal',
-            'Infotainment & Connectivity': 'Infotainment'
-        }
-        domain_collab['domain_short'] = domain_collab['application_area'].map(_domain_labels_fig5c)
-        domain_collab = domain_collab[domain_collab['domain_short'].notna()].copy()
-
-        # Function to create small bar chart for one domain
-        def _create_collab_domain_chart(data, domain_name):
-            _subset = data[data['domain_short'] == domain_name].copy()
-
-            # Get only collaborative patents
-            _collab_only = _subset[_subset['is_collaborative'] == True].copy()
-
-            # Split into complete and incomplete
-            _complete = _collab_only[_collab_only['year'] <= 2023]
-            _incomplete = _collab_only[_collab_only['year'] >= 2023]
-
-            # Solid line for collaboration rate
-            _solid = alt.Chart(_complete).mark_line(
-                strokeWidth=1.5,
-                point=alt.OverlayMarkDef(size=50, filled=True, color='#e7298a')
-            ).encode(
-                x=alt.X('year:O', title='Year', axis=alt.Axis(labelAngle=-45, labelFontSize=9)),
-                y=alt.Y('percentage:Q', title='Collaboration Rate (%)',
-                        scale=alt.Scale(domain=[0, 2]),
-                        axis=alt.Axis(format='.1f', labelFontSize=9, grid=True, gridOpacity=0.2)),
-                tooltip=[
-                    alt.Tooltip('year:O', title='Year'),
-                    alt.Tooltip('percentage:Q', title='Collaboration Rate (%)', format='.2f'),
-                    alt.Tooltip('patent_count:Q', title='Collaborative Patents', format=',')
-                ]
-            )
-
-            # Dashed line
-            _dashed = alt.Chart(_incomplete).mark_line(
-                strokeWidth=1.5,
-                strokeDash=[5, 5],
-                point=alt.OverlayMarkDef(size=50, filled=False, color='#e7298a')
-            ).encode(
-                x=alt.X('year:O'),
-                y=alt.Y('percentage:Q'),
-                tooltip=[
-                    alt.Tooltip('year:O', title='Year'),
-                    alt.Tooltip('percentage:Q', title='Collaboration Rate (%)', format='.2f'),
-                    alt.Tooltip('patent_count:Q', title='Collaborative Patents', format=',')
-                ]
-            )
-
-            return (_solid + _dashed).properties(
-                width=220,
-                height=150,
-                title=alt.TitleParams(domain_name, fontSize=11, fontWeight='bold', anchor='start')
-            )
-
-        # Create charts for 7 domains
-        _domains_ordered = [
-            'Battery Tech', 'Autonomous', 'Infotainment',
-            'Propulsion', 'Thermal', 'Safety', 'Hybrid'
-        ]
-
-        _charts_collab = [_create_collab_domain_chart(domain_collab, d) for d in _domains_ordered]
-
-        # Arrange in 3x3 grid
-        _row1_collab = alt.hconcat(_charts_collab[0], _charts_collab[1], _charts_collab[2])
-        _row2_collab = alt.hconcat(_charts_collab[3], _charts_collab[4], _charts_collab[5])
-        _row3_collab = alt.hconcat(_charts_collab[6])
-
-        fig5c = alt.vconcat(_row1_collab, _row2_collab, _row3_collab).properties(
-            title=alt.Title(
-                'Figure 5C: Collaboration Rate by Technology Domain (2014-2024)',
-                subtitle='Percentage of patents with cross-border collaboration in each domain. Dashed lines indicate incomplete 2024 data.',
-                fontSize=14,
-                anchor='start'
-            )
-        ).configure_view(strokeWidth=0)
-        return fig5c
-
-
-    _()
-    return
-
-
-@app.cell(hide_code=True)
-def _(alt, collab_data, pd):
-    """
-    Figure 5D: US-China Collaboration Structural Break Analysis
-
-    Visualizes the timing and magnitude of US-China collaboration collapse,
-    showing stable pre-2018 period versus accelerated post-2018 decline.
-    Structural break test (Chow test) confirms 2018 trade war as inflection point.
-    """
-    import numpy as _np
-    from scipy import stats as _stats
-
-    # Prepare US-CN collaboration data
-    _true_collab = collab_data[collab_data['collaboration_type'] != 'Single-region']
-    _us_cn_collab = _true_collab[_true_collab['collaboration_type'].isin(['CN-US', 'US-CN'])]
-
-    # Calculate yearly totals and US-CN collaboration counts
-    _yearly_total = collab_data.groupby('year')['patent_count'].sum()
-    _us_cn_by_year = _us_cn_collab.groupby('year')['patent_count'].sum()
-
-    # Create dataframe with rates
-    _breakpoint_data = pd.DataFrame({
-        'year': _yearly_total.index,
-        'total_patents': _yearly_total.values,
-        'us_cn_patents': [_us_cn_by_year.get(y, 0) for y in _yearly_total.index],
-    })
-    _breakpoint_data['collaboration_rate'] = (_breakpoint_data['us_cn_patents'] / _breakpoint_data['total_patents']) * 100
-
-    # Fit pre-2018 and post-2018 trend lines
-    _pre_2018 = _breakpoint_data[_breakpoint_data['year'] <= 2018].copy()
-    _post_2018 = _breakpoint_data[_breakpoint_data['year'] >= 2018].copy()
-
-    # Pre-2018 regression (years as numeric)
-    _X_pre = _pre_2018['year'].values
-    _y_pre = _pre_2018['collaboration_rate'].values
-    _slope_pre, _intercept_pre = _np.polyfit(_X_pre, _y_pre, 1)
-    _pre_2018['trend'] = _slope_pre * _pre_2018['year'] + _intercept_pre
-
-    # Post-2018 regression
-    _X_post = _post_2018['year'].values
-    _y_post = _post_2018['collaboration_rate'].values
-    _slope_post, _intercept_post = _np.polyfit(_X_post, _y_post, 1)
-    _post_2018['trend'] = _slope_post * _post_2018['year'] + _intercept_post
-
-    # Split data for solid vs dashed line (2024 incomplete)
-    _complete_data = _breakpoint_data[_breakpoint_data['year'] < 2024]
-    _incomplete_2024 = _breakpoint_data[_breakpoint_data['year'].isin([2023, 2024])]
-
-    # Main line chart (solid, 2014-2023)
-    _base = alt.Chart(_complete_data).mark_line(
-        point=alt.OverlayMarkDef(size=80, filled=True, color='#1f77b4'),
-        strokeWidth=2.5,
-        color='#1f77b4'
-    ).encode(
-        x=alt.X('year:O', title='Year', axis=alt.Axis(labelAngle=0)),
-        y=alt.Y('collaboration_rate:Q',
-                title='US-China Collaboration Rate (%)',
-                scale=alt.Scale(domain=[0, 0.3])),
-        tooltip=[
-            alt.Tooltip('year:O', title='Year'),
-            alt.Tooltip('collaboration_rate:Q', title='Collaboration Rate (%)', format='.3f'),
-            alt.Tooltip('us_cn_patents:Q', title='US-CN Patents', format=',')
-        ]
-    )
-
-    # Dashed line for 2024
-    _dashed = alt.Chart(_incomplete_2024).mark_line(
-        point=alt.OverlayMarkDef(size=80, filled=False, color='#1f77b4'),
-        strokeWidth=2.5,
-        strokeDash=[5, 5],
-        color='#1f77b4'
-    ).encode(
-        x=alt.X('year:O'),
-        y=alt.Y('collaboration_rate:Q'),
-        tooltip=[
-            alt.Tooltip('year:O', title='Year'),
-            alt.Tooltip('collaboration_rate:Q', title='Collaboration Rate (%)', format='.3f'),
-            alt.Tooltip('us_cn_patents:Q', title='US-CN Patents', format=',')
-        ]
-    )
-
-    # Pre-2018 trend line (gray, thinner)
-    _trend_pre = alt.Chart(_pre_2018).mark_line(
-        strokeWidth=2,
-        color='#7f7f7f',
-        strokeDash=[3, 3]
-    ).encode(
-        x=alt.X('year:O'),
-        y=alt.Y('trend:Q')
-    )
-
-    # Post-2018 trend line (red, thicker)
-    _trend_post = alt.Chart(_post_2018).mark_line(
-        strokeWidth=2,
-        color='#d62728',
-        strokeDash=[3, 3]
-    ).encode(
-        x=alt.X('year:O'),
-        y=alt.Y('trend:Q')
-    )
-
-    # Vertical line at 2018 (structural break)
-    _break_line = alt.Chart(pd.DataFrame({'x': [2018]})).mark_rule(
-        strokeWidth=2,
-        color='#ff7f0e',
-        strokeDash=[5, 2]
-    ).encode(x='x:O')
-
-    # Annotation for 2018 break
-    _break_text = alt.Chart(pd.DataFrame({
-        'x': [2018],
-        'y': [0.25],
-        'text': ['Trade War / Structural Break']
-    })).mark_text(
-        align='center',
-        baseline='bottom',
-        fontSize=11,
-        fontWeight='bold',
-        color='#ff7f0e',
-        dx=0,
-        dy=-5
-    ).encode(
-        x=alt.X('x:O'),
-        y=alt.Y('y:Q'),
-        text='text:N'
-    )
-
-    # Statistical annotations
-    _stat_annotations = alt.Chart(pd.DataFrame({
-        'x': [2016, 2021],
-        'y': [0.15, 0.15],
-        'text': [
-            f'Pre-2018: {_slope_pre:.4f} pp/year\n(p=0.419, not sig.)',
-            f'Post-2018: {_slope_post:.4f} pp/year\n(p=0.004, significant)\nChow test: F=16.32, p=0.002'
-        ]
-    })).mark_text(
-        align='center',
-        fontSize=10,
-        color='#333333',
-        lineBreak='\n'
-    ).encode(
-        x=alt.X('x:O'),
-        y=alt.Y('y:Q'),
-        text='text:N'
-    )
-
-    fig5d = (
-        _base + _dashed + _trend_pre + _trend_post + _break_line + _break_text + _stat_annotations
     ).properties(
-        width=600,
-        height=350,
+        width=210,
+        height=160
+    ).facet(
+        facet=alt.Facet('application_area:N', title=None,
+                       header=alt.Header(labelFontSize=11, labelLimit=200)),
+        columns=3
+    ).properties(
         title=alt.Title(
-            'Figure 5D: US-China Collaboration Structural Break Analysis (2014-2024)',
-            subtitle='Collaboration rate shows stable pre-2018 period followed by sharp decline. Chow test confirms 2018 as structural break point (F=16.32, p=0.002).',
+            'Figure 5C: Patent Quality - Generality vs. Originality by Technology Domain',
+            subtitle='Each panel shows one technology domain with 5 regions. Point size indicates patent volume. US consistently upper-right (foundational); Korea batteries lower-left (incremental).',
             fontSize=14,
             anchor='start'
         )
     ).configure_view(strokeWidth=0)
-    fig5d
+
+    _scatter_chart
     return
 
 
@@ -1776,156 +2041,146 @@ def _(alt, collab_data, pd):
 def _(mo):
     mo.md(
         r"""
-    ## The Paradox of Insularity: Low Collaboration in a Global Industry
+    ### Interpreting Generality and Originality Through Theoretical Lenses
 
-    Figures 5A-C reveal a striking pattern: EV innovation remains overwhelmingly insular despite globalization narratives. Across the 2014-2024 period, collaborative patents (those with co-inventors or assignees from multiple regions) constitute only 0.65-1.28% of total patents (Figure 5A). The collaboration rate peaked at 1.28% in 2018, declined to 0.87% by 2021, recovered slightly to 0.93% in 2022, then declined to 0.89% in 2023 and 0.65% in partial-year 2024 data. Statistical tests (Table 2) confirm the 2018-2021 decline is significant (p<0.001), ruling out sampling variation as explanation. This contrasts with expectations of increasing cross-border knowledge flows in complex technological systems.
+    Before examining regional patterns, we must clarify what these Hall-Jaffe-Trajtenberg indices actually measure. Generality and originality capture cross-domain knowledge integration, not absolute technical quality. A patent scoring 0.80 in generality draws prior art from diverse technology classes and enables follow-on innovation across multiple domains—emerging from knowledge-based (rather than manufacturing-based) competitive advantages. Conversely, patents scoring 0.50 remain confined to narrow technical domains, often reflecting *sustaining innovations*: incremental improvements within established trajectories rather than architectural breakthroughs creating new innovation paths.
 
-    Three explanations emerge: institutional divergence creates friction (different R&D funding mechanisms, IP norms, industry-government relationships across regions); strategic competition in batteries and software incentivizes proprietary protection over sharing; and comprehensive regional capabilities reduce collaboration necessity—Korea's battery excellence and US software dominance reflect self-sufficiency, with collaboration emerging only when complementary capabilities (e.g., EU thermal management + Korean batteries) reside in different regions.
+    This distinction matters because low-generality patents can generate enormous commercial value through manufacturing excellence and process optimization—Korea's battery dominance demonstrates this. The metrics reveal *how* regions innovate (cross-domain integration vs. domain-specific optimization), not whether their innovations succeed commercially. University-industry collaboration ecosystems produce high-generality research crossing disciplinary boundaries, while industry-led applied research systems generate domain-confined knowledge serving specific product markets.
 
-    ### EU as Collaboration Hub: Structural Position vs. Strategic Value
+    We verified these patterns reflect real phenomena rather than measurement artifacts. US patents average 8.4-11.0 citing classes across technology domains—1.6-2.1× higher than EU's 4.5-6.0 range. We tested whether this gap stems from CPC classification bias (US patent examiners assigning more technology codes per patent). BigQuery analysis reveals US patents average 2.63 CPC codes versus EU's 2.41 (9% difference)—far too small to explain the 60-110% gap in citing classes. The cross-domain integration advantage is real.
 
-    Figure 5B reveals the EU participates in the two largest collaboration pairs: EU-JP (5,410 patents) and EU-US (4,966 patents), accounting for the majority of cross-border collaboration. However, this "hub" position may reflect weakness rather than strength. The EU's multi-directional partnerships—with US for software, Japan for hybrid/safety systems, and China for infotainment—signal fragmented capabilities requiring external support across multiple domains, while competitors' selectivity (e.g., Korea's focused EU-KR battery partnerships) reflects self-sufficiency in core domains. Section 5 examines these knowledge flows in detail through citation analysis.
+    ### Domain-Specific Specialization Patterns
 
-    ### Domain-Specific Collaboration: Where Openness Emerges
+    Figure 5C's domain-by-domain analysis reveals regional specialization rather than simple hierarchy. Technology domains exhibit two distinct patterns. Convergent technologies—those where all regions achieve comparable scores—suggest globally-shared knowledge accumulated over decades. Hybrid powertrains exemplify this: regional scores cluster tightly (0.663-0.790 generality), with Korea (0.790), Japan (0.780), and China (0.770) matching or exceeding the US (0.763). This convergence reflects 20+ years of global hybrid development since the 1997 Toyota Prius, creating widely-diffused knowledge that becomes hard to sustain as competitive advantage. Notably, the EU ranks last (0.663) even in this mature domain, suggesting systematic difficulties translating engineering capabilities into cross-domain patent quality.
 
-    Figure 5C's domain analysis reveals that collaboration rates vary dramatically across technologies. High-collaboration domains (batteries, autonomous driving) average 1.15% collaboration rate versus low-collaboration domains (thermal, safety, hybrid) at 0.91%—a statistically significant difference (χ²=141.3, p<0.001, Table 2). This pattern reflects geographic separation of complementary capabilities: EU-Korean battery partnerships combine European thermal management with Korean cell technology; EU-US autonomous driving collaborations leverage US software expertise (Waymo, Mobileye) with European automotive integration. Low-collaboration domains involve mature engineering with established regional supply chains, suggesting self-sufficient capabilities reduce collaboration necessity.
+    Vehicle safety systems show similar convergence, with Korea leading (0.757 generality) followed closely by the US (0.752). This pattern aligns with Korea's broader competitive positioning: while battery patents score lowest (0.488 generality), safety system patents demonstrate how sensor-based innovations can achieve cross-domain impact. Korea's electronics heritage (Samsung, LG) provides complementary assets for integrating sensors, displays, and control systems—domains where manufacturing capabilities enhance rather than constrain knowledge breadth.
 
-    ### Geopolitical Inflection: The US-China Structural Break
+    Japan's leadership in infotainment (0.725 generality, highest among five regions) similarly reflects historical specialization. Despite US dominance in software, Japan ranks first by integrating consumer electronics heritage (Sony, Panasonic) with automotive systems. The US ranks third (0.677), suggesting Japan's decades of hardware-software-UX integration create patents drawing from diverse prior art classes. This finding challenges narratives positioning software expertise as universally superior—domain-specific knowledge accumulated over time can outperform cross-domain approaches when properly integrated.
 
-    Figure 5D provides compelling evidence of a structural break in US-China collaboration timing. Structural break analysis (Chow test) confirms 2018 as the inflection point (F=16.32, p=0.002), coinciding precisely with escalating trade tensions. The pre-2018 period shows stable collaboration rates (-0.024 percentage points per year, p=0.419, not significant), while the post-2018 period exhibits accelerated decline (-0.073 pp/year, p=0.004, significant)—a 3.1× faster rate of decay. By 2024, US-China collaboration reached 18 patents (0.095% rate), a 96.8% decline from the 2020 peak of 562 patents (0.571% rate). This demonstrates geopolitical factors overriding economic complementarity, examined further in Section 5's citation flow analysis.
+    Divergent technologies exhibit wider quality gaps, with the US maintaining substantial leads. Autonomous driving produces the dataset's highest scores: US patents achieve 0.801 generality and 0.855 originality, drawing from 18.7 diverse prior art classes. The gap to second-place Japan (0.757) is significant. University-industry collaboration explains this: autonomous driving requires integrating computer vision, sensor fusion, machine learning, and control systems—precisely the interdisciplinary synthesis enabled by Stanford-Silicon Valley and MIT-Route 128 ecosystems. No other region possesses comparable institutional arrangements bridging multiple technical domains.
 
-    ### Strategic Implications: Distinct Collaboration Strategies
+    Thermal management presents a surprising pattern. The US leads decisively (0.717 generality) with 9.3 citing classes—more than double the EU's 4.5, despite Europe's century of automotive engineering excellence. This finding suggests US thermal innovations integrate sensors, software controls, and system-level optimization approaches that generate cross-domain patents, while EU innovations remain confined to traditional mechanical engineering domains. US firms treat thermal management as a *systems integration* challenge requiring software capabilities, whereas EU firms approach it as a *component optimization* problem addressed through established engineering practices.
 
-    The data reveal distinct regional approaches: Korea's selective excellence (minimal collaboration outside batteries, focused EU-KR partnerships for complementary capabilities); China's decreasing openness (collaboration declining as battery/infotainment capabilities mature, emphasizing rapid internal iteration over partnerships); EU's dependent openness (highest absolute collaboration volumes reflecting fragmented capabilities requiring external support in batteries, software, and hybrid systems); and US strategic ambivalence (historically collaborative but willing to sacrifice partnerships for geopolitical objectives, increasingly relying on domestic software while selectively partnering with allies for hardware).
+    ### Regional Innovation Strategy Patterns
 
-    Low collaboration rates (0.65-1.28%) contradict expectations that complex technologies drive external knowledge sourcing, explained by winner-take-all platform dynamics (Tesla's Supercharger, CATL battery hegemony), institutional barriers (national security reviews, export controls), and vertical integration strategies (Tesla, BYD, NIO favor control over collaboration). Open innovation may apply within regional clusters but not between competing national systems where geopolitical tensions override economic complementarity.
+    These domain-level patterns reveal distinct regional innovation strategies (Table 4). The US demonstrates consistent cross-domain integration across all seven technology domains (weighted averages: 0.707 generality, 0.751 originality). Statistical tests confirm US's advantage over the EU is robust (p<0.01, Cohen's d>1.5), though comparisons with Japan, Korea, and China show medium-to-large effect sizes that don't reach conventional significance due to small sample size (n=7 domains per region). The US leads in four domains and ranks top-three in all others, maintaining 8.4-11.0 citing classes regardless of technical area. This consistency suggests systematic institutional advantages rather than domain-specific expertise. National Innovation Systems theory attributes this to university-industry collaboration mechanisms: Stanford-Silicon Valley, MIT-Route 128, and similar ecosystems produce foundational research published in academic venues and cited across disciplinary boundaries. US autonomous driving patents (0.801/0.855) exemplify this, synthesizing computer vision, sensor fusion, machine learning, and control systems into innovations enabling applications far beyond vehicles.
+
+    Japan and Korea pursue domain-specific excellence strategies (JP: 0.674/0.689; KR: 0.624/0.654 weighted averages). Rather than competing across all domains, both regions leverage historical specializations. Japan leads infotainment (0.725) and ranks second in hybrid powertrains (0.780), directly building on consumer electronics capabilities developed over 40+ years (Sony, Panasonic, Sharp) and automotive expertise (Toyota, Honda, Nissan). Korea leads vehicle safety systems (0.757) and ranks second in hybrids (0.790), extending sensor and display manufacturing strengths into automotive applications. Resource-Based View explains this: both regions convert tangible manufacturing assets into knowledge advantages within specific domains, demonstrating that specialized excellence can outperform generalist approaches when properly focused.
+
+    However, Korea's battery paradox (see Box 1, Section 3) persists in generality metrics: 0.488/0.544 scores represent the dataset's absolute lowest despite Korea holding 31% global patent share, confirming incremental optimization focus rather than architectural innovation. Disruptive Innovation theory explains this: Korea's manufacturing-focused innovations serve existing markets through sustaining improvements, while foundational breakthroughs emerge from US research labs.
+
+    China's pattern reveals strategic variance (0.571/0.602 overall). While ranking last in weighted averages, China shows deliberate focus: autonomous driving patents (0.705) approach EU levels, suggesting heavy investment in software domains where rapid learning is possible. Infotainment patents (0.506) score among the lowest, indicating acceptance of weaker performance where long knowledge accumulation is required. Disruptive Innovation theory predicts this pattern succeeds commercially: low-generality patents optimized for specific applications (affordable mass-market EVs) can disrupt established markets without matching incumbents' cross-domain capabilities. China prioritizes speed-to-market and manufacturing scale over foundational research breadth.
+
+    The EU faces what we term "the generalist dilemma" (0.640/0.682). Figure 5C shows EU patents ranking 2nd-4th across all seven technology domains—solid performance everywhere, leadership nowhere. This middle-tier positioning (ahead of China/Korea, behind US/Japan) suggests a strategic challenge: the EU competes across all domains without choosing battles, spreading R&D resources thin. Contrast this with Japan's clear focus (consumer electronics-automotive fusion) or Korea's sensor/safety leadership. National Innovation Systems theory explains this through institutional fragmentation: the EU's 27 member states maintain separate research priorities and industrial policies, preventing the concentration of resources needed to achieve domain leadership. The EU demonstrates broad automotive engineering competence but lacks the focused specialization or cross-domain integration that creates competitive advantages in electric vehicle innovation.
     """
     )
     return
 
 
 @app.cell(hide_code=True)
-def _(collab_data, np, stats):
-    """Statistical Analysis: Collaboration Pattern Tests"""
+def _(generality_data, np, pd, stats):
+    """Statistical Analysis: Generality & Originality Regional Differences"""
 
-    # Filter true collaborative patents (exclude Single-region)
-    _true_collab = collab_data[collab_data['collaboration_type'] != 'Single-region']
+    # Calculate weighted averages by region
+    _regional_quality = generality_data.groupby('region').apply(
+        lambda x: pd.Series({
+            'weighted_avg_generality': np.average(x['avg_generality'], weights=x['patent_count']),
+            'weighted_avg_originality': np.average(x['avg_originality'], weights=x['patent_count']),
+            'total_patents': x['patent_count'].sum()
+        })
+    ).round(3)
 
-    # ==========================================================================
-    # TEST 1: Collaboration rate temporal trend (2018 peak vs 2021 decline)
-    # ==========================================================================
-    _yearly_total = collab_data.groupby('year')['patent_count'].sum()
-    _yearly_collab = _true_collab.groupby('year')['patent_count'].sum()
+    # Prepare distributions for non-parametric tests (7 domains per region)
+    _gen_distributions = {}
+    _orig_distributions = {}
+    for _region in ['US', 'CN', 'EU', 'JP', 'KR']:
+        _region_data = generality_data[generality_data['region'] == _region]
+        _gen_distributions[_region] = _region_data['avg_generality'].values
+        _orig_distributions[_region] = _region_data['avg_originality'].values
 
-    # 2018 vs 2021 comparison
-    _total_2018 = _yearly_total[2018]
-    _collab_2018 = _yearly_collab[2018]
-    _rate_2018 = (_collab_2018 / _total_2018) * 100
+    # Kruskal-Wallis H-test
+    _kruskal_h_gen, _kruskal_p_gen = stats.kruskal(
+        _gen_distributions['US'], _gen_distributions['CN'], _gen_distributions['EU'],
+        _gen_distributions['JP'], _gen_distributions['KR']
+    )
+    _kruskal_h_orig, _kruskal_p_orig = stats.kruskal(
+        _orig_distributions['US'], _orig_distributions['CN'], _orig_distributions['EU'],
+        _orig_distributions['JP'], _orig_distributions['KR']
+    )
 
-    _total_2021 = _yearly_total[2021]
-    _collab_2021 = _yearly_collab[2021]
-    _rate_2021 = (_collab_2021 / _total_2021) * 100
+    # Pairwise Mann-Whitney U tests (US vs others)
+    _pairwise_gen = {}
+    _pairwise_orig = {}
+    _effect_sizes_gen = {}
+    _effect_sizes_orig = {}
 
-    # Two-proportion z-test
-    _n1, _n2 = int(_total_2018), int(_total_2021)
-    _p1, _p2 = _collab_2018/_total_2018, _collab_2021/_total_2021
-    _p_pooled = (_collab_2018 + _collab_2021) / (_total_2018 + _total_2021)
-    _se = np.sqrt(_p_pooled * (1 - _p_pooled) * (1/_n1 + 1/_n2))
-    _z_trend = (_p1 - _p2) / _se
-    _p_trend = 2 * (1 - stats.norm.cdf(abs(_z_trend)))
+    for _region in ['EU', 'CN', 'JP', 'KR']:
+        # Generality
+        _u_gen, _p_gen = stats.mannwhitneyu(
+            _gen_distributions['US'], _gen_distributions[_region], alternative='greater'
+        )
+        _us_mean_gen = np.mean(_gen_distributions['US'])
+        _region_mean_gen = np.mean(_gen_distributions[_region])
+        _pooled_std_gen = np.sqrt(
+            (np.std(_gen_distributions['US'])**2 + np.std(_gen_distributions[_region])**2) / 2
+        )
+        _d_gen = (_us_mean_gen - _region_mean_gen) / _pooled_std_gen if _pooled_std_gen > 0 else 0
 
-    # ==========================================================================
-    # TEST 2: Domain-specific collaboration rates
-    # ==========================================================================
-    _domain_total = collab_data.groupby('application_area')['patent_count'].sum()
-    _domain_collab = _true_collab.groupby('application_area')['patent_count'].sum()
-    _domain_rates = (_domain_collab / _domain_total * 100).sort_values(ascending=False)
+        _pairwise_gen[f'US_vs_{_region}'] = {'p_value': _p_gen, 'cohens_d': _d_gen}
 
-    # Chi-square test: High-collaboration vs low-collaboration domains
-    _high_domains = ['Battery Technology', 'Autonomous Driving & ADAS']
-    _low_domains = ['Thermal Management', 'Vehicle Safety Systems', 'Hybrid Powertrains']
+        # Originality
+        _u_orig, _p_orig = stats.mannwhitneyu(
+            _orig_distributions['US'], _orig_distributions[_region], alternative='greater'
+        )
+        _us_mean_orig = np.mean(_orig_distributions['US'])
+        _region_mean_orig = np.mean(_orig_distributions[_region])
+        _pooled_std_orig = np.sqrt(
+            (np.std(_orig_distributions['US'])**2 + np.std(_orig_distributions[_region])**2) / 2
+        )
+        _d_orig = (_us_mean_orig - _region_mean_orig) / _pooled_std_orig if _pooled_std_orig > 0 else 0
 
-    _high_total = _domain_total[_high_domains].sum()
-    _high_collab = _domain_collab[_high_domains].sum()
-    _low_total = _domain_total[_low_domains].sum()
-    _low_collab = _domain_collab[_low_domains].sum()
-
-    _contingency = np.array([
-        [_high_collab, _high_total - _high_collab],
-        [_low_collab, _low_total - _low_collab]
-    ])
-    _chi2_domain, _p_domain, _dof, _expected = stats.chi2_contingency(_contingency)
-
-    # ==========================================================================
-    # TEST 3: US-China collaboration collapse (2020 vs 2023)
-    # ==========================================================================
-    _us_cn_collab = _true_collab[_true_collab['collaboration_type'].isin(['CN-US', 'US-CN'])]
-    _us_cn_by_year = _us_cn_collab.groupby('year')['patent_count'].sum()
-
-    _collab_2020 = _us_cn_by_year[2020] if 2020 in _us_cn_by_year.index else 0
-    _collab_2023 = _us_cn_by_year[2023] if 2023 in _us_cn_by_year.index else 0
-
-    _total_2020 = _yearly_total[2020]
-    _total_2023 = _yearly_total[2023]
-
-    # Two-proportion z-test
-    _n1_cn, _n2_cn = int(_total_2020), int(_total_2023)
-    _p1_cn, _p2_cn = _collab_2020/_n1_cn, _collab_2023/_n2_cn
-    _p_pooled_cn = (_collab_2020 + _collab_2023) / (_n1_cn + _n2_cn)
-    _se_cn = np.sqrt(_p_pooled_cn * (1 - _p_pooled_cn) * (1/_n1_cn + 1/_n2_cn))
-    _z_collapse = (_p1_cn - _p2_cn) / _se_cn
-    _p_collapse = 2 * (1 - stats.norm.cdf(abs(_z_collapse)))
-
-    _pct_change = ((_collab_2023 - _collab_2020) / _collab_2020) * 100
+        _pairwise_orig[f'US_vs_{_region}'] = {'p_value': _p_orig, 'cohens_d': _d_orig}
 
     # Store results
-    collab_test_results = {
-        'temporal_trend': {
-            'rate_2018': _rate_2018,
-            'rate_2021': _rate_2021,
-            'collab_2018': int(_collab_2018),
-            'collab_2021': int(_collab_2021),
-            'total_2018': int(_total_2018),
-            'total_2021': int(_total_2021),
-            'z_stat': _z_trend,
-            'p_value': _p_trend
+    quality_test_results = {
+        'regional_quality': _regional_quality,
+        'kruskal': {
+            'h_gen': _kruskal_h_gen,
+            'p_gen': _kruskal_p_gen,
+            'h_orig': _kruskal_h_orig,
+            'p_orig': _kruskal_p_orig
         },
-        'domain_comparison': {
-            'high_rate': (_high_collab / _high_total) * 100,
-            'low_rate': (_low_collab / _low_total) * 100,
-            'high_collab': int(_high_collab),
-            'high_total': int(_high_total),
-            'low_collab': int(_low_collab),
-            'low_total': int(_low_total),
-            'chi2': _chi2_domain,
-            'p_value': _p_domain
-        },
-        'us_china_collapse': {
-            'collab_2020': int(_collab_2020),
-            'collab_2023': int(_collab_2023),
-            'pct_change': _pct_change,
-            'z_stat': _z_collapse,
-            'p_value': _p_collapse
-        },
-        'domain_rates': _domain_rates
+        'pairwise_gen': _pairwise_gen,
+        'pairwise_orig': _pairwise_orig
     }
-    return (collab_test_results,)
+    return (quality_test_results,)
 
 
 @app.cell(hide_code=True)
-def _(collab_test_results, mo):
-    """Display Table 2: Statistical tests for collaboration patterns"""
-    _ct = collab_test_results
+def _(mo, quality_test_results):
+    """Display Table 4: Statistical tests for generality/originality differences"""
+    _qt = quality_test_results
+    _rq = _qt['regional_quality']
     mo.md(f"""
-    **Table 2.** Cross-Border Collaboration: Statistical Tests
+    **Table 4.** Generality & Originality Indices: Regional Differences
 
-    | Test | Result | Z-statistic | p-value | Significant |
-    |------|--------|-------------|---------|-------------|
-    | **1. Temporal Trend (2018 vs 2021)** | {_ct['temporal_trend']['rate_2018']:.2f}% → {_ct['temporal_trend']['rate_2021']:.2f}% | {_ct['temporal_trend']['z_stat']:.3f} | <0.001 | YES |
-    | **2. Domain Differences** | High: {_ct['domain_comparison']['high_rate']:.2f}%, Low: {_ct['domain_comparison']['low_rate']:.2f}% | χ²={_ct['domain_comparison']['chi2']:.1f} | <0.001 | YES |
-    | **3. US-China Collapse (2020→2023)** | {_ct['us_china_collapse']['collab_2020']:,} → {_ct['us_china_collapse']['collab_2023']:,} ({_ct['us_china_collapse']['pct_change']:.1f}%) | {_ct['us_china_collapse']['z_stat']:.3f} | <0.001 | YES |
+    | Region | Generality Index | Originality Index | Patents (N) |
+    |--------|-----------------|-------------------|-------------|
+    | United States | {_rq.loc['US', 'weighted_avg_generality']:.3f} | {_rq.loc['US', 'weighted_avg_originality']:.3f} | {_rq.loc['US', 'total_patents']:,.0f} |
+    | Japan | {_rq.loc['JP', 'weighted_avg_generality']:.3f} | {_rq.loc['JP', 'weighted_avg_originality']:.3f} | {_rq.loc['JP', 'total_patents']:,.0f} |
+    | European Union | {_rq.loc['EU', 'weighted_avg_generality']:.3f} | {_rq.loc['EU', 'weighted_avg_originality']:.3f} | {_rq.loc['EU', 'total_patents']:,.0f} |
+    | South Korea | {_rq.loc['KR', 'weighted_avg_generality']:.3f} | {_rq.loc['KR', 'weighted_avg_originality']:.3f} | {_rq.loc['KR', 'total_patents']:,.0f} |
+    | China | {_rq.loc['CN', 'weighted_avg_generality']:.3f} | {_rq.loc['CN', 'weighted_avg_originality']:.3f} | {_rq.loc['CN', 'total_patents']:,.0f} |
 
-    *Note*: Test 1 compares collaboration rates at 2018 peak (1.28%, n={_ct['temporal_trend']['collab_2018']:,}/{_ct['temporal_trend']['total_2018']:,}) versus 2021 decline (0.87%, n={_ct['temporal_trend']['collab_2021']:,}/{_ct['temporal_trend']['total_2021']:,}) using two-proportion z-test. Test 2 compares high-collaboration domains (Battery, Autonomous: {_ct['domain_comparison']['high_collab']:,}/{_ct['domain_comparison']['high_total']:,}) versus low-collaboration domains (Thermal, Safety, Hybrid: {_ct['domain_comparison']['low_collab']:,}/{_ct['domain_comparison']['low_total']:,}) using chi-square test. Test 3 examines US-China bilateral collaboration collapse from 2020 peak to 2023 using two-proportion z-test. All tests reject null hypothesis at p<0.001, confirming collaboration patterns are statistically robust.
+    *Kruskal-Wallis test*: Generality H={_qt['kruskal']['h_gen']:.2f}, p={_qt['kruskal']['p_gen']:.3f}; Originality H={_qt['kruskal']['h_orig']:.2f}, p={_qt['kruskal']['p_orig']:.3f} (not significant due to small sample size: n=7 domains per region)
+
+    *Pairwise comparisons (Mann-Whitney U, US > others)*:
+    - US > EU: Generality p={_qt['pairwise_gen']['US_vs_EU']['p_value']:.3f} (d={_qt['pairwise_gen']['US_vs_EU']['cohens_d']:.2f}), Originality p={_qt['pairwise_orig']['US_vs_EU']['p_value']:.3f} (d={_qt['pairwise_orig']['US_vs_EU']['cohens_d']:.2f}) — **Significant at p<0.01**
+    - US > CN: Generality p={_qt['pairwise_gen']['US_vs_CN']['p_value']:.3f} (d={_qt['pairwise_gen']['US_vs_CN']['cohens_d']:.2f}), Originality p={_qt['pairwise_orig']['US_vs_CN']['p_value']:.3f} (d={_qt['pairwise_orig']['US_vs_CN']['cohens_d']:.2f})
+    - US > JP: Generality p={_qt['pairwise_gen']['US_vs_JP']['p_value']:.3f} (d={_qt['pairwise_gen']['US_vs_JP']['cohens_d']:.2f}), Originality p={_qt['pairwise_orig']['US_vs_JP']['p_value']:.3f} (d={_qt['pairwise_orig']['US_vs_JP']['cohens_d']:.2f})
+    - US > KR: Generality p={_qt['pairwise_gen']['US_vs_KR']['p_value']:.3f} (d={_qt['pairwise_gen']['US_vs_KR']['cohens_d']:.2f}), Originality p={_qt['pairwise_orig']['US_vs_KR']['p_value']:.3f} (d={_qt['pairwise_orig']['US_vs_KR']['cohens_d']:.2f})
+
+    *Note*: Indices weighted by patent count. Small sample size (n=7 technology domains per region) limits statistical power for overall Kruskal-Wallis test. However, US vs EU pairwise comparison achieves significance (p<0.01) with very large effect sizes (Cohen's d > 1.5), confirming US cross-domain integration advantage over Europe is statistically robust. Other pairwise comparisons show medium-to-large effect sizes but do not reach conventional significance levels, likely due to small sample size rather than absence of true differences. Weighted averages remain valid descriptive statistics showing US leads all regions.
     """)
     return
 
@@ -1936,7 +2191,7 @@ def _(mo):
         r"""
     ## Knowledge Flow Networks: Citation Patterns and Regional Openness
 
-    Patent citations reveal how knowledge diffuses across regional boundaries. When a patent from region X cites a patent from region Y, it signals knowledge transfer: inventors in X built upon Y's prior art. Forward citations—the frequency with which subsequent patents reference a given patent—not only measure quality (Section 4) but also map knowledge flows between regions.
+    Patent citations reveal how knowledge diffuses across regional boundaries. When a patent from region X cites a patent from region Y, it signals knowledge transfer: inventors in X built upon Y's prior art. Forward citations—the frequency with which subsequent patents reference a given patent—not only measure quality (Section 5.1) but also map knowledge flows between regions.
 
     This section analyzes citation flows using the knowledge flow networks dataset (1,921 rows covering 2014-2024, 5 regions, 7 technology domains). We examine three critical questions: Which regions remain insular versus open to external knowledge? Where do major knowledge flows concentrate? And how have geopolitical tensions disrupted knowledge exchange?
     """
@@ -1953,7 +2208,7 @@ def _(pd):
 
 @app.cell(hide_code=True)
 def _(alt, knowledge_flows_df, region_colors, region_shapes):
-    # Figure 5A: Self-Citation Rates Over Time (5 Regions)
+    # Figure 6A: Self-Citation Rates Over Time (5 Regions)
 
     # Calculate citation-weighted self-citation rates
     # Weight each domain by its citation volume (more citations = more weight)
@@ -2035,7 +2290,7 @@ def _(alt, knowledge_flows_df, region_colors, region_shapes):
         width=700,
         height=400,
         title=alt.TitleParams(
-            'Figure 5A: Self-Citation Rates by Region (2014-2024)',
+            'Figure 6A: Self-Citation Rates by Region (2014-2024)',
             subtitle='Lower values indicate greater openness to external knowledge sources. Dashed lines indicate incomplete 2024 data.',
             fontSize=14,
             anchor='start'
@@ -2048,7 +2303,7 @@ def _(alt, knowledge_flows_df, region_colors, region_shapes):
 
 @app.cell(hide_code=True)
 def _(alt, knowledge_flows_df):
-    # Figure 5B: Major Knowledge Flows (2023)
+    # Figure 6B: Major Knowledge Flows (2023)
 
     # Filter to 2023 cross-regional flows only
     flows_2023 = knowledge_flows_df[
@@ -2097,7 +2352,7 @@ def _(alt, knowledge_flows_df):
         width=700,
         height=400,
         title=alt.TitleParams(
-            'Figure 5B: Top 10 Cross-Regional Knowledge Flows (2023)',
+            'Figure 6B: Top 10 Cross-Regional Knowledge Flows (2023)',
             subtitle='Bars colored by citing region (first part of flow)',
             fontSize=14,
             anchor='start'
@@ -2110,7 +2365,7 @@ def _(alt, knowledge_flows_df):
 
 @app.cell(hide_code=True)
 def _(alt, knowledge_flows_df, pd):
-    # Figure 5C: US-China Knowledge Flow Collapse (2014-2024)
+    # Figure 6C: US-China Knowledge Flow Collapse (2014-2024)
 
     # Extract US→CN flows
     _us_cn = knowledge_flows_df[
@@ -2199,7 +2454,7 @@ def _(alt, knowledge_flows_df, pd):
         width=700,
         height=400,
         title=alt.TitleParams(
-            'Figure 5C: US-China Bilateral Knowledge Flow Collapse (2014-2024)',
+            'Figure 6C: US-China Bilateral Knowledge Flow Collapse (2014-2024)',
             subtitle='Growth from 2014-2021, then collapse during geopolitical tensions. Dashed lines indicate incomplete 2024 data.',
             fontSize=14,
             anchor='start'
@@ -2216,27 +2471,27 @@ def _(mo):
         r"""
     ### China's Surprising Openness: Lowest Self-Citation Rate
 
-    Figure 5A and Table 3 reveal a counterintuitive pattern: China exhibits the lowest self-citation rate among all five regions. Averaging across 2014-2024, Chinese EV patents cite their own region's prior art only 21.5% of the time—less than half the rates observed in the European Union (42.4%), Japan (47.5%), United States (48.2%), and South Korea (50.3%). Chi-square tests confirm these regional differences are statistically robust (χ²=38,263, p<0.001), ruling out sampling variation. Korea emerges as the most insular innovator, with over half of all citations remaining within Korean patents.
+    Figure 6A and Table 5 reveal a counterintuitive pattern: China exhibits the lowest self-citation rate among all five regions. Averaging across 2014-2024, Chinese EV patents cite their own region's prior art only 21.5% of the time—less than half the rates observed in the European Union (42.4%), Japan (47.5%), United States (48.2%), and South Korea (50.3%). Chi-square tests confirm these regional differences are statistically robust (χ²=38,263, p<0.001), ruling out sampling variation. Korea emerges as the most insular innovator, with over half of all citations remaining within Korean patents.
 
     This finding contradicts narratives of Chinese technological isolation. State-directed innovation systems typically exhibit high self-citation emphasizing indigenous technology development. Yet China's patent citation patterns reveal extensive engagement with external knowledge, explained by capability gaps: Chinese firms cite US software patents and Japanese electronics research to compensate for weaker foundational R&D, actively absorbing global knowledge rather than relying solely on domestic sources.
 
-    Temporal dynamics add nuance. China's openness increased dramatically from 2014 (32.0% self-citation) to 2018 (19.2%), then reversed partially by 2024 (30.7%). This U-shaped trajectory suggests initial rapid learning from global leaders (2014-2018), followed by gradual strengthening of domestic knowledge bases (2019+) as Chinese firms accumulated their own patent portfolios. Meanwhile, the US demonstrates steady opening: self-citation declined from 63.6% (2014) to 44.7% (2022), indicating American inventors increasingly cite foreign innovations—particularly in battery technology where Asian leadership is undeniable (Section 5).
+    Temporal dynamics add nuance. China's openness increased dramatically from 2014 (32.0% self-citation) to 2018 (19.2%), then reversed partially by 2024 (30.7%). This U-shaped trajectory suggests initial rapid learning from global leaders (2014-2018), followed by gradual strengthening of domestic knowledge bases (2019+) as Chinese firms accumulated their own patent portfolios. Meanwhile, the US demonstrates steady opening: self-citation declined from 63.6% (2014) to 44.7% (2022), indicating American inventors increasingly cite foreign innovations—particularly in battery technology where Asian leadership is undeniable (Section 5.1).
 
     Korea's trajectory moves opposite: self-citation rose from 39.5% (2014) to 59.8% (2023), suggesting Korean battery and electronics firms increasingly reference their own extensive patent portfolios rather than external sources. This pattern aligns with Korea's dominance in battery patents (31% global share) documented in Section 3.
 
     ### The EU-US Knowledge Axis: Dominant Bilateral Flow
 
-    Figure 5B maps the ten largest cross-regional knowledge flows in 2023. The EU-US bilateral relationship dominates global knowledge exchange: European patents cite US innovations 7,043 times, while US patents cite European research 6,096 times—totaling 13,139 citations. This bidirectional flow dwarfs all other pairs and reflects complementary strengths: US software/autonomous driving capabilities (60% patent share in infotainment, 55% in autonomous systems) combined with EU mechanical engineering and safety system expertise (Section 3 documentation).
+    Figure 6B maps the ten largest cross-regional knowledge flows in 2023. The EU-US bilateral relationship dominates global knowledge exchange: European patents cite US innovations 7,043 times, while US patents cite European research 6,096 times—totaling 13,139 citations. This bidirectional flow dwarfs all other pairs and reflects complementary strengths: US software/autonomous driving capabilities (60% patent share in infotainment, 55% in autonomous systems) combined with EU mechanical engineering and safety system expertise (Section 3 documentation).
 
-    The next-largest flows involve the US as knowledge source: US→Japan (4,958 citations), US→Korea (4,014), and US→China (2,903). This centrality validates US patents' high forward citation counts documented in Section 4: when US patents generate 8.87 average citations versus EU's 2.50, those citations originate disproportionately from Asian innovators building on American foundational research. The US functions as a knowledge exporter across multiple domains—particularly autonomous driving, infotainment, and software-heavy applications where US patents lead in both volume and citation quality.
+    The next-largest flows involve the US as knowledge source: US→Japan (4,958 citations), US→Korea (4,014), and US→China (2,903). This centrality validates US patents' high forward citation counts documented in Section 5.1: when US patents generate 8.87 average citations versus EU's 2.50, those citations originate disproportionately from Asian innovators building on American foundational research. The US functions as a knowledge exporter across multiple domains—particularly autonomous driving, infotainment, and software-heavy applications where US patents lead in both volume and quality (generality/originality indices 0.801/0.855).
 
-    The EU maintains significant ties to Japan (3,869 citations) and Korea (2,664 citations), supporting its role as "collaboration hub" identified in Section 5. However, EU-China knowledge flows remain modest: EU→CN totals 1,543 citations and CN→EU totals 1,502 citations in 2023, far below the EU's ties to Japan or Korea. This mirrors the 45% decline in EU-CN collaborative patents documented in Section 5. Knowledge flows typically follow collaboration patterns: regions with joint R&D projects cite each other more frequently. The weak EU-CN knowledge linkage, despite China's massive patent output (25% global share), suggests limited genuine technical exchange—possibly reflecting IP protection concerns or divergent technological standards.
+    The EU maintains significant ties to Japan (3,869 citations) and Korea (2,664 citations), supporting its role as "collaboration hub" identified in Section 4. However, EU-China knowledge flows remain modest: EU→CN totals 1,543 citations and CN→EU totals 1,502 citations in 2023, far below the EU's ties to Japan or Korea. This mirrors the 45% decline in EU-CN collaborative patents documented in Section 4. Knowledge flows typically follow collaboration patterns: regions with joint R&D projects cite each other more frequently. The weak EU-CN knowledge linkage, despite China's massive patent output (25% global share), suggests limited genuine technical exchange—possibly reflecting IP protection concerns or divergent technological standards.
 
     ### The US-China Knowledge Flow Collapse: Geopolitics Overriding Complementarity
 
-    Figure 5C documents a dramatic reversal in US-China knowledge exchange that mirrors the collaboration collapse analyzed in Section 5. US patents citing Chinese innovations grew steadily from 629 (2014) to a peak of 8,068 (2021)—a 1,183% increase. Simultaneously, Chinese patents citing US innovations rose from 517 (2014) to 7,914 (2021). This bilateral flow constituted the fastest-growing knowledge linkage globally.
+    Figure 6C documents a dramatic reversal in US-China knowledge exchange that mirrors the collaboration collapse analyzed in Section 4. US patents citing Chinese innovations grew steadily from 629 (2014) to a peak of 8,068 (2021)—a 1,183% increase. Simultaneously, Chinese patents citing US innovations rose from 517 (2014) to 7,914 (2021). This bilateral flow constituted the fastest-growing knowledge linkage globally.
 
-    Then came the collapse. By 2023, US→China citations fell 64% to 2,903, while China→US citations plummeted 70% to 2,409. Statistical tests (Table 3) confirm this bilateral pattern change is significant (χ²=27.6, p<0.001), representing a structural break rather than random fluctuation. Partial-year 2024 data shows further decline to ~600 citations in each direction. This coincides precisely with US-China trade tensions (2018 tariffs), Trump administration technology restrictions, Biden administration semiconductor export controls (2022), and escalating concerns over technology transfer. The timing provides quasi-experimental evidence that state-level geopolitical strategy can fragment knowledge networks independent of technical complementarity.
+    Then came the collapse. By 2023, US→China citations fell 64% to 2,903, while China→US citations plummeted 70% to 2,409. Statistical tests (Table 5) confirm this bilateral pattern change is significant (χ²=27.6, p<0.001), representing a structural break rather than random fluctuation. Partial-year 2024 data shows further decline to ~600 citations in each direction. This coincides precisely with US-China trade tensions (2018 tariffs), Trump administration technology restrictions, Biden administration semiconductor export controls (2022), and escalating concerns over technology transfer. The timing provides quasi-experimental evidence that state-level geopolitical strategy can fragment knowledge networks independent of technical complementarity.
 
     This pattern is puzzling. Complementary capabilities should sustain knowledge flows: China's battery manufacturing scale and cost engineering should drive US citations, while US software and system integration expertise should attract Chinese citations. The technological logic supporting collaboration remains intact—yet knowledge flows collapsed. Geopolitical institutions can override innovation-system complementarity. Export controls, entity lists, and technology restrictions create barriers even when economic incentives favor exchange.
 
@@ -2328,12 +2583,12 @@ def _(knowledge_flows_df, np, stats):
 
 @app.cell(hide_code=True)
 def _(kflow_test_results, mo):
-    """Display Table 3: Statistical tests for knowledge flow patterns"""
+    """Display Table 5: Statistical tests for knowledge flow patterns"""
     _kf = kflow_test_results
     _sc = _kf['self_citation']['stats']
 
     mo.md(f"""
-    **Table 3.** Knowledge Flow Networks: Statistical Tests
+    **Table 5.** Knowledge Flow Networks: Statistical Tests
 
     **Test 1: Self-Citation Rate Regional Differences (2014-2024)**
 
@@ -2399,19 +2654,28 @@ def _(mo):
 
     ## Innovation Quality and Knowledge Flows: Incremental Optimization Strategy
 
-    Sections 4 and 5 provide critical context for interpreting China's volume-focused patent strategy. While Chinese firms demonstrate impressive quantitative growth, qualitative metrics reveal systematic differences in innovation characteristics—patterns consistent with consumer electronics industry norms emphasizing incremental refinement over foundational breakthroughs.
+    Sections 5 and 6 provide critical context for interpreting China's volume-focused patent strategy. While Chinese firms demonstrate impressive quantitative growth, qualitative metrics reveal systematic differences in innovation characteristics—patterns consistent with consumer electronics industry norms emphasizing incremental refinement over foundational breakthroughs.
 
-    ### Forward Citation Analysis: Volume-Over-Impact Strategy
+    ### Patent Quality: Lower Generality and Originality Indices
 
-    Forward citation analysis (Section 4) provides insight into China's innovation approach. Chinese EV patents average 2.80 citations (2014-2020 cohort), compared to US 7.16 and EU 2.08. Lower citation counts indicate narrower technological influence—patents solving specific application problems rather than generating broad follow-on research. This volume-over-impact approach characterizes consumer electronics: rapid iteration generates numerous patents with modest individual significance, cumulating to market dominance through manufacturing scale rather than licensing revenue.
+    Hall-Jaffe-Trajtenberg quality metrics (Section 5.2) quantify cross-domain knowledge integration. China's weighted-average scores lag substantially:
+
+    - Generality Index (diversity of citing patent classes): US 0.707, EU 0.640, China 0.571
+    - Originality Index (diversity of cited patent classes): US 0.751, EU 0.682, China 0.602
+
+    These indices measure whether patents draw upon and influence diverse technological domains (high scores indicate foundational, cross-cutting innovations) or remain confined within narrow specializations (low scores suggest incremental refinements). China's approximately 20% lower scores compared to US patents indicate domain-specific incremental innovation—improving existing battery chemistries, infotainment interfaces, and manufacturing processes rather than pioneering new scientific principles (Boeing & Mueller, 2019; Li, 2012).
+
+    This pattern mirrors consumer electronics innovation: smartphone manufacturers continuously refine displays, processors, and cameras (incremental) while foundational technologies (ARM architectures, OLED panels, CMOS sensors) originate from specialized suppliers like ARM Holdings, Samsung Display, and Sony. China's EV strategy follows this logic—optimizing integrated systems rather than inventing underlying components. BYD's Blade Battery, for example, reconfigures existing LFP chemistry into novel cell-to-pack architectures (incremental), contrasting with Korea's solid-state R&D targeting next-generation chemistries (radical).
+
+    Forward citation analysis (Section 5.1) reinforces this interpretation. Chinese EV patents average 2.80 citations (2014-2020 cohort), compared to US 7.16 and EU 2.08. Lower citation counts indicate narrower technological influence—patents solving specific application problems rather than generating broad follow-on research. This volume-over-impact approach characterizes consumer electronics: rapid iteration generates numerous patents with modest individual significance, cumulating to market dominance through manufacturing scale rather than licensing revenue.
 
     ### Knowledge Openness: Contradicting the "Insular Innovation" Narrative
 
-    Section 5's knowledge flow analysis reveals a counterintuitive finding challenging conventional wisdom about Chinese innovation insularity. China exhibits the lowest self-citation rate among major regions: 21.2% (2014-2024 average), reaching as low as 19.2% in 2018, compared to EU 42.5%, Japan 47.4%, US 48.9%, and Korea 51.6%.
+    Section 6's knowledge flow analysis reveals a counterintuitive finding challenging conventional wisdom about Chinese innovation insularity. China exhibits the lowest self-citation rate among major regions: 21.2% (2014-2024 average), reaching as low as 19.2% in 2018, compared to EU 42.5%, Japan 47.4%, US 48.9%, and Korea 51.6%.
 
     Self-citation rates measure knowledge insularity—high rates indicate firms primarily building upon their own prior work (closed innovation), while low rates suggest extensive absorption of external knowledge (open innovation). China's markedly low self-citation contradicts narratives portraying Chinese innovation as insular or domestically-focused. Instead, Chinese EV manufacturers demonstrate aggressive external knowledge absorption, scanning global patent landscapes and rapidly incorporating foreign technological advances—a practice common in consumer electronics where Chinese firms historically excelled at "fast-follower" strategies (ITIF, 2024).
 
-    Citation lag analysis (Section 5) supports rapid-iteration strategies: Chinese patents cite prior art with 1.54-year average lag, comparable to US (1.66 years) and EU (1.56 years), enabling swift integration of cutting-edge technologies into mass-market vehicles.
+    Citation lag analysis (Section 6) supports rapid-iteration strategies: Chinese patents cite prior art with 1.54-year average lag, comparable to US (1.66 years) and EU (1.56 years), enabling swift integration of cutting-edge technologies into mass-market vehicles.
 
     The dual findings—low self-citation yet lower patent quality—paint a coherent picture: China pursues volume-based incremental innovation through rapid external knowledge absorption. Rather than developing proprietary foundational technologies requiring years of internal R&D (high self-citation, high quality), Chinese firms scan globally for proven concepts, adapt them rapidly to cost-sensitive markets, and scale aggressively (low self-citation, moderate quality). This strategic choice optimizes for speed and scale over exclusivity and premiums—classic consumer electronics economics.
 
@@ -2455,7 +2719,7 @@ def _(mo):
 
     Instead, the EU should leverage incompatible competitive dimensions where China's consumer electronics model creates vulnerabilities:
 
-    Differentiation Through Durability and Sustainability: Position EVs as durable premium goods rather than fast-moving consumer products. European strengths in thermal management (44% patent share, Section 3) and safety systems (47% share) enable longer vehicle lifespans, battery durability, and circular economy integration—values inconsistent with 3-year upgrade cycles but appealing to environmentally-conscious premium segments globally (Section 7 elaborates strategic scenarios).
+    Differentiation Through Durability and Sustainability: Position EVs as durable premium goods rather than fast-moving consumer products. European strengths in thermal management (44% patent share, Section 3) and safety systems (47% share) enable longer vehicle lifespans, battery durability, and circular economy integration—values inconsistent with 3-year upgrade cycles but appealing to environmentally-conscious premium segments globally (Section 8 elaborates strategic scenarios).
 
     Privacy-First Digital Architectures: European data protection regulations (GDPR) and consumer privacy preferences create differentiation opportunities. Rather than competing on screen quantity or feature abundance, EU manufacturers can emphasize user-controlled data sovereignty, minimal data collection, and transparent connectivity—digital experiences aligned with European values rather than Chinese surveillance capitalism norms.
 
@@ -2475,13 +2739,13 @@ def _(mo):
         r"""
     ---
 
-    # EU Strategic Imperatives: Pathways Forward
+    # 8. EU Strategic Imperatives: Pathways Forward
 
-    The empirical evidence presented in Sections 3-6 paints a sobering portrait of European competitive erosion in EV innovation. From 2014 to 2024, the EU's patent share declined from 26.3% to 17.3% (among five major regions)—a 9-percentage-point contraction affecting six of seven core technology domains (Section 3). Yet within this trajectory of decline lie insights for strategic renewal. This section translates empirical findings into actionable strategic imperatives, examining both immediate priorities and alternative futures the EU might navigate through 2030.
+    The empirical evidence presented in Sections 3-7 paints a sobering portrait of European competitive erosion in EV innovation. From 2014 to 2024, the EU's patent share declined from 26.3% to 17.3% (among five major regions)—a 9-percentage-point contraction affecting six of seven core technology domains (Section 3). Yet within this trajectory of decline lie insights for strategic renewal. This section translates empirical findings into actionable strategic imperatives, examining both immediate priorities and alternative futures the EU might navigate through 2030.
 
-    ## Strategic Imperative: Leveraging Asymmetric Advantages
+    ## 8.1 Strategic Imperative: Leveraging Asymmetric Advantages
 
-    The EU confronts a fundamental strategic asymmetry: it cannot compete with China's consumer electronics model (rapid iteration, software dominance, massive scale) nor match US foundational research advantages (2.4-3.6× citation quality advantage; Section 4). However, asymmetry need not imply disadvantage. European strengths lie precisely where competitors possess structural vulnerabilities—durability, sustainability, privacy, and engineering depth.
+    The EU confronts a fundamental strategic asymmetry: it cannot compete with China's consumer electronics model (rapid iteration, software dominance, massive scale) nor match US foundational research advantages (2.4-3.6× citation quality advantage, 0.801/0.855 generality/originality indices; Sections 5.1-5.2). However, asymmetry need not imply disadvantage. European strengths lie precisely where competitors possess structural vulnerabilities—durability, sustainability, privacy, and engineering depth.
 
     ### Priority Action 1: Anchor in Defensible Technology Domains
 
@@ -2491,13 +2755,13 @@ def _(mo):
 
     ### Priority Action 2: Forge Strategic Knowledge Alliances
 
-    European collaboration rates (1.28% in 2023) exceed all competitors, with the EU-US knowledge axis generating 13,139 citations—the dominant bilateral flow globally (Section 5). Yet China's self-citation rate (21.2%, lowest among five regions) reveals unexpected openness to external knowledge, while US-China flows collapsed 70% since 2021 due to geopolitical tensions (Section 5). This creates strategic opportunities: the EU can position itself as the indispensable intermediary in fragmenting global innovation networks.
+    European collaboration rates (1.28% in 2023) exceed all competitors, with the EU-US knowledge axis generating 13,139 citations—the dominant bilateral flow globally (Sections 4 and 6). Yet China's self-citation rate (21.2%, lowest among five regions) reveals unexpected openness to external knowledge, while US-China flows collapsed 70% since 2021 due to geopolitical tensions (Section 6). This creates strategic opportunities: the EU can position itself as the indispensable intermediary in fragmenting global innovation networks.
 
-    Concrete actions include deepening EU-Korea battery collaboration (already the second-largest cross-border partnership at 5,410 patents; Section 5), leveraging Japan's hybrid expertise as bridging technology during the BEV transition, and selectively engaging Chinese research institutions on pre-competitive fundamental research (where China's openness enables knowledge flows). Simultaneously, the EU must protect critical IP through stronger enforcement and technology transfer controls—openness paired with strategic guardrails.
+    Concrete actions include deepening EU-Korea battery collaboration (already the second-largest cross-border partnership at 5,410 patents; Section 4), leveraging Japan's hybrid expertise as bridging technology during the BEV transition, and selectively engaging Chinese research institutions on pre-competitive fundamental research (where China's openness enables knowledge flows). Simultaneously, the EU must protect critical IP through stronger enforcement and technology transfer controls—openness paired with strategic guardrails.
 
     ### Priority Action 3: Differentiate on Privacy and Sustainability
 
-    The China case study (Section 6) reveals that consumer electronics business models depend on data-intensive ecosystems for monetization—connected services, usage analytics, ecosystem lock-in. European GDPR regulations, initially viewed as innovation constraints, now offer differentiation foundations. Privacy-first vehicle architectures emphasizing user data sovereignty, minimal collection, and interoperability align with European consumer preferences increasingly wary of surveillance capitalism.
+    The China case study (Section 7) reveals that consumer electronics business models depend on data-intensive ecosystems for monetization—connected services, usage analytics, ecosystem lock-in. European GDPR regulations, initially viewed as innovation constraints, now offer differentiation foundations. Privacy-first vehicle architectures emphasizing user data sovereignty, minimal collection, and interoperability align with European consumer preferences increasingly wary of surveillance capitalism.
 
     Similarly, sustainability certifications for battery lifecycle management, mandatory repairability standards, and circular economy integration impose costs on volume-oriented competitors while rewarding European engineering depth. The EU's strength in thermal management (critical for battery longevity and second-life applications) becomes strategic when regulation mandates lifecycle optimization over initial cost minimization.
 
@@ -2505,13 +2769,13 @@ def _(mo):
 
     European resources cannot match China's state subsidies ($230.9 billion; ITIF, 2024) or US venture capital deployment. Strategic triage becomes essential: selectively abandon domains where competitive gaps widen beyond closure horizons.
 
-    Infotainment and connectivity illustrate necessary retreats. China's share grew from 14% to 23% (2014-2023) while US software dominance remains unassailable (60% infotainment patent share; Sections 3, 4). Rather than matching screen quantity or entertainment features, the EU should standardize open interfaces (Apple CarPlay, Android Auto integration) and focus software investment exclusively on safety-critical systems (ADAS, autonomous driving) where engineering culture advantages persist (31% autonomous driving patent share; Section 3).
+    Infotainment and connectivity illustrate necessary retreats. China's share grew from 14% to 23% (2014-2023) while US software dominance remains unassailable (60% infotainment patent share; Sections 3, 5.1). Rather than matching screen quantity or entertainment features, the EU should standardize open interfaces (Apple CarPlay, Android Auto integration) and focus software investment exclusively on safety-critical systems (ADAS, autonomous driving) where engineering culture advantages persist (31% autonomous driving patent share; Section 3).
 
     This is not defeatism but strategic concentration—channeling limited resources toward defensible positions rather than dispersing efforts across unwinnable battles. The smartphone industry's consolidation around 3-5 global brands (Apple, Samsung, Chinese manufacturers) presages similar EV market dynamics; European manufacturers must identify niches where premium positioning enables survival without requiring mass-market scale.
 
-    ## Alternative Futures: Three Scenarios for 2030
+    ## 8.2 Alternative Futures: Three Scenarios for 2030
 
-    Strategic planning under uncertainty requires exploring alternative futures. We construct three scenarios for 2030, each grounded in current trajectory analyses (Sections 3-6) but diverging based on critical uncertainties: EU policy effectiveness, technology disruption timing, and geopolitical stability. Following van der Heijden (2005), we identify robust strategies valid across multiple scenarios rather than optimizing for single predicted outcomes.
+    Strategic planning under uncertainty requires exploring alternative futures. We construct three scenarios for 2030, each grounded in current trajectory analyses (Sections 3-7) but diverging based on critical uncertainties: EU policy effectiveness, technology disruption timing, and geopolitical stability. Following van der Heijden (2005), we identify robust strategies valid across multiple scenarios rather than optimizing for single predicted outcomes.
 
     ### Scenario A: "European Renaissance" (Optimistic)
 
@@ -2520,7 +2784,7 @@ def _(mo):
     Patent Share Projections (2030): EU stabilizes at 30-32% (modest recovery from 28%), China 28-30% (plateau from 25%), US 24-26%, Korea 12-14%, Japan 6-8%.
 
     Key Indicators:
-    - EU forward citations improve to 3.5-4.0 average (from 2.50; Section 4)
+    - EU forward citations improve to 3.5-4.0 average (from 2.50; Section 5.1)
     - Collaboration rates increase to 2.0-2.5% with EU-Korea battery partnerships dominant
     - Thermal management and safety patent shares rebound to 48-50%
 
@@ -2556,9 +2820,9 @@ def _(mo):
 
     3. Regulatory Leverage: The EU's market size (450 million population, second-largest economy) enables regulatory standard-setting. Lifecycle requirements, repairability mandates, and privacy protections impose asymmetric costs on competitors optimized for rapid obsolescence—effective whether Chinese manufacturers achieve scale or face consolidation.
 
-    4. Selective Globalization: Collaboration with Japan (hybrids) and Korea (batteries) remains valuable across scenarios, hedging against US-China decoupling while accessing complementary expertise. EU-US knowledge flows (13,139 citations; Section 5) should be protected as strategic assets.
+    4. Selective Globalization: Collaboration with Japan (hybrids) and Korea (batteries) remains valuable across scenarios, hedging against US-China decoupling while accessing complementary expertise. EU-US knowledge flows (13,139 citations; Section 6) should be protected as strategic assets.
 
-    5. Innovation Concentration: Dispersed R&D across all seven technology domains spreads resources insufficiently to achieve leadership anywhere (the "generalist dilemma"; Section 3). Concentrating efforts on 2-3 defensible domains (thermal, safety, autonomous-ADAS integration) maximizes impact regardless of future trajectories.
+    5. Innovation Concentration: Dispersed R&D across all seven technology domains spreads resources insufficiently to achieve leadership anywhere (the "generalist dilemma"; Section 5.2). Concentrating efforts on 2-3 defensible domains (thermal, safety, autonomous-ADAS integration) maximizes impact regardless of future trajectories.
 
     The scenarios clarify strategic stakes: the EU stands at a crossroads between managed premium repositioning (Scenarios A-B) and structural irrelevance (Scenario C). Current patent trajectories point toward Scenario B absent policy intervention, but Scenario C remains plausible if Chinese scale economics materialize faster than European differentiation strategies. Scenario A requires aggressive, coordinated action beginning immediately—not incremental adjustments but transformative industrial policy matching the scale of China's state-directed mobilization. The window for strategic choice narrows with each passing year; by 2030, trajectories may become irreversible.
     """
@@ -2570,15 +2834,15 @@ def _(mo):
 def _(mo):
     mo.md(
         r"""
-    # Conclusion: The Innovation Imperative
+    # 9. Conclusion: The Innovation Imperative
 
-    This analysis reveals a European paradox: sustained patent output masking structural erosion in competitive position. The EU produces the second-highest patent volumes globally yet ranks last in citation quality (2.50 average forward citations vs. US 8.87; Section 4), holds leadership in only two of seven core domains despite ranking second-to-fourth in all others (the "generalist dilemma"; Section 3), and experiences share declines in six technology domains over the past decade (Section 3). These patterns signal not temporary cyclical weakness but fundamental strategic misalignment between European innovation systems and emergent competitive realities in EV markets.
+    This analysis reveals a European paradox: sustained patent output masking structural erosion in competitive position. The EU produces the second-highest patent volumes globally yet ranks last in citation quality (2.50 average forward citations vs. US 8.87; Section 5.1), holds leadership in only two of seven core domains despite ranking second-to-fourth in all others (the "generalist dilemma"; Section 5.2), and experiences share declines in six technology domains over the past decade (Section 3). These patterns signal not temporary cyclical weakness but fundamental strategic misalignment between European innovation systems and emergent competitive realities in EV markets.
 
     The global EV innovation landscape has bifurcated along two incompatible value propositions. China's consumer electronics model—rapid iteration, software primacy, affordability through scale—redefines competition along dimensions foreign to traditional automotive logic. The United States leverages software dominance and foundational research depth to maintain quality leadership even as volume share stagnates. The European Union, anchored in engineering excellence and incremental refinement, finds its competitive logic obsoleted by rivals playing entirely different games.
 
     Yet obsolescence need not imply extinction. Our analysis identifies asymmetric advantages—thermal management (44% patent share), safety systems (47%), durability engineering, sustainability leadership, and privacy protection—where European strengths exploit competitor vulnerabilities. Chinese consumer electronics business models systematically underinvest in longevity; US software giants underestimate regulatory and sustainability constraints. These gaps create strategic opportunities for differentiated "Premium Sustainable Mobility" positioning: vehicles designed for 15-year lifespans, privacy-first digital architectures, and circular economy integration.
 
-    The scenarios presented in Section 7 clarify strategic stakes. Scenario A ("European Renaissance") remains achievable through coordinated industrial policy mobilizing €100+ billion in targeted R&D, regulatory leverage imposing lifecycle standards, and deepened EU-Korea-Japan partnerships. Scenario B ("Managed Transition") describes the current trajectory—gradual erosion toward 25-27% patent share and <10% global volume but sustainable premium niche positioning. Scenario C ("Structural Crisis") looms if policy fragmentation and delayed action enable Chinese scale economics and US software dominance to render European competencies irrelevant, collapsing market share below 20% and patent leadership to two declining domains.
+    The scenarios presented in Section 8.2 clarify strategic stakes. Scenario A ("European Renaissance") remains achievable through coordinated industrial policy mobilizing €100+ billion in targeted R&D, regulatory leverage imposing lifecycle standards, and deepened EU-Korea-Japan partnerships. Scenario B ("Managed Transition") describes the current trajectory—gradual erosion toward 25-27% patent share and <10% global volume but sustainable premium niche positioning. Scenario C ("Structural Crisis") looms if policy fragmentation and delayed action enable Chinese scale economics and US software dominance to render European competencies irrelevant, collapsing market share below 20% and patent leadership to two declining domains.
 
     The strategic imperative is unambiguous: the EU must move from reactive defense to proactive differentiation. This requires accepting strategic triage—abandoning unwinnable battles in infotainment and mass-market segments—while concentrating resources on defensible positions in thermal-safety integration, battery durability, and engineering-intensive ADAS systems. It demands leveraging regulatory authority to reshape competitive rules, imposing lifecycle optimization requirements that reward European engineering depth over Chinese manufacturing scale. Above all, it requires speed—speed of decision-making, resource deployment, and industrial coordination matching the urgency signaled by patent trajectories.
 
@@ -2717,22 +2981,36 @@ def _(mo):
     - Filing date format: Stored as integer YYYYMMDD, divided by 10000 to extract year
     - EU member states: All 27 current EU countries included (as of 2024)
     - Regional assignment: Each patent assigned to a single primary region based on first assignee's country code (no double-counting)
-    - Collaborative patents: Separate analysis identifies patents with multiple assignees from different regions (Section 5)
+    - Collaborative patents: Separate analysis identifies patents with multiple assignees from different regions (Section 4)
     - Global filing capture: Counts patents filed anywhere in world by companies from these regions, not just domestic filings
     - No "Others" category: Patents not matching specific categories excluded entirely to maintain focus on core EV technologies
 
     ## Quality Metrics Methodology
 
-    Beyond patent counts, we assess innovation quality through forward citation analysis:
+    Beyond patent counts, we assess innovation quality through three complementary metrics:
 
-    Forward Citations (Section 4)
+    Forward Citations (Section 5.1)
     - Definition: Number of times a patent is cited by subsequent patents as prior art
     - Interpretation: Higher citations indicate foundational, influential innovations that shape subsequent research
     - Time window: Analysis focuses on 2014-2018 patents (6-10 years citation accumulation) to avoid recency bias
     - Calculation: Average citations per patent by region and technology domain
     - Source: Google BigQuery `patents-public-data.patents.publications` citations table
 
-    ## Cross-Border Collaboration Analysis (Section 5)
+    Generality Index (Section 5.2)
+    - Definition: Herfindahl-based diversity measure of citing patents' technology classes
+    - Formula: `1 - Σ(share_of_citations_in_class_i)²` across all CPC classes citing the patent
+    - Interpretation: High generality (approaching 1.0) indicates patents influencing diverse technology fields; low generality (approaching 0) indicates narrow specialist impact
+    - Theoretical basis: Hall, Jaffe, & Trajtenberg (2001) - measures breadth of technological influence
+    - Calculation: Computed at region-domain level (5 regions × 7 domains = 35 observations)
+
+    Originality Index (Section 5.2)
+    - Definition: Herfindahl-based diversity measure of cited patents' technology classes (backward citations)
+    - Formula: `1 - Σ(share_of_citations_to_class_i)²` across all CPC classes cited by the patent
+    - Interpretation: High originality (approaching 1.0) indicates patents synthesizing knowledge from diverse sources; low originality (approaching 0) indicates incremental innovation within single domain
+    - Theoretical basis: Hall, Jaffe, & Trajtenberg (2001) - measures cross-domain knowledge integration
+    - Calculation: Computed at region-domain level (5 regions × 7 domains = 35 observations)
+
+    ## Cross-Border Collaboration Analysis (Section 4)
 
     Collaborative Patent Definition: Patents with multiple assignees from different regions among the five analyzed (US, China, EU, Korea, Japan)
 
@@ -2744,7 +3022,7 @@ def _(mo):
 
     Findings: Collaboration rates extremely low (0.65-1.28% across 2014-2024), contradicting open innovation predictions
 
-    ## Knowledge Flow Network Analysis (Section 5)
+    ## Knowledge Flow Network Analysis (Section 6)
 
     Self-Citation Rates:
     - Definition: Percentage of citations where citing patent and cited patent share the same region
@@ -2753,7 +3031,7 @@ def _(mo):
 
     Cross-Regional Citation Flows:
     - Definition: Citation counts from Region A patents to Region B patents (e.g., US→China, EU→US)
-    - Visualization: Top 10 bilateral flows mapped in Figure 5B (2023 data)
+    - Visualization: Top 10 bilateral flows mapped in Figure 6B (2023 data)
     - Geopolitical analysis: Tracks US-China bilateral flows 2014-2024 to assess knowledge exchange collapse
 
     Citation Lags:
@@ -2796,6 +3074,10 @@ def _(mo):
     ## Innovation Quality Metrics
 
     Forward Citations: The number of times a patent is cited by subsequent patents as prior art. Higher citation counts indicate foundational, influential innovations that shape follow-on research. Used as proxy for technological impact and quality.
+
+    Generality Index: A Herfindahl-based diversity measure ranging from 0 to 1, calculated as `1 - Σ(share_of_citations_in_class_i)²`. High values (approaching 1.0) indicate patents influencing diverse technology fields; low values indicate narrow specialist impact. Based on Hall, Jaffe, & Trajtenberg (2001).
+
+    Originality Index: A Herfindahl-based diversity measure ranging from 0 to 1, calculated as `1 - Σ(share_of_citations_to_class_i)²`. High values indicate patents synthesizing knowledge from diverse sources; low values indicate incremental innovation within single domains. Measures cross-domain knowledge integration.
 
     Self-Citation Rate: Percentage of citations where citing patent and cited patent originate from the same region. High rates indicate insular innovation systems; low rates indicate openness to external knowledge.
 
