@@ -21,7 +21,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
     # Cell tags: setup
     # Setup: Import required libraries
@@ -103,7 +103,7 @@ def _(mo):
 
     ## Methodology Overview
 
-    We analyze 385,000+ patents from Google's Public Patent Dataset (2014-2024) filed by inventors and assignees from the five major regions, categorized into seven core EV technology domains using Cooperative Patent Classification (CPC) codes: Battery Technology, EV Propulsion & Charging, Autonomous Driving, Hybrid & Energy Management, Safety Systems, Thermal Management, and Infotainment & Connectivity. Patents are counted by assignee/inventor country rather than patent office location, capturing "export-quality" innovation. Quality assessment employs forward citations, generality indices, and originality indices. Complete methodology and CPC code mapping appear in Appendix A.
+    We analyze 385,000+ patents from Google's Public Patent Dataset (2014-2024) filed by inventors and assignees from the five major regions, categorized into seven core EV technology domains using Cooperative Patent Classification (CPC) codes: Battery Technology, EV Propulsion & Charging, Autonomous Driving, Hybrid & Energy Management, Safety Systems, Thermal Management, and Infotainment & Connectivity. Patents are counted by assignee/inventor country rather than patent office location, capturing "export-quality" innovation. Quality assessment employs forward citations, generality indices, and originality indices. Complete methodology and CPC code mapping appear in Appendix A; all data, queries, and code are publicly available at https://github.com/flyersworder/ev-patent-analysis.
 
     ## Chapter Structure
 
@@ -659,13 +659,13 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""# Cross-Border Collaboration and Knowledge Flows in EV Innovation""")
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
@@ -1988,7 +1988,7 @@ def _(mo):
 
     ### Technical Implementation
 
-    Data was queried from Google BigQuery's `patents-public-data.patents.publications` table using SQL, joining with CPC classification definitions to categorize patents. Complete SQL queries and analytical methods are available from the authors upon request.
+    Data was queried from Google BigQuery's `patents-public-data.patents.publications` table using SQL, joining with CPC classification definitions to categorize patents. **Complete SQL queries, data files, and analytical code are publicly available at: https://github.com/flyersworder/ev-patent-analysis**
     """
     )
     return
@@ -2152,7 +2152,14 @@ def _(mo):
 
     ## Reproducibility
 
-    This analysis is fully reproducible using Google BigQuery's public patent dataset (`patents-public-data.patents.publications`). The complete SQL queries, data processing code, and analytical methods are available from the authors upon request. Primary data was extracted October 2024; citation and collaboration data extracted January 2025, reflecting patent publications available as of those dates.
+    This analysis is fully reproducible using Google BigQuery's public patent dataset (`patents-public-data.patents.publications`). **All materials are publicly available at: https://github.com/flyersworder/ev-patent-analysis**, including:
+
+    - Complete SQL queries (7 queries in `sql/` directory)
+    - Raw data files (7 CSV files in `data/` directory)
+    - Analysis code (marimo notebook: `patent_analysis_chapter.py`)
+    - Full documentation (README.md and DATA_README.md)
+
+    Primary data was extracted October 2024; citation and collaboration data extracted January 2025, reflecting patent publications available as of those dates.
 
     ---
     """
@@ -2160,7 +2167,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
