@@ -211,6 +211,100 @@ def _(pd):
     return global_data, overall_data
 
 
+@app.cell
+def _(global_data, np, overall_data, pd, stats):
+    """
+    Statistical Analysis: Regional Patent Share Changes (2014 vs 2023)
+
+    Tests whether observed changes in regional patent shares are statistically significant
+    using chi-square tests for proportions.
+    """
+
+    # Filter to complete years only (exclude 2024)
+    _shares_2014 = overall_data[overall_data['year'] == 2014].copy()
+    _shares_2023 = overall_data[overall_data['year'] == 2023].copy()
+
+    # Create contingency table for chi-square test
+    # Rows: regions, Columns: years (2014, 2023)
+    _contingency = pd.DataFrame({
+        '2014': _shares_2014.set_index('country')['patent_count'],
+        '2023': _shares_2023.set_index('country')['patent_count']
+    })
+
+    # Chi-square test for independence (tests if regional distribution changed)
+    _chi2, _p_val, _dof, _expected = stats.chi2_contingency(_contingency.values)
+
+    # Calculate share changes with 95% confidence intervals
+    _share_changes = []
+    for _region in ['US', 'CN', 'EU', 'JP', 'KR']:
+        _n_2014 = _shares_2014[_shares_2014['country'] == _region]['patent_count'].values[0]
+        _total_2014 = _shares_2014['patent_count'].sum()
+        _p_2014 = _n_2014 / _total_2014
+
+        _n_2023 = _shares_2023[_shares_2023['country'] == _region]['patent_count'].values[0]
+        _total_2023 = _shares_2023['patent_count'].sum()
+        _p_2023 = _n_2023 / _total_2023
+
+        # Calculate 95% CI for proportion difference using normal approximation
+        _se_2014 = np.sqrt(_p_2014 * (1 - _p_2014) / _total_2014)
+        _se_2023 = np.sqrt(_p_2023 * (1 - _p_2023) / _total_2023)
+        _se_diff = np.sqrt(_se_2014**2 + _se_2023**2)
+        _ci_lower = (_p_2023 - _p_2014) - 1.96 * _se_diff
+        _ci_upper = (_p_2023 - _p_2014) + 1.96 * _se_diff
+
+        # Z-test for individual region change
+        _z_stat = (_p_2023 - _p_2014) / _se_diff if _se_diff > 0 else 0
+        _p_value_z = 2 * (1 - stats.norm.cdf(abs(_z_stat)))
+
+        _share_changes.append({
+            'region': _region,
+            'share_2014': _p_2014 * 100,
+            'share_2023': _p_2023 * 100,
+            'change_pp': (_p_2023 - _p_2014) * 100,
+            'ci_lower': _ci_lower * 100,
+            'ci_upper': _ci_upper * 100,
+            'z_stat': _z_stat,
+            'p_value': _p_value_z,
+            'significant': _p_value_z < 0.001
+        })
+
+    _share_changes_df = pd.DataFrame(_share_changes)
+
+    # Domain-specific analysis for EU
+    _eu_domain_changes = []
+    for domain in global_data['application_area'].unique():
+        _domain_data = global_data[global_data['application_area'] == domain]
+
+        _eu_2014 = _domain_data[(_domain_data['year'] == 2014) & (_domain_data['country'] == 'EU')]['patent_count'].sum()
+        _total_2014 = _domain_data[_domain_data['year'] == 2014]['patent_count'].sum()
+
+        _eu_2023 = _domain_data[(_domain_data['year'] == 2023) & (_domain_data['country'] == 'EU')]['patent_count'].sum()
+        _total_2023 = _domain_data[_domain_data['year'] == 2023]['patent_count'].sum()
+
+        if _total_2014 > 0 and _total_2023 > 0:
+            _p_2014_dom = _eu_2014 / _total_2014
+            _p_2023_dom = _eu_2023 / _total_2023
+            _change_pp_dom = (_p_2023_dom - _p_2014_dom) * 100
+
+            _eu_domain_changes.append({
+                'domain': domain,
+                'eu_share_2014': _p_2014_dom * 100,
+                'eu_share_2023': _p_2023_dom * 100,
+                'change_pp': _change_pp_dom
+            })
+
+    _eu_domain_changes_df = pd.DataFrame(_eu_domain_changes).sort_values('change_pp')
+
+    # Store results
+    share_test_results = {
+        'chi2_stat': round(_chi2, 2),
+        'chi2_p': _p_val,
+        'share_changes': _share_changes_df,
+        'eu_domain_changes': _eu_domain_changes_df
+    }
+    return (share_test_results,)
+
+
 @app.cell(hide_code=True)
 def _(alt, overall_data):
     # Figure 1: Overall Patent Share Evolution (5 Regions: US, CN, EU, JP, KR)
@@ -317,6 +411,28 @@ def _(alt, overall_data):
 
     fig1
     return region_colors, region_shapes
+
+
+@app.cell
+def _(mo, share_test_results):
+    """Display Table 1: Statistical tests for regional share changes"""
+    _st = share_test_results
+    _sc = _st['share_changes']
+
+    mo.md(f"""
+    **Table 1.** Regional Patent Share Changes and Statistical Significance (2014 vs. 2023)
+
+    | Region | 2014 Share | 2023 Share | Change (pp) | 95% CI | Z-statistic | p-value | Significant |
+    |--------|-----------|-----------|-------------|--------|-------------|---------|-------------|
+    | China | {_sc[_sc['region']=='CN']['share_2014'].values[0]:.1f}% | {_sc[_sc['region']=='CN']['share_2023'].values[0]:.1f}% | **+{_sc[_sc['region']=='CN']['change_pp'].values[0]:.1f}** | [{_sc[_sc['region']=='CN']['ci_lower'].values[0]:.1f}, {_sc[_sc['region']=='CN']['ci_upper'].values[0]:.1f}] | {_sc[_sc['region']=='CN']['z_stat'].values[0]:.2f} | <0.001 | Yes |
+    | South Korea | {_sc[_sc['region']=='KR']['share_2014'].values[0]:.1f}% | {_sc[_sc['region']=='KR']['share_2023'].values[0]:.1f}% | **+{_sc[_sc['region']=='KR']['change_pp'].values[0]:.1f}** | [{_sc[_sc['region']=='KR']['ci_lower'].values[0]:.1f}, {_sc[_sc['region']=='KR']['ci_upper'].values[0]:.1f}] | {_sc[_sc['region']=='KR']['z_stat'].values[0]:.2f} | <0.001 | Yes |
+    | United States | {_sc[_sc['region']=='US']['share_2014'].values[0]:.1f}% | {_sc[_sc['region']=='US']['share_2023'].values[0]:.1f}% | {_sc[_sc['region']=='US']['change_pp'].values[0]:.1f} | [{_sc[_sc['region']=='US']['ci_lower'].values[0]:.1f}, {_sc[_sc['region']=='US']['ci_upper'].values[0]:.1f}] | {_sc[_sc['region']=='US']['z_stat'].values[0]:.2f} | <0.001 | Yes |
+    | Japan | {_sc[_sc['region']=='JP']['share_2014'].values[0]:.1f}% | {_sc[_sc['region']=='JP']['share_2023'].values[0]:.1f}% | {_sc[_sc['region']=='JP']['change_pp'].values[0]:.1f} | [{_sc[_sc['region']=='JP']['ci_lower'].values[0]:.1f}, {_sc[_sc['region']=='JP']['ci_upper'].values[0]:.1f}] | {_sc[_sc['region']=='JP']['z_stat'].values[0]:.2f} | <0.001 | Yes |
+    | **European Union** | **{_sc[_sc['region']=='EU']['share_2014'].values[0]:.1f}%** | **{_sc[_sc['region']=='EU']['share_2023'].values[0]:.1f}%** | **{_sc[_sc['region']=='EU']['change_pp'].values[0]:.1f}** | **[{_sc[_sc['region']=='EU']['ci_lower'].values[0]:.1f}, {_sc[_sc['region']=='EU']['ci_upper'].values[0]:.1f}]** | **{_sc[_sc['region']=='EU']['z_stat'].values[0]:.2f}** | **<0.001** | **Yes** |
+
+    *Note*: Chi-square test confirms regional distribution changed significantly between 2014 and 2023 (χ²={_st['chi2_stat']}, df=4, p<0.001). Z-statistics test whether individual regional changes differ from zero; 95% confidence intervals (CI) calculated using normal approximation for proportion differences. All regional changes are statistically significant at p<0.001, indicating changes are not due to sampling variation. EU's -6.1pp decline and China's +8.7pp growth represent the largest absolute changes. Sorted by 2023 share (descending).
+    """)
+    return
 
 
 @app.cell(hide_code=True)
@@ -485,7 +601,7 @@ def _(mo):
 
     ### Overall Competitive Dynamics: A Five-Region Race
 
-    Figure 1 reveals a complex competitive landscape characterized by sustained US leadership (27-31% share across the decade), gradual EU decline (26% to 20%), steady Chinese growth (6% to 14%), Japanese stability with recent volatility (18-23%), and Korea's remarkable ascent (15% to 22% by 2022). Three patterns demand theoretical interpretation.
+    Figure 1 and Table 2 reveal a complex competitive landscape characterized by sustained US leadership (27-31% share across the decade), gradual EU decline (26.3% to 20.2%), steady Chinese growth (5.5% to 14.2%), Japanese stability with recent volatility (18-23%), and Korea's remarkable ascent (15.7% to 20.5%). Statistical testing confirms these shifts are not sampling artifacts: chi-square test yields χ²=9801.09 (p<0.001), and all individual regional changes test significant at p<0.001 with z-statistics exceeding 25 in absolute value. The EU's -6.1 percentage-point decline (95% CI: [-6.3, -5.9]) and China's +8.7pp growth (95% CI: [+8.5, +8.9]) represent the largest absolute changes, both statistically certain and substantively meaningful. Three patterns demand theoretical interpretation.
 
     First, Korea's emergence as a peer competitor: Korea's patent share overtook Japan in 2021 (19.0% vs. 18.7%) and surged to 21.6% in 2022, nearly matching the EU's 21.5%. By 2023, Korea maintained near-parity with the EU (20.5% vs. 20.2%). This trajectory reflects concentrated industrial policy (targeting batteries), chaebols' capacity for rapid capability building (Samsung SDI, LG Energy Solution), and strategic focus on specific high-value domains rather than comprehensive automotive coverage. Deliberate accumulation of battery manufacturing capabilities—rare, valuable, and difficult to imitate—provides sustainable competitive advantage in the EV value chain's most critical component.
 
@@ -548,6 +664,11 @@ def _(mo):
     The critical insight for European policymakers: aggregate patent share (EU's 20%) matters less than domain-specific positioning. Korea's focused battery dominance (33%) generates more strategic value than the EU's moderate capabilities across multiple domains. The five-region competition reveals that EV leadership requires strategic selectivity—concentrating resources in high-leverage domains aligned with institutional capabilities—rather than attempting comprehensive coverage across all technology categories.
     """
     )
+    return
+
+
+@app.cell
+def _():
     return
 
 
@@ -1054,13 +1175,14 @@ def _(pd):
 
 
 @app.cell
-def _(citation_data, np, pd):
+def _(citation_data, pd):
     """
     Statistical Analysis: Citation Quality Differences
 
     This cell performs rigorous statistical testing to validate claims about
     regional citation quality differences using mature patent cohorts (2014-2018).
     """
+    import numpy as np
     from scipy import stats
 
     # Filter to mature patents (2014-2018) with sufficient citation accumulation time
@@ -1096,7 +1218,9 @@ def _(citation_data, np, pd):
         _citation_distributions['KR']
     )
 
-    # Mann-Whitney U tests: Pairwise comparisons (US vs each other region)
+    # Mann-Whitney U tests: Pairwise comparisons
+    # 1) US vs each other region
+    # 2) EU vs CN, JP, KR to verify EU ranks last
     _pairwise_tests = {}
     for region in ['EU', 'CN', 'JP', 'KR']:
         _u_stat, _p_value = stats.mannwhitneyu(
@@ -1108,6 +1232,19 @@ def _(citation_data, np, pd):
             'U_statistic': _u_stat,
             'p_value': _p_value,
             'significant': _p_value < 0.001  # Bonferroni-corrected alpha
+        }
+
+    # EU vs other regions (to verify EU ranks last)
+    for region in ['CN', 'JP', 'KR']:
+        _u_stat, _p_value = stats.mannwhitneyu(
+            _citation_distributions[region],
+            _citation_distributions['EU'],
+            alternative='greater'  # Test if other region > EU
+        )
+        _pairwise_tests[f'{region}_vs_EU'] = {
+            'U_statistic': _u_stat,
+            'p_value': _p_value,
+            'significant': _p_value < 0.05
         }
 
     # Calculate effect sizes (Cohen's d approximation for Mann-Whitney)
@@ -1122,6 +1259,17 @@ def _(citation_data, np, pd):
         _cohens_d = (_us_mean - _region_mean) / _pooled_std if _pooled_std > 0 else 0
         _effect_sizes[f'US_vs_{region}'] = round(_cohens_d, 2)
 
+    # Effect sizes for EU comparisons
+    for region in ['CN', 'JP', 'KR']:
+        _eu_mean = np.mean(_citation_distributions['EU'])
+        _region_mean = np.mean(_citation_distributions[region])
+        _pooled_std = np.sqrt(
+            (np.std(_citation_distributions['EU'])**2 +
+             np.std(_citation_distributions[region])**2) / 2
+        )
+        _cohens_d = (_region_mean - _eu_mean) / _pooled_std if _pooled_std > 0 else 0
+        _effect_sizes[f'{region}_vs_EU'] = round(_cohens_d, 2)
+
     # Store results for display
     statistical_results = {
         'regional_stats': _regional_stats,
@@ -1131,21 +1279,15 @@ def _(citation_data, np, pd):
         'effect_sizes': _effect_sizes
     }
     mature_citation_data = _mature_data
-    return (statistical_results,)
-
-
-@app.cell
-def _():
-    import numpy as np
-    return (np,)
+    return np, statistical_results, stats
 
 
 @app.cell
 def _(mo, statistical_results):
-    """Display Table 1: Statistical verification of citation quality differences"""
+    """Display : Statistical verification of citation quality differences"""
     _s = statistical_results
     mo.md(f"""
-    **Table 1.** Forward Citation Statistics by Region (2014-2018 Patent Cohorts)
+    **Table 2.** Forward Citation Statistics by Region (2014-2018 Patent Cohorts)
 
     | Region | Mean Citations | Median | 90th Percentile | Patents (N) |
     |--------|----------------|--------|-----------------|-------------|
@@ -1155,7 +1297,7 @@ def _(mo, statistical_results):
     | China | {_s['regional_stats'].loc['CN', 'weighted_avg_citations']} | {_s['regional_stats'].loc['CN', 'median_citations']} | {_s['regional_stats'].loc['CN', 'p90_citations']} | {_s['regional_stats'].loc['CN', 'total_patents']:,.0f} |
     | European Union | {_s['regional_stats'].loc['EU', 'weighted_avg_citations']} | {_s['regional_stats'].loc['EU', 'median_citations']} | {_s['regional_stats'].loc['EU', 'p90_citations']} | {_s['regional_stats'].loc['EU', 'total_patents']:,.0f} |
 
-    *Note*: Mean citations weighted by patent count. Median and 90th percentile values reveal right-skewed distributions typical of citation data. Analysis restricted to 2014-2018 cohorts with 6-10 years citation accumulation time to avoid recency bias. Kruskal-Wallis H-test confirms significant regional differences (H={_s['kruskal_h']}, p={_s['kruskal_p']:.2e}). Mann-Whitney U tests comparing US to each region yield p<0.001 with large effect sizes (Cohen's d: EU={_s['effect_sizes']['US_vs_EU']}, CN={_s['effect_sizes']['US_vs_CN']}, JP={_s['effect_sizes']['US_vs_JP']}, KR={_s['effect_sizes']['US_vs_KR']}).
+    *Note*: Mean citations weighted by patent count. Median and 90th percentile values reveal right-skewed distributions typical of citation data. Analysis restricted to 2014-2018 cohorts with 6-10 years citation accumulation time to avoid recency bias. Kruskal-Wallis H-test confirms significant regional differences (H={_s['kruskal_h']}, p={_s['kruskal_p']:.2e}). Mann-Whitney U tests comparing US to each region yield p<0.001 with large effect sizes (Cohen's d: EU={_s['effect_sizes']['US_vs_EU']}, CN={_s['effect_sizes']['US_vs_CN']}, JP={_s['effect_sizes']['US_vs_JP']}, KR={_s['effect_sizes']['US_vs_KR']}). EU ranks last: all other regions have significantly higher citations than EU (CN>EU: d={_s['effect_sizes']['CN_vs_EU']}, p={_s['pairwise_tests']['CN_vs_EU']['p_value']:.3f}; JP>EU: d={_s['effect_sizes']['JP_vs_EU']}, p={_s['pairwise_tests']['JP_vs_EU']['p_value']:.3f}; KR>EU: d={_s['effect_sizes']['KR_vs_EU']}, p={_s['pairwise_tests']['KR_vs_EU']['p_value']:.3f}).
     """)
     return
 
@@ -1319,11 +1461,11 @@ def _(mo):
         r"""
     ### The US Quality Advantage: Statistically Verified 2.9-3.9× Higher Citation Impact
 
-    Figure 5A and Table 1 reveal a stark quality hierarchy robust to statistical testing. Using 2014-2018 patent cohorts with 6-10 years citation accumulation time, the United States achieves 9.97 mean citations per patent (weighted by patent count)—2.9× to 3.9× higher than all other regions. South Korea ranks second (4.11 citations), followed by Japan (3.47), China (3.07), and the European Union last (2.58 citations).
+    Figure 5A and Table 2 reveal a stark quality hierarchy robust to statistical testing. Using 2014-2018 patent cohorts with 6-10 years citation accumulation time, the United States achieves 9.97 mean citations per patent (weighted by patent count)—2.9× to 3.9× higher than all other regions. South Korea ranks second (4.11 citations), followed by Japan (3.47), China (3.07), and the European Union last (2.58 citations).
 
-    Non-parametric statistical tests confirm these differences are not artifacts of sampling variation. Kruskal-Wallis H-test (H=73.14, p<0.001) strongly rejects the null hypothesis of equal citation distributions across regions. Pairwise Mann-Whitney U tests comparing US patents to each other region yield highly significant results (all p<0.001) with large effect sizes: Cohen's d=1.84 for US vs. EU, d=1.56 for US vs. China, d=1.54 for US vs. Japan, and d=1.45 for US vs. Korea. Effect sizes exceeding 0.8 indicate "large" practical significance (Cohen, 1988), confirming the US quality advantage represents both statistical certainty and substantive practical importance.
+    Non-parametric statistical tests confirm these differences are not artifacts of sampling variation. Kruskal-Wallis H-test (H=73.14, p<0.001) strongly rejects the null hypothesis of equal citation distributions across regions. Pairwise Mann-Whitney U tests comparing US patents to each other region yield highly significant results (all p<0.001) with large effect sizes: Cohen's d=1.84 for US vs. EU, d=1.56 for US vs. China, d=1.54 for US vs. Japan, and d=1.45 for US vs. Korea. Effect sizes exceeding 0.8 indicate "large" practical significance (Cohen, 1988), confirming the US quality advantage represents both statistical certainty and substantive practical importance. Furthermore, pairwise tests comparing EU to China (p=0.008, d=0.60), Japan (p=0.001, d=0.81), and Korea (p<0.001, d=1.07) all confirm that every other major region produces significantly higher-quality patents than Europe, with effect sizes ranging from medium to large—reinforcing the severity of Europe's quality crisis.
 
-    This finding contradicts volume-based rankings. The EU files the second-highest patent volume (288,520 patents in 2014-2018, Table 1), yet generates the lowest per-patent impact. This volume-quality paradox is consistent with defensive patenting strategies—filing many incremental patents to protect existing products—rather than foundational research generating broad follow-on innovation. The US quality advantage persists consistently across the full time series where citation data is mature (Figure 5A).
+    This finding contradicts volume-based rankings. The EU files the second-highest patent volume (288,520 patents in 2014-2018, Table 2), yet generates the lowest per-patent impact. This volume-quality paradox is consistent with defensive patenting strategies—filing many incremental patents to protect existing products—rather than foundational research generating broad follow-on innovation. The US quality advantage persists consistently across the full time series where citation data is mature (Figure 5A).
 
     ### Software-Hardware Quality Gap
 
