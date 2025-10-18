@@ -8,14 +8,17 @@ app = marimo.App()
 def _(mo):
     mo.md(
         r"""
-    ---
-    title: "Europe's Innovation Paradox: Patent Quality and Regional Competition in the Global Electric Vehicle Race (2014-2024)"
-    author: "Qing Ye, Marina van Geenhuizen"
-    date: "2025-01-13"
-    abstract: |
-      This chapter examines a troubling paradox in electric vehicle (EV) innovation: Europe produces the second-highest patent volume globally yet ranks last in innovation quality. Analyzing 385,000+ patents across five major regions (United States, China, European Union, South Korea, Japan) and seven core EV technology domains from 2014 to 2024, we employ forward citation analysis to assess technological impact beyond mere quantity. Europe's patent share declined 9 percentage points affecting six of seven domains, with growth only in declining hybrid powertrains. European patents average 2.50 forward citations versus 8.87 for the US—a 3.5× quality gap despite second-highest volume. This "generalist dilemma" (moderate capabilities across all domains, leadership in none) contrasts with Korea's focused battery excellence and China's strategic selectivity in batteries and consumer electronics-inspired business models. Counterintuitively, China exhibits the lowest self-citation rate (21.2%), indicating unexpected openness, while US-China knowledge flows collapsed 64-70% since 2021 despite technological complementarity. Cross-border collaboration remains minimal (0.65-1.28% of patents). Grounded in Resource-Based View, National Innovation Systems, and Disruptive Innovation theory, we interpret these patterns as manifestations of distinct regional capabilities and institutional arrangements. Strategic imperatives for Europe include anchoring in defensible domains (thermal management, safety systems), forging strategic alliances (EU-Korea, EU-US), and differentiating on privacy and sustainability. Three scenarios for 2030 explore alternative futures and robust strategies across uncertainty.
-    keywords: ["electric vehicles", "patent analysis", "innovation quality", "forward citations", "National Innovation Systems", "disruptive innovation", "EU automotive policy", "knowledge flows", "cross-border collaboration", "battery technology", "autonomous driving", "Korea-China paradox"]
-    ---
+    # Europe's Innovation Paradox: Patent Quality and Regional Competition in the Global Electric Vehicle Race (2014-2024)
+
+    **Authors:** Qing Ye, Marina van Geenhuizen
+
+    **Date:** October 2025
+
+    ## Abstract
+
+    This chapter examines a troubling paradox in electric vehicle innovation: Europe produces the second-highest patent volume globally yet ranks last in innovation quality. Analyzing 385,000+ patents across five major regions (US, China, EU, South Korea, Japan) and seven core EV technology domains from 2014-2024, we employ forward citation analysis, cross-border collaboration patterns, and knowledge flow networks to assess technological impact. Europe's patent share declined 9 percentage points affecting six of seven domains, with growth only in declining hybrid powertrains. European patents average 2.50 forward citations versus 8.87 for the US—a 3.5× quality gap. This "generalist dilemma" contrasts with Korea's focused battery excellence and China's strategic selectivity. We develop and test five theoretical propositions linking Resource-Based View, National Innovation Systems, Disruptive Innovation theory, and Open Innovation frameworks to observable metrics; four receive strong empirical support. Counterintuitively, China exhibits the lowest self-citation rate (21.2%), while US-China knowledge flows collapsed 64-70% since 2021 despite complementarity. Strategic imperatives for Europe include anchoring in defensible domains (thermal management, safety), forging strategic alliances (EU-Korea, EU-US), and differentiating on privacy and sustainability.
+
+    **Keywords:** electric vehicles, patent analysis, innovation quality, forward citations, National Innovation Systems, disruptive innovation, EU automotive policy, knowledge flows, cross-border collaboration, battery technology, autonomous driving, Korea-China paradox
     """
     )
     return
@@ -33,8 +36,8 @@ def _():
     warnings.filterwarnings("ignore")
 
     # Configure Altair for publication-quality output
-    alt.themes.enable('default')
-    alt.data_transformers.disable_max_rows()
+    _ = alt.themes.enable('default')
+    _ = alt.data_transformers.disable_max_rows()
 
     # Set rendering for static export (PNG/PDF compatibility)
     # alt.renderers.enable('mimetype')
