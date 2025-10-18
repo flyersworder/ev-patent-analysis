@@ -926,11 +926,16 @@ def _(citation_data, pd):
     Advanced Statistical Analysis: Domain-Controlled Citation Quality
 
     Tests whether regional citation differences persist after controlling for
-    technology domain specialization and filing year. Uses negative binomial
-    regression appropriate for overdispersed count data.
+    technology domain specialization and filing year. Uses weighted least squares
+    with wild bootstrap inference for heteroskedasticity-robust inference.
+
+    Method rationale:
+    - Response variable (avg_citations) is a continuous rate, not integer counts
+    - Data exhibits severe heteroskedasticity (US variance 21× higher than EU)
+    - Wild bootstrap provides exact inference without distributional assumptions
+    - Weights by patent_count to account for precision differences
     """
     import numpy as _np
-    import statsmodels.api as _sm
     import statsmodels.formula.api as _smf
 
     # Filter to mature patents (2014-2018) with sufficient citation accumulation
@@ -939,72 +944,101 @@ def _(citation_data, pd):
         (citation_data['year'] <= 2018)
     ].copy()
 
-    # Calculate total citations for each region-domain-year combination
-    _regression_data['total_citations'] = (
-        _regression_data['avg_citations'] * _regression_data['patent_count']
-    ).astype(int)
-
     # Create categorical variables with EU as reference (lowest-quality region)
     _regression_data['region_cat'] = pd.Categorical(
         _regression_data['region'],
         categories=['EU', 'US', 'KR', 'CN', 'JP']  # EU is reference
     )
 
-    # Negative binomial regression with patent_count as exposure
-    # This models citation rate while accounting for varying sample sizes
-    try:
-        _nb_model = _smf.glm(
-            formula='total_citations ~ region_cat + C(application_area) + C(year)',
-            data=_regression_data,
-            family=_sm.families.NegativeBinomial(),
-            offset=_np.log(_regression_data['patent_count'])
-        ).fit()
+    # Fit weighted least squares model
+    # avg_citations ~ region + domain + year, weighted by patent_count
+    _wls_model = _smf.wls(
+        formula='avg_citations ~ region_cat + C(application_area) + C(year)',
+        data=_regression_data,
+        weights=_regression_data['patent_count']
+    ).fit()
 
-        # Extract coefficients and confidence intervals for regions
-        _region_effects = {}
-        for _region in ['US', 'KR', 'CN', 'JP']:
-            _coef_name = f'region_cat[T.{_region}]'
-            if _coef_name in _nb_model.params.index:
-                _coef = _nb_model.params[_coef_name]
-                _conf_int = _nb_model.conf_int().loc[_coef_name]
-                _p_value = _nb_model.pvalues[_coef_name]
+    # Wild bootstrap for heteroskedasticity-robust inference
+    # Resamples residuals with random signs to preserve heteroskedastic structure
+    def _wild_bootstrap(model, data, n_boot=10000, seed=42):
+        """Wild bootstrap p-values for heteroskedasticity-robust inference"""
+        _np.random.seed(seed)
 
-                # Convert log-scale coefficient to multiplicative effect
-                # exp(coef) = rate ratio relative to EU
-                _rate_ratio = _np.exp(_coef)
-                _ci_lower = _np.exp(_conf_int[0])
-                _ci_upper = _np.exp(_conf_int[1])
+        _fitted = model.fittedvalues
+        _resid = model.resid
+        _coef_names = ['region_cat[T.US]', 'region_cat[T.KR]',
+                       'region_cat[T.CN]', 'region_cat[T.JP]']
 
-                _region_effects[_region] = {
-                    'coefficient': _coef,
-                    'rate_ratio': _rate_ratio,
-                    'ci_lower': _ci_lower,
-                    'ci_upper': _ci_upper,
-                    'p_value': _p_value
-                }
+        # Observed coefficients
+        _obs_coefs = {name: model.params[name] for name in _coef_names
+                      if name in model.params.index}
 
-        # Add EU (reference category) with ratio = 1.0
-        _region_effects['EU'] = {
-            'coefficient': 0.0,
-            'rate_ratio': 1.0,
-            'ci_lower': 1.0,
-            'ci_upper': 1.0,
-            'p_value': _np.nan
-        }
+        # Bootstrap distribution
+        _boot_results = {name: [] for name in _obs_coefs.keys()}
 
-        domain_controlled_results = {
-            'model': _nb_model,
-            'region_effects': _region_effects,
-            'converged': True
-        }
+        for _i in range(n_boot):
+            # Resample residuals with random signs (Rademacher distribution)
+            _signs = _np.random.choice([-1, 1], size=len(_resid))
+            _boot_resid = _resid * _signs
+            _boot_y = _fitted + _boot_resid
 
-    except Exception as _e:
-        # Fallback if negative binomial fails
-        print(f"Negative binomial regression failed: {_e}")
-        domain_controlled_results = {
-            'converged': False,
-            'error': str(_e)
-        }
+            # Refit model
+            _boot_data = data.copy()
+            _boot_data['avg_citations'] = _boot_y
+
+            _boot_model = _smf.wls(
+                formula='avg_citations ~ region_cat + C(application_area) + C(year)',
+                data=_boot_data,
+                weights=_boot_data['patent_count']
+            ).fit()
+
+            for _name in _obs_coefs.keys():
+                if _name in _boot_model.params.index:
+                    _boot_results[_name].append(_boot_model.params[_name] - _obs_coefs[_name])
+
+        # Two-tailed p-values
+        _p_values = {}
+        for _name, _obs_coef in _obs_coefs.items():
+            _boot_dist = _np.array(_boot_results[_name])
+            _p_values[_name] = 2 * min(
+                _np.mean(_boot_dist >= abs(_obs_coef)),
+                _np.mean(_boot_dist <= -abs(_obs_coef))
+            )
+
+        return _p_values
+
+    # Compute bootstrap p-values
+    _boot_pvals = _wild_bootstrap(_wls_model, _regression_data, n_boot=10000)
+
+    # Extract region effects with bootstrap p-values
+    _region_effects = {}
+    for _region in ['US', 'KR', 'CN', 'JP']:
+        _coef_name = f'region_cat[T.{_region}]'
+        if _coef_name in _wls_model.params.index:
+            _coef = _wls_model.params[_coef_name]
+            _conf_int = _wls_model.conf_int().loc[_coef_name]
+            _p_value = _boot_pvals.get(_coef_name, _np.nan)  # Use bootstrap p-value
+
+            _region_effects[_region] = {
+                'coefficient': _coef,
+                'ci_lower': _conf_int[0],
+                'ci_upper': _conf_int[1],
+                'p_value': _p_value
+            }
+
+    # Add EU (reference category)
+    _region_effects['EU'] = {
+        'coefficient': 0.0,
+        'ci_lower': 0.0,
+        'ci_upper': 0.0,
+        'p_value': _np.nan
+    }
+
+    domain_controlled_results = {
+        'model': _wls_model,
+        'region_effects': _region_effects,
+        'converged': True
+    }
     return (domain_controlled_results,)
 
 
@@ -1118,10 +1152,10 @@ def _(citation_data, pd):
 
 @app.cell(hide_code=True)
 def _(mo, statistical_results):
-    """Display Table 3: Statistical verification of citation quality differences"""
+    """Display Table 4A: Statistical verification of citation quality differences"""
     _s = statistical_results
     mo.md(f"""
-    **Table 2A.** Forward Citation Statistics by Region (2014-2018 Patent Cohorts)
+    **Table 4A.** Forward Citation Statistics by Region (2014-2018 Patent Cohorts)
 
     | Region | Mean Citations | Median | 90th Percentile | Patents (N) |
     |--------|----------------|--------|-----------------|-------------|
@@ -1142,45 +1176,39 @@ def _(domain_controlled_results, mo, np):
     if domain_controlled_results['converged']:
         _r = domain_controlled_results['region_effects']
 
-        # Format rate ratios and confidence intervals
+        # Format coefficients and confidence intervals
         def _format_effect(region):
             if region not in _r:
                 return "—", "—", "—"
             _effect = _r[region]
-            _ratio = f"{_effect['rate_ratio']:.2f}"
-            _ci = f"[{_effect['ci_lower']:.2f}, {_effect['ci_upper']:.2f}]"
+            _coef = f"{_effect['coefficient']:+.2f}"
+            _ci = f"[{_effect['ci_lower']:+.2f}, {_effect['ci_upper']:+.2f}]"
             if np.isnan(_effect['p_value']):
                 _p = "Ref"
             elif _effect['p_value'] < 0.001:
                 _p = "<0.001"
             else:
                 _p = f"{_effect['p_value']:.3f}"
-            return _ratio, _ci, _p
+            return _coef, _ci, _p
 
-        _us_ratio, _us_ci, _us_p = _format_effect('US')
-        _kr_ratio, _kr_ci, _kr_p = _format_effect('KR')
-        _jp_ratio, _jp_ci, _jp_p = _format_effect('JP')
-        _cn_ratio, _cn_ci, _cn_p = _format_effect('CN')
-        _eu_ratio, _eu_ci, _eu_p = _format_effect('EU')
-
-        # Calculate interpretations (all relative to EU baseline)
-        _us_interp = f"{(float(_us_ratio)-1)*100:.0f}% higher than EU"
-        _kr_interp = f"{(float(_kr_ratio)-1)*100:.0f}% higher than EU"
-        _jp_interp = f"{(float(_jp_ratio)-1)*100:.0f}% higher than EU"
-        _cn_interp = f"{(float(_cn_ratio)-1)*100:.0f}% higher than EU"
+        _us_coef, _us_ci, _us_p = _format_effect('US')
+        _kr_coef, _kr_ci, _kr_p = _format_effect('KR')
+        _jp_coef, _jp_ci, _jp_p = _format_effect('JP')
+        _cn_coef, _cn_ci, _cn_p = _format_effect('CN')
+        _eu_coef, _eu_ci, _eu_p = _format_effect('EU')
 
         _output = mo.md(f"""
-        **Table 2B.** Domain-Controlled Citation Quality: Negative Binomial Regression Results
+        **Table 4B.** Domain-Controlled Citation Quality: Weighted Least Squares Results
 
-        | Region | Rate Ratio† | 95% CI | p-value | Interpretation |
-        |--------|------------|---------|---------|----------------|
-        | United States | {_us_ratio} | {_us_ci} | {_us_p} | {_us_interp} |
-        | South Korea | {_kr_ratio} | {_kr_ci} | {_kr_p} | {_kr_interp} |
-        | Japan | {_jp_ratio} | {_jp_ci} | {_jp_p} | {_jp_interp} |
-        | China | {_cn_ratio} | {_cn_ci} | {_cn_p} | {_cn_interp} |
-        | European Union | {_eu_ratio} | {_eu_ci} | {_eu_p} | Reference category |
+        | Region | Quality Advantage† | 95% CI | p-value‡ |
+        |--------|-------------------|---------|----------|
+        | United States | {_us_coef} | {_us_ci} | {_us_p} |
+        | South Korea | {_kr_coef} | {_kr_ci} | {_kr_p} |
+        | Japan | {_jp_coef} | {_jp_ci} | {_jp_p} |
+        | China | {_cn_coef} | {_cn_ci} | {_cn_p} |
+        | European Union | {_eu_coef} | — | {_eu_p} |
 
-        *Note*: † Rate ratio represents expected citation rate relative to European Union baseline after controlling for technology domain (7 categories) and filing year (2014-2018). Model uses negative binomial regression with patent count as exposure variable to account for aggregated data structure. Rate ratio >1 indicates higher citation quality than EU; <1 indicates lower quality. **Critical finding**: US demonstrates a large and highly significant citation advantage (3.4× higher rate, p<0.001) even after controlling for domain specialization. Korea shows marginally higher quality (1.6×, p=0.066), while Japan (1.4×, p=0.161) and China (1.3×, p=0.220) differences are not statistically significant after domain controls. This confirms US quality leadership is robust to domain mix, while apparent advantages of other regions over EU partially reflect specialization patterns rather than pure quality differences.
+        *Note*: † Quality advantage represents difference in average forward citations per patent relative to European Union baseline after controlling for technology domain (7 categories) and filing year (2014-2018). Model uses weighted least squares with patent count as precision weights to account for varying sample sizes across region-domain-year cells. Positive values indicate higher citation quality than EU; negative values indicate lower quality. ‡ P-values computed using wild bootstrap (10,000 iterations) to provide heteroskedasticity-robust inference without distributional assumptions. **Critical finding**: United States (+6.94 citations, p<0.001), South Korea (+1.37 citations, p<0.001), and Japan (+0.95 citations, p=0.002) demonstrate statistically significant quality advantages even after controlling for domain specialization. China's difference (+0.23 citations, p=0.610) is not statistically significant. This confirms that US, Korea, and Japan quality leadership is robust to domain mix, while China's apparent advantage over EU in Table 4A primarily reflects specialization in higher-citation domains rather than pure quality differences. **Robustness check**: Extending the analysis to all years (2014-2024) yields a marginally significant China advantage (+0.70 citations, p=0.014), suggesting potential quality improvements in recent cohorts; however, this result is less robust due to incomplete citation accumulation for patents filed after 2018.
         """)
     else:
         _output = mo.md(f"""
@@ -1347,43 +1375,25 @@ def _(alt, citation_data, region_colors, region_shapes):
 def _(mo):
     mo.md(
         r"""
-    ### The US Quality Advantage: Statistically Verified 2.9-3.9× Higher Citation Impact
+    ## Regional Quality Differences: Statistical Evidence
 
-    Figure 4A and Table 2A reveal a stark quality hierarchy robust to statistical testing. Using 2014-2018 patent cohorts with 6-10 years citation accumulation time, the United States achieves 9.97 mean citations per patent (weighted by patent count)—2.9× to 3.9× higher than all other regions. South Korea ranks second (4.11 citations), followed by Japan (3.47), China (3.07), and the European Union last (2.58 citations).
+    Figure 4A and Table 4A reveal a stark quality hierarchy robust to statistical testing. Using 2014-2018 patent cohorts with 6-10 years citation accumulation time, the United States achieves 9.97 mean citations per patent (weighted by patent count)—2.9× to 3.9× higher than all other regions. South Korea ranks second (4.11 citations), followed by Japan (3.47), China (3.07), and the European Union last (2.58 citations). Non-parametric statistical tests confirm these differences are not artifacts of sampling variation. Kruskal-Wallis H-test (H=73.14, p<0.001) strongly rejects the null hypothesis of equal citation distributions across regions. Pairwise Mann-Whitney U tests comparing US patents to each other region yield highly significant results (all p<0.001) with large effect sizes: Cohen's d=1.84 for US vs. EU, d=1.56 for US vs. China, d=1.54 for US vs. Japan, and d=1.45 for US vs. Korea. Effect sizes exceeding 0.8 indicate "large" practical significance (Cohen, 1988), confirming the US quality advantage represents both statistical certainty and substantive practical importance. Furthermore, pairwise tests comparing EU to China (p=0.008, d=0.60), Japan (p=0.001, d=0.81), and Korea (p<0.001, d=1.07) all confirm that every other major region produces significantly higher-quality patents than Europe, with effect sizes ranging from medium to large—reinforcing the severity of Europe's quality crisis.
 
-    Non-parametric statistical tests confirm these differences are not artifacts of sampling variation. Kruskal-Wallis H-test (H=73.14, p<0.001) strongly rejects the null hypothesis of equal citation distributions across regions. Pairwise Mann-Whitney U tests comparing US patents to each other region yield highly significant results (all p<0.001) with large effect sizes: Cohen's d=1.84 for US vs. EU, d=1.56 for US vs. China, d=1.54 for US vs. Japan, and d=1.45 for US vs. Korea. Effect sizes exceeding 0.8 indicate "large" practical significance (Cohen, 1988), confirming the US quality advantage represents both statistical certainty and substantive practical importance. Furthermore, pairwise tests comparing EU to China (p=0.008, d=0.60), Japan (p=0.001, d=0.81), and Korea (p<0.001, d=1.07) all confirm that every other major region produces significantly higher-quality patents than Europe, with effect sizes ranging from medium to large—reinforcing the severity of Europe's quality crisis.
+    Crucially, Table 4B demonstrates these quality differences persist even after controlling for technology domain specialization and filing year. Weighted least squares regression with wild bootstrap inference reveals robust quality advantages: US patents receive +6.94 more citations than EU patents within the same technology domains and time periods (p<0.001), Korea receives +1.37 more citations (p<0.001), and Japan receives +0.95 more citations (p=0.002). Only China's difference (+0.23 citations, p=0.610) is not statistically significant after domain controls. This confirms that US, Korea, and Japan quality leadership reflects genuine innovation superiority rather than strategic domain selection, while China's apparent advantage over EU in Table 4A primarily reflects specialization in higher-citation domains rather than pure quality differences.
 
-    Crucially, Table 2B demonstrates these quality differences persist even after controlling for technology domain specialization and filing year. Negative binomial regression reveals US patents receive 3.4× more citations than EU patents within the same technology domains and time periods (p<0.001). Korea shows marginally higher quality (1.6×, p=0.066), while Japan (1.4×, p=0.161) and China (1.3×, p=0.220) differences are not statistically significant after domain controls. This confirms US quality leadership reflects genuine innovation superiority rather than strategic domain selection, while apparent advantages of other regions over EU largely reflect specialization patterns.
+    This finding contradicts volume-based rankings. The EU files the second-highest patent volume (288,520 patents in 2014-2018, Table 4A), yet generates the lowest per-patent impact. This volume-quality paradox is consistent with defensive patenting strategies—filing many incremental patents to protect existing products—rather than foundational research generating broad follow-on innovation. The US quality advantage persists consistently across the full time series where citation data is mature (Figure 4A). Figure 4B's domain analysis exposes the software-hardware quality divide underlying these regional differences. Software-centric domains (autonomous driving, infotainment, safety) generate 2-3× higher citations than hardware domains (thermal management, hybrids, batteries), with the US leading across all domains. This pattern holds strategic significance: the highest-quality innovation occurs in software domains where the EU is weakest. Autonomous driving patents receive 2-3× more citations than thermal management patents, yet the EU holds only 31% of autonomous patents versus 44% of thermal patents (Section 3). The EU invests R&D in lower-impact domains while lagging in high-impact areas.
 
-    This finding contradicts volume-based rankings. The EU files the second-highest patent volume (288,520 patents in 2014-2018, Table 2A), yet generates the lowest per-patent impact. This volume-quality paradox is consistent with defensive patenting strategies—filing many incremental patents to protect existing products—rather than foundational research generating broad follow-on innovation. The US quality advantage persists consistently across the full time series where citation data is mature (Figure 4A).
+    Figure 4B reveals the EU's most troubling pattern: ranking last in 6 of 7 technology domains, including traditional automotive strengths (safety systems, thermal management, hybrid powertrains), despite maintaining volume leadership (44-50% patent shares). This finding challenges the "European engineering excellence" narrative. While EU companies maintain volume leadership in traditional domains, their patents generate minimal follow-on research. The US dominates quality across ALL domains, even hardware areas where EU holds volume advantages. In thermal management, US patents (5.21 citations) generate 3.2× more impact than EU patents (1.63) despite the EU filing 44% of thermal patents versus US 17% (Section 3 data). This inversion—EU volume leadership producing minimal citation impact—epitomizes the quality crisis. Possible explanations include: (1) incremental innovation focus—EU patents improve existing technologies (better thermal systems, optimized hybrids) rather than enabling new capabilities; (2) product-specific IP—patents tied to specific vehicle models, not reusable platforms others can build on; (3) declining relevance—traditional domains (hybrids, thermal) become less central to EV value creation, attracting less researcher attention.
 
-    ### Software-Hardware Quality Gap
+    ## Strategic Patterns and Theoretical Insights
 
-    Figure 4B's domain analysis exposes the software-hardware quality divide. Software-centric domains (autonomous driving, infotainment, safety) generate 2-3× higher citations than hardware domains (thermal management, hybrids, batteries), with the US leading across all domains. This pattern holds strategic significance: the highest-quality innovation occurs in software domains where the EU is weakest. Autonomous driving patents receive 2-3× more citations than thermal management patents, yet the EU holds only 31% of autonomous patents versus 44% of thermal patents (Section 3). The EU invests R&D in lower-impact domains while lagging in high-impact areas.
+    Korea's battery patents present an interesting anomaly: highest volume (31% share) but moderate citation quality (3.63 citations, 2nd of 5), with US battery patents (7.69) generating 2.1× more impact. For detailed analysis of this patent-market gap, see Box 1, Section 3. This pattern—alongside the broader regional quality differences—reveals three testable theoretical propositions linking innovation system characteristics to patent quality outcomes:
 
-    ### EU's Quality Crisis: Weak Even in Traditional Strengths
+    **Proposition 1 (National Innovation Systems):** Regions with stronger university-industry linkages will generate higher-quality patents (measured by forward citations) because academic collaboration produces foundational research with broader applicability. The US innovation system emphasizes university-industry collaboration (Stanford-Silicon Valley, MIT-Route 128), producing foundational research published and cited widely. EU systems emphasize industry-led applied research, generating proprietary knowledge with narrower applicability. China's system prioritizes rapid commercialization over academic citation networks.
 
-    Figure 4B reveals the EU's most troubling pattern: ranking last in 6 of 7 technology domains, including traditional automotive strengths (safety systems, thermal management, hybrid powertrains), despite maintaining volume leadership (44-50% patent shares).
+    **Proposition 2 (Knowledge Tacitness):** Software innovations will receive higher citations than hardware innovations because codifiable knowledge diffuses more widely than tacit knowledge. Autonomous driving algorithms can be described, published, and adapted across contexts (high citations). Battery chemistry knowledge involves undocumented manufacturing expertise (lower citations despite importance). This explains why software-centric domains generate 2-3× higher citations than hardware domains regardless of region.
 
-    This finding challenges the "European engineering excellence" narrative. While EU companies maintain volume leadership in traditional domains, their patents generate minimal follow-on research. Possible explanations include:
-
-    1. Incremental innovation focus: EU patents improve existing technologies (better thermal systems, optimized hybrids) rather than enabling new capabilities
-    2. Product-specific IP: Patents tied to specific vehicle models, not reusable platforms others can build on
-    3. Declining relevance: Traditional domains (hybrids, thermal) become less central to EV value creation, attracting less researcher attention
-
-    The US dominates quality across ALL domains, even hardware areas where EU holds volume advantages. In thermal management, US patents (5.21 citations) generate 3.2× more impact than EU patents (1.63) despite the EU filing 44% of thermal patents versus US 17% (Section 3 data). This inversion—EU volume leadership producing minimal citation impact—epitomizes the quality crisis.
-
-    ### Korea's Battery Paradox: High Volume, Moderate Quality
-
-    Korea's battery patents present an interesting anomaly: highest volume (31% share) but moderate citation quality (3.63 citations, 2nd of 5), with US battery patents (7.69) generating 2.1× more impact. For detailed analysis of this patent-market gap, see Box 1, Section 3.
-
-    ### Theoretical Implications
-
-    The US innovation system emphasizes university-industry collaboration (Stanford-Silicon Valley, MIT-Route 128), producing foundational research published and cited widely. EU systems emphasize industry-led applied research, generating proprietary knowledge with narrower applicability. China's system prioritizes rapid commercialization over academic citation networks.
-
-    Software innovations are more citation-intensive because knowledge is less tacit than hardware engineering. Autonomous driving algorithms can be described, published, and adapted across contexts (high citations). Battery chemistry knowledge involves undocumented manufacturing expertise (lower citations despite importance).
-
-    EU patents may receive fewer citations because they improve sustaining technologies (better combustion engines → hybrids) while US/China patents target disruptive shifts (BEV architecture, software-defined vehicles). Sustaining innovations serve existing customers; disruptive innovations create new markets and research trajectories—hence higher citations.
+    **Proposition 3 (Disruptive Innovation Theory):** Patents targeting disruptive technology shifts will receive higher citations than patents improving sustaining technologies because disruptive innovations create new research trajectories while sustaining innovations serve existing customer needs. EU patents may receive fewer citations because they improve sustaining technologies (better combustion engines → hybrids) while US/China patents target disruptive shifts (BEV architecture, software-defined vehicles). Sustaining innovations serve existing customers; disruptive innovations create new markets and research trajectories—hence higher citations.
     """
     )
     return
@@ -1393,7 +1403,7 @@ def _(mo):
 def _(mo):
     mo.md(
         r"""
-    ### Methodological Note: Citations as One Quality Dimension
+    ## Methodological Note: Citations as One Quality Dimension
 
     Forward citations measure one dimension of innovation quality: the extent to which a patent generates follow-on research by other inventors. This metric favors foundational, platform-enabling technologies over incremental improvements or product-specific innovations. Citations do not capture all forms of knowledge transfer.
 
