@@ -1910,29 +1910,23 @@ def _(alt, collab_data, pd):
 def _(mo):
     mo.md(
         r"""
-    ## The Paradox of Insularity: Low Collaboration in a Global Industry
+    ## Multi-Regional Collaboration Patterns
 
-    Figures 5A-C reveal a striking pattern: EV innovation remains overwhelmingly insular despite globalization narratives. Across the 2014-2024 period, collaborative patents (those with co-inventors or assignees from multiple regions) constitute only 0.65-1.28% of total patents (Figure 5A). The collaboration rate peaked at 1.28% in 2018, declined to 0.87% by 2021, recovered slightly to 0.93% in 2022, then declined to 0.89% in 2023 and 0.65% in partial-year 2024 data. Statistical tests (Table 2) confirm the 2018-2021 decline is significant (p<0.001), ruling out sampling variation as explanation. This contrasts with expectations of increasing cross-border knowledge flows in complex technological systems.
+    Figures 5A-C reveal a striking pattern: EV innovation remains overwhelmingly insular despite globalization narratives. Across 2014-2024, collaborative patents constitute only 0.65-1.28% of total patents (Figure 5A). The collaboration rate peaked at 1.28% in 2018, then declined to 0.87% by 2021 and 0.89% in 2023 (Statistical tests, Table 5, confirm this decline is significant at p<0.001). This contrasts with expectations of increasing cross-border knowledge flows in complex technological systems.
 
-    Three explanations emerge: institutional divergence creates friction (different R&D funding mechanisms, IP norms, industry-government relationships across regions); strategic competition in batteries and software incentivizes proprietary protection over sharing; and comprehensive regional capabilities reduce collaboration necessity—Korea's battery excellence and US software dominance reflect self-sufficiency, with collaboration emerging only when complementary capabilities (e.g., EU thermal management + Korean batteries) reside in different regions.
-
-    ### EU as Collaboration Hub: Structural Position vs. Strategic Value
-
-    Figure 5B reveals the EU participates in the two largest collaboration pairs: EU-JP (5,410 patents) and EU-US (4,966 patents), accounting for the majority of cross-border collaboration. However, this "hub" position may reflect weakness rather than strength. The EU's multi-directional partnerships—with US for software, Japan for hybrid/safety systems, and China for infotainment—signal fragmented capabilities requiring external support across multiple domains, while competitors' selectivity (e.g., Korea's focused EU-KR battery partnerships) reflects self-sufficiency in core domains. Section 5 examines these knowledge flows in detail through citation analysis.
+    Three explanations emerge. First, institutional divergence creates friction: different R&D funding mechanisms, IP norms, and industry-government relationships across regions make joint projects costly to coordinate. Second, strategic competition incentivizes proprietary protection: batteries and software represent winner-take-all platform opportunities where firms prioritize control over sharing (Tesla's Supercharger network, CATL's battery hegemony). Third, comprehensive regional capabilities reduce collaboration necessity: Korea's battery excellence and US software dominance reflect self-sufficiency, with collaboration emerging only when complementary capabilities reside in different regions (e.g., EU thermal management + Korean battery cells).
 
     ### Domain-Specific Collaboration: Where Openness Emerges
 
-    Figure 5C's domain analysis reveals that collaboration rates vary dramatically across technologies. High-collaboration domains (batteries, autonomous driving) average 1.15% collaboration rate versus low-collaboration domains (thermal, safety, hybrid) at 0.91%—a statistically significant difference (χ²=141.3, p<0.001, Table 2). This pattern reflects geographic separation of complementary capabilities: EU-Korean battery partnerships combine European thermal management with Korean cell technology; EU-US autonomous driving collaborations leverage US software expertise (Waymo, Mobileye) with European automotive integration. Low-collaboration domains involve mature engineering with established regional supply chains, suggesting self-sufficient capabilities reduce collaboration necessity.
+    Figure 5C's domain analysis reveals collaboration rates vary dramatically across technologies. High-collaboration domains (batteries, autonomous driving) average 1.15% collaboration rate versus low-collaboration domains (thermal, safety, hybrid) at 0.91%—a statistically significant difference (χ²=141.3, p<0.001, Table 5). This pattern reflects geographic separation of complementary capabilities: EU-Korean battery partnerships combine European thermal management with Korean cell technology; EU-US autonomous driving collaborations leverage US software expertise (Waymo, Mobileye) with European automotive integration. Low-collaboration domains involve mature engineering with established regional supply chains, suggesting self-sufficient capabilities reduce collaboration necessity.
 
-    ### Geopolitical Inflection: The US-China Structural Break
+    ### Regional Collaboration Strategies: Selectivity vs. Fragmentation
 
-    Figure 5D provides compelling evidence of a structural break in US-China collaboration timing. Structural break analysis (Chow test) confirms 2018 as the inflection point (F=16.32, p=0.002), coinciding precisely with escalating trade tensions. The pre-2018 period shows stable collaboration rates (-0.024 percentage points per year, p=0.419, not significant), while the post-2018 period exhibits accelerated decline (-0.073 pp/year, p=0.004, significant)—a 3.1× faster rate of decay. By 2024, US-China collaboration reached 18 patents (0.095% rate), a 96.8% decline from the 2020 peak of 562 patents (0.571% rate). This demonstrates geopolitical factors overriding economic complementarity, examined further in Section 5's citation flow analysis.
+    The data reveal distinct regional approaches shaped by capability endowments and institutional structures. **Korea** pursues selective excellence: minimal collaboration outside batteries, but focused EU-KR partnerships (2,332 patents over 2014-2023) for complementary capabilities. **China** exhibits declining collaboration as capabilities mature: collaboration declined from 0.8% (2014) to 0.3% (2023) as battery and infotainment strengths reduce dependency on external partners, emphasizing rapid internal iteration consistent with the consumer electronics business model.
 
-    ### Strategic Implications: Distinct Collaboration Strategies
+    The **EU** demonstrates dependent openness: participation in the two largest collaboration pairs (EU-JP: 5,410 patents; EU-US: 4,966 patents) accounting for majority of cross-border collaboration. However, this "hub" position may reflect weakness rather than strength. The EU's multi-directional partnerships—with US for software, Japan for hybrid/safety systems, Korea for batteries, and China for infotainment—signal fragmented capabilities requiring external support across multiple domains. Competitors' selectivity (Korea's battery focus, US software dominance) reflects self-sufficiency in core domains.
 
-    The data reveal distinct regional approaches: Korea's selective excellence (minimal collaboration outside batteries, focused EU-KR partnerships for complementary capabilities); China's decreasing openness (collaboration declining as battery/infotainment capabilities mature, emphasizing rapid internal iteration over partnerships); EU's dependent openness (highest absolute collaboration volumes reflecting fragmented capabilities requiring external support in batteries, software, and hybrid systems); and US strategic ambivalence (historically collaborative but willing to sacrifice partnerships for geopolitical objectives, increasingly relying on domestic software while selectively partnering with allies for hardware).
-
-    Low collaboration rates (0.65-1.28%) contradict expectations that complex technologies drive external knowledge sourcing, explained by winner-take-all platform dynamics (Tesla's Supercharger, CATL battery hegemony), institutional barriers (national security reviews, export controls), and vertical integration strategies (Tesla, BYD, NIO favor control over collaboration). Open innovation may apply within regional clusters but not between competing national systems where geopolitical tensions override economic complementarity.
+    The **US** shows strategic ambivalence: historically collaborative but willing to sacrifice partnerships for geopolitical objectives, increasingly relying on domestic software capabilities while selectively partnering with allies for hardware. The US-China collapse (analyzed in Section 5.2) provides the clearest evidence of geopolitical tensions overriding economic complementarity.
     """
     )
     return
@@ -2048,10 +2042,10 @@ def _(collab_data, np, stats):
 
 @app.cell(hide_code=True)
 def _(collab_test_results, mo):
-    """Display Table 2: Statistical tests for collaboration patterns"""
+    """Display Table 5: Statistical tests for collaboration patterns"""
     _ct = collab_test_results
     mo.md(f"""
-    **Table 2.** Cross-Border Collaboration: Statistical Tests
+    **Table 5.** Cross-Border Collaboration: Statistical Tests
 
     | Test | Result | Z-statistic | p-value | Significant |
     |------|--------|-------------|---------|-------------|
@@ -2068,11 +2062,9 @@ def _(collab_test_results, mo):
 def _(mo):
     mo.md(
         r"""
-    ## Knowledge Flow Networks: Citation Patterns and Regional Openness
+    ## Knowledge Flow Networks and Geopolitical Fragmentation
 
-    Patent citations reveal how knowledge diffuses across regional boundaries. When a patent from region X cites a patent from region Y, it signals knowledge transfer: inventors in X built upon Y's prior art. Forward citations—the frequency with which subsequent patents reference a given patent—not only measure quality (Section 4) but also map knowledge flows between regions.
-
-    This section analyzes citation flows using the knowledge flow networks dataset (1,921 rows covering 2014-2024, 5 regions, 7 technology domains). We examine three critical questions: Which regions remain insular versus open to external knowledge? Where do major knowledge flows concentrate? And how have geopolitical tensions disrupted knowledge exchange?
+    Beyond formal collaboration, patent citations reveal how knowledge diffuses across regional boundaries. When a patent from region X cites a patent from region Y, it signals knowledge transfer: inventors in X built upon Y's prior art. This section analyzes citation flows using the knowledge flow networks dataset (1,921 rows covering 2014-2024, 5 regions, 7 domains) to examine regional openness, dominant knowledge flows, and geopolitical disruptions.
     """
     )
     return
@@ -2087,7 +2079,7 @@ def _(pd):
 
 @app.cell(hide_code=True)
 def _(alt, knowledge_flows_df, region_colors, region_shapes):
-    # Figure 5A: Self-Citation Rates Over Time (5 Regions)
+    # Figure 6A: Self-Citation Rates Over Time (5 Regions)
 
     # Calculate citation-weighted self-citation rates
     # Weight each domain by its citation volume (more citations = more weight)
@@ -2169,7 +2161,7 @@ def _(alt, knowledge_flows_df, region_colors, region_shapes):
         width=700,
         height=400,
         title=alt.TitleParams(
-            'Figure 5A: Self-Citation Rates by Region (2014-2024)',
+            'Figure 6A: Self-Citation Rates by Region (2014-2024)',
             subtitle='Lower values indicate greater openness to external knowledge sources. Dashed lines indicate incomplete 2024 data.',
             fontSize=14,
             anchor='start'
@@ -2182,7 +2174,7 @@ def _(alt, knowledge_flows_df, region_colors, region_shapes):
 
 @app.cell(hide_code=True)
 def _(alt, knowledge_flows_df):
-    # Figure 5B: Major Knowledge Flows (2023)
+    # Figure 6B: Major Knowledge Flows (2023)
 
     # Filter to 2023 cross-regional flows only
     flows_2023 = knowledge_flows_df[
@@ -2231,7 +2223,7 @@ def _(alt, knowledge_flows_df):
         width=700,
         height=400,
         title=alt.TitleParams(
-            'Figure 5B: Top 10 Cross-Regional Knowledge Flows (2023)',
+            'Figure 6B: Top 10 Cross-Regional Knowledge Flows (2023)',
             subtitle='Bars colored by citing region (first part of flow)',
             fontSize=14,
             anchor='start'
@@ -2244,7 +2236,7 @@ def _(alt, knowledge_flows_df):
 
 @app.cell(hide_code=True)
 def _(alt, knowledge_flows_df, pd):
-    # Figure 5C: US-China Knowledge Flow Collapse (2014-2024)
+    # Figure 6C: US-China Knowledge Flow Collapse (2014-2024)
 
     # Extract US→CN flows
     _us_cn = knowledge_flows_df[
@@ -2333,7 +2325,7 @@ def _(alt, knowledge_flows_df, pd):
         width=700,
         height=400,
         title=alt.TitleParams(
-            'Figure 5C: US-China Bilateral Knowledge Flow Collapse (2014-2024)',
+            'Figure 6C: US-China Bilateral Knowledge Flow Collapse (2014-2024)',
             subtitle='Growth from 2014-2021, then collapse during geopolitical tensions. Dashed lines indicate incomplete 2024 data.',
             fontSize=14,
             anchor='start'
@@ -2348,39 +2340,39 @@ def _(alt, knowledge_flows_df, pd):
 def _(mo):
     mo.md(
         r"""
-    ### China's Surprising Openness: Lowest Self-Citation Rate
+    ### The US-China Collapse: When Geopolitics Overrides Complementarity
 
-    Figure 5A and Table 3 reveal a counterintuitive pattern: China exhibits the lowest self-citation rate among all five regions. Averaging across 2014-2024, Chinese EV patents cite their own region's prior art only 21.5% of the time—less than half the rates observed in the European Union (42.4%), Japan (47.5%), United States (48.2%), and South Korea (50.3%). Chi-square tests confirm these regional differences are statistically robust (χ²=38,263, p<0.001), ruling out sampling variation. Korea emerges as the most insular innovator, with over half of all citations remaining within Korean patents.
+    The most dramatic pattern in both collaboration and knowledge flows is the US-China collapse—a quasi-experimental demonstration of geopolitical institutions fragmenting innovation networks despite intact technical complementarity.
 
-    This finding contradicts narratives of Chinese technological isolation. State-directed innovation systems typically exhibit high self-citation emphasizing indigenous technology development. Yet China's patent citation patterns reveal extensive engagement with external knowledge, explained by capability gaps: Chinese firms cite US software patents and Japanese electronics research to compensate for weaker foundational R&D, actively absorbing global knowledge rather than relying solely on domestic sources.
+    **Collaboration collapse**: US-China collaborative patents peaked at 562 in 2020, then plummeted 96.8% to just 18 patents by 2024 (Section 5.1, Figure 5D). Structural break analysis (Chow test) identifies 2018 as the inflection point (F=16.32, p=0.002), coinciding with escalating trade tensions. The post-2018 decline rate (-0.073 pp/year) is 3.1× faster than the stable pre-2018 period.
 
-    Temporal dynamics add nuance. China's openness increased dramatically from 2014 (32.0% self-citation) to 2018 (19.2%), then reversed partially by 2024 (30.7%). This U-shaped trajectory suggests initial rapid learning from global leaders (2014-2018), followed by gradual strengthening of domestic knowledge bases (2019+) as Chinese firms accumulated their own patent portfolios. Meanwhile, the US demonstrates steady opening: self-citation declined from 63.6% (2014) to 44.7% (2022), indicating American inventors increasingly cite foreign innovations—particularly in battery technology where Asian leadership is undeniable (Section 5).
+    **Citation flow collapse**: Figure 6C documents parallel patterns in knowledge diffusion. US patents citing Chinese innovations grew from 629 (2014) to 8,068 (2021)—a 1,183% increase. Simultaneously, Chinese patents citing US innovations rose from 517 (2014) to 7,914 (2021). Then came the reversal: by 2023, US→China citations fell 64% to 2,903, while China→US citations plummeted 70% to 2,409. Statistical tests (Table 6) confirm this bilateral pattern change is significant (χ²=27.6, p<0.001). Partial-year 2024 data shows further decline to ~600 citations in each direction.
 
-    Korea's trajectory moves opposite: self-citation rose from 39.5% (2014) to 59.8% (2023), suggesting Korean battery and electronics firms increasingly reference their own extensive patent portfolios rather than external sources. This pattern aligns with Korea's dominance in battery patents (31% global share) documented in Section 3.
+    **Policy timeline**: The collapse timing provides quasi-experimental evidence. The 2018 structural break coincides precisely with: 2018 tariffs and technology transfer investigations; 2019-2020 entity lists restricting Huawei, SMIC, and other Chinese tech firms from US semiconductor access; 2022 Biden administration semiconductor export controls; and escalating concerns over IP protection and national security. State-level geopolitical strategy fragmented knowledge networks independent of technical complementarity.
 
-    ### The EU-US Knowledge Axis: Dominant Bilateral Flow
+    **The complementarity puzzle**: This pattern contradicts economic logic. China's battery manufacturing scale and cost engineering should drive US citations, while US software and system integration expertise should attract Chinese citations. The technological rationale supporting collaboration remains intact—yet both collaboration and knowledge flows collapsed. Geopolitical institutions override innovation-system complementarity: export controls, entity lists, and technology restrictions create barriers even when economic incentives favor exchange.
 
-    Figure 5B maps the ten largest cross-regional knowledge flows in 2023. The EU-US bilateral relationship dominates global knowledge exchange: European patents cite US innovations 7,043 times, while US patents cite European research 6,096 times—totaling 13,139 citations. This bidirectional flow dwarfs all other pairs and reflects complementary strengths: US software/autonomous driving capabilities (60% patent share in infotainment, 55% in autonomous systems) combined with EU mechanical engineering and safety system expertise (Section 3 documentation).
+    **Strategic implications**: If 2014-2021 growth had continued, US-China citations might have reached 12,000+ annually by 2024. Instead, they contracted to levels equivalent to 2017—representing approximately 5 years of lost knowledge diffusion, a "missing generation" of cross-border learning. For the EU, this fragmentation creates both risk (forced to choose sides in bifurcated ecosystems) and opportunity (EU patents as neutral knowledge bridges acceptable to both US and Chinese innovators).
 
-    The next-largest flows involve the US as knowledge source: US→Japan (4,958 citations), US→Korea (4,014), and US→China (2,903). This centrality validates US patents' high forward citation counts documented in Section 4: when US patents generate 8.87 average citations versus EU's 2.50, those citations originate disproportionately from Asian innovators building on American foundational research. The US functions as a knowledge exporter across multiple domains—particularly autonomous driving, infotainment, and software-heavy applications where US patents lead in both volume and citation quality.
+    ### Self-Citation Patterns: China's Openness vs. Korea's Insularity
 
-    The EU maintains significant ties to Japan (3,869 citations) and Korea (2,664 citations), supporting its role as "collaboration hub" identified in Section 5. However, EU-China knowledge flows remain modest: EU→CN totals 1,543 citations and CN→EU totals 1,502 citations in 2023, far below the EU's ties to Japan or Korea. This mirrors the 45% decline in EU-CN collaborative patents documented in Section 5. Knowledge flows typically follow collaboration patterns: regions with joint R&D projects cite each other more frequently. The weak EU-CN knowledge linkage, despite China's massive patent output (25% global share), suggests limited genuine technical exchange—possibly reflecting IP protection concerns or divergent technological standards.
+    Figure 6A and Table 6 reveal a counterintuitive pattern: despite declining *collaboration*, China exhibits the lowest *self-citation rate* among all five regions. Averaging across 2014-2024, Chinese EV patents cite their own region's prior art only 21.5% of the time—less than half the rates in the EU (42.4%), Japan (47.5%), US (48.2%), and Korea (50.3%). Chi-square tests confirm these differences are statistically robust (χ²=38,263, p<0.001). Korea emerges as the most insular innovator, with over half of all citations remaining within Korean patents.
 
-    ### The US-China Knowledge Flow Collapse: Geopolitics Overriding Complementarity
+    This reconciles apparent contradictions in China's knowledge strategy: declining *collaboration* (Section 5.1) reflects maturing capabilities reducing dependency on formal partnerships, while persistent *openness to external knowledge* (low self-citation) reflects absorptive capacity strategy. Chinese firms cite US software patents and Japanese electronics research to compensate for weaker foundational R&D, actively absorbing global knowledge even as formal joint projects decline.
 
-    Figure 5C documents a dramatic reversal in US-China knowledge exchange that mirrors the collaboration collapse analyzed in Section 5. US patents citing Chinese innovations grew steadily from 629 (2014) to a peak of 8,068 (2021)—a 1,183% increase. Simultaneously, Chinese patents citing US innovations rose from 517 (2014) to 7,914 (2021). This bilateral flow constituted the fastest-growing knowledge linkage globally.
+    Temporal dynamics add nuance. China's openness increased dramatically from 2014 (32.0% self-citation) to 2018 (19.2%), then reversed partially by 2024 (30.7%)—a U-shaped trajectory suggesting initial rapid learning from global leaders (2014-2018), followed by gradual strengthening of domestic knowledge bases (2019+) as Chinese firms accumulated their own patent portfolios. Meanwhile, the US demonstrates steady opening: self-citation declined from 63.6% (2014) to 44.7% (2022), indicating American inventors increasingly cite foreign innovations—particularly in battery technology where Asian leadership is undeniable.
 
-    Then came the collapse. By 2023, US→China citations fell 64% to 2,903, while China→US citations plummeted 70% to 2,409. Statistical tests (Table 3) confirm this bilateral pattern change is significant (χ²=27.6, p<0.001), representing a structural break rather than random fluctuation. Partial-year 2024 data shows further decline to ~600 citations in each direction. This coincides precisely with US-China trade tensions (2018 tariffs), Trump administration technology restrictions, Biden administration semiconductor export controls (2022), and escalating concerns over technology transfer. The timing provides quasi-experimental evidence that state-level geopolitical strategy can fragment knowledge networks independent of technical complementarity.
+    Korea's trajectory moves opposite: self-citation rose from 39.5% (2014) to 59.8% (2023), suggesting Korean battery and electronics firms increasingly reference their own extensive patent portfolios (31% global battery share, Section 3) rather than external sources—a pattern consistent with knowledge leadership in core domains.
 
-    This pattern is puzzling. Complementary capabilities should sustain knowledge flows: China's battery manufacturing scale and cost engineering should drive US citations, while US software and system integration expertise should attract Chinese citations. The technological logic supporting collaboration remains intact—yet knowledge flows collapsed. Geopolitical institutions can override innovation-system complementarity. Export controls, entity lists, and technology restrictions create barriers even when economic incentives favor exchange.
+    ### The EU-US Knowledge Axis and Regional Knowledge Centrality
 
-    The strategic implications are profound. If the 2014-2021 knowledge flow growth had continued, US-China citations might have reached 12,000+ annually by 2024. Instead, they contracted to 2021 levels equivalent to 2017. This represents approximately 5 years of lost knowledge diffusion—a "missing generation" of cross-border learning. For the EU, this fragmentation creates both risk and opportunity: risk if forced to choose sides in a bifurcated technology ecosystem, opportunity if EU patents can serve as neutral knowledge bridges acceptable to both US and Chinese innovators.
+    Figure 6B maps the ten largest cross-regional knowledge flows in 2023. The EU-US bilateral relationship dominates global knowledge exchange: European patents cite US innovations 7,043 times, while US patents cite European research 6,096 times—totaling 13,139 citations. This bidirectional flow dwarfs all other pairs and reflects complementary strengths: US software/autonomous driving capabilities combined with EU mechanical engineering and safety system expertise (Section 3).
 
-    ### Citation Lags and Knowledge Absorption Speed
+    The next-largest flows position the US as knowledge source: US→Japan (4,958 citations), US→Korea (4,014), US→China (2,903). This centrality validates US patents' high forward citation counts (Section 4): when US patents generate 8.87 average citations versus EU's 2.50, those citations originate disproportionately from Asian innovators building on American foundational research. The US functions as knowledge exporter across autonomous driving, infotainment, and software-heavy domains.
 
-    An important methodological note: citation lags (time between cited and citing patent filing dates) increase naturally over time due to data structure. Recent patents (2020+) lack sufficient time to accumulate citations, creating the appearance of longer lags. Focusing on mature data (2014-2020), all regions exhibit similar absorption speeds: Japan 1.45 years, China 1.54 years, EU 1.56 years, Korea 1.63 years, US 1.66 years. The differences are modest (0.2 years), suggesting comparable knowledge diffusion timelines across regions. This contrasts with early expectations that state-directed Chinese innovation might exhibit faster or slower absorption—in practice, citation lags reflect universal R&D cycle times (~18 months) rather than institutional differences.
+    The EU maintains significant ties to Japan (3,869 citations) and Korea (2,664 citations). However, EU-China knowledge flows remain modest: EU→CN (1,543) and CN→EU (1,502) in 2023, far below EU's ties to Japan or Korea despite China's 25% global patent share. This mirrors weak EU-CN collaboration patterns (Section 5.1) and suggests limited genuine technical exchange—possibly reflecting IP protection concerns or divergent technological standards.
 
-    ---
+    **Methodological note**: Citation lags (time between cited and citing patent filing dates) increase naturally over time as recent patents lack time to accumulate citations. Focusing on mature data (2014-2020), all regions exhibit similar absorption speeds: Japan 1.45 years, China 1.54 years, EU 1.56 years, Korea 1.63 years, US 1.66 years. The differences are modest (0.2 years), suggesting citation lags reflect universal R&D cycle times (~18 months) rather than institutional differences.
     """
     )
     return
@@ -2462,12 +2454,12 @@ def _(knowledge_flows_df, np, stats):
 
 @app.cell(hide_code=True)
 def _(kflow_test_results, mo):
-    """Display Table 3: Statistical tests for knowledge flow patterns"""
+    """Display Table 6: Statistical tests for knowledge flow patterns"""
     _kf = kflow_test_results
     _sc = _kf['self_citation']['stats']
 
     mo.md(f"""
-    **Table 3.** Knowledge Flow Networks: Statistical Tests
+    **Table 6.** Knowledge Flow Networks: Statistical Tests
 
     **Test 1: Self-Citation Rate Regional Differences (2014-2024)**
 
