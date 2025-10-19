@@ -20,3 +20,13 @@ data/
 
 # Skills
 .claude/skills/
+# Quarto intermediate files and outputs
+.quarto/
+patent_analysis_chapter.ipynb
+patent_analysis_chapter.md
+patent_analysis_chapter.pdf
+*.tex
+*.log
+
+# Notebook checkpoints
+.ipynb_checkpoints/

@@ -36,6 +36,47 @@ uv run marimo export html patent_analysis_chapter.py -o output.html
 uv run marimo export ipynb patent_analysis_chapter.py -o output.ipynb
 ```
 
+### PDF Export Workflow
+
+The project includes an automated workflow to export the marimo notebook to a publication-ready PDF using Quarto.
+
+**Quick Start:**
+```bash
+# Make the script executable (first time only)
+chmod +x export_pdf_workflow.sh
+
+# Run the complete workflow
+./export_pdf_workflow.sh
+```
+
+**What the workflow does:**
+
+1. **Export to Jupyter format** - Converts marimo notebook to `.ipynb` with all outputs embedded using `marimo export ipynb --include-outputs`
+2. **Convert Vega-Lite charts to PNG** - Transforms all interactive Altair/Vega-Lite charts to high-resolution PNG images (2× resolution, 140% larger dimensions, 11-13pt fonts) using the vl-convert engine
+3. **Reorder cells and add metadata** - Moves Table 1 to appear after Figure 2 (for better positioning) and adds cell-level metadata to hide all code cells
+4. **Render PDF with Quarto** - Uses Quarto to compile the notebook into a PDF with LaTeX backend
+5. **Cleanup** - Removes intermediate files (`.ipynb`, `.md`, `.quarto/`)
+
+**Requirements:**
+
+- **Quarto** must be installed (download from https://quarto.org/)
+- **`_quarto.yml`** configuration file in the project root (already present)
+- All dependencies in `pyproject.toml` must be installed (`uv sync`)
+
+**Output Specifications:**
+
+The generated `patent_analysis_chapter.pdf` includes:
+- **Figures**: 7" × 5", 300 DPI, 140% larger than original with increased font sizes
+- **Tables**: Smaller font (`\footnotesize`), reduced column padding (3pt) for better fit
+- **Layout**: A4 paper, 1.5 line spacing, 1-inch margins
+- **Code**: All code cells hidden, only outputs displayed
+- **Navigation**: Numbered sections (3 levels deep), colored hyperlinks
+
+**Known Limitations:**
+
+- **Table auto-width**: Quarto's `tbl-pos: 'H'` position control doesn't work for longtables (Pandoc limitation). Global table formatting is applied instead via LaTeX preamble.
+- **Table positioning**: Tables may still float to optimize page breaks, though most figures stay in place with `fig-pos: 'H'`.
+
 ## Project Architecture
 
 ### Core Analysis Flow

@@ -1,0 +1,68 @@
+project:
+  type: default
+
+format:
+  pdf:
+    documentclass: article
+    papersize: a4paper
+    fontsize: 11pt
+    linestretch: 1.5
+    geometry:
+      - top=1in
+      - bottom=1in
+      - left=1in
+      - right=1in
+    keep-tex: false
+    include-in-header:
+      text: |
+        \usepackage{float}
+        \usepackage{booktabs}
+        \usepackage{longtable}
+        \usepackage{array}
+        \usepackage{multirow}
+        \usepackage{graphicx}
+        \usepackage{placeins}
+        \usepackage{tabularx}
+        \usepackage{etoolbox}
+        % Force figures to stay in place
+        \floatplacement{figure}{H}
+        % Prevent floats from moving past section boundaries
+        \usepackage[section]{placeins}
+        % Make longtable behave better
+        \setlength{\LTpre}{0pt}
+        \setlength{\LTpost}{0pt}
+        % Improved float parameters
+        \renewcommand{\topfraction}{0.9}
+        \renewcommand{\bottomfraction}{0.9}
+        \renewcommand{\textfraction}{0.1}
+        \renewcommand{\floatpagefraction}{0.8}
+        % Better table formatting
+        \setlength{\tabcolsep}{3pt}           % Reduce column padding (default: 6pt)
+        \renewcommand{\arraystretch}{1.1}      % Reduce row height slightly
+        \AtBeginEnvironment{longtable}{\footnotesize}  % Use smaller font for all tables
+        % Allow tables to break across pages better
+        \setlength{\LTcapwidth}{\textwidth}
+    fig-pos: 'H'
+    fig-width: 7          # Wider figures (default is ~5)
+    fig-height: 5         # Taller figures (default is ~3.5)
+    fig-dpi: 300          # High resolution
+    tbl-cap-location: top
+    fig-cap-location: bottom
+    number-sections: true
+    number-depth: 3
+    toc: false
+    colorlinks: true
+    linkcolor: blue
+    urlcolor: blue
+    citecolor: blue
+
+jupyter:
+  echo: false
+  warning: false
+  message: false
+
+execute:
+  enabled: false
+  echo: false
+  warning: false
+  message: false
