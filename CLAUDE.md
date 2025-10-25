@@ -766,6 +766,48 @@ Conducted comprehensive copy editing review as academic journal editor. Implemen
 
 **Result**: Paper now meets top-tier journal standards (*Research Policy*, *Strategic Management Journal*, *Organization Science*) with formal academic tone, precise terminology, and no colloquialisms.
 
+### Recent Work: Citation Quality Metrics Enhancement (2025-01-25)
+
+**Problem Identified**: User requested adding generality/originality indices to validate forward citations as quality measures.
+
+**Key Discovery - EU Paradox**: During implementation, discovered critical discrepancy:
+- **Forward Citations (2014-2018)**: EU ranks **LAST** (2.58 avg vs 9.97 US)
+- **Generality/Originality (2014-2023)**: EU ranks **MIDDLE** (0.640/0.682)
+
+**Investigation & Resolution**:
+
+1. **Time Period Mismatch Found**:
+   - Forward citations used 2014-2018 cohort (for citation maturity)
+   - Generality/originality used 2014-2023 aggregate (no year filter)
+   - This made comparison potentially invalid
+
+2. **BigQuery Recalculation**:
+   - Re-ran generality/originality query with 2014-2018 filter only
+   - Ensured apples-to-apples comparison with forward citations
+
+3. **Corrected Numbers (2014-2018 cohort)**:
+   - US: 0.718/0.751 (1st) - was 0.707/0.751
+   - JP: 0.678/0.689 (2nd) - was 0.674/0.689
+   - **EU: 0.651/0.687 (3rd - MIDDLE)** - was 0.640/0.682
+   - KR: 0.632/0.659 (4th) - was 0.624/0.654
+   - CN: 0.589/0.606 (5th) - was 0.571/0.602
+
+**EU Paradox Explained**:
+- **Citation volume** (count) = IMPACT/INFLUENCE → EU last
+- **Citation diversity** (generality/originality) = BREADTH → EU middle
+- **Interpretation**: EU specializes in **integrative system engineering** (combining existing knowledge across domains) rather than **foundational platform technologies** (creating breakthrough innovations others build upon)
+
+**Changes Made**:
+1. ✅ Added generality/originality indices to "Citation Impact vs. Knowledge Breadth" subsection (line 1362)
+2. ✅ Used correct 2014-2018 cohort numbers for fair comparison
+3. ✅ Explained volume vs. diversity distinction with bold emphasis
+4. ✅ Added interpretation of EU paradox (integrative vs. foundational innovation)
+5. ✅ Renamed subsection from "Methodological Note: Citations as One Quality Dimension" to "Citation Impact vs. Knowledge Breadth"
+
+**SQL Query Used**: Modified `sql/06_generality_originality_indices.sql` with `filing_date <= 20181231` filter (line 64)
+
+**Result**: Methodologically rigorous comparison with clear explanation of apparent paradox. EU's middle ranking in diversity despite last-place citation counts now properly contextualized.
+
 ### Key Methodological Decisions
 
 1. **Assignee-Based Counting** (Critical)
