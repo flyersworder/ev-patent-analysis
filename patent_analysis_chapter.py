@@ -870,6 +870,8 @@ def _(mo):
     **Robustness**: We validate this quality interpretation through multiple approaches: (1) calculating generality and originality indices (Section 4.2) showing EU ranks middle in knowledge breadth despite low citations, ruling out domain specialization artifacts; (2) domain-controlled regression (Table 4B) confirming quality differences persist after accounting for technology mix; (3) cross-referencing with collaboration patterns (Section 5) demonstrating citations and partnerships measure complementary dimensions.
 
     **Limitations**: Forward citations measure *research influence*—the extent patents enable follow-on R&D—which privileges foundational, platform-enabling technologies over incremental improvements or product-specific innovations. Alternative quality dimensions (manufacturing excellence, applied problem-solving, commercial success) may not correlate with citation counts. Citations also reflect domain norms: software/AI patents receive systematically higher citations than hardware domains, independent of technological sophistication. Our interpretation thus focuses on *technological quality* as "capacity to enable follow-on innovation" rather than comprehensive innovation value.
+
+    **Alternative explanations**: We considered domain specialization, patent office bias, temporal lag, and fractional counting as potential confounds. Appendix B systematically assesses and addresses these alternative explanations using our existing empirical evidence.
     """
     )
     return
@@ -2799,11 +2801,51 @@ def _(mo):
     return
 
 
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+    # Appendix B: Alternative Explanations and Limitations
+
+    Our analysis attributes regional differences in patent volume and quality to strategic capability misalignment (H1), geopolitical constraints on collaboration (H2), institutional differences in knowledge openness (H3), and business model innovation (H4). However, alternative explanations merit consideration. This appendix addresses four potential confounds and assesses their plausibility given our evidence.
+
+    ## Domain Specialization Effects
+
+    **Alternative explanation**: Europe's lower citation quality could reflect specialization in inherently low-citation technology domains (e.g., thermal management, mechanical systems) rather than actual quality deficits. If EU concentrates in hardware domains while the US focuses on software domains, observed quality gaps might be compositional artifacts.
+
+    **Assessment**: Our domain-controlled regression (Table 4B) directly tests and rejects this explanation. Even within identical technology domains and filing years, US patents generate +6.94 more citations than EU patents (p<0.001, wild bootstrap inference). This within-domain comparison isolates region-specific innovation capabilities from domain mix effects. Furthermore, Figure 5B reveals EU ranks last in citation quality across 6 of 7 domains, including traditional European strengths (thermal management, safety systems). The quality gap persists whether examining software-centric (autonomous driving) or hardware-centric (batteries) technologies. Domain specialization cannot explain systematic underperformance across diverse technology areas.
+
+    ## Patent Office and Classification Bias
+
+    **Alternative explanation**: Citation patterns could reflect USPTO-centric citation practices, where US patents receive more citations because researchers preferentially cite US patents, or CPC classification differences that systematically assign more codes to US patents.
+
+    **Assessment**: We mitigate USPTO bias through three design choices: (1) using Google Patents Public Data covering all major patent offices (USPTO, EPO, JPO, KIPO, CNIPA), (2) analyzing publication numbers rather than jurisdiction-specific application numbers, and (3) counting citations from all offices, not only USPTO forward citations. Our CPC bias verification (referenced in Section 5.2's generality/originality analysis) found US patents average 2.63 CPC codes versus EU 2.41 codes—only a 9% difference insufficient to explain 2-3× citation gaps. However, we acknowledge potential English-language bias: patents published in English may accumulate citations more readily than non-English patents due to broader accessibility. This could disadvantage Chinese and Japanese patents relative to US/EU patents. Future research employing language-normalized citation metrics or examiner-added citations (less subject to linguistic barriers) could isolate this effect.
+
+    ## Temporal Citation Lag Effects
+
+    **Alternative explanation**: If EU patent filings concentrated later in our observation window, insufficient citation accumulation time rather than lower quality could explain citation gaps.
+
+    **Assessment**: Our mature patent cohort restriction (2014-2018 filings analyzed in Table 4) provides 5-10 year citation windows, ensuring adequate accumulation time across all regions. Temporal analysis (Figure 4A) shows persistent US quality advantages throughout the full time series where citation data is mature. Importantly, EU patent volume peaked in 2014-2016 (288,520 patents in 2014-2018 cohort), giving EU patents equal or greater citation maturity compared to US patents filed in the same period. The temporal distribution of filings cannot explain observed quality differences.
+
+    ## Fractional Counting for Multi-Assignee Patents
+
+    **Alternative explanation**: Our whole-count method (assigning patents to all assignee regions) could inflate regional totals when patents involve multiple regions. Fractional counting (dividing credit equally among assignees) might yield different regional rankings.
+
+    **Assessment**: Cross-regional collaboration rates are extremely low (0.65-1.28% of patents; Section 5.1, Figure 5A), limiting potential bias from multi-assignee patents. Even if we adopted fractional counting, 98.72-99.35% of patents would be unaffected. However, fractional counting could matter for specific collaboration-intensive domains. For instance, EU-Korea battery collaboration (5,410 patents) represents 2.8% of the battery patent pool; fractional allocation would reduce both regions' apparent battery contributions proportionally. Future robustness checks could implement fractional counting for collaboration-heavy domains, though we expect minimal impact on overall conclusions given the prevalence of single-region patents.
+
+    ## Conclusion
+
+    While these alternative explanations merit serious consideration, our existing evidence—domain-controlled regressions, multi-office citation data, temporal cohort restrictions, and low collaboration rates—suggests they do not fundamentally alter our core findings. Future research could strengthen causal identification through patent family analysis (triadic patents filed in multiple jurisdictions), examiner-added citation analysis (reducing self-selection bias), and fractional counting robustness checks. The persistent, large-magnitude quality gaps across diverse empirical tests provide confidence in our theoretical interpretations despite these limitations.
+    """
+    )
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
-    # Appendix B: Technical Glossary
+    # Appendix C: Technical Glossary
 
     ## Innovation Quality Metrics
 
@@ -2887,10 +2929,6 @@ def _(mo):
 
     United Nations. (2023). Sustainable Development Goals Indicators Database. Research and development expenditure as a proportion of GDP (SDG 9.5.1) and Manufacturing value added as a proportion of GDP. Retrieved from https://unstats.un.org/sdgs/dataportal
 
-    ## Cross-Industry Innovation and Knowledge Transfer
-
-    Enkel, E., & Gassmann, O. (2010). Creative imitation: Exploring the case of cross-industry innovation. *R&D Management*, 40(3), 256-270. https://doi.org/10.1111/j.1467-9310.2010.00591.x
-
     ## Patent Analysis Methodology
 
     Alcácer, J., & Gittelman, M. (2006). Patent citations as a measure of knowledge flows: The influence of examiner citations. *Review of Economics and Statistics*, 88(4), 774-779. https://doi.org/10.1162/rest.88.4.774
@@ -2919,23 +2957,9 @@ def _(mo):
 
     Utterback, J. M., & Abernathy, W. J. (1975). A dynamic model of process and product innovation. *Omega*, 3(6), 639-656. https://doi.org/10.1016/0305-0483(75)90068-7
 
-    ## Manufacturing Strategy and Product Development
-
-    Salvador, F., Forza, C., & Rungtusanatham, M. (2002). Modularity, product variety, production volume, and component sourcing: Theorizing beyond generic prescriptions. *Journal of Operations Management*, 20(5), 549-575. https://doi.org/10.1016/S0272-6963(02)00027-X
-
-    Society of Automotive Engineers. (2016). Bridging the automotive/consumer electronics product cycle gap. *SAE International*. https://www.sae.org/news/2016/09/bridging-the-automotiveconsumer-electronics-product-cycle-gap
-
-    Womack, J. P., Jones, D. T., & Roos, D. (2018). *The Machine That Changed the World: The Story of Lean Production*. Simon & Schuster. (Original work published 1990)
-
     ## Chinese Innovation System
 
-    Boeing, P., & Mueller, E. (2019). Measuring China's patent quality: Development and validation of ISR indices. *China Economic Review*, 57, 101331. https://doi.org/10.1016/j.chieco.2019.101331
-
-    Hafeez, M., Yuan, C., Yuan, Q., Zhong, R., & Kamran, H. W. (2024). China's electric vehicles adoption: Implications for sustainable electricity, transportation, and net-zero emissions. *Frontiers in Sustainable Energy Policy*, 3, 1457743. https://doi.org/10.3389/fsuep.2024.1457743
-
     Information Technology and Innovation Foundation (ITIF). (2024, July 29). *How Innovative Is China in the Electric Vehicle and Battery Industries?* Retrieved from https://itif.org/publications/2024/07/29/how-innovative-is-china-in-the-electric-vehicle-and-battery-industries/
-
-    Li, X. (2012). Behind the recent surge of Chinese patenting: An institutional view. *Research Policy*, 41(1), 236-249. https://doi.org/10.1016/j.respol.2011.07.003
 
     ## Scenario Planning and Strategic Foresight
 
@@ -2958,16 +2982,6 @@ def _(mo):
     ## Patent Data Sources
 
     Google. (2024). *Public Patent Dataset*. BigQuery: patents-public-data.patents.publications. Retrieved from https://console.cloud.google.com/marketplace/product/google_patents_public_datasets/google-patents-public-data
-
-    ## China EV Industry and Strategy
-
-    Bloomberg. (2024, March 10). China EV Makers Woo Buyers With In-Car Beds, Kitchens, and Karaoke. *Bloomberg News*. https://www.bloomberg.com/news/articles/2024-03-10/5-unusual-electric-car-features-in-china-from-gaming-system-to-full-sized-beds
-
-    NIO Inc. (2024, March 5). NIO Inc. Reports Unaudited Fourth Quarter and Full Year 2023 Financial Results. *Investor Relations News Release*. Retrieved from https://ir.nio.com/news-releases/news-release-details/nio-inc-reports-unaudited-fourth-quarter-and-full-year-2023/
-
-    TechCrunch. (2023, April 16). XPeng unveils new EV platform designed to cut production costs. Retrieved from https://techcrunch.com/2023/04/16/xpeng-unveils-new-ev-platform-designed-to-cut-production-costs/
-
-    XPeng Inc. (2023, April 16). XPENG Presents Next-Gen Technology Architecture – SEPA2.0. *Investor Relations News Release*. Retrieved from https://ir.xiaopeng.com/news-releases/news-release-details/xpeng-presents-next-gen-technology-architecture-sepa20
 
     ---
     """
