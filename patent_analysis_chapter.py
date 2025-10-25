@@ -56,7 +56,7 @@ def _(mo):
 
     This paradox extends deeper. Europe's patent share declined from 26.3% to 17.3% (2014-2024), a 9-percentage-point erosion affecting six of seven technology domains. Europe's sole growth domain is hybrid powertrains—the very technology the industry is abandoning. Meanwhile, Europe ranks second, third, or fourth across nearly all domains but leads in none of the high-growth categories defining future competitiveness: autonomous driving, battery innovation, or infotainment systems. We term this the "legacy trap": strong specialization in traditional automotive domains (hybrids, thermal management, safety systems) but critical weaknesses in future-defining technologies.
 
-    For a continent whose automotive sector employs 14 million people, represents 7% of EU GDP, and generates a €400 billion annual trade surplus, this pattern signals not cyclical weakness but structural crisis. The question is whether the window for strategic renewal remains open and what actions might reverse these trajectories before they become irreversible.
+    For a continent whose automotive sector employs 13.8 million people, represents 7% of EU GDP, and generates a €89 billion annual trade surplus (ACEA, 2024; Eurostat, 2025), this pattern signals not cyclical weakness but structural crisis. The question is whether the window for strategic renewal remains open and what actions might reverse these trajectories before they become irreversible.
 
     ## Research Questions and Contributions
 
@@ -2887,6 +2887,12 @@ def _(mo):
     Teece, D. J. (2010). Business models, business strategy and innovation. *Long Range Planning*, 43(2-3), 172-194. https://doi.org/10.1016/j.lrp.2009.07.003
 
     Zott, C., & Amit, R. (2010). Business model design: An activity system perspective. *Long Range Planning*, 43(2-3), 216-226. https://doi.org/10.1016/j.lrp.2009.07.004
+
+    ## Industry Statistics and Economic Data
+
+    ACEA (European Automobile Manufacturers' Association). (2024). *The Automobile Industry Pocket Guide 2024-2025*. Retrieved from https://www.acea.auto/figure/employment-in-eu-automotive-sector/
+
+    Eurostat. (2025, January 4). EU car trade surplus: €89.3 billion in 2024. Retrieved from https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20250401-1
 
     ## Cross-Industry Innovation and Knowledge Transfer
 
