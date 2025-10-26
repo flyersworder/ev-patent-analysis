@@ -911,3 +911,8 @@ For comprehensive project planning, status tracking, and implementation details,
   - Review 3: Theory Integration & Argumentation
   - Review 4: Methods Robustness
   - Final assessment: A+ (94/100), Publication-ready
+- **`LITERATURE_REVIEW_2020-2025.md`** - Comprehensive literature review (60+ papers, 2020-2025):
+  - Part 1: Recent papers (2023-2025) with integration recommendations
+  - Part 2: Foundational research (2020-2023) establishing 5-year academic base
+  - Integration roadmap for strengthening theoretical framework
+  - Reference list additions for all reviewed papers
