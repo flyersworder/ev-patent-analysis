@@ -78,7 +78,7 @@ def _(mo):
 
     **Strategic pathways**: Evidence-based recommendations for Europe identify defensible domains, strategic alliance opportunities, and differentiation strategies, with three alternative futures and robust strategies effective across scenarios.
 
-    This paper unfolds as follows: **Theoretical Framework** formulates four testable hypotheses. **The Five-Region Race** examines patent competition across seven EV technology domains. **Patent Quality Analysis** employs forward citation analysis to assess technological impact. **Cross-Border Collaboration and Knowledge Flows** investigates collaboration patterns and knowledge diffusion across regions. **Business Model Innovation** examines China's cross-industry transfer strategy as an alternative competitive pathway. **Hypothesis Testing** systematically evaluates all four hypotheses revealing critical theoretical gaps and novel competitive mechanisms. **EU Strategic Imperatives** translates findings into actionable policy recommendations and alternative futures.
+    This paper unfolds as follows: **Theoretical Framework** formulates four testable hypotheses. **Methods** describes data sources, patent attribution approach, and analytical techniques. **The Five-Region Race** examines patent competition across seven EV technology domains. **Patent Quality Analysis** employs forward citation analysis to assess technological impact. **Cross-Border Collaboration and Knowledge Flows** investigates collaboration patterns and knowledge diffusion across regions. **Business Model Innovation** examines China's cross-industry transfer strategy as an alternative competitive pathway. **Hypothesis Testing** systematically evaluates all four hypotheses revealing critical theoretical gaps and novel competitive mechanisms. **EU Strategic Imperatives** translates findings into actionable policy recommendations and alternative futures.
 
     The window for European strategic renewal remains open, but it narrows with each passing quarter.
     """
@@ -123,6 +123,36 @@ def _(mo):
     **H4 (Business Model Innovation → Alternative Pathway):** Regions can achieve market competitiveness through cross-industry business model transfer even when patent quality significantly lags technological leaders, when the transferred model aligns with product modularity, software-centricity, and network effects.
 
     The following empirical sections test these hypotheses through comprehensive patent data analysis. Hypothesis confirmation would validate theoretical expectations; hypothesis rejection would reveal critical theoretical gaps requiring new frameworks to explain 21st-century innovation competition among technologically advanced regions operating under geopolitical tension and platform-based competition dynamics.
+    """
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""# Methods
+
+    ## Data Source and Sample
+
+    Our analysis employs the Google Patents Public Dataset accessed via BigQuery, which aggregates patent filings from 107 patent offices globally. The dataset provides comprehensive coverage of the Cooperative Patent Classification (CPC) system, assignee information, and forward citation data. We extracted 385,000+ electric vehicle-related patents filed between 2014-2024 across five major regions: the United States (US), China (CN), the European Union (EU, aggregating all 27 current member states), Japan (JP), and South Korea (KR). Taiwan was excluded from the analysis as it lacks significant automotive manufacturing presence or major OEM R&D centers. The 2014-2024 time period captures the EV acceleration phase following Tesla's Model S launch, encompassing both early-stage innovation and recent platform competition.
+
+    Patents are classified into seven core EV technology domains based on CPC codes: Battery Technology (H01M4/6/10/12/50, H01G11), EV Propulsion & Charging (B60L, H02K/P/J7/M), Autonomous Driving & ADAS (B60W, G05D1), Hybrid Powertrains (B60K6, F02D), Vehicle Safety Systems (B60R, B60Q), Thermal Management (B60H, F28D), and Infotainment & Connectivity (B60K35/37, H04W4, G07C5, H04N7/18, G08G). Complete CPC mapping schema and SQL queries are provided in Appendix A and the project's GitHub repository for full reproducibility.
+
+    ## Key Methodological Decisions
+
+    **Patent attribution.** We count patents by **assignee/inventor country based on filing date**, not patent office location or grant date. This assignee-based approach captures where innovation originates rather than where legal protection is sought. Filing dates (not grant or publication dates) provide consistent temporal anchoring across jurisdictions with different examination timelines. This methodology has two critical implications: (1) it automatically excludes Chinese utility models, which lack assignee data in patent office filings and represent lower-quality defensive patents rather than substantive innovation; (2) it captures "export-quality" innovation—patents filed by entities investing in examination and prosecution costs, indicating commercial intent.
+
+    **Citation analysis cohort.** Forward citation analysis is restricted to patents filed 2014-2018, providing a 5-10 year citation window to avoid temporal truncation bias (patents filed recently have less time to accumulate citations). This cohort restriction ensures citation metrics reflect genuine technological impact rather than recency artifacts. All volume-based analyses employ the full 2014-2024 dataset; only quality metrics (citations, generality, originality) use the 2014-2018 cohort.
+
+    **Collaboration measurement.** Cross-border collaboration patents are identified through multi-assignee analysis at the regional level (Section 4). Patents are classified as collaborative when assignees from different regions (e.g., US-China, EU-Korea) co-file. Within-region collaboration (e.g., Germany-France) and collaborations with regions outside our five-region focus are excluded from collaboration rate calculations to maintain analytical focus on strategic cross-regional knowledge flows.
+
+    ## Operationalization and Measurement
+
+    **Volume metrics** include raw patent counts and regional shares calculated as each region's patents divided by the five-region total (excluding other countries). **Quality metrics** comprise: (1) forward citations—the number of subsequent patents citing each focal patent, measuring technological impact (Hall et al., 2001); (2) generality and originality indices—Herfindahl-based measures of cross-domain knowledge integration, where generality captures the diversity of technology classes citing the focal patent and originality measures the diversity of classes the focal patent cites (Hall et al., 2001). **Knowledge flow metrics** include citation-weighted self-citation rates (the proportion of citations received from the same region), cross-regional citation flows (citations from one region to another), and citation time lags (median time between cited and citing patent filing dates).
+
+    ## Statistical Approach
+
+    Given non-normal citation distributions, we employ non-parametric tests for quality comparisons: Kruskal-Wallis H-tests for overall regional differences and Mann-Whitney U-tests for pairwise comparisons, reporting Cohen's d effect sizes to quantify magnitude (small d=0.2, medium d=0.5, large d≥0.8). Collaboration trend analysis employs two-proportion z-tests for temporal changes and Chow tests for structural breaks, identifying whether collaboration collapse coincides with geopolitical events (trade war, export controls). Robustness checks include wild bootstrap regression with technology domain fixed effects to verify quality differences persist within identical domains, ruling out specialization artifacts. All tests employ robust standard errors.
     """
     )
     return
@@ -1399,7 +1429,7 @@ def _(mo):
         r"""
     While the previous section documented regional patent shares and domain-specific competencies, it tells only part of the story. Innovation in complex technological systems like electric vehicles increasingly depends on cross-border collaboration and knowledge flows. This section examines collaborative patent patterns to reveal the structure of global innovation networks and assess whether regions operate as isolated silos or integrated innovation ecosystems.
 
-    Methodologically, we measure collaboration as patents with assignees/inventors from multiple regions among our five focal regions (the US, China, the EU, Japan, and Korea). This definition excludes within-region international collaboration (e.g., Germany-France partnerships within the EU) and collaborations involving countries outside these five regions. Patents involving three or more regions (0.01% of total patents) are classified by their first bilateral pair match and thus represent a subset of bilateral collaboration patterns.
+    We measure collaboration as patents with multi-regional assignees/inventors among our five focal regions (see Section 3 for complete methodology). This excludes within-region collaboration (e.g., Germany-France within EU) and collaborations with countries outside the five-region focus.
     """
     )
     return
