@@ -134,7 +134,7 @@ def _(mo):
 
     ## Data Source and Sample
 
-    Our analysis employs the Google Patents Public Dataset accessed via BigQuery, which aggregates patent filings from 107 patent offices globally. The dataset provides comprehensive coverage of the Cooperative Patent Classification (CPC) system, assignee information, and forward citation data. We extracted 385,000+ electric vehicle-related patents filed between 2014-2024 across five major regions: the United States (US), China (CN), the European Union (EU, aggregating all 27 current member states), Japan (JP), and South Korea (KR). Taiwan was excluded from the analysis as it lacks significant automotive manufacturing presence or major OEM R&D centers. The 2014-2024 time period captures the EV acceleration phase following Tesla's Model S launch, encompassing both early-stage innovation and recent platform competition.
+    Our analysis employs the Google Patents Public Dataset accessed via BigQuery, which aggregates patent filings from 107 patent offices globally. The dataset provides comprehensive coverage of the Cooperative Patent Classification (CPC) system, assignee information, and forward citation data. We extracted 385,000+ electric vehicle-related patents filed between 2014-2024 across five major regions: the United States (US), China (CN), the European Union (EU, aggregating all 27 current member states), Japan (JP), and South Korea (KR). We excluded Taiwan from the analysis as it lacks significant automotive manufacturing presence or major OEM R&D centers (no major OEMs or global R&D centers as of 2024). The 2014-2024 time period captures the EV acceleration phase following Tesla's Model S launch, encompassing both early-stage innovation and recent platform competition.
 
     Patents are classified into seven core EV technology domains based on CPC codes: Battery Technology (H01M4/6/10/12/50, H01G11), EV Propulsion & Charging (B60L, H02K/P/J7/M), Autonomous Driving & ADAS (B60W, G05D1), Hybrid Powertrains (B60K6, F02D), Vehicle Safety Systems (B60R, B60Q), Thermal Management (B60H, F28D), and Infotainment & Connectivity (B60K35/37, H04W4, G07C5, H04N7/18, G08G). Complete CPC mapping schema and SQL queries are provided in Appendix A and the project's GitHub repository for full reproducibility.
 
@@ -2676,7 +2676,7 @@ def _(mo):
 
     ### Technical Implementation
 
-    Data was queried from Google BigQuery's `patents-public-data.patents.publications` table using SQL, joining with CPC classification definitions to categorize patents. **Complete SQL queries, data files, and analytical code are publicly available at: https://github.com/flyersworder/ev-patent-analysis**
+    We queried data from Google BigQuery's `patents-public-data.patents.publications` table using SQL, joining with CPC classification definitions to categorize patents. **Complete SQL queries, data files, and analytical code are publicly available at: https://github.com/flyersworder/ev-patent-analysis**
     """
     )
     return
