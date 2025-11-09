@@ -6,7 +6,7 @@ This file provides guidance to Claude Code when working with code in this reposi
 
 EV (Electric Vehicle) patent analysis research project analyzing patent filing patterns across five regions (US, China, EU, Japan, South Korea) from 2014-2024. The analysis focuses on seven core EV technology domains using Google's Public Patent Dataset via BigQuery.
 
-**Current Status**: Publication-ready academic book chapter (~10,165 words, EU-centric focus)
+**Current Status**: Publication-ready academic book chapter (~7,817 words, optimized for book chapter format)
 
 ## Tech Stack & Environment
 
@@ -65,7 +65,7 @@ chmod +x export_pdf_workflow.sh
 
 ### Key Files
 
-- **`patent_analysis_chapter.py`**: Main marimo notebook (EU-centric book chapter, ~10,165 words)
+- **`patent_analysis_chapter.py`**: Main marimo notebook (EU-centric book chapter, ~7,817 words)
 - **`patent_analysis_paper.py`**: Backup of original 5-region comparative manuscript (~13,650 words)
 - **`EU_CENTRIC_REVISION_PLAN_V2.md`**: Revision strategy for EU-centric transformation
 
@@ -194,4 +194,4 @@ pivot_data_percentage = pivot_data.div(pivot_data.sum(axis=1), axis=0) * 100
 
 ---
 
-**Version**: Updated 2025-01-25 (post EU-centric revision, ~10,165 words)
+**Version**: Updated 2025-11-09 (post word reduction, ~7,817 words)

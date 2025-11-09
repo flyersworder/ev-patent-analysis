@@ -1,6 +1,16 @@
 # Data Files Documentation
 
-This document provides detailed documentation for all CSV data files in the `data/` directory.
+This document provides detailed documentation for all CSV data files referenced in the analysis.
+
+## Important Note
+
+**The CSV data files are not included in this repository** due to size constraints. However, full reproducibility is ensured through:
+
+1. **SQL queries**: All 7 queries available in the `sql/` directory
+2. **Documentation**: Complete column definitions and methodology below
+3. **Public data source**: Google's Public Patent Dataset is freely accessible via BigQuery
+
+To reproduce the data files, execute the SQL queries in BigQuery and export the results as CSV files following the naming convention described below.
 
 ## Overview
 
@@ -361,4 +371,4 @@ For data questions or reported errors:
 - **GitHub Issues**: https://github.com/flyersworder/ev-patent-analysis/issues
 - **Email**: [your.email@institution.edu]
 
-**Last Updated**: January 2025
+**Last Updated**: November 2025
