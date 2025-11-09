@@ -87,9 +87,9 @@ with open('patent_analysis_chapter.ipynb', 'r') as f:
     nb = json.load(f)
 
 # Move Table 1 (Statistical Significance) to after Figure 2
-# Table 1 is originally at cell 22, move it to position 9 (after Figure 2)
-table1_cell = nb['cells'].pop(22)
-nb['cells'].insert(9, table1_cell)
+# Table 1 is originally at cell 23, move it to position 10 (right after Figure 2 at position 9)
+table1_cell = nb['cells'].pop(23)
+nb['cells'].insert(10, table1_cell)
 print("✓ Moved Table 1 to after Figure 2")
 
 # Add cell metadata to hide code
