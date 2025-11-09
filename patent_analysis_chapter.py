@@ -356,11 +356,11 @@ def _(alt, overall_data):
 
     # Combine solid and dashed charts
     fig1 = (_chart_solid + _chart_dashed).properties(
-        width=700,
+        width=640,
         height=400,
         title=alt.Title(
             'Figure 1: Global EV Patent Share Evolution (2014-2024)',
-            subtitle='Percentage shares among five major regions (US, CN, EU, JP, KR) representing 94% of global EV patents. Dashed lines indicate incomplete 2024 data.',
+            subtitle=['Percentage shares among five major regions (US, CN, EU, JP, KR) representing 94% of global EV patents.', 'Dashed lines indicate incomplete 2024 data.'],
             fontSize=14,
             anchor='start'
         )
@@ -389,7 +389,7 @@ def _(mo, share_test_results):
     | Japan | {_sc[_sc['region']=='JP']['share_2014'].values[0]:.1f}% | {_sc[_sc['region']=='JP']['share_2023'].values[0]:.1f}% | {_sc[_sc['region']=='JP']['change_pp'].values[0]:.1f} | [{_sc[_sc['region']=='JP']['ci_lower'].values[0]:.1f}, {_sc[_sc['region']=='JP']['ci_upper'].values[0]:.1f}] | {_sc[_sc['region']=='JP']['z_stat'].values[0]:.2f} | <0.001 | Yes |
     | **European Union** | **{_sc[_sc['region']=='EU']['share_2014'].values[0]:.1f}%** | **{_sc[_sc['region']=='EU']['share_2023'].values[0]:.1f}%** | **{_sc[_sc['region']=='EU']['change_pp'].values[0]:.1f}** | **[{_sc[_sc['region']=='EU']['ci_lower'].values[0]:.1f}, {_sc[_sc['region']=='EU']['ci_upper'].values[0]:.1f}]** | **{_sc[_sc['region']=='EU']['z_stat'].values[0]:.2f}** | **<0.001** | **Yes** |
 
-    *Note*: Chi-square test confirms regional distribution changed significantly between 2014 and 2023 (χ²={_st['chi2_stat']}, df=4, p<0.001). Z-statistics test whether individual regional changes differ from zero; 95% confidence intervals (CI) calculated using normal approximation for proportion differences. All regional changes are statistically significant at p<0.001, indicating changes are not due to sampling variation. EU's -6.1pp decline and China's +8.7pp growth represent the largest absolute changes. Sorted by 2023 share (descending).
+    *Note*: Chi-square test confirms regional distribution changed significantly between 2014 and 2023 ($\chi^2$={_st['chi2_stat']}, df=4, p<0.001). Z-statistics test whether individual regional changes differ from zero; 95% confidence intervals (CI) calculated using normal approximation for proportion differences. All regional changes are statistically significant at p<0.001, indicating changes are not due to sampling variation. EU's -6.1pp decline and China's +8.7pp growth represent the largest absolute changes. Sorted by 2023 share (descending).
     """)
     return
 
@@ -716,7 +716,15 @@ def _(mo, rca_results):
     |--------|----|----|----|----|-----|
     {_table_content}
 
-    *Note*: RCA quantifies regional specialization following Balassa (1965): RCA = (region's share in domain) / (region's overall patent share). RCA > 1.0 indicates specialization (higher concentration than overall portfolio); RCA < 1.0 indicates under-representation; **bold (RCA ≥ 1.5)** indicates strong specialization. **Key findings**: (1) **China**: Strong battery specialization (1.49) but weakness in autonomous driving (0.58); (2) **EU**: Strong specialization in *traditional automotive domains* (hybrids **1.65**, thermal **1.64**, safety **1.59**) but weakness in emerging tech (batteries 0.63, infotainment 0.67); (3) **Korea**: Strong battery dominance (**1.59**); (4) **US**: Specialization in software domains (autonomous 1.30, infotainment 1.36); (5) **Japan**: Strong hybrid specialization (**1.51**). EU exhibits "legacy trap"—strengthening traditional capabilities while lacking specialization in emerging domains. Table 2 shows temporal trends in absolute shares; Table 3 shows current specialization patterns.
+    *Note*: RCA quantifies regional specialization following Balassa (1965): RCA = (region's share in domain) / (region's overall patent share).
+    RCA > 1.0 indicates specialization (higher concentration than overall portfolio); RCA < 1.0 indicates under-representation;
+    **bold (RCA ≥ 1.5)** indicates strong specialization.
+    **Key findings**: (1) **China**: Strong battery specialization (1.49) but weakness in autonomous driving (0.58);
+    (2) **EU**: Strong specialization in *traditional automotive domains* (hybrids **1.65**, thermal **1.64**, safety **1.59**) but weakness in emerging tech (batteries 0.63, infotainment 0.67);
+    (3) **Korea**: Strong battery dominance (**1.59**); (4) **US**: Specialization in software domains (autonomous 1.30, infotainment 1.36);
+    (5) **Japan**: Strong hybrid specialization (**1.51**).
+    EU exhibits "legacy trap"—strengthening traditional capabilities while lacking specialization in emerging domains.
+    Table 2 shows temporal trends in absolute shares; Table 3 shows current specialization patterns.
     """)
     return
 
@@ -769,7 +777,12 @@ def _(alt, global_data):
         color=alt.Color('eu_percentage:Q',
                         title='EU Patent Share (%)',
                         scale=alt.Scale(scheme='blues', domain=[10, 50]),  # Adjusted range for better contrast
-                        legend=alt.Legend(titleFontSize=11, labelFontSize=10)),
+                        legend=alt.Legend(
+                            titleFontSize=11,
+                            labelFontSize=10,
+                            orient='bottom',  # Move legend to bottom to prevent right-side overflow
+                            direction='horizontal'
+                        )),
         tooltip=[
             alt.Tooltip('application_area:N', title='Domain'),
             alt.Tooltip('year:O', title='Year'),
@@ -781,7 +794,7 @@ def _(alt, global_data):
         height=320,
         title=alt.Title(
             'Figure 3: EU Competitive Position Across Technology Domains',
-            subtitle='EU patent share (%) among five major regions (US, CN, EU, JP, KR) for selected key years (2014, 2017, 2020, 2023, 2024). Darker shades indicate stronger EU position. *2024 data incomplete.',
+            subtitle=['EU patent share (%) among five major regions (US, CN, EU, JP, KR) for selected key years (2014, 2017, 2020, 2023, 2024).', 'Darker shades indicate stronger EU position. *2024 data incomplete.'],
             fontSize=14,
             anchor='start'
         )
@@ -814,7 +827,7 @@ def _(mo):
     mo.md(rf"""
     ## Interpreting the Global Patent Landscape: Resource Endowments and Strategic Divergence
 
-    Our analysis reveals how distinct National Innovation Systems shape regional EV patent trajectories (Figures 1-3, Tables 1-3). Statistical testing confirms these patterns are not sampling artifacts (χ²=9801.09, p<0.001): all regional changes from 2014-2023 test significant at p<0.001.
+    Our analysis reveals how distinct National Innovation Systems shape regional EV patent trajectories (Figures 1-3, Tables 1-3). Statistical testing confirms these patterns are not sampling artifacts ($\chi^2$=9801.09, p<0.001): all regional changes from 2014-2023 test significant at p<0.001.
 
     **Asian competitors' strategic focus**: Korea (20.5%) and Japan (18.3%) pursue focused specialization strategies, with Korea concentrating on batteries and Japan on hybrid powertrains—demonstrating how strategic concentration can generate competitive advantage despite smaller innovation systems.
 
@@ -1258,11 +1271,11 @@ def _(alt, citation_by_region_year, region_colors, region_shapes):
     )
 
     fig4a = (_cit_solid + _cit_dashed).properties(
-        width=700,
+        width=640,
         height=400,
         title=alt.Title(
             'Figure 4A: Average Forward Citations by Region (2014-2024)',
-            subtitle='Patents require 5-7 years to accumulate citations. Declining trends after 2019 reflect citation lag, not quality decline. Dashed lines indicate incomplete 2024 data.',
+            subtitle=['Patents require 5-7 years to accumulate citations. Declining trends after 2019 reflect citation lag, not quality decline.', 'Dashed lines indicate incomplete 2024 data.'],
             fontSize=14,
             anchor='start'
         )
@@ -1472,7 +1485,7 @@ def _(alt, collab_rate_overall):
     )
 
     fig5a = (_rate_solid + _rate_dashed).properties(
-        width=700,
+        width=640,
         height=300,
         title=alt.Title(
             'Figure 5A: EV Patent Collaboration Rate (2014-2024)',
@@ -1578,7 +1591,7 @@ def _(alt, collab_pairs_by_year_top):
     )
 
     fig5b = (_pairs_solid + _pairs_dashed).properties(
-        width=700,
+        width=640,
         height=350,
         title=alt.Title(
             'Figure 5B: Top Cross-Border Collaboration Pairs (2014-2024)',
@@ -1711,7 +1724,7 @@ def _(mo):
 
     ### Domain-Specific Collaboration: Where Openness Emerges
 
-    Figure 5C's domain analysis reveals that collaboration rates vary dramatically across technologies. High-collaboration domains (batteries, autonomous driving) average a 1.15% collaboration rate versus low-collaboration domains (thermal, safety, hybrid) at 0.91%—a statistically significant difference (χ²=141.3, p<0.001, Table 5). This pattern reflects geographic separation of complementary capabilities: EU-Korean battery partnerships combine European thermal management with Korean cell technology; EU-US autonomous driving collaborations leverage US software expertise (Waymo, Mobileye) with European automotive integration. Low-collaboration domains involve mature engineering with established regional supply chains, suggesting that self-sufficient capabilities reduce collaboration necessity.
+    Figure 5C's domain analysis reveals that collaboration rates vary dramatically across technologies. High-collaboration domains (batteries, autonomous driving) average a 1.15% collaboration rate versus low-collaboration domains (thermal, safety, hybrid) at 0.91%—a statistically significant difference ($\chi^2$=141.3, p<0.001, Table 5). This pattern reflects geographic separation of complementary capabilities: EU-Korean battery partnerships combine European thermal management with Korean cell technology; EU-US autonomous driving collaborations leverage US software expertise (Waymo, Mobileye) with European automotive integration. Low-collaboration domains involve mature engineering with established regional supply chains, suggesting that self-sufficient capabilities reduce collaboration necessity.
 
     ### Regional Collaboration Strategies: Selectivity vs. Fragmentation
 
@@ -1842,7 +1855,7 @@ def _(collab_test_results, mo):
     | Test | Result | Z-statistic | p-value | Significant |
     |------|--------|-------------|---------|-------------|
     | **1. Temporal Trend (2018 vs 2021)** | {_ct['temporal_trend']['rate_2018']:.2f}% → {_ct['temporal_trend']['rate_2021']:.2f}% | {_ct['temporal_trend']['z_stat']:.3f} | <0.001 | YES |
-    | **2. Domain Differences** | High: {_ct['domain_comparison']['high_rate']:.2f}%, Low: {_ct['domain_comparison']['low_rate']:.2f}% | χ²={_ct['domain_comparison']['chi2']:.1f} | <0.001 | YES |
+    | **2. Domain Differences** | High: {_ct['domain_comparison']['high_rate']:.2f}%, Low: {_ct['domain_comparison']['low_rate']:.2f}% | $\chi^2$={_ct['domain_comparison']['chi2']:.1f} | <0.001 | YES |
 
     *Note*: Test 1 compares collaboration rates at 2018 peak (1.28%, n={_ct['temporal_trend']['collab_2018']:,}/{_ct['temporal_trend']['total_2018']:,}) versus 2021 decline (0.87%, n={_ct['temporal_trend']['collab_2021']:,}/{_ct['temporal_trend']['total_2021']:,}) using two-proportion z-test. Test 2 compares high-collaboration domains (Battery, Autonomous: {_ct['domain_comparison']['high_collab']:,}/{_ct['domain_comparison']['high_total']:,}) versus low-collaboration domains (Thermal, Safety, Hybrid: {_ct['domain_comparison']['low_collab']:,}/{_ct['domain_comparison']['low_total']:,}) using chi-square test. Both tests reject null hypothesis at p<0.001, confirming collaboration patterns are statistically robust.
     """)
@@ -1949,7 +1962,7 @@ def _(alt, knowledge_flows_df, region_colors, region_shapes):
     )
 
     fig_6a = (_rates_solid + _rates_dashed).properties(
-        width=700,
+        width=640,
         height=400,
         title=alt.TitleParams(
             'Figure 6A: Self-Citation Rates by Region (2014-2024)',
@@ -2011,7 +2024,7 @@ def _(alt, knowledge_flows_df):
             alt.Tooltip('citation_count:Q', title='Citations', format=',')
         ]
     ).properties(
-        width=700,
+        width=640,
         height=400,
         title=alt.TitleParams(
             'Figure 6B: Top 10 Cross-Regional Knowledge Flows (2023)',
@@ -2136,7 +2149,7 @@ def _(kflow_test_results, mo):
     | United States | {_sc[1]['self_rate']:.1f}% | {_sc[1]['self_citations']:,} | {_sc[1]['total']:,} |
     | South Korea | {_sc[4]['self_rate']:.1f}% | {_sc[4]['self_citations']:,} | {_sc[4]['total']:,} |
 
-    *Chi-square test*: χ²={_kf['self_citation']['chi2']:.1f}, p<0.001 (highly significant regional differences)
+    *Chi-square test*: $\chi^2$={_kf['self_citation']['chi2']:.1f}, p<0.001 (highly significant regional differences)
 
     *Note*: This test examines whether regional differences in self-citation rates (patents citing same-region prior art) are statistically significant using chi-square test on 2014-2024 aggregate data. Europe's moderate self-citation rate (42.4%) indicates balanced knowledge absorption from external sources while building on domestic capabilities.
     """)

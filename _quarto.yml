@@ -12,9 +12,13 @@ format:
       - bottom=1in
       - left=1in
       - right=1in
-    keep-tex: false
+    keep-tex: true
     include-in-header:
       text: |
+        \usepackage{fontspec}
+        \setmainfont{Latin Modern Roman}
+        \usepackage{unicode-math}
+        \setmathfont{Latin Modern Math}
         \usepackage{float}
         \usepackage{booktabs}
         \usepackage{longtable}
