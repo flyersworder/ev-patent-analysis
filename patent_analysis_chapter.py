@@ -1,26 +1,24 @@
 import marimo
 
-__generated_with = "0.17.2"
+__generated_with = "0.17.7"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Europe's Innovation Paradox: Patent Quality and Regional Competition in the Global Electric Vehicle Race (2014-2024)
 
     **Authors:** Qing Ye, Marina van Geenhuizen
 
-    **Date:** October 2025
+    **Date:** November 2025
 
     ## Abstract
 
-    This paper examines a troubling paradox in electric vehicle innovation: Europe ranks second in patent volume (2014-2024) yet last in quality. Analyzing 385,000+ patents across the United States, China, EU, South Korea, and Japan, we employ forward citation analysis, cross-border collaboration, and knowledge flow networks to assess technological impact. European patents (2014-2018 cohort) average 2.58 forward citations versus 9.97 for the US—a 3.9× quality gap. We test four theory-driven hypotheses synthesizing Resource-Based View, National Innovation Systems, Open Innovation, and Business Model Innovation. Two hypotheses are decisively rejected, one receives partial support, one is strongly supported, revealing critical theoretical gaps. Counterintuitively, China exhibits the lowest self-citation rate (21.5%) while the US shows second-highest (48.2%), contradicting NIS predictions. RBV receives conditional support: volume-quality correlation holds for the US but fails for EU, revealing a "legacy trap" where capabilities in declining technologies harm quality. US-China collaboration collapsed 76% despite complementarity, demonstrating geopolitical friction overrides open innovation logic. China's consumer electronics business model enables market competitiveness despite 2.6× patent quality disadvantage. These findings extend innovation theory by revealing state coordination's dual faces, RBV's conditional validity, geopolitical constraints on knowledge flows, and business model innovation as an independent strategic pathway.
+    Europe ranks second in electric vehicle patent volume (2014-2024) yet last in quality. Analyzing 385,000+ patents across five regions (US, China, EU, Korea, Japan), we employ forward citation analysis, collaboration patterns, and knowledge flows to assess innovation impact. European patents (2014-2018 cohort) average 2.58 citations versus 9.97 for the US—a 3.9× quality gap. Testing four hypotheses synthesizing Resource-Based View, National Innovation Systems, Open Innovation, and Business Model Innovation reveals critical theoretical gaps. RBV receives conditional support: volume-quality correlation holds for the US but fails for Europe, revealing a "legacy trap" where capabilities in declining technologies harm quality during transitions. US-China collaboration collapsed 76% despite complementarity, demonstrating geopolitical friction overrides open innovation logic. China's consumer electronics business model enables market competitiveness despite 2.6× patent quality disadvantage. These findings extend innovation theory by demonstrating RBV's conditional validity, geopolitical constraints on knowledge flows, and business model innovation as an independent strategic pathway.
 
     **Keywords:** electric vehicles, patent quality, innovation systems, forward citations, business model innovation, cross-border collaboration, battery technology
-    """
-    )
+    """)
     return
 
 
@@ -46,15 +44,14 @@ def _():
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Introduction
 
     ## The European Paradox
 
-    European inventors filed over 534,000 patents across seven core EV technology domains (23.4% of the five-region total), ranking second only to the United States. However, when measured by forward citations (the gold standard for assessing patent impact and technological influence), European patents (2014-2018 cohort) average 2.58 citations, compared to 9.97 for US patents and 4.11 for Korea. This 3.9× US-EU quality gap reveals a troubling reality: European innovation generates high activity but minimal impact.
+    European inventors filed over 534,000 patents across seven core EV technology domains (23.4% of the five-region total), ranking second globally. However, when measured by forward citations, European patents (2014-2018 cohort) average 2.58 citations versus 9.97 for the US—a 3.9× quality gap revealing high activity but minimal impact.
 
-    This paradox extends deeper. Europe's patent share declined from 26.3% to 17.3% (2014-2024), a 9-percentage-point erosion affecting six of seven technology domains. Europe's sole growth domain is hybrid powertrains—the very technology the industry is abandoning. Meanwhile, Europe ranks second, third, or fourth across nearly all domains but leads in none of the high-growth categories defining future competitiveness: autonomous driving, battery innovation, or infotainment systems. We term this the "legacy trap": strong specialization in traditional automotive domains (hybrids, thermal management, safety systems) but critical weaknesses in future-defining technologies.
+    This paradox extends deeper. Europe's patent share declined from 26.3% to 17.3% (2014-2024), with erosion in six of seven domains. Europe's sole growth domain—hybrid powertrains—is the technology the industry is abandoning. We term this the "legacy trap": strong specialization in traditional automotive domains but critical weaknesses in future-defining technologies (batteries, autonomous driving, infotainment).
 
     For a continent whose automotive sector employs 13.8 million people, represents 7% of EU GDP, and generates a €89 billion annual trade surplus (ACEA, 2024; Eurostat, 2025), this pattern signals not cyclical weakness but structural crisis. The question is whether the window for strategic renewal remains open and what actions might reverse these trajectories before they become irreversible.
 
@@ -66,30 +63,28 @@ def _(mo):
 
     **RQ2: Why is Europe losing ground?** What institutional, strategic, and capability factors explain Europe's decline in six of seven technology domains and its last-place ranking in citation quality despite second-highest patent volume?
 
-    **RQ3: What drives competitors' success?** How do the US's software dominance, China's consumer electronics business model, and Korea's focused battery excellence succeed through fundamentally different approaches—and what constraints do they face?
+    **RQ3: What drives competitors' success?** How do the US's software dominance and China's consumer electronics business model succeed through fundamentally different approaches—and what constraints do they face?
 
     **RQ4: What pathways remain open to Europe?** Given Europe's capability endowments, institutional structures, and competitors' positioning, what strategic imperatives and policy interventions offer realistic prospects for competitive renewal?
 
-    Analyzing 385,000+ patents across seven EV technology domains from 2014-2024, we integrate patent volume, quality (forward citations), cross-border collaboration patterns, and knowledge flow networks across five competing regions (US, China, EU, Korea, Japan). We test four theory-driven hypotheses synthesizing Resource-Based View, National Innovation Systems, Open Innovation, and Business Model Innovation frameworks. Our contributions include:
+    Analyzing 385,000+ patents across five regions (US, China, EU, Korea, Japan) and seven technology domains (2014-2024), we test four theory-driven hypotheses synthesizing Resource-Based View, National Innovation Systems, Open Innovation, and Business Model Innovation. Our contributions:
 
-    **Empirical discoveries**: We reveal Europe's "legacy trap" (strength in declining technologies, weakness in emerging domains), the "Korea-China battery paradox" (Korea leads innovation, China leads production), and counterintuitive patterns in knowledge openness contradicting theoretical predictions about state-led versus market-driven innovation systems.
+    **Empirical discoveries**: We reveal Europe's "legacy trap," geopolitical fragmentation overriding economic complementarity (US-China collaboration collapsed 76%), and counterintuitive knowledge openness patterns contradicting innovation systems theory.
 
-    **Theoretical extensions**: Systematic hypothesis testing reveals that two of four hypotheses are decisively rejected, one receives partial support, and one is strongly supported, exposing critical gaps while revealing novel competitive pathways. We extend National Innovation Systems theory beyond its developed-economy origins, demonstrate conditional validity of the Resource-Based View, reveal geopolitical boundaries as constraints overriding open innovation logic, and establish business model innovation as an independent strategic pathway where commercialization architecture matters more than technological superiority.
+    **Theoretical extensions**: Hypothesis testing exposes critical theoretical gaps while establishing business model innovation as independent pathway where commercialization architecture matters more than technological superiority.
 
-    **Strategic pathways**: Evidence-based recommendations for Europe identify defensible domains, strategic alliance opportunities, and differentiation strategies, with three alternative futures and robust strategies effective across scenarios.
+    **Strategic pathways**: Evidence-based recommendations identify defensible domains, alliance opportunities, and differentiation strategies with three alternative futures.
 
-    This paper unfolds as follows: **Theoretical Framework** formulates four testable hypotheses. **Methods** describes data sources, patent attribution approach, and analytical techniques. **The Five-Region Race** examines patent competition across seven EV technology domains. **Patent Quality Analysis** employs forward citation analysis to assess technological impact. **Cross-Border Collaboration and Knowledge Flows** investigates collaboration patterns and knowledge diffusion across regions. **Business Model Innovation** examines China's cross-industry transfer strategy as an alternative competitive pathway. **Hypothesis Testing** systematically evaluates all four hypotheses revealing critical theoretical gaps and novel competitive mechanisms. **EU Strategic Imperatives** translates findings into actionable policy recommendations and alternative futures.
+    This paper proceeds: **Theoretical Framework** formulates testable hypotheses. **Methods** describes data and analytical techniques. **The Five-Region Race** examines patent competition across technology domains. **Patent Quality Analysis** employs citation analysis. **Cross-Border Collaboration and Knowledge Flows** investigates patterns across regions. **Business Model Innovation** examines China's alternative pathway. **Hypothesis Testing** evaluates theoretical predictions. **EU Strategic Imperatives** translates findings into policy recommendations.
 
     The window for European strategic renewal remains open, but it narrows with each passing quarter.
-    """
-    )
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Theoretical Framework and Hypotheses
 
     Why do different regions exhibit such divergent patent patterns in electric vehicle innovation? The Resource-Based View (RBV) provides our foundation for understanding persistent regional specialization. Barney (1991) argues that sustainable competitive advantage stems from valuable, rare, inimitable, and non-substitutable resources. Applied to regional innovation systems, different geographic regions possess distinct technological capabilities accumulated through decades of institutional development and industrial specialization. These capabilities are path-dependent: the EU's thermal management and safety engineering expertise reflects traditional automotive engineering heritage built over a century; China's battery manufacturing scale results from coordinated industrial policy and large-scale capital deployment post-2010; US software and autonomous driving leadership builds on Silicon Valley's AI talent ecosystem developed since the 1990s. Competitors cannot quickly replicate these accumulated capabilities—German engineers cannot instantly acquire Chinese battery manufacturing expertise, nor can Chinese firms rapidly develop Silicon Valley's software talent networks. This path dependency explains why regional specialization patterns persist across technology domains despite globalization.
@@ -114,23 +109,23 @@ def _(mo):
 
     **H2 (Open Innovation → Collaboration Under Complementarity):** Cross-regional collaboration rates will increase over time (2014→2024) as technological specialization deepens. Regions with highly complementary capabilities will exhibit the highest collaboration rates.
 
-    Freeman (1987) and Lundvall (1992) emphasize that National Innovation Systems' institutional arrangements shape knowledge diffusion patterns. In state-directed systems like China's, government coordination prioritizes domestic technological autonomy, strategic IP accumulation, and protection against foreign appropriation—institutional features that should encourage inward-looking knowledge flows. Conversely, market-driven systems like the US rely on competitive knowledge markets where citations signal research impact and venture capital valuation, creating incentives for broad knowledge diffusion. EU's coordinated market economy balances both logics. Rejection would challenge core NIS assumptions about state coordination and knowledge protectionism.
+    Freeman (1987) and Lundvall (1992) emphasize that National Innovation Systems' institutional arrangements shape knowledge diffusion patterns. State-directed systems should prioritize domestic knowledge retention (higher self-citation), while market-driven systems encourage broad diffusion (lower self-citation). EU's coordinated market economy should exhibit intermediate patterns.
 
-    **H3 (National Innovation Systems → Knowledge Openness):** State-led innovation systems will exhibit higher self-citation rates than market-led innovation systems. Specifically, China (state-led) will show the highest self-citation rate, US (market-driven) the lowest, and EU (coordinated market economy) intermediate levels.
+    **H3 (National Innovation Systems → Knowledge Openness):** State-led innovation systems will exhibit higher self-citation rates than market-led systems. Specifically, China (state-led) will show the highest self-citation rate, US (market-driven) the lowest, and EU intermediate levels.
 
-    Teece (2010) argues that business model innovation—novel approaches to value creation and capture—can generate competitive advantage independently of technological superiority. Cross-industry transfer of proven business models (consumer electronics → automotive) may enable market competitiveness even when patent quality lags. China's consumer electronics industry mastered rapid iteration (12-18 month product cycles), volume-based cost reduction (100+ million unit economies), ecosystem lock-in (app stores, services), and software differentiation over hardware performance. Applying this logic to EVs—where modularity, software-centricity, and network effects resemble smartphones more than traditional vehicles—could offset patent disadvantages through superior commercialization speed and scale. Rejection would suggest patent leadership remains prerequisite for market success, limiting business model innovation's strategic value.
+    Teece (2010) argues that business model innovation can generate competitive advantage independently of technological superiority. Cross-industry business model transfer (consumer electronics → automotive) may enable market competitiveness despite patent quality gaps when product characteristics align—modularity, software-centricity, network effects—enabling rapid iteration and ecosystem integration strategies to offset R&D disadvantages.
 
     **H4 (Business Model Innovation → Alternative Pathway):** Regions can achieve market competitiveness through cross-industry business model transfer even when patent quality significantly lags technological leaders, when the transferred model aligns with product modularity, software-centricity, and network effects.
 
     The following empirical sections test these hypotheses through comprehensive patent data analysis. Hypothesis confirmation would validate theoretical expectations; hypothesis rejection would reveal critical theoretical gaps requiring new frameworks to explain 21st-century innovation competition among technologically advanced regions operating under geopolitical tension and platform-based competition dynamics.
-    """
-    )
+    """)
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""# Methods
+    mo.md(r"""
+    # Methods
 
     ## Data Source and Sample
 
@@ -153,20 +148,23 @@ def _(mo):
     ## Statistical Approach
 
     Given non-normal citation distributions, we employ non-parametric tests for quality comparisons: Kruskal-Wallis H-tests for overall regional differences and Mann-Whitney U-tests for pairwise comparisons, reporting Cohen's d effect sizes to quantify magnitude (small d=0.2, medium d=0.5, large d≥0.8). Collaboration trend analysis employs two-proportion z-tests for temporal changes and Chow tests for structural breaks, identifying whether collaboration collapse coincides with geopolitical events (trade war, export controls). Robustness checks include wild bootstrap regression with technology domain fixed effects to verify quality differences persist within identical domains, ruling out specialization artifacts. All tests employ robust standard errors.
-    """
-    )
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""# The Five-Region Race: Patent Competition Across EV Technology Domains""")
+    mo.md(r"""
+    # The Five-Region Race: Patent Competition Across EV Technology Domains
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""This section presents the empirical foundation of our analysis, examining patent filing patterns across five major regions (the United States, China, the European Union, Japan, and South Korea) from 2014-2024. We first analyze aggregate trends showing the overall competitive landscape (Figure 1), then examine domain-specific patterns across seven core EV technologies (Figure 2), before focusing on the EU's competitive position and its decline across technology domains (Figure 3). These patent data reveal not merely different innovation speeds but fundamentally distinct strategic approaches, reflecting the theoretical frameworks of resource-based capabilities, national innovation systems, and disruptive innovation dynamics discussed earlier.""")
+    mo.md(r"""
+    This section presents the empirical foundation of our analysis, examining patent filing patterns across five major regions (the United States, China, the European Union, Japan, and South Korea) from 2014-2024. We first analyze aggregate trends showing the overall competitive landscape (Figure 1), then examine domain-specific patterns across seven core EV technologies (Figure 2), before focusing on the EU's competitive position and its decline across technology domains (Figure 3). These patent data reveal not merely different innovation speeds but fundamentally distinct strategic approaches, reflecting the theoretical frameworks of resource-based capabilities, national innovation systems, and disruptive innovation dynamics discussed earlier.
+    """)
     return
 
 
@@ -823,13 +821,12 @@ def _(alt, global_data):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        rf"""
+    mo.md(rf"""
     ## Interpreting the Global Patent Landscape: Resource Endowments and Strategic Divergence
 
     Figures 1-3 and Tables 1-3 reveal how distinct National Innovation Systems shape regional EV patent trajectories. Statistical testing confirms these patterns are not sampling artifacts (χ²=9801.09, p<0.001): all regional changes from 2014-2023 test significant at p<0.001.
 
-    **Korea's emergence as peer competitor**: Korea's share overtook Japan in 2021 and reached near-parity with the EU by 2023 (20.5% vs. 20.2%). Table 3's RCA analysis reveals the mechanism: battery specialization (RCA=1.60) driven by focused chaebol-government coordination. Korea's trajectory is consistent with strategic concentration in high-value domains being associated with competitive advantage despite smaller innovation systems.
+    **Asian competitors' strategic focus**: Korea (20.5%) and Japan (18.3%) pursue focused specialization strategies, with Korea concentrating on batteries and Japan on hybrid powertrains—demonstrating how strategic concentration can generate competitive advantage despite smaller innovation systems.
 
     **US software-intensive leadership**: US dominance (27-31% overall share) stems from specialization in software domains (autonomous driving RCA=1.22, infotainment RCA=1.37). The 2022 dip to 25.5% likely reflects technology maturation cycles in autonomous driving ("hype cycle" consolidation), consistent with disruptive innovation's non-linear dynamics.
 
@@ -839,56 +836,40 @@ def _(mo):
 
     ### Domain-Level Patterns: Strategic Specialization
 
-    Table 2 reveals domain-specific dynamics. **Battery technology**: Korea dominates (33% share, 9,919 patents in 2023) via decades of consumer electronics capability transfer (Samsung, LG). China accelerates (16%→21%, 2020-2023) through state-directed gigafactory investment (CATL, BYD). The EU-Korea gap (33% vs. 13%) exemplifies how institutional coherence (chaebol-government coordination) outperforms fragmented systems (the EU's 27 national programs).
+    Table 2 reveals domain-specific dynamics. **Battery technology** presents a critical vulnerability for the EU: Europe holds only 13% patent share (3,929 patents in 2023), far behind Korea's innovation leadership (33%, 9,919 patents) and China's accelerating position (21%, 6,314 patents). While Korea leverages consumer electronics battery expertise (Samsung, LG) and China scales through state-directed gigafactory investment (CATL, BYD), the EU's fragmented approach across 27 national programs has failed to generate either innovation leadership or manufacturing competitiveness. China's manufacturing dominance (53% global market share) combined with rapidly growing patent output (16%→21%, 2020-2023) suggests European battery dependence will intensify without strategic intervention.
 
-    <div style="border: 2px solid #2c5aa0; background-color: #f0f4f8; padding: 20px; margin: 20px 0; border-radius: 8px;">
-    <p style="margin-top: 0; font-weight: bold; font-size: 1.1em;">Box 1: Patents vs. Market Share—The Korea-China Battery Paradox</p>
-
-    <p>Korea's 31-33% battery patent share contrasts sharply with its manufacturing market position. In 2023 global EV battery installations, Chinese manufacturers dominated with CATL (36.8% market share) and BYD (15.8%), totaling approximately 53% combined market share. Korean battery makers (LG Energy Solution 13.6%, SK On 4.9%, and Samsung SDI 4.6%) held approximately 23% combined (CnEVPost, 2024; SNE Research, 2024). China thus leads battery <em>production</em> (53% vs. 23%) while Korea leads battery <em>innovation</em> (33% vs. 21% patent share).</p>
-
-    <p>This patent-market gap illustrates the distinction between innovation leadership (R&D capabilities, technological advancement) and commercialization dominance (manufacturing scale, cost reduction). Patents are leading indicators of future competitiveness—today's R&D investments become tomorrow's products, typically with 5-10 year lag times. Korea's patent advantage reflects decades of consumer electronics battery expertise (LG Chem, Samsung SDI) systematically transferred to EV applications, with Korean firms accounting for 29% of the top-10 battery patent holders' total strength (IAM Media, 2023). This innovation intensity is driven by Korea's world-leading R&D expenditure—<strong>5.21% of GDP</strong> (2022), the highest globally—compared to China's 2.56% and the US's 3.59% (UN SDG, 2023). Korea thus invests <strong>twice China's R&D intensity</strong> relative to economic size, explaining why it leads battery <em>innovation</em> despite China's manufacturing dominance.</p>
-
-    <p>However, China is rapidly closing the innovation gap. Chinese battery patent share surged from 16% (2020) to 21% (2023)—a 5-percentage-point gain in three years driven by CATL and BYD's substantial R&D investments (each receiving $2+ billion annually in state support). If this acceleration continues, China could challenge Korea's patent leadership by 2027-2028, potentially translating manufacturing dominance into innovation leadership. This presents a future strategic challenge for Korean battery makers: maintaining R&D advantage becomes critical for premium positioning and next-generation technology leadership (solid-state batteries, silicon anodes) as Chinese competitors scale both production <em>and</em> innovation capabilities simultaneously.</p>
-
-    <p style="margin-bottom: 0;">The Korea-China battery dynamic exemplifies business model competition: Korea's R&D-intensive model (high patent output, premium positioning) versus China's state-directed scaling model (manufacturing dominance with rapid R&D catch-up). Can Korea's innovation advantage sustain competitive positioning as China masters both dimensions?</p>
-    </div>
-
-    **Software domains**: US autonomous driving leadership (32-35%) stems from Silicon Valley's software ecosystem (Stanford-Waymo linkages, venture capital, AI talent). China's weakness (8-9%) suggests command-and-control systems excel at manufacturing (batteries) but struggle with software innovation requiring decentralized creativity. Korea's infotainment surge (16%→21%, 2020-2022) reflects consumer electronics capability transfer (Samsung/LG treating dashboards as smartphone derivatives). EU weakness in both (autonomous 20%, infotainment 14%) reveals incumbents viewing software as subsidiary to mechanical engineering.
+    **Software domains**: US autonomous driving leadership (32-35%) stems from Silicon Valley's software ecosystem (Stanford-Waymo linkages, venture capital, AI talent). China's weakness (8-9%) suggests command-and-control systems excel at manufacturing but struggle with software innovation requiring decentralized creativity. EU weakness in both autonomous driving (20%) and infotainment (14%) reveals traditional automakers viewing software as subsidiary to mechanical engineering—a critical strategic misalignment.
 
     ### Institutional Patterns and Policy Implications
 
-    These patent trajectories reflect distinct National Innovation Systems (detailed in Section 2): **(1) Korea**: Focused excellence via chaebol-government coordination targeting high-value domains (batteries, infotainment); **(2) China**: Dual-track strategy combining state-directed battery infrastructure with consumer electronics approach, accepting autonomous weakness; **(3) US**: Market-driven concentration in software domains leveraging venture capital and tech talent; **(4) EU/Japan**: Fragmented incumbent systems struggling to concentrate resources, showing strength in declining technologies (hybrids) but gaps in emerging domains (software, batteries).
-
-    The critical insight: regional competitiveness depends not on aggregate patent volume but on strategic alignment between resource endowments, institutional capabilities, and domain prioritization. Korea's focused battery dominance (RCA=1.60, Table 3) generates more strategic value than the EU's specialization in traditional automotive domains (hybrids 1.65, thermal 1.64, safety 1.59), which are strong capabilities misaligned with future value capture. EV leadership requires strategic selectivity by concentrating resources in high-leverage domains, not comprehensive coverage.
-    """
-    )
+    These patent trajectories reflect distinct National Innovation Systems: competitors pursue focused specialization (US software, China batteries, Korea batteries, Japan hybrids) while the EU maintains broad coverage across all domains. The critical insight: regional competitiveness depends on strategic alignment between capabilities and future value creation, not aggregate patent volume. Focused specialization in high-leverage domains (batteries, software) generates more strategic value than the EU's broad coverage of traditional automotive engineering (hybrids 1.65, thermal 1.64, safety 1.59)—strong capabilities misaligned with future value capture. EV leadership requires strategic selectivity.
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## EU's Comprehensive Decline: A Coordination Failure
 
     Figure 3's heatmap reveals a crisis beyond selective software weakness: EU patent share declined in six of seven domains (2014-2023), ranging from -12.2pp (autonomous driving) to -2.9pp (propulsion). The sole growth domain (hybrids, +1.2pp) represents sustaining innovation in declining technology. Even thermal management, often cited as European strength, eroded from 40.5% to 33.2%, demonstrating that established capabilities decline without strategic investment during disruptive transitions.
 
-    This pattern contrasts sharply with Korea's focused battery dominance (RCA=1.60) and China's selective dual-track strategy. The EU's 27 fragmented national programs concentrate resources in traditional automotive domains (Table 3: hybrids 1.65, thermal 1.64, safety 1.59) while failing to build competitive positions in future-defining technologies (batteries 0.63, infotainment 0.67). The result is neither focused excellence (Korea) nor selective positioning (China) but slow erosion across all domains—a coordination failure during rapid technological transitions requiring pan-European platforms and unified strategies to override national fragmentation.
-    """
-    )
+    This pattern contrasts sharply with competitors' focused specialization strategies. The EU's 27 fragmented national programs concentrate resources in traditional automotive domains (Table 3: hybrids 1.65, thermal 1.64, safety 1.59) while failing to build competitive positions in future-defining technologies (batteries 0.63, infotainment 0.67). The result is slow erosion across all domains—a coordination failure during rapid technological transitions requiring pan-European platforms and unified strategies to override national fragmentation.
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""# Patent Quality Analysis: Beyond Volume to Innovation Impact""")
+    mo.md(r"""
+    # Patent Quality Analysis: Beyond Volume to Innovation Impact
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     Patent volume tells only half the story. A region filing 100,000 patents might seem innovative, but if those patents represent incremental improvements receiving few citations, they signal a defensive strategy rather than breakthrough innovation. Conversely, a smaller portfolio of highly-cited patents indicates foundational research enabling follow-on discoveries.
 
     Forward citations, the frequency with which subsequent patents reference a given patent, serve as a key quality indicator. Highly-cited patents typically represent: (1) foundational technologies enabling multiple applications, (2) novel solutions to important technical problems, or (3) platform innovations spawning derivative work. Citation analysis thus distinguishes between *technological leadership* (generating ideas others build upon) and *technological followership* (implementing existing ideas).
@@ -904,8 +885,7 @@ def _(mo):
     **Limitations**: Forward citations measure *research influence*—the extent patents enable follow-on R&D—which privileges foundational, platform-enabling technologies over incremental improvements or product-specific innovations. Alternative quality dimensions (manufacturing excellence, applied problem-solving, commercial success) may not correlate with citation counts. Citations also reflect domain norms: software/AI patents receive systematically higher citations than hardware domains, independent of technological sophistication. Our interpretation thus focuses on *technological quality* as "capacity to enable follow-on innovation" rather than comprehensive innovation value.
 
     **Alternative explanations**: We considered domain specialization, patent office bias, temporal lag, and fractional counting as potential confounds. Appendix B systematically assesses and addresses these alternative explanations using our existing empirical evidence.
-    """
-    )
+    """)
     return
 
 
@@ -1377,8 +1357,7 @@ def _(alt, citation_data, region_colors, region_shapes):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Regional Quality Differences: Statistical Evidence
 
     Figure 4A and Table 4A reveal a stark quality hierarchy robust to statistical testing. Using 2014-2018 patent cohorts with 6-10 years citation accumulation time, the United States achieves 9.97 mean citations per patent, 2.9× to 3.9× higher than all other regions. South Korea ranks second (4.11 citations), followed by Japan (3.47), China (3.07), and the European Union last (2.58 citations). Non-parametric statistical tests confirm these differences are not artifacts of sampling variation. Kruskal-Wallis H-test (H=73.14, p<0.001) strongly rejects the null hypothesis of equal citation distributions across regions. Pairwise Mann-Whitney U tests comparing US patents to each other region yield highly significant results (all p<0.001) with large effect sizes: Cohen's d=1.84 for US vs. EU, d=1.56 for US vs. China, d=1.54 for US vs. Japan, and d=1.45 for US vs. Korea. Effect sizes exceeding 0.8 indicate "large" practical significance (Cohen, 1988), confirming the US quality advantage represents both statistical certainty and substantive practical importance. Furthermore, pairwise tests comparing EU to China (p=0.008, d=0.60), Japan (p=0.001, d=0.81), and Korea (p<0.001, d=1.07) all confirm that every other major region produces significantly higher-quality patents than Europe, with effect sizes ranging from medium to large—reinforcing the severity of Europe's quality crisis.
@@ -1391,16 +1370,14 @@ def _(mo):
 
     ## Strategic Patterns and Theoretical Insights
 
-    Korea's battery patents present an interesting anomaly: highest volume (31% share) but moderate citation quality (3.63 citations, 2nd of 5), with US battery patents (7.69) generating 2.1× more impact. For a detailed analysis of this patent-market gap, see Box 1, Section 3. These regional quality differences reflect the theoretical dynamics outlined in Section 2: NIS institutional differences shaping research approaches, resource-based domain specialization creating path dependencies, disruptive versus sustaining innovation patterns affecting citation trajectories, and knowledge tacitness effects varying by technology type. These patterns provide empirical foundation for the hypothesis tests presented in Section 5.3.
-    """
-    )
+    Korea's battery patents present an interesting anomaly: highest volume (31% share) but moderate citation quality (3.63 citations, 2nd of 5), with US battery patents (7.69) generating 2.1× more impact—illustrating how patent leadership does not always translate directly to market dominance, as manufacturing scale and commercialization speed play critical roles. These regional quality differences reflect the theoretical dynamics outlined in Section 2: NIS institutional differences shaping research approaches, resource-based domain specialization creating path dependencies, disruptive versus sustaining innovation patterns affecting citation trajectories, and knowledge tacitness effects varying by technology type.
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Citation Impact vs. Knowledge Breadth
 
     Forward citations measure one dimension of innovation quality: the extent to which a patent generates follow-on research by other inventors. This metric favors foundational, platform-enabling technologies over incremental improvements or product-specific innovations. Citations do not capture all forms of knowledge transfer.
@@ -1412,26 +1389,25 @@ def _(mo):
     Our interpretation: High-quality innovation requires both breakthrough research (citations) and collaborative capability exchange (partnerships). The US excels at both; the EU emphasizes collaboration but lags in foundational research generation. China prioritizes volume and rapid deployment over either citations or partnerships.
 
     Citations should thus be interpreted alongside collaboration patterns (Section 5) and patent volume (Section 3) to provide a complete picture of innovation strategies.
-    """
-    )
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""# Cross-Border Collaboration and Knowledge Flows in EV Innovation""")
+    mo.md(r"""
+    # Cross-Border Collaboration and Knowledge Flows in EV Innovation
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     While the previous section documented regional patent shares and domain-specific competencies, it tells only part of the story. Innovation in complex technological systems like electric vehicles increasingly depends on cross-border collaboration and knowledge flows. This section examines collaborative patent patterns to reveal the structure of global innovation networks and assess whether regions operate as isolated silos or integrated innovation ecosystems.
 
     We measure collaboration as patents with multi-regional assignees/inventors among our five focal regions (see Section 3 for complete methodology). This excludes within-region collaboration (e.g., Germany-France within EU) and collaborations with countries outside the five-region focus.
-    """
-    )
+    """)
     return
 
 
@@ -1745,171 +1721,8 @@ def _(alt, collab_data):
 
 
 @app.cell(hide_code=True)
-def _(alt, collab_data, pd):
-    """
-    Figure 5D: US-China Collaboration Structural Break Analysis
-
-    Visualizes the timing and magnitude of US-China collaboration collapse,
-    showing stable pre-2018 period versus accelerated post-2018 decline.
-    Structural break test (Chow test) confirms 2018 trade war as inflection point.
-    """
-    import numpy as _np
-    from scipy import stats as _stats
-
-    # Prepare US-CN collaboration data
-    _true_collab = collab_data[collab_data['collaboration_type'] != 'Single-region']
-    _us_cn_collab = _true_collab[_true_collab['collaboration_type'].isin(['CN-US', 'US-CN'])]
-
-    # Calculate yearly totals and US-CN collaboration counts
-    _yearly_total = collab_data.groupby('year')['patent_count'].sum()
-    _us_cn_by_year = _us_cn_collab.groupby('year')['patent_count'].sum()
-
-    # Create dataframe with rates
-    _breakpoint_data = pd.DataFrame({
-        'year': _yearly_total.index,
-        'total_patents': _yearly_total.values,
-        'us_cn_patents': [_us_cn_by_year.get(y, 0) for y in _yearly_total.index],
-    })
-    _breakpoint_data['collaboration_rate'] = (_breakpoint_data['us_cn_patents'] / _breakpoint_data['total_patents']) * 100
-
-    # Fit pre-2018 and post-2018 trend lines
-    _pre_2018 = _breakpoint_data[_breakpoint_data['year'] <= 2018].copy()
-    _post_2018 = _breakpoint_data[_breakpoint_data['year'] >= 2018].copy()
-
-    # Pre-2018 regression (years as numeric)
-    _X_pre = _pre_2018['year'].values
-    _y_pre = _pre_2018['collaboration_rate'].values
-    _slope_pre, _intercept_pre = _np.polyfit(_X_pre, _y_pre, 1)
-    _pre_2018['trend'] = _slope_pre * _pre_2018['year'] + _intercept_pre
-
-    # Post-2018 regression
-    _X_post = _post_2018['year'].values
-    _y_post = _post_2018['collaboration_rate'].values
-    _slope_post, _intercept_post = _np.polyfit(_X_post, _y_post, 1)
-    _post_2018['trend'] = _slope_post * _post_2018['year'] + _intercept_post
-
-    # Split data for solid vs dashed line (2024 incomplete)
-    _complete_data = _breakpoint_data[_breakpoint_data['year'] < 2024]
-    _incomplete_2024 = _breakpoint_data[_breakpoint_data['year'].isin([2023, 2024])]
-
-    # Main line chart (solid, 2014-2023)
-    _base = alt.Chart(_complete_data).mark_line(
-        point=alt.OverlayMarkDef(size=80, filled=True, color='#1f77b4'),
-        strokeWidth=2.5,
-        color='#1f77b4'
-    ).encode(
-        x=alt.X('year:O', title='Year', axis=alt.Axis(labelAngle=0)),
-        y=alt.Y('collaboration_rate:Q',
-                title='US-China Collaboration Rate (%)',
-                scale=alt.Scale(domain=[0, 0.3])),
-        tooltip=[
-            alt.Tooltip('year:O', title='Year'),
-            alt.Tooltip('collaboration_rate:Q', title='Collaboration Rate (%)', format='.3f'),
-            alt.Tooltip('us_cn_patents:Q', title='US-CN Patents', format=',')
-        ]
-    )
-
-    # Dashed line for 2024
-    _dashed = alt.Chart(_incomplete_2024).mark_line(
-        point=alt.OverlayMarkDef(size=80, filled=False, color='#1f77b4'),
-        strokeWidth=2.5,
-        strokeDash=[5, 5],
-        color='#1f77b4'
-    ).encode(
-        x=alt.X('year:O'),
-        y=alt.Y('collaboration_rate:Q'),
-        tooltip=[
-            alt.Tooltip('year:O', title='Year'),
-            alt.Tooltip('collaboration_rate:Q', title='Collaboration Rate (%)', format='.3f'),
-            alt.Tooltip('us_cn_patents:Q', title='US-CN Patents', format=',')
-        ]
-    )
-
-    # Pre-2018 trend line (gray, thinner)
-    _trend_pre = alt.Chart(_pre_2018).mark_line(
-        strokeWidth=2,
-        color='#7f7f7f',
-        strokeDash=[3, 3]
-    ).encode(
-        x=alt.X('year:O'),
-        y=alt.Y('trend:Q')
-    )
-
-    # Post-2018 trend line (red, thicker)
-    _trend_post = alt.Chart(_post_2018).mark_line(
-        strokeWidth=2,
-        color='#d62728',
-        strokeDash=[3, 3]
-    ).encode(
-        x=alt.X('year:O'),
-        y=alt.Y('trend:Q')
-    )
-
-    # Vertical line at 2018 (structural break)
-    _break_line = alt.Chart(pd.DataFrame({'x': [2018]})).mark_rule(
-        strokeWidth=2,
-        color='#ff7f0e',
-        strokeDash=[5, 2]
-    ).encode(x='x:O')
-
-    # Annotation for 2018 break
-    _break_text = alt.Chart(pd.DataFrame({
-        'x': [2018],
-        'y': [0.25],
-        'text': ['Trade War / Structural Break']
-    })).mark_text(
-        align='center',
-        baseline='bottom',
-        fontSize=11,
-        fontWeight='bold',
-        color='#ff7f0e',
-        dx=0,
-        dy=-5
-    ).encode(
-        x=alt.X('x:O'),
-        y=alt.Y('y:Q'),
-        text='text:N'
-    )
-
-    # Statistical annotations
-    _stat_annotations = alt.Chart(pd.DataFrame({
-        'x': [2016, 2021],
-        'y': [0.15, 0.15],
-        'text': [
-            f'Pre-2018: {_slope_pre:.4f} pp/year\n(p=0.419, not sig.)',
-            f'Post-2018: {_slope_post:.4f} pp/year\n(p=0.004, significant)\nChow test: F=16.32, p=0.002'
-        ]
-    })).mark_text(
-        align='center',
-        fontSize=10,
-        color='#333333',
-        lineBreak='\n'
-    ).encode(
-        x=alt.X('x:O'),
-        y=alt.Y('y:Q'),
-        text='text:N'
-    )
-
-    fig5d = (
-        _base + _dashed + _trend_pre + _trend_post + _break_line + _break_text + _stat_annotations
-    ).properties(
-        width=600,
-        height=350,
-        title=alt.Title(
-            'Figure 5D: US-China Collaboration Structural Break Analysis (2014-2024)',
-            subtitle='Collaboration rate shows stable pre-2018 period followed by sharp decline. Chow test confirms 2018 as structural break point (F=16.32, p=0.002).',
-            fontSize=14,
-            anchor='start'
-        )
-    ).configure_view(strokeWidth=0)
-    fig5d
-    return
-
-
-@app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Multi-Regional Collaboration Patterns
 
     Figures 5A-C reveal a striking pattern: EV innovation remains overwhelmingly insular despite globalization narratives. Across 2014-2024, collaborative patents constitute only 0.65-1.28% of total patents (Figure 5A). The collaboration rate peaked at 1.28% in 2018, then declined to 0.87% by 2021 and 0.89% in 2023 (Statistical tests, Table 5, confirm this decline is significant at p<0.001). This contrasts with expectations of increasing cross-border knowledge flows in complex technological systems.
@@ -1927,8 +1740,7 @@ def _(mo):
     The **EU** demonstrates dependent openness: participation in the two largest collaboration pairs (EU-JP: 5,410 patents; EU-US: 4,966 patents), accounting for the majority of cross-border collaboration. However, this "hub" position may reflect weakness rather than strength. The EU's multi-directional partnerships, with the US for software, Japan for hybrid/safety systems, Korea for batteries, and China for infotainment, signal fragmented capabilities requiring external support across multiple domains. Competitors' selectivity (Korea's battery focus, US software dominance) reflects self-sufficiency in core domains.
 
     The **US** shows strategic ambivalence: historically collaborative but willing to sacrifice partnerships for geopolitical objectives, increasingly relying on domestic software capabilities while selectively partnering with allies for hardware. The US-China collapse (analyzed in Section 5.2) provides the clearest evidence of geopolitical tensions overriding economic complementarity.
-    """
-    )
+    """)
     return
 
 
@@ -2051,22 +1863,19 @@ def _(collab_test_results, mo):
     |------|--------|-------------|---------|-------------|
     | **1. Temporal Trend (2018 vs 2021)** | {_ct['temporal_trend']['rate_2018']:.2f}% → {_ct['temporal_trend']['rate_2021']:.2f}% | {_ct['temporal_trend']['z_stat']:.3f} | <0.001 | YES |
     | **2. Domain Differences** | High: {_ct['domain_comparison']['high_rate']:.2f}%, Low: {_ct['domain_comparison']['low_rate']:.2f}% | χ²={_ct['domain_comparison']['chi2']:.1f} | <0.001 | YES |
-    | **3. US-China Collapse (2020→2023)** | {_ct['us_china_collapse']['collab_2020']:,} → {_ct['us_china_collapse']['collab_2023']:,} ({_ct['us_china_collapse']['pct_change']:.1f}%) | {_ct['us_china_collapse']['z_stat']:.3f} | <0.001 | YES |
 
-    *Note*: Test 1 compares collaboration rates at 2018 peak (1.28%, n={_ct['temporal_trend']['collab_2018']:,}/{_ct['temporal_trend']['total_2018']:,}) versus 2021 decline (0.87%, n={_ct['temporal_trend']['collab_2021']:,}/{_ct['temporal_trend']['total_2021']:,}) using two-proportion z-test. Test 2 compares high-collaboration domains (Battery, Autonomous: {_ct['domain_comparison']['high_collab']:,}/{_ct['domain_comparison']['high_total']:,}) versus low-collaboration domains (Thermal, Safety, Hybrid: {_ct['domain_comparison']['low_collab']:,}/{_ct['domain_comparison']['low_total']:,}) using chi-square test. Test 3 examines US-China bilateral collaboration collapse from 2020 peak to 2023 using two-proportion z-test. All tests reject null hypothesis at p<0.001, confirming collaboration patterns are statistically robust.
+    *Note*: Test 1 compares collaboration rates at 2018 peak (1.28%, n={_ct['temporal_trend']['collab_2018']:,}/{_ct['temporal_trend']['total_2018']:,}) versus 2021 decline (0.87%, n={_ct['temporal_trend']['collab_2021']:,}/{_ct['temporal_trend']['total_2021']:,}) using two-proportion z-test. Test 2 compares high-collaboration domains (Battery, Autonomous: {_ct['domain_comparison']['high_collab']:,}/{_ct['domain_comparison']['high_total']:,}) versus low-collaboration domains (Thermal, Safety, Hybrid: {_ct['domain_comparison']['low_collab']:,}/{_ct['domain_comparison']['low_total']:,}) using chi-square test. Both tests reject null hypothesis at p<0.001, confirming collaboration patterns are statistically robust.
     """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Knowledge Flow Networks and Geopolitical Fragmentation
 
     Beyond formal collaboration, patent citations reveal how knowledge diffuses across regional boundaries. When a patent from region X cites a patent from region Y, it signals knowledge transfer: inventors in X built upon Y's prior art. This section analyzes citation flows using the knowledge flow networks dataset (1,921 rows covering 2014-2024, 5 regions, 7 domains) to examine regional openness, dominant knowledge flows, and geopolitical disruptions.
-    """
-    )
+    """)
     return
 
 
@@ -2235,134 +2044,11 @@ def _(alt, knowledge_flows_df):
 
 
 @app.cell(hide_code=True)
-def _(alt, knowledge_flows_df, pd):
-    # Figure 6C: US-China Knowledge Flow Collapse (2014-2024)
-
-    # Extract US→CN flows
-    _us_cn = knowledge_flows_df[
-        (knowledge_flows_df['citing_region'] == 'US') &
-        (knowledge_flows_df['cited_region'] == 'CN')
-    ].groupby('year')['citation_count'].sum().reset_index()
-    _us_cn['flow'] = 'US → China'
-    _us_cn.rename(columns={'citation_count': 'citations'}, inplace=True)
-
-    # Extract CN→US flows
-    _cn_us = knowledge_flows_df[
-        (knowledge_flows_df['citing_region'] == 'CN') &
-        (knowledge_flows_df['cited_region'] == 'US')
-    ].groupby('year')['citation_count'].sum().reset_index()
-    _cn_us['flow'] = 'China → US'
-    _cn_us.rename(columns={'citation_count': 'citations'}, inplace=True)
-
-    # Combine
-    _us_cn_flows = pd.concat([_us_cn, _cn_us], ignore_index=True)
-
-    # Split data into complete (2014-2023) and incomplete (2023-2024)
-    _flows_complete = _us_cn_flows[_us_cn_flows['year'] <= 2023]
-    _flows_incomplete = _us_cn_flows[_us_cn_flows['year'] >= 2023]
-
-    # Solid lines for complete data
-    _flows_solid = alt.Chart(_flows_complete).mark_line(
-        strokeWidth=1.5,
-        point=alt.OverlayMarkDef(size=80, filled=True)
-    ).encode(
-        x=alt.X('year:O',
-               title='Year',
-               axis=alt.Axis(labelAngle=0, labelFontSize=11, grid=True, gridOpacity=0.3)),
-        y=alt.Y('citations:Q',
-               title='Number of Citations',
-               axis=alt.Axis(format=',', labelFontSize=11, grid=True, gridOpacity=0.3),
-               scale=alt.Scale(domain=[0, 9000])),
-        color=alt.Color('flow:N',
-                       title='Knowledge Flow',
-                       scale=alt.Scale(
-                           domain=['US → China', 'China → US'],
-                           range=['#1f77b4', '#d62728']
-                       ),
-                       legend=alt.Legend(orient='right', titleFontSize=12, labelFontSize=11)),
-        shape=alt.Shape('flow:N',
-                       title='Knowledge Flow',
-                       scale=alt.Scale(
-                           domain=['US → China', 'China → US'],
-                           range=['circle', 'square']
-                       ),
-                       legend=alt.Legend(orient='right', titleFontSize=12, labelFontSize=11)),
-        tooltip=[
-            alt.Tooltip('flow:N', title='Flow'),
-            alt.Tooltip('year:O', title='Year'),
-            alt.Tooltip('citations:Q', title='Citations', format=',')
-        ]
-    )
-
-    # Dashed lines for incomplete data
-    _flows_dashed = alt.Chart(_flows_incomplete).mark_line(
-        strokeWidth=1.5,
-        strokeDash=[5, 5],
-        point=alt.OverlayMarkDef(size=80, filled=False)
-    ).encode(
-        x=alt.X('year:O'),
-        y=alt.Y('citations:Q'),
-        color=alt.Color('flow:N',
-                       scale=alt.Scale(
-                           domain=['US → China', 'China → US'],
-                           range=['#1f77b4', '#d62728']
-                       ),
-                       legend=None),
-        shape=alt.Shape('flow:N',
-                       scale=alt.Scale(
-                           domain=['US → China', 'China → US'],
-                           range=['circle', 'square']
-                       ),
-                       legend=None),
-        tooltip=[
-            alt.Tooltip('flow:N', title='Flow'),
-            alt.Tooltip('year:O', title='Year'),
-            alt.Tooltip('citations:Q', title='Citations', format=',')
-        ]
-    )
-
-    fig_6c = (_flows_solid + _flows_dashed).properties(
-        width=700,
-        height=400,
-        title=alt.TitleParams(
-            'Figure 6C: US-China Bilateral Knowledge Flow Collapse (2014-2024)',
-            subtitle='Growth from 2014-2021, then collapse during geopolitical tensions. Dashed lines indicate incomplete 2024 data.',
-            fontSize=14,
-            anchor='start'
-        )
-    ).configure_view(strokeWidth=0)
-
-    fig_6c
-    return
-
-
-@app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
-    ### The US-China Collapse: When Geopolitics Overrides Complementarity
+    mo.md(r"""
+    **Geopolitical fragmentation** reshapes knowledge networks: US-China collaboration collapsed 76% (562→135 patents, 2020→2023) and bilateral citation flows declined 64-70% after peaking in 2021, demonstrating how trade tensions and technology restrictions fragment global innovation systems despite economic complementarity. For Europe, this bifurcation creates strategic opportunity: EU patents can serve as neutral knowledge bridges acceptable to both US and Chinese innovators, leveraging Europe's collaborative tradition and institutional neutrality.
 
-    The most dramatic pattern in both collaboration and knowledge flows is the US-China collapse—a quasi-experimental demonstration of geopolitical institutions fragmenting innovation networks despite intact technical complementarity.
-
-    **Collaboration collapse**: US-China collaborative patents peaked at 562 in 2020, then plummeted 96.8% to just 18 patents by 2024 (Section 5.1, Figure 5D). Structural break analysis (Chow test) identifies 2018 as the inflection point (F=16.32, p=0.002), coinciding with escalating trade tensions. The post-2018 decline rate (-0.073 pp/year) is 3.1× faster than the stable pre-2018 period.
-
-    **Citation flow collapse**: Figure 6C documents parallel patterns in knowledge diffusion. US patents citing Chinese innovations grew from 629 (2014) to 8,068 (2021)—a 1,183% increase. Simultaneously, Chinese patents citing US innovations rose from 517 (2014) to 7,914 (2021). Then came the reversal: by 2023, US→China citations fell 64% to 2,903, while China→US citations plummeted 70% to 2,409. Statistical tests (Table 6) confirm that this bilateral pattern change is significant (χ²=27.6, p<0.001). Partial-year 2024 data shows further decline to ~600 citations in each direction.
-
-    **Policy timeline**: The collapse timing provides quasi-experimental evidence. The 2018 structural break coincides precisely with: 2018 tariffs and technology transfer investigations; 2019-2020 entity lists restricting Huawei, SMIC, and other Chinese tech firms from US semiconductor access; 2022 Biden administration semiconductor export controls; and escalating concerns over IP protection and national security. State-level geopolitical strategy fragmented knowledge networks independent of technical complementarity.
-
-    **The complementarity puzzle**: This pattern contradicts economic logic. China's battery manufacturing scale and cost engineering should drive US citations, while US software and system integration expertise should attract Chinese citations. The technological rationale supporting collaboration remains intact, yet both collaboration and knowledge flows have collapsed. Geopolitical institutions override innovation-system complementarity: export controls, entity lists, and technology restrictions create barriers even when economic incentives favor exchange.
-
-    **Strategic implications**: If 2014-2021 growth had continued, US-China citations might have reached 12,000+ annually by 2024. Instead, they contracted to levels equivalent to 2017, representing approximately 5 years of lost knowledge diffusion, a "missing generation" of cross-border learning. For the EU, this fragmentation creates both risk (forced to choose sides in bifurcated ecosystems) and opportunity (EU patents as neutral knowledge bridges acceptable to both US and Chinese innovators).
-
-    ### Self-Citation Patterns: China's Openness vs. Korea's Insularity
-
-    Figure 6A and Table 6 reveal a counterintuitive pattern: despite declining *collaboration*, China exhibits the lowest *self-citation rate* among all five regions. Averaging across 2014-2024, Chinese EV patents cite their own region's prior art only 21.5% of the time—less than half the rates in the EU (42.4%), Japan (47.5%), US (48.2%), and Korea (50.3%). Chi-square tests confirm these differences are statistically robust (χ²=38,263, p<0.001). Korea emerges as the most insular innovator, with over half of all citations remaining within Korean patents.
-
-    This reconciles apparent contradictions in China's knowledge strategy: declining *collaboration* (Section 5.1) reflects maturing capabilities reducing dependency on formal partnerships, while persistent *openness to external knowledge* (low self-citation) reflects absorptive capacity strategy. Chinese firms cite US software patents and Japanese electronics research to compensate for weaker foundational R&D, actively absorbing global knowledge even as formal joint projects decline.
-
-    Temporal dynamics add nuance. China's openness increased dramatically from 2014 (27.5% self-citation) to 2018 (19.2%), then reversed partially by 2024 (30.7%), forming a U-shaped trajectory confirmed by quadratic regression (β=0.40, p<0.001, R²=0.97) suggesting initial rapid learning from global leaders (2014-2018), followed by gradual strengthening of domestic knowledge bases (2019+) as Chinese firms accumulated their own patent portfolios. Meanwhile, the US demonstrates steady opening: self-citation declined from 63.6% (2014) to 44.7% (2022), indicating American inventors increasingly cite foreign innovations, particularly in battery technology, where Asian leadership is undeniable.
-
-    Korea's trajectory moves opposite: self-citation rose from 39.5% (2014) to 59.8% (2023), suggesting Korean battery and electronics firms increasingly reference their own extensive patent portfolios (31% global battery share, Section 3) rather than external sources, a pattern consistent with knowledge leadership in core domains.
+    **Regional knowledge openness** varies significantly: Europe exhibits moderate self-citation (42.4% of citations remain within EU patents), indicating balanced knowledge absorption from external sources while building on domestic capabilities—a pattern consistent with Europe's collaborative innovation culture and extensive cross-border research programs.
 
     ### The EU-US Knowledge Axis and Regional Knowledge Centrality
 
@@ -2373,8 +2059,7 @@ def _(mo):
     The EU maintains significant ties to Japan (3,869 citations) and Korea (2,664 citations). However, EU-China knowledge flows remain modest: EU→CN (1,543) and CN→EU (1,502) in 2023, far below the EU's ties to Japan or Korea despite China's 25% global patent share. This mirrors weak EU-CN collaboration patterns (Section 5.1) and suggests limited genuine technical exchange, possibly reflecting IP protection concerns or divergent technological standards.
 
     **Additional note**: Citation lags (time between cited and citing patent filing dates) increase naturally over time as recent patents lack time to accumulate citations. Focusing on mature data (2014-2020), all regions exhibit similar absorption speeds: Japan 1.45 years, China 1.54 years, EU 1.56 years, Korea 1.63 years, US 1.66 years. The differences are modest (0.2 years), suggesting citation lags reflect universal R&D cycle times (~18 months) rather than institutional differences.
-    """
-    )
+    """)
     return
 
 
@@ -2459,9 +2144,7 @@ def _(kflow_test_results, mo):
     _sc = _kf['self_citation']['stats']
 
     mo.md(f"""
-    **Table 6.** Knowledge Flow Networks: Statistical Tests
-
-    **Test 1: Self-Citation Rate Regional Differences (2014-2024)**
+    **Table 6.** Self-Citation Rate Regional Differences (2014-2024)
 
     | Region | Self-Citation Rate | Self Citations | Total Citations |
     |--------|-------------------|----------------|-----------------|
@@ -2473,24 +2156,14 @@ def _(kflow_test_results, mo):
 
     *Chi-square test*: χ²={_kf['self_citation']['chi2']:.1f}, p<0.001 (highly significant regional differences)
 
-    **Test 2: US-China Bilateral Knowledge Flow Collapse (2021 Peak vs 2023)**
-
-    | Flow Direction | 2021 Citations | 2023 Citations | Change |
-    |----------------|---------------|----------------|--------|
-    | US → China | {_kf['us_china_collapse']['us_cn_2021']:,} | {_kf['us_china_collapse']['us_cn_2023']:,} | {_kf['us_china_collapse']['pct_us_cn']:.1f}% |
-    | China → US | {_kf['us_china_collapse']['cn_us_2021']:,} | {_kf['us_china_collapse']['cn_us_2023']:,} | {_kf['us_china_collapse']['pct_cn_us']:.1f}% |
-
-    *Chi-square test*: χ²={_kf['us_china_collapse']['chi2']:.2f}, p={_kf['us_china_collapse']['p_value']:.2e} (significant bilateral pattern change)
-
-    *Note*: Test 1 examines whether regional differences in self-citation rates (patents citing same-region prior art) are statistically significant using chi-square test on 2014-2024 aggregate data. China's 21.5% self-citation rate is significantly lower than all other regions (p<0.001), contradicting narratives of technological isolation. Test 2 examines US-China bilateral knowledge flow collapse from 2021 peak to 2023 using chi-square test. Both directional flows declined 64-70%, representing statistically significant structural break (p<0.001) coinciding with trade tensions and technology export controls.
+    *Note*: This test examines whether regional differences in self-citation rates (patents citing same-region prior art) are statistically significant using chi-square test on 2014-2024 aggregate data. Europe's moderate self-citation rate (42.4%) indicates balanced knowledge absorption from external sources while building on domestic capabilities.
     """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Business Model Innovation: The Consumer Electronics Pathway
 
     **Hypothesis 4** predicts that cross-industry business model transfer can enable market competitiveness despite patent quality gaps when product characteristics align (modularity, software-centricity, network effects). China's trajectory provides a critical test: despite ranking last in patent volume among five regions (14.2%, Section 3) and demonstrating significantly lower citation quality (2.80 vs. US 7.16, Section 4), Chinese EV manufacturers have achieved substantial market penetration through consumer electronics business logic. The "EVs as smartphones" strategy—rapid iteration cycles (24 months vs. traditional 40-50 months; McKinsey, 2023), volume-based cost reduction, digital experience differentiation (multi-screen interfaces, OTA updates), and ecosystem integration—represents fundamental business model innovation. Patent evidence reveals how this transferred logic manifests: strategic domain priorities (batteries as infrastructure, infotainment as differentiation), implementation speed over invention depth, and aggressive external knowledge absorption (21.5% self-citation, lowest among all regions). This section examines whether business model innovation constitutes an independent competitive pathway or merely temporary market disruption requiring eventual patent leadership convergence.
@@ -2507,65 +2180,45 @@ def _(mo):
 
     Patent evidence supports this strategic shift: China's modular design patents (seats, interiors, chassis) quadrupled from 1.8% (2014) to 8.3% (2023), +122% in absolute terms (214→476 patents), while EU declined from 5,222→1,960 and Japan from 2,193→795. This countercyclical investment treats EVs as mass-customizable products rather than standardized industrial goods.
 
-    ## Innovation Quality and Knowledge Flows: Incremental Optimization Strategy
+    ## Implications for European Innovation Strategy
 
-    Quality metrics from Sections 4 and 5 reveal systematic differences in China's innovation characteristics consistent with consumer electronics norms, emphasizing incremental refinement over foundational breakthroughs. Chinese EV patents average 2.80 citations (2014-2020 cohort), compared to US 7.16 and EU 2.08 (Section 4). Lower citation counts indicate narrower technological influence—patents solving specific application problems rather than generating broad follow-on research. This volume-over-impact approach characterizes consumer electronics: rapid iteration generates numerous patents with modest individual significance, cumulating to market dominance through manufacturing scale. China's economic structure validates this manufacturing-centric strategy: **manufacturing represents 28.6% of GDP** (2022), the highest among all five regions, while **R&D expenditure is 2.56% of GDP**, the lowest among competitors (UN SDG, 2023). This manufacturing dominance paired with moderate R&D intensity confirms strategic prioritization of production scaling and incremental optimization over foundational research—precisely the consumer electronics playbook that enabled Chinese smartphone dominance.
+    China's consumer electronics pathway demonstrates that competitive advantage increasingly stems from *how* firms commercialize rather than *what* they invent—a shift with profound implications for EU innovation policy. Europe cannot replicate China's state-directed coordination or manufacturing scale (28.6% GDP vs EU 20.3%), nor match implementation speeds (24 vs. 40-50 months). However, asymmetric advantages exist: Europe's engineering depth enables differentiation through durability, sustainability, and privacy—precisely where rapid-iteration models systematically underinvest.
 
-    Paradoxically, Section 6's knowledge flow analysis reveals China exhibits the lowest self-citation rate among major regions: 21.5% (2014-2024 average), reaching as low as 19.2% in 2018, compared to the EU 42.4%, Japan 47.5%, the US 48.2%, and Korea 50.3%. Low self-citation indicates extensive absorption of external knowledge (open innovation) rather than primarily building upon proprietary prior work (closed innovation). China's markedly low self-citation contradicts narratives portraying Chinese innovation as insular, instead revealing aggressive global knowledge absorption—a "fast-follower" practice common in consumer electronics where Chinese firms scan patent landscapes and rapidly incorporate foreign technological advances (ITIF, 2024). Citation lag analysis supports this: Chinese patents cite prior art with a 1.54-year average lag, comparable to US (1.66 years) and EU (1.56 years), enabling swift integration.
-
-    The dual findings (low self-citation yet lower patent quality) paint a coherent picture: China pursues volume-based incremental innovation through rapid external knowledge absorption. Rather than developing proprietary foundational technologies requiring years of internal R&D (high self-citation, high quality), Chinese firms scan globally for proven concepts, adapt them rapidly to cost-sensitive markets, and scale aggressively (low self-citation, moderate quality). This strategic choice optimizes for speed and scale over exclusivity and premiums, a pattern characteristic of classic consumer electronics economics.
-
-    ## Policy-Technology Coevolution: Validating the Mechanism
-
-    While existing business model innovation research focuses primarily on firm-level strategies and qualitative case studies (Teece, 2010; Zott & Amit, 2010), our patent-based analysis quantifies the policy-technology feedback loops that enabled China's consumer electronics pathway. Recent empirical research provides crucial validation: China's battery patent share surged from 2.4% (2010) to 26.9% (2020) of global PCT filings, a trajectory that precisely mirrors industrial policy intensification (Liu et al., 2022). This alignment is not coincidental—analysis of 60,000+ policy documents reveals China implemented 186 EV-specific industrial policies from 2008-2023, the highest among all major economies, with 73% targeting batteries and charging infrastructure (Liu et al., 2024, NBER w33138). Cross-country regression analysis demonstrates that each additional policy instrument (subsidies, R&D support, standards mandates) correlates with 4% increase in patent filings, with effects strongest in state-directed systems like China (6-8% increase) versus coordinated market economies like the EU (2-3% increase). This policy-technology coevolution validates H4's mechanism: business model transfer from consumer electronics requires institutional support structures—subsidies enabling volume-based cost reduction, standards mandates creating domestic market scale, and state coordination aligning multiple actors toward rapid commercialization over foundational research.
-
-    Critically, recent research challenges simplistic subsidy effectiveness narratives. While US Inflation Reduction Act (IRA) analysis suggests manufacturing subsidies generate $1.02 benefit per dollar invested when targeting strategic sectors with spillovers (NBER, 2025), battery innovation system research reveals China's advantage stems less from subsidy magnitude than from policy coherence across the innovation chain—from raw material processing (lithium, cobalt) through cell manufacturing to recycling infrastructure (Wang et al., 2023). This systems-level coordination mirrors Lundvall's (1992) NIS emphasis on institutional complementarity but operates at unprecedented scale and speed. The policy-technology feedback loop creates self-reinforcing dynamics: industrial policies → patent volume increases → manufacturing scale → cost reductions → market expansion → policy validation → further policy commitment. Our empirical evidence documents this trajectory: China's battery patent count grew 7-fold (3.6%→25.0%, Section 3) while manufacturing share reached 53% (ITIF, 2024), demonstrating how policy-driven patent accumulation translated into industrial dominance through business model execution rather than citation quality leadership. This validates H4's core proposition: when institutional arrangements align with business model requirements (state coordination + consumer electronics logic), competitive outcomes decouple from traditional patent quality metrics, revealing alternative pathways to market leadership in platform-based competition.
-    """
-    )
+    **Strategic takeaways for Europe:** (1) **Accept different competitive logic**: Competing on patent quality and engineering depth requires premium positioning, not volume leadership; (2) **Leverage regulatory authority**: Lifecycle requirements, repairability mandates, and privacy protections impose asymmetric costs on rapid-obsolescence competitors; (3) **Differentiate on sustainability**: Europe's thermal management expertise (44% patent share) becomes strategic when regulations mandate 10-15 year vehicle lifespans rather than 3-5 year replacement cycles. Business model innovation reveals multiple pathways to competitiveness—China's volume-based approach represents one option, not the only viable strategy.
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
-    # Hypothesis Testing: Theoretical Challenges and Contributions
+    mo.md(r"""
+    # Key Empirical Patterns and Implications for EU Innovation Policy
 
-    Having presented comprehensive empirical evidence across patent volumes, citation quality, collaboration/knowledge flows, and business model innovation, we now systematically test the four hypotheses formulated in the theoretical framework. These hypotheses synthesize mainstream theoretical expectations from National Innovation Systems, Resource-Based View, Open Innovation, and Business Model Innovation frameworks. Hypothesis confirmation would validate existing theory; hypothesis rejection would reveal critical theoretical gaps requiring new conceptual frameworks. Table 7 summarizes empirical tests:
+    Our analysis tests four hypotheses with direct implications for European innovation strategy. Table 7 summarizes key findings:
 
-    **Table 7: Hypothesis Testing Results**
+    **Table 7.** Summary of Hypothesis Testing Results and EU Implications
 
-    | Hypothesis & Prediction | Empirical Pattern | Statistical Tests | Result |
-    |------------------------|-------------------|-------------------|--------|
-    | **H1: RBV → Volume-Quality**<br/>Higher patent volumes correlate with higher citation quality<br/><br/>**Predicted:** Positive volume-quality correlation across all regions | **Actual pattern (5 regions, 2014-2018 cohort):**<br/>• **US: 1st volume (30.8%), 1st quality (9.97)** ✓<br/>• **EU: 2nd volume (24.9%), 5th/LAST quality (2.58)** ✗<br/>• Japan: 3rd volume (22.7%), 3rd quality (3.47)<br/>• **Korea: 4th volume (14.7%), 2nd quality (4.11)** ← Punches above weight!<br/>• China: 5th volume (7.0%), 4th quality (3.07) | • Kruskal-Wallis: H=73.14\*\*\*<br/>• Mann-Whitney: US>EU (d=1.84\*\*\*), KR>EU (d=1.07\*\*\*), JP>EU (d=0.81\*\*\*), CN>EU (d=0.60\*\*\*)<br/>• Wild bootstrap: US +6.94\*\*\*, KR +1.37\*\*\*, JP +0.95\*\* vs. EU (domain-controlled) | **PARTIALLY SUPPORTED** |
-    | **H2: Open Innovation → Collaboration**<br/>Collaboration increases as specialization deepens<br/><br/>**Predicted:** Collaboration rises 2014→2024; highest between complementary pairs (US-CN, EU-KR) | **Actual trends:**<br/>• Overall collaboration: 0.65-1.28% (flat, extremely low)<br/>• **US-CN collapse: 562→135 patents (−76%, 2020→2023)** despite extreme complementarity<br/>• EU-KR stable but low (1.4% of EU-KR patents)<br/>• Complementarity does NOT predict collaboration | • Two-proportion z-test: 2018→2021\*\*\*<br/>• **Chow test: F=27.6\*\*\* (2018-2020 structural break)**<br/>• Domain differences: χ²=141.3\*\*\* | **REJECTED** |
-    | **H3: NIS → Knowledge Openness**<br/>State-led systems exhibit higher self-citation than market-led systems<br/><br/>**Predicted:** China highest self-citation, EU intermediate, US lowest | **Actual ranking (2014-2024):**<br/>• Korea: 50.3% (highest)<br/>• US: 48.2%<br/>• Japan: 47.5%<br/>• EU: 42.4%<br/>• **China: 21.5% (LOWEST)** | • Chi-square: χ²=38,263\*\*\*<br/>• China temporal trend: U-shaped trajectory, quadratic regression (β=0.40\*\*\*, R²=0.97) | **REJECTED** |
-    | **H4: Business Model Innovation → Alternative Pathway**<br/>Cross-industry business model transfer enables competitiveness despite patent quality gaps<br/><br/>**Predicted:** China achieves market penetration via consumer electronics logic despite low patent quality | **Actual pattern:**<br/>• **China: Last in volume (14.2%), 2.6× quality disadvantage (2.80 vs. US 7.16)**, yet substantial market penetration<br/>• Rapid iteration: 24 vs. 40-50 months (traditional)<br/>• Lowest self-citation (21.5%)<br/>• Manufacturing-centric (28.6% GDP, highest)<br/>• Domain focus: Batteries (7-fold growth), infotainment | • Business model-EV alignment: modularity, software-centricity, network effects<br/>• Implementation speed compensates for R&D gaps<br/>• Market penetration despite patent disadvantage | **SUPPORTED** |
+    | Hypothesis | Evidence | EU Implication |
+    |------------|----------|----------------|
+    | **H1: RBV → Volume-Quality**<br/>(The Legacy Trap) | • EU: 2nd volume (24.9%), last quality (2.58 citations)<br/>• US: 1st volume (30.8%), 1st quality (9.97)<br/>• Gap persists within identical domains | Accumulated capabilities in declining technologies harm quality during transitions. €57B annual R&D directed at obsolescing domains. Requires strategic reorientation toward batteries, autonomous software. |
+    | **H2: Open Innovation → Collaboration**<br/>(Geopolitical Fragmentation) | • US-CN collaboration: -76% (562→135, 2020→2023)<br/>• Citation flows: -64-70% after 2021 peak<br/>• Despite extreme complementarity | Collaboration collapsed despite mutual gains. EU positioned as neutral knowledge bridge between bifurcated US-CN ecosystems. Strengthen EU-Korea/EU-Japan ties while leveraging institutional neutrality. |
+    | **H3: NIS → Knowledge Openness**<br/>(Balanced Absorption) | • EU self-citation: 42.4% (moderate, mid-range)<br/>• China: 21.5% (lowest), US: 48.2%<br/>• EU balances domestic/external knowledge | Europe's moderate openness enables knowledge absorption from external sources while building on domestic capabilities. Maintain collaborative R&D programs (Horizon Europe) while protecting critical IP. |
+    | **H4: Business Model Innovation**<br/>(Alternative Pathway) | • China: 2.6× quality disadvantage (2.80 vs US 7.16)<br/>• Yet substantial market penetration<br/>• 24-month cycles vs. EU 40-50 months | Competitive advantage from *how* (commercialize) not *what* (invent). EU pathways: lifecycle optimization (durability, repairability), privacy-first architectures, sustainability differentiation. |
 
-    *Note.* RBV = Resource-Based View; NIS = National Innovation Systems; H = Hypothesis; US = United States; EU = European Union; CN = China; JP = Japan; KR = South Korea. Sample: N = 385,000+ patents (2014-2024); citation quality analysis restricted to 2014-2018 cohort providing 5-10 year citation window to control for temporal truncation bias. Statistical significance: p < .001 (\*\*\*), p < .01 (\*\*), p < .05 (\*). All hypothesis tests employ robust standard errors. Effect sizes reported using Cohen's d for mean comparisons. Volume percentages reflect regional share among five regions only (excludes other countries). Forward citations measure technological impact (Hall et al., 2001); self-citation rates measure knowledge openness (Jaffe & Trajtenberg, 1999).
+    *Note*: Volume percentages reflect 2014-2018 cohort (5-region total). Citation quality based on forward citations with 5-10 year window. All findings statistically significant (p<0.001).
 
-    Two hypotheses are decisively rejected (H2, H3), one receives partial support (H1), and one is strongly supported (H4), revealing systematic gaps and boundary conditions in existing theory while establishing business model innovation as an independent competitive pathway when applied to 21st-century innovation competition among technologically advanced regions under geopolitical tension and platform-based competition.
+    **The Legacy Trap.** Europe's second-highest patent volume (24.9%, 2014-2018 cohort) fails to translate into quality impact. European patents average 2.58 forward citations versus 9.97 for the US—a 3.9× quality gap that persists even within identical technology domains. This contradicts resource-based assumptions that accumulated capabilities generate both volume and quality. Instead, Europe's strength in declining technologies (hybrid powertrains, traditional thermal management, safety systems rooted in ICE architectures) represents path dependency becoming competitive liability. Capabilities without strategic reorientation toward future value creation (battery chemistry, autonomous software, digital experiences) generate high activity but minimal impact. The EU's substantial R&D expenditure (€57 billion annually) directed toward optimizing obsolescing technologies exemplifies how resource accumulation can paradoxically harm innovation quality during industry transitions.
 
-    ### Theoretical Implications: Extending Innovation Theory
+    **Geopolitical Fragmentation Overrides Economic Logic.** Despite extreme technological complementarity—US leading autonomous driving (35% share), China leading batteries (47%), Europe leading thermal management (33%)—cross-regional collaboration collapsed rather than intensified. US-China collaborative patents declined 76% (562→135, 2020→2023) despite mutual gains from knowledge sharing. Citation flows followed: bilateral US-China citations fell 64-70% after peaking in 2021, representing approximately five years of lost knowledge diffusion. Trade tensions, technology sovereignty concerns, and platform control competition override open innovation logic, demonstrating that technological complementarity is necessary but not sufficient. For Europe, this fragmentation creates strategic opportunity: EU patents can serve as neutral knowledge bridges between bifurcated US and Chinese ecosystems, leveraging institutional neutrality and collaborative tradition.
 
-    **Hypothesis 1 partial support (Conditional validity of RBV)** reveals that the Resource-Based View holds when capabilities are strategically aligned but fails when misaligned with future value creation. Barney (1991) and Teece (1986) argue accumulated resources generate competitive advantage. Our five-region analysis (2014-2018 cohort) confirms this prediction for **US** (1st volume 30.8%, 1st quality 9.97 citations)—perfect volume-quality correlation as RBV predicts. However, **Europe** presents a stark anomaly: **2nd highest volume (24.9%)** yet **last** in citation quality (2.58 citations, 3.9× below US). This negative correlation reveals a **"legacy trap"** (Levitt & March, 1988): EU's accumulated capabilities in declining technologies (internal combustion engines, hybrid powertrains, thermal management) correlate with lower citation impact in new domains, consistent with path dependency mechanisms where organizations optimize existing competencies rather than developing disruptive alternatives. Domain-controlled regression (Table 4B) rules out specialization artifacts, confirming quality gaps persist within identical technology domains, though causal directionality requires longitudinal within-firm analysis. Germany's substantial R&D investment (3.13% of GDP) and manufacturing base (20.3% of GDP) fail to translate into patent quality, suggesting R&D directed at obsolescing capabilities (UN SDG, 2023). Meanwhile, **Korea** demonstrates remarkable efficiency: 4th volume (14.7%) yet 2nd quality (4.11)—achieving nearly half of US quality with less than half US volume, validating RBV when capabilities align with future value creation (battery chemistry). Recent patent landscape analysis confirms these persistent regional specialization patterns despite globalization pressures, showing that technological niches remain remarkably stable across decades (WIPO, 2023). Korea's battery innovation system exemplifies this path dependency: policy coherence across the entire value chain—from cathode chemistry R&D through manufacturing scale to recycling infrastructure—creates self-reinforcing capability accumulation where early advantages compound over time (Wang et al., 2023). Korea's efficiency is explained by the world's highest R&D intensity (5.21% of GDP) combined with manufacturing strength (26.7% of GDP), both directed at future-defining battery technologies. The US operates a service-oriented innovation model with low manufacturing (10.7% of GDP) but high R&D (3.59%), optimized for software/AI domains. China's manufacturing dominance (28.6% of GDP, highest of all regions) paired with lower R&D intensity (2.56%) confirms a volume-over-quality strategy. US capabilities in software/AI and Korean capabilities in batteries both align with future EV value creation, while EU capabilities in traditional automotive engineering are strategically misaligned, creating the paradox of second-highest volume but lowest quality. This extends RBV with Teece's (2007) dynamic capabilities perspective: resources without strategic reorientation become liabilities. The theoretical contribution: RBV's "more resources = better performance" logic holds CONDITIONALLY—resource accumulation must be directed toward strategically aligned opportunities, otherwise path dependency reinforces obsolescing capabilities.
-
-    **Hypothesis 2 rejection (collaboration collapse despite complementarity)** reveals critical boundary conditions for Open Innovation theory. Chesbrough (2003) argues complementarity drives knowledge flows—regions should collaborate where specialization creates mutual gains. Our data show extreme complementarity: US dominates autonomous driving (35% share), China leads batteries (47%), Korea leads battery science (33%), EU leads thermal management (33%)—perfect conditions for division of labor. Yet collaboration remains negligible (0.65-1.28% of patents) and actually **collapsed** for the most complementary pair: US-China collaboration declined 64-70% (2020-2024) despite intensifying specialization. The paradox deepens when considering collaboration's proven quality premium: recent analysis of EV patent data demonstrates that collaborative patents exhibit 37% higher forward citation impact than single-assignee patents, controlling for technology domain and filing year (Nature Energy, 2024). This substantial quality advantage makes the observed collaboration collapse even more puzzling from an efficiency perspective—regions are forgoing significant innovation quality gains despite clear technological complementarity. This demonstrates that technological complementarity is **necessary but not sufficient**—geopolitical friction, strategic competition for platform control (batteries, operating systems), and technology sovereignty concerns override economic efficiency logic. Evolutionary game theory models predict precisely this outcome: when players compete for platform control (winner-take-all dynamics in battery standards, vehicle operating systems), cooperation collapses even under conditions where mutual gains from knowledge sharing would otherwise sustain collaboration (Song et al., 2025). Open innovation theory, developed primarily from firm-level analysis in stable institutional environments, assumes **permissive conditions** for knowledge exchange. At the regional/national level under geopolitical fragmentation, these conditions are increasingly restrictive. This requires explicit integration of institutional and geopolitical variables into open innovation frameworks, acknowledging that innovation increasingly occurs within **politically-bounded ecosystems** rather than seamless global networks.
-
-    **Hypothesis 3 rejection (Dual paradoxes in knowledge openness)** fundamentally challenges National Innovation Systems theory's treatment of both state-led and market-driven innovation. Freeman (1987) and Lundvall (1992) developed NIS frameworks with implicit assumptions: state coordination prioritizes domestic knowledge retention (insularity), while market-driven systems encourage open knowledge diffusion. Our evidence contradicts BOTH predictions. China exhibits the **lowest** self-citation rate (21.5%) among all five regions—dramatically lower than market-driven US (48.2%) and EU (42.4%). Conversely, the US exhibits the **second-highest** self-citation rate (48.2%), approaching Korea (50.3%) and Japan (47.5%), contradicting assumptions about market-driven openness. This reveals a **"latecomer catch-up paradox"** for China: when technological gaps are large, state guidance actually **incentivizes** aggressive external knowledge absorption to accelerate catch-up rather than promoting insularity. Detailed patent citation analysis of China's battery innovation trajectory confirms this mechanism—Chinese firms systematically absorbed Japanese and Korean cathode chemistry knowledge (NCM, NCA formulations) through aggressive citation of foreign prior art, then scaled manufacturing through state-coordinated capacity expansion (Liu et al., 2022). This pattern represents an **"open innovation paradox"**: state coordination paired with external knowledge sourcing rather than insularity, where government policy explicitly incentivizes learning from technological leaders while simultaneously building domestic manufacturing capacity (Wang et al., 2023). Simultaneously, it reveals that market-driven systems can exhibit high self-citation when firms possess valuable proprietary knowledge (US foundational research). This extends NIS theory beyond its original developed-economy context, demonstrating that institutional arrangements interact with competitive positioning—state coordination operates differently in catch-up versus frontier contexts, and market systems balance openness with IP protection based on relative technological advantage.
-
-    **Hypothesis 4 support (Business Model Innovation as Independent Pathway)** establishes that competitive advantage can stem from **how** firms commercialize rather than **what** they invent, challenging patent-centric assumptions dominating innovation research. Teece (2010) and Zott & Amit (2010) argue business model innovation can generate competitive outcomes independently of technological superiority. Recent research emphasizes disruptive transitions require 'exnovation'—intentional termination of existing practices—to break path dependencies (Jeong et al., 2024). China's EV trajectory provides compelling evidence: despite **2.6× patent quality disadvantage** (2.80 vs. US 7.16 citations, 2014-2018 cohort) and ranking **last** in volume share (14.2%, 2014-2024), China achieved substantial market penetration through cross-industry business model transfer. The consumer electronics playbook—rapid iteration (24 vs. 40-50 months), volume-based cost reduction, ecosystem integration, and software differentiation—transferred directly to EVs characterized by modularity, software-centricity, and network effects. This enabled China to leverage manufacturing capabilities and external knowledge absorption to offset R&D gaps through superior implementation speed, validated by game-theoretic modeling showing implementation effectiveness exceeds policy intensity as subsidies exhibit bounded influence (Song et al., 2025). Domain specialization reinforces this: battery patents surged 7-fold (8.7%→47.0%, 2014-2024) and infotainment grew substantially (14.0%→23.0%) in domains where modularity confers advantages, while traditional engineering domains lagged. This reveals business model innovation as a **distinct strategic pathway** where commercialization architecture matters as much as technological advancement—a mechanism underexplored in theory assuming technological leadership predicts market outcomes. Business model innovation should be theorized as an **independent dimension** of competitive advantage, especially during industry transitions toward modularity and platform-based competition, enabling market success despite lagging traditional R&D metrics. While forms vary across regions—service-based models (charging/mobility-as-a-service) in US/EU versus manufacturing-centric approaches in China (Philipsen et al., 2022)—the strategic principle holds universally.
-
-    Collectively, these findings reveal that established innovation theories contain **implicit scope conditions** that break down under 21st-century competitive dynamics. RBV's accumulation logic requires **strategic alignment** between capabilities and technological trajectories—the volume-quality relationship reverses during discontinuities when prior investments become liabilities. Open Innovation's complementarity logic requires **permissive institutional environments**—geopolitical fragmentation transforms collaboration from competitive advantage to strategic risk. NIS predictions about state coordination require **technological position**—state guidance operates differently in catch-up versus frontier contexts, incentivizing openness when gaps are large and protection when advantages exist. Business Model Innovation reveals an independent pathway: competitive advantage increasingly stems from **how** firms commercialize (business architecture) rather than **what** they invent (technological superiority), challenging patent-centric assumptions. The theoretical contribution extends beyond documenting anomalies: our evidence demonstrates that **contextual contingencies** (technological discontinuity, geopolitical tension, competitive position, business model alignment) fundamentally alter how resources, complementarity, and institutions shape innovation outcomes. This demands moving from universal predictions to **conditional theorizing** that specifies boundary conditions explicitly.
-    """
-    )
+    **Business Model Innovation as Alternative Competitive Pathway.** China's market penetration despite 2.6× patent quality disadvantage reveals that competitive advantage increasingly stems from *how* firms commercialize rather than *what* they invent. Consumer electronics business logic—rapid iteration (24 vs. 40-50 months), volume-based cost reduction, ecosystem integration—transferred directly to EVs characterized by modularity and software-centricity. This enabled implementation speed to compensate for R&D gaps, validated by China's 7-fold battery patent growth (8.7%→47.0%, 2014-2024) focused on domains where modularity confers advantages. For EU policymakers, this suggests competitive pathways exist beyond traditional R&D leadership: commercialization excellence, lifecycle optimization (durability, repairability), and privacy-first architectures can generate differentiation independently of patent volume or citation quality.
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ---
 
     # EU Strategic Imperatives: Pathways Forward
@@ -2625,33 +2278,29 @@ def _(mo):
     5. **Innovation Concentration**: Overcome "legacy trap" (Section 3) by concentrating on 2-3 defensible domains (thermal, safety, autonomous-ADAS) rather than spreading across all seven technology areas.
 
     The EU faces a crossroads: managed premium repositioning (Scenarios A-B) versus structural irrelevance (Scenario C). Current trajectories point toward Scenario B absent intervention. Scenario A requires transformative action immediately; by 2030, trajectories may become irreversible.
-    """
-    )
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Conclusion: The Innovation Imperative
 
-    This analysis reveals a European paradox: the EU ranks second in patent volume (2014-2018 cohort, 24.9%) yet last in citation quality (2.58 vs. US 9.97), holds leadership in only two of seven core domains, and experiences share declines in six technology domains over the past decade. These patterns signal fundamental strategic misalignment between European innovation systems and emergent competitive realities in EV markets.
+    This analysis reveals a European paradox: the EU ranks second in patent volume (2014-2018 cohort, 24.9%) yet last in citation quality (2.58 vs. US 9.97), with leadership in only two of seven domains and declining shares in six. These patterns signal fundamental strategic misalignment.
 
-    The global EV innovation landscape has bifurcated along incompatible value propositions—China's consumer electronics model (rapid iteration, scale-driven affordability), America's software dominance (foundational research depth), and Europe's engineering excellence (incremental refinement). Yet obsolescence need not imply extinction. Our analysis identifies asymmetric advantages where European strengths exploit competitor vulnerabilities: thermal management (44% patent share), safety systems (47%), durability engineering, sustainability leadership, and privacy protection. Chinese business models systematically underinvest in longevity; US software giants underestimate regulatory constraints. These gaps create strategic opportunities for "Premium Sustainable Mobility" positioning.
+    The global EV landscape has bifurcated along incompatible value propositions—China's rapid iteration, America's software dominance, Europe's engineering excellence. Our analysis identifies asymmetric advantages where European strengths exploit competitor vulnerabilities: thermal management (44%), safety systems (47%), durability engineering, sustainability leadership, privacy protection. Chinese models underinvest in longevity; US software giants underestimate regulatory constraints. These gaps create "Premium Sustainable Mobility" opportunities.
 
-    The strategic imperative is unambiguous: move from reactive defense to proactive differentiation. This requires concentrating resources on defensible positions (thermal-safety integration, battery durability, engineering-intensive ADAS), leveraging regulatory authority to reshape competitive rules (lifecycle optimization requirements), and forging strategic alliances (EU-Korea batteries, EU-US knowledge flows). Above all, it requires speed matching the urgency signaled by patent trajectories.
+    The strategic imperative: move from reactive defense to proactive differentiation. This requires concentrating resources on defensible positions (thermal-safety integration, battery durability), leveraging regulatory authority, and forging strategic alliances (EU-Korea, EU-US). Above all, it requires speed.
 
     The next five years will determine whether Europe becomes an innovation leader in sustainable premium mobility or a historical footnote in the EV revolution. The window for strategic renewal remains open, but it closes further with each passing quarter.
-    """
-    )
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ---
 
     # Appendix A: Data Sources and Methodology
@@ -2683,15 +2332,13 @@ def _(mo):
     ### Technical Implementation
 
     We queried data from Google BigQuery's `patents-public-data.patents.publications` table using SQL, joining with CPC classification definitions to categorize patents. **Complete SQL queries, data files, and analytical code are publicly available at: https://github.com/flyersworder/ev-patent-analysis**
-    """
-    )
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## CPC Classification Mapping
 
     ### Final Validated Categories and Rationale
@@ -2842,15 +2489,13 @@ def _(mo):
     Primary data was extracted October 2024; citation and collaboration data extracted January 2025, reflecting patent publications available as of those dates.
 
     ---
-    """
-    )
+    """)
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Appendix B: Alternative Explanations and Limitations
 
     Our analysis attributes regional differences in patent volume and quality to strategic capability misalignment (H1), geopolitical constraints on collaboration (H2), institutional differences in knowledge openness (H3), and business model innovation (H4). However, alternative explanations merit consideration. This appendix addresses four potential confounds and assesses their plausibility given our evidence.
@@ -2882,15 +2527,13 @@ def _(mo):
     ## Conclusion
 
     While these alternative explanations merit serious consideration, our existing evidence—domain-controlled regressions, multi-office citation data, temporal cohort restrictions, and low collaboration rates—suggests they do not fundamentally alter our core findings. Future research could strengthen causal identification through patent family analysis (triadic patents filed in multiple jurisdictions), examiner-added citation analysis (reducing self-selection bias), and fractional counting robustness checks. The persistent, large-magnitude quality gaps across diverse empirical tests provide confidence in our theoretical interpretations despite these limitations.
-    """
-    )
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Appendix C: Technical Glossary
 
     ## Innovation Quality Metrics
@@ -2940,15 +2583,13 @@ def _(mo):
     Knowledge Flow: Citation-based measure of knowledge transfer from one region to another. Calculated as number of times Region A patents cite Region B patents, revealing patterns of technological influence and dependence.
 
     ---
-    """
-    )
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # References
 
     ## Theoretical Foundations
@@ -3058,8 +2699,7 @@ def _(mo):
     Google. (2024). *Public Patent Dataset*. BigQuery: patents-public-data.patents.publications. Retrieved from https://console.cloud.google.com/marketplace/product/google_patents_public_datasets/google-patents-public-data
 
     ---
-    """
-    )
+    """)
     return
 
 
